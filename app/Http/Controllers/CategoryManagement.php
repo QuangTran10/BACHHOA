@@ -93,25 +93,25 @@ class CategoryManagement extends Controller
 
                 $category_by_id =DB::table('sanpham')->where('sanpham.MaDM',$id_cate)
                 ->join('danhmuc', 'sanpham.MaDM', '=', 'danhmuc.MaDM')
-                ->orderBy('TenSP','ASC')->Paginate(8);
+                ->orderBy('TenSP','ASC')->Paginate(9);
 
             }elseif ($sort_by=='za') {
 
                 $category_by_id =DB::table('sanpham')->where('sanpham.MaDM',$id_cate)
                 ->join('danhmuc', 'sanpham.MaDM', '=', 'danhmuc.MaDM')
-                ->orderBy('TenSP','DESC')->Paginate(8);
+                ->orderBy('TenSP','DESC')->Paginate(9);
 
             }elseif ($sort_by=='increase') {
 
                 $category_by_id =DB::table('sanpham')->where('sanpham.MaDM',$id_cate)
                 ->join('danhmuc', 'sanpham.MaDM', '=', 'danhmuc.MaDM')
-                ->orderBy('Gia','DESC')->Paginate(8);
+                ->orderBy('Gia','DESC')->Paginate(9);
 
             }elseif ($sort_by=='decrease') {
 
                 $category_by_id =DB::table('sanpham')->where('sanpham.MaDM',$id_cate)
                 ->join('danhmuc', 'sanpham.MaDM', '=', 'danhmuc.MaDM')
-                ->orderBy('Gia','ASC')->Paginate(8);
+                ->orderBy('Gia','ASC')->Paginate(9);
             }elseif ($sort_by=='price') {
                 $nho=0;
                 $lon=500000;
@@ -122,20 +122,20 @@ class CategoryManagement extends Controller
 
                 $category_by_id =DB::table('sanpham')->where('sanpham.MaDM',$id_cate)
                 ->join('danhmuc', 'sanpham.MaDM', '=', 'danhmuc.MaDM')
-                ->whereBetween('sanpham.Gia', [$nho, $lon])->Paginate(8);
+                ->whereBetween('sanpham.Gia', [$nho, $lon])->Paginate(9);
 
             }
             else{
                 $category_by_id =DB::table('sanpham')->where('sanpham.MaDM',$id_cate)
                 ->join('danhmuc', 'sanpham.MaDM', '=', 'danhmuc.MaDM')
                 ->orderBy('MSSP','ASC')
-                ->Paginate(8);
+                ->Paginate(9);
             }
         }else{
             $category_by_id =DB::table('sanpham')->where('sanpham.MaDM',$id_cate)
             ->join('danhmuc', 'sanpham.MaDM', '=', 'danhmuc.MaDM')
             ->orderBy('MSSP','ASC')
-            ->Paginate(8);
+            ->Paginate(9);
         }
 
         foreach ($category as $key => $value) {

@@ -167,23 +167,19 @@
                       @endforeach
                     </div>
                   </div>
-                  {{$product->links('partials.my_paginate')}}
-                  {{-- <div class="shop-pagination">
-                    <ul>
-                      <li>
-                        <button class="no-round-btn smooth active">1</button>
-                      </li>
-                      <li>
-                        <button class="no-round-btn smooth">2</button>
-                      </li>
-                      <li>
-                        <button class="no-round-btn smooth">3</button>
-                      </li>
-                      <li>
-                        <button class="no-round-btn smooth"> <i class="arrow_carrot-2right"></i></button>
-                      </li>
-                    </ul>
-                  </div> --}}
+                  <?php
+                    if(isset($_GET['sort_by'])){
+                        $sort_by= $_GET['sort_by'];
+                  ?>
+                      {{$product->appends(['sort_by' => $sort_by])->links('partials.my_paginate')}}
+
+                  <?php
+                    }else{  
+                  ?>
+                      {{$product->links('partials.my_paginate')}}
+                  <?php
+                    }  
+                  ?>
                 </div>
               </div>
             </div>

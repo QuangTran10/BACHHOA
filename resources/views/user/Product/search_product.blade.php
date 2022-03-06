@@ -151,22 +151,12 @@
                       @endforeach
                     </div>
                   </div>
-                  <div class="shop-pagination">
-                    <ul>
-                      <li>
-                        <button class="no-round-btn smooth active">1</button>
-                      </li>
-                      <li>
-                        <button class="no-round-btn smooth">2</button>
-                      </li>
-                      <li>
-                        <button class="no-round-btn smooth">3</button>
-                      </li>
-                      <li>
-                        <button class="no-round-btn smooth"> <i class="arrow_carrot-2right"></i></button>
-                      </li>
-                    </ul>
-                  </div>
+                  <?php
+                  if(isset($_GET['key'])){
+                    $key = $_GET['key'];
+                  }
+                  ?>
+                  {{$product->appends(['key' => $key])->links('partials.my_paginate')}}
                 </div>
               </div>
             </div>

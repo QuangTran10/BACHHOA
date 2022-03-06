@@ -145,7 +145,7 @@
               <div class="col-12 col-md-12 col-xl-6 col-xxxl-4 order-xl-3 order-xxxl-2">
                 <div class="navigation-filter">
                   <div class="website-search_v2">
-                    <form action="{{URL::to('/search')}}" method="POST">
+                    {{-- <form action="{{URL::to('/search')}}" method="POST"> --}}
                       <div class="row no-gutters">
                         <div class="col-0 col-md-3 col-lg-3 col-xl-4">
                           <div class="filter-search">
@@ -163,15 +163,15 @@
                         </div>
                         <div class="col-8 col-md-7 col-lg-8 col-xl-7">
                           <div class="search-input">
-                            {{ csrf_field() }}
-                            <input class="no-round-input no-border" type="text" placeholder="Tìm Kiếm" name="key">
+                            {{-- {{ csrf_field() }} --}}
+                            <input class="no-round-input no-border search-txt" type="text" placeholder="Tìm Kiếm" name="key">
                           </div>
                         </div>
                         <div class="col-4 col-md-2 col-lg-1 col-xl-1">
-                          <button type="submit" class="no-round-btn"><i class="icon_search"></i></button>
+                          <button {{-- type="submit" --}} class="no-round-btn search-btn"><i class="icon_search"></i></button>
                         </div>
                       </div>
-                    </form>
+                    {{-- </form> --}}
                   </div>
                 </div>
               </div>
@@ -514,7 +514,22 @@
         return false;
       });
 
+      //Tìm kiếm
+      $('.search-btn').click(function(event) {
+        var key = $('.search-txt').val();
+        var url = '{{url('/search')}}?key='+key;
+        if(url){
+          window.location= url;
+        }else{
+          swal({
+            title: "Không Tìm Thấy",
+            icon: "warning",
+            button: "OK",
+          });
+        }
+      });
 
+      //Load các comment
       function load_comment(){
         var id_product = $('.cmt_pro_id').val();
         var _token = $('input[name="_token"]').val();

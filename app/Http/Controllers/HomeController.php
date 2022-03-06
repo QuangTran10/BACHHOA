@@ -66,56 +66,26 @@ class HomeController extends Controller
     }
 
     public function search(Request $re){
-    	$key_words=$re->key;
+        if(isset($_GET['key'])){
+            $key = $_GET['key'];
+        }
         //Seo
         $meta_desc="Tìm kiếm";
-        $meta_keywords=$key_words;
+        $meta_keywords=$key;
         $meta_tittle="BACHHOA.COM";
         $url=url()->current();
         // end seo
 
-        if(isset($_GET['key'])){
-            $key = $_GET['key'];
-        }
+        $product_search=DB::table('sanpham')
+        ->join('danhmuc', 'danhmuc.MaDM', '=', 'sanpham.MaDM')
+        ->where('TenSP','like','%'.$key.'%')
+        ->orderBy('MSSP','ASC')
+        ->Paginate(9);
 
-        // if (isset($_GET['sort_by'])) {
-
-        //     $sort_by= $_GET['sort_by'];
-
-        //     if($sort_by=='az'){
-
-        //        $product_search=DB::table('hanghoa')->where('TenHH','like','%'.$key_words.'%')
-        //         ->orderBy('TenHH','ASC')->get();
-
-        //     }elseif ($sort_by=='za') {
-
-        //         $product_search=DB::table('hanghoa')->where('TenHH','like','%'.$key_words.'%')
-        //         ->orderBy('TenHH','DESC')->get();
-
-        //     }elseif ($sort_by=='increase') {
-
-        //         $product_search=DB::table('hanghoa')->where('TenHH','like','%'.$key_words.'%')
-        //         ->orderBy('Gia','ASC')->get();
-
-        //     }elseif ($sort_by=='decrease') {
-
-        //         $product_search=DB::table('hanghoa')->where('TenHH','like','%'.$key_words.'%')
-        //         ->orderBy('Gia','DESC')->get();
-                
-        //     }
-        // }else{
-            $product_search=DB::table('sanpham')
-            ->join('danhmuc', 'danhmuc.MaDM', '=', 'sanpham.MaDM')
-            ->where('TenSP','like','%'.$key_words.'%')
-            ->orderBy('MSSP','ASC')
-            ->get();
-        // }  
-
-        
-    	
     	$all_category = DB::table('danhmuc')->get();
         $loaihang = DB::table('loaihang')->get();
-    	return view('User.Product.search_product')
+
+    	return view('user.Product.search_product')
         ->with('category',$all_category)->with('list',$loaihang)
         ->with('product',$product_search)->with('meta_desc',$meta_desc)
         ->with('meta_keywords',$meta_keywords)->with('meta_tittle',$meta_tittle)
