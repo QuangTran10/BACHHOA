@@ -461,6 +461,7 @@ label.error{
       outline: 0;
       box-shadow: 0; }
   .no-round-btn.smooth {
+    text-decoration: none;
     background-color: #eaeff4;
     color: #252525;
     font-size: 14px;
@@ -479,6 +480,10 @@ label.error{
     -o-transition: 0.3s ease;
     transition: 0.3s ease;
     display: inline-block; }
+    .no-round-btn.smooth a{
+      text-decoration: none;
+      color: #252525;
+    }
     .no-round-btn.smooth:hover {
       background-color: #88c74a;
       color: #fff;

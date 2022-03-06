@@ -96,7 +96,7 @@ class CateChildController extends Controller
                 ->join('sanpham','sanpham.MaDM','=','danhmuc.MaDM')
                 ->where('loaihang.MaLoai',$id)
                 ->select('sanpham.*','danhmuc.MaDM','danhmuc.TenDanhMuc')
-                ->orderBy('TenSP','ASC')->get();
+                ->orderBy('TenSP','ASC')->Paginate(8);
 
             }elseif ($sort_by=='za') {
 
@@ -105,7 +105,7 @@ class CateChildController extends Controller
                 ->join('sanpham','sanpham.MaDM','=','danhmuc.MaDM')
                 ->where('loaihang.MaLoai',$id)
                 ->select('sanpham.*','danhmuc.MaDM','danhmuc.TenDanhMuc')
-                ->orderBy('TenSP','DESC')->get();
+                ->orderBy('TenSP','DESC')->Paginate(8);
 
             }elseif ($sort_by=='increase') {
 
@@ -114,7 +114,7 @@ class CateChildController extends Controller
                 ->join('sanpham','sanpham.MaDM','=','danhmuc.MaDM')
                 ->where('loaihang.MaLoai',$id)
                 ->select('sanpham.*','danhmuc.MaDM','danhmuc.TenDanhMuc')
-                ->orderBy('Gia','DESC')->get();
+                ->orderBy('Gia','DESC')->Paginate(8);
 
             }elseif ($sort_by=='decrease') {
 
@@ -123,7 +123,7 @@ class CateChildController extends Controller
                 ->join('sanpham','sanpham.MaDM','=','danhmuc.MaDM')
                 ->where('loaihang.MaLoai',$id)
                 ->select('sanpham.*','danhmuc.MaDM','danhmuc.TenDanhMuc')
-                ->orderBy('Gia','ASC')->get();
+                ->orderBy('Gia','ASC')->Paginate(8);
                 
             }elseif ($sort_by=='price') {
                 $nho=0;
@@ -138,7 +138,7 @@ class CateChildController extends Controller
                 ->join('sanpham','sanpham.MaDM','=','danhmuc.MaDM')
                 ->where('loaihang.MaLoai',$id)
                 ->select('sanpham.*','danhmuc.MaDM','danhmuc.TenDanhMuc')
-                ->whereBetween('sanpham.Gia', [$nho, $lon])->get();
+                ->whereBetween('sanpham.Gia', [$nho, $lon])->Paginate(8);
 
             }
             else{
@@ -148,7 +148,7 @@ class CateChildController extends Controller
                 ->where('loaihang.MaLoai',$id)
                 ->select('sanpham.*','danhmuc.MaDM','danhmuc.TenDanhMuc')
                 ->orderBy('MSSP','ASC')
-                ->get();
+                ->Paginate(8);
             }
         }else{
             $product = DB::table('loaihang')
@@ -157,7 +157,7 @@ class CateChildController extends Controller
             ->where('loaihang.MaLoai',$id)
             ->select('sanpham.*','danhmuc.MaDM','danhmuc.TenDanhMuc')
             ->orderBy('MSSP','ASC')
-            ->get();
+            ->Paginate(8);
         }
 
 

@@ -136,19 +136,6 @@ class UserManagement extends Controller
         }
     }
 
-    public function quick_login(Request $request){
-        $TaiKhoan=$request->TaiKhoan;
-        $MatKhau=md5($request->MatKhau);
-        $result = DB::table('khachhang')->where('TaiKhoan',$TaiKhoan)->where('MatKhau',$MatKhau)->first();
-        if ($result) {
-            Session::put('user_name',$result->TaiKhoan);
-            Session::put('user_id',$result->MSKH);
-            return redirect('/check_out');
-        }else{
-            return redirect('/check_out')->with('notice','Mật khẩu hoặc tài khoản không đúng');
-        }
-    }
-
     public function register(Request $request){
         $data = array();
         $now = Carbon::now('Asia/Ho_Chi_Minh');

@@ -167,7 +167,8 @@
                       @endforeach
                     </div>
                   </div>
-                  <div class="shop-pagination">
+                  {{$product->links('partials.my_paginate')}}
+                  {{-- <div class="shop-pagination">
                     <ul>
                       <li>
                         <button class="no-round-btn smooth active">1</button>
@@ -182,7 +183,7 @@
                         <button class="no-round-btn smooth"> <i class="arrow_carrot-2right"></i></button>
                       </li>
                     </ul>
-                  </div>
+                  </div> --}}
                 </div>
               </div>
             </div>
