@@ -24,18 +24,32 @@ class HomeController extends Controller
 
         $loaihang = DB::table('loaihang')->get();
 
+        //Sản phẩm bán chạy
         $bestsell = DB::table('chitietdathang')
         ->select(DB::raw('COUNT(MSSP) as sl', 'MSSP'),'MSSP')->groupBy('MSSP')->orderBy('sl','Desc')
-        ->limit(6)->get();
-        $pro_best_seller=array();
+        ->limit(8)->get();
+        $pro_best_seller = array();
         foreach ($bestsell as $key => $value) {
             $pro_best_seller[]=DB::table('sanpham')
             ->join('danhmuc', 'danhmuc.MaDM', '=', 'sanpham.MaDM')
             ->where('MSSP',$value->MSSP)
             ->select('sanpham.*','danhmuc.TenDanhMuc')->first();
         }
+
+        //Sản Phẩm nổi bật
+        $a = DB::table('binhluan')
+        ->select(DB::raw('round(AVG(DanhGia),0) as evaluate'),'MSSP')->groupBy('MSSP')
+        ->groupBy('MSSP')->limit(8)->get();
+
+        $pro_best_rate = array();
+        foreach ($a as $key => $value) {
+            $pro_best_rate[]=DB::table('sanpham')
+            ->join('danhmuc', 'danhmuc.MaDM', '=', 'sanpham.MaDM')
+            ->where('MSSP',$value->MSSP)
+            ->select('sanpham.*','danhmuc.TenDanhMuc')->first();
+        }
         
-        //Sản phẩm nổi bật
+        //Sản phẩm tiêu biểu
         $new_product = DB::table('sanpham')
         ->join('danhmuc', 'danhmuc.MaDM', '=', 'sanpham.MaDM')
         ->orderBy('MSSP','desc')->limit(8)->select('sanpham.*','danhmuc.TenDanhMuc')->get();
@@ -62,7 +76,7 @@ class HomeController extends Controller
         ->with('pro_best_seller',$pro_best_seller)->with('meat', $meat)
         ->with('new_product',$new_product)->with('seafood', $seafood)
         ->with('vegetables', $vegetables)->with('drinks',$drinks)
-        ->with('sale_product', $sale_product);
+        ->with('sale_product', $sale_product)->with('product_rate',$pro_best_rate);
     }
 
     public function search(Request $re){

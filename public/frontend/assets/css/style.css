@@ -5667,7 +5667,7 @@ footer.coffee .newletter {
       display: flex;
       margin-bottom: 30px; }
       .shop-detail .shop-detail_more-info #tab-so3 .customer-reviews_block .customer-review .customer-review_left, #quickview .quickview-box .shop-detail_more-info #tab-so3 .customer-reviews_block .customer-review .customer-review_left {
-        padding-right: 30px;
+        padding-right: 15px;
         border-right: 1px solid #ebebeb; }
         .shop-detail .shop-detail_more-info #tab-so3 .customer-reviews_block .customer-review .customer-review_left .customer-review_img, #quickview .quickview-box .shop-detail_more-info #tab-so3 .customer-reviews_block .customer-review .customer-review_left .customer-review_img {
           width: 70px;
@@ -5689,6 +5689,7 @@ footer.coffee .newletter {
             font-size: 13px;
             color: #efb11c; }
       .shop-detail .shop-detail_more-info #tab-so3 .customer-reviews_block .customer-review .customer-comment, #quickview .quickview-box .shop-detail_more-info #tab-so3 .customer-reviews_block .customer-review .customer-comment {
+        width: 1000px;
         flex-grow: 1; }
         .shop-detail .shop-detail_more-info #tab-so3 .customer-reviews_block .customer-review .customer-comment .comment-date, #quickview .quickview-box .shop-detail_more-info #tab-so3 .customer-reviews_block .customer-review .customer-comment .comment-date {
           font-family: "Roboto Regular";

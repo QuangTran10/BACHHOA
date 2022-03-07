@@ -35,7 +35,7 @@ class CommentController extends Controller
                         <div class="col-12 col-sm-3 col-lg-2 col-xxl-1">
                             <div class="customer-review_left">
                                 <div class="customer-review_img text-center">
-                                    <img class="img-fluid" src="'.url('public/frontend/assets/images/avatar.jpeg').' " alt="customer image">
+                                    <img class="img-fluid" src="'.url('public/frontend/assets/images/Avatar/avatar.jpeg').' " alt="customer image">
                                 </div>
                                 <div class="customer-rate"> ';
                                 for ($i=1; $i <= $value->DanhGia; $i++) { 
