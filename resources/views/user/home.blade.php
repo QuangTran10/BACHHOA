@@ -344,7 +344,7 @@
               <div class="col-12 col-lg-6 text-center">
                 <div class="dow-info">
                   <h2 class="title">Giảm Giá Trong Tuần</h2>
-                  <div class="d-flex justify-content-center" id="event-countdown"></div><a class="normal-btn" href="">Mua Ngay</a>
+                  <div class="d-flex justify-content-center" id="event-countdown"></div><a class="normal-btn" href="{{URL::to('/product_discount')}}">Mua Ngay</a>
                 </div>
               </div>
               <div class="col-7 col-lg-6">
@@ -528,7 +528,7 @@
                   </div>
                   <div class="col-6 col-md-5">
                     <div class="banner-text big text-center text-md-left">
-                      <h3 class="day">RAU CỦ RẤT RẺ<span class="sale">Giảm 50% </span></h3><a class="normal-btn" href="">Mua Ngay</a>
+                      <h3 class="day">RAU CỦ RẤT RẺ<span class="sale">Giảm 50% </span></h3><a class="normal-btn" href="{{URL::to('/category_home/4')}}">Mua Ngay</a>
                     </div>
                   </div>
                 </div>
@@ -542,7 +542,7 @@
                   </div>
                   <div class="col-6 col-md-5">
                     <div class="banner-text big text-center text-md-left">
-                      <h3 class="day">Thịt bò tươi sống<span class="sale">Giảm 20%</span></h3><a class="normal-btn" href="">Mua Ngay</a>
+                      <h3 class="day">Thịt bò tươi sống<span class="sale">Giảm 20%</span></h3><a class="normal-btn" href="{{URL::to('/category_home/2')}}">Mua Ngay</a>
                     </div>
                   </div>
                 </div>

@@ -83,54 +83,32 @@
                     <div class="mobile-menu_items">
                       <ul class="mb-0 d-flex flex-column">
                         <li class="toggleable"> <a class="menu-item active" href="">Trang Chủ</a></li>
-                        <li class="toggleable"><a class="menu-item" href="">Shop</a><span class="sub-menu--expander"><i class="icon_plus"></i></span>
+                        <li class="toggleable"><a class="menu-item" href="">Sản Phẩm</a><span class="sub-menu--expander"><i class="icon_plus"></i></span>
                           <ul class="sub-menu">
                             <li><a href="shop_grid+list_fullwidth.html">Shop grid fullwidth</a></li>
-                            <li><a href="shop_grid+list_fullwidth.html">Shop list fullwidth</a></li>
-                            <li><a href="shop_grid+list_3col.html">shop grid 3 column</a></li>
-                            <li><a href="shop_grid+list_3col.html">shop list 3 column</a></li>
-                            <li><a href="shop_detail.html">shop detail</a></li>
-                            <li><a href="shop_detail_fullwidth.html">shop detail fullwidth</a></li>
-                            <li><a href="shop_checkout.html">checkout</a></li>
-                            <li><a href="shop_order_complete.html">order complete</a></li>
-                            <li><a href="shop_wishlist.html">wishlist</a></li>
-                            <li><a href="shop_compare.html">compare</a></li>
-                            <li><a href="shop_cart.html">cart</a></li>
+                            
                           </ul>
                         </li>
-                        <li class="toggleable"> <a class="menu-item" href="blog_list_sidebar.html">Blog</a><span class="sub-menu--expander"><i class="icon_plus"></i></span>
+                        <li class="toggleable"> <a class="menu-item" href=>Danh Mục</a><span class="sub-menu--expander"><i class="icon_plus"></i></span>
                           <ul class="sub-menu">
-                            <li><a href="blog_list_sidebar.html">Blog List Sidebar</a></li>
-                            <li><a href="blog_grid_2col.html">Blog Grid 2 column</a></li>
-                            <li><a href="blog_grid_sidebar.html">Blog Grid sidebar</a></li>
-                            <li><a href="blog_masonry.html">Blog masonry</a></li>
-                            <li><a href="blog_grid_1col.html">Blog Grid 1 column sidebar</a></li>
-                            <li><a href="blog_detail_sidebar.html">Blog detail sidebar</a></li>
-                          </ul>
-                        </li>
-                        <li class="toggleable"><a class="menu-item" href="#">Pages</a><span class="sub-menu--expander"><i class="icon_plus"></i></span>
-                          <ul class="sub-menu">
-                            <li><a href="login.html">login</a></li>
-                            <li><a href="register.html">register</a></li>
-                            <li><a href="faq.html">FAQ</a></li>
-                            <li><a href="coming_soon.html">coming soon</a></li>
-                            <li><a href="about_us.html">about us</a></li>
-                            <li><a href="contact_us.html">contact us</a></li>
-                            <li><a href="404_error.html">404 error</a></li>
+                            @foreach($category as $key => $val_cate)
+                            <li>
+                              <a href="{{URL::to('/category_home/'.$val_cate->MaDM)}}" style="text-decoration: none; color: black;">{{$val_cate->TenDanhMuc}}</a>
+                            </li>
+                            @endforeach
                           </ul>
                         </li>
                       </ul>
                     </div>
                     <div class="mobile-login">
-                      <h2>My account</h2><a href="login.html">Login</a><a href="register.html">Register</a>
+                      <h2>Tài Khoản Của Tôi</h2><a href="">Đăng Nhập</a><a href="register.html">Đăng Ký</a>
                     </div>
-                    <div class="mobile-social"><a href=""><i class="fab fa-facebook-f"> </i></a><a href=""><i class="fab fa-twitter"></i></a><a href=""><i class="fab fa-invision"> </i></a><a href=""><i class="fab fa-pinterest-p"> </i></a></div>
                   </div>
                   <div class="ogamin-mobile-menu_bg"></div>
                 </div>
               </div>
               <div class="col-6">
-                <div class="mobile-menu_logo text-center d-flex justify-content-center align-items-center"><a href=""><img src="{{asset('public/frontend/assets/images/logo.png')}}" alt=""></a></div>
+                <div class="mobile-menu_logo text-center d-flex justify-content-center align-items-center"><a href=""><img src="{{asset('public/frontend/assets/images/logo_white.png')}}" alt=""></a></div>
               </div>
               <div class="col-3">
                 <div class="mobile-product_function d-flex align-items-center justify-content-end"><a class="function-icon icon_heart_alt" href="wishlist.html"></a><a class="function-icon icon_bag_alt" href=""></a></div>
@@ -141,37 +119,34 @@
         <nav class="navigation navigation_v2 d-flex align-items-center">
           <div class="ogami-container-fluid">
             <div class="row align-items-xxl-center">
-              <div class="col-12 col-xl-6 col-xxxl-1 text-lg-center text-xl-left order-xl-1 order-xxxl-1"><a class="logo" href="{{URL::to('/home')}}"><img src="{{asset('public/frontend/assets/images/logo.png')}}" alt=""></a></div>
+              <div class="col-12 col-xl-6 col-xxxl-1 text-lg-center text-xl-left order-xl-1 order-xxxl-1"><a class="logo" href="{{URL::to('/home')}}"><img src="{{asset('public/frontend/assets/images/logo_white.png')}}" alt=""></a></div>
               <div class="col-12 col-md-12 col-xl-6 col-xxxl-4 order-xl-3 order-xxxl-2">
                 <div class="navigation-filter">
                   <div class="website-search_v2">
-                    {{-- <form action="{{URL::to('/search')}}" method="POST"> --}}
-                      <div class="row no-gutters">
-                        <div class="col-0 col-md-3 col-lg-3 col-xl-4">
-                          <div class="filter-search">
-                            <div class="categories-select d-flex align-items-center justify-content-around"><span>Danh Mục Sản Phẩm</span><i class="arrow_carrot-down"></i></div>
-                            <div class="categories-select_box">
-                              <ul >
-                                @foreach($category as $key => $val_cate)
-                                <li>
-                                  <a href="{{URL::to('/category_home/'.$val_cate->MaDM)}}" style="text-decoration: none; color: black;">{{$val_cate->TenDanhMuc}}</a>
-                                </li>
-                                @endforeach
-                              </ul>
-                            </div>
+                    <div class="row no-gutters">
+                      <div class="col-0 col-md-3 col-lg-3 col-xl-4">
+                        <div class="filter-search">
+                          <div class="categories-select d-flex align-items-center justify-content-around"><span>Danh Mục Sản Phẩm</span><i class="arrow_carrot-down"></i></div>
+                          <div class="categories-select_box">
+                            <ul >
+                              @foreach($category as $key => $val_cate)
+                              <li>
+                                <a href="{{URL::to('/category_home/'.$val_cate->MaDM)}}" style="text-decoration: none; color: black;">{{$val_cate->TenDanhMuc}}</a>
+                              </li>
+                              @endforeach
+                            </ul>
                           </div>
-                        </div>
-                        <div class="col-8 col-md-7 col-lg-8 col-xl-7">
-                          <div class="search-input">
-                            {{-- {{ csrf_field() }} --}}
-                            <input class="no-round-input no-border search-txt" type="text" placeholder="Tìm Kiếm" name="key">
-                          </div>
-                        </div>
-                        <div class="col-4 col-md-2 col-lg-1 col-xl-1">
-                          <button {{-- type="submit" --}} class="no-round-btn search-btn"><i class="icon_search"></i></button>
                         </div>
                       </div>
-                    {{-- </form> --}}
+                      <div class="col-8 col-md-7 col-lg-8 col-xl-7">
+                        <div class="search-input">
+                          <input class="no-round-input no-border search-txt" type="text" placeholder="Tìm Kiếm" name="key">
+                        </div>
+                      </div>
+                      <div class="col-4 col-md-2 col-lg-1 col-xl-1">
+                        <button class="no-round-btn search-btn"><i class="icon_search"></i></button>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -197,7 +172,7 @@
                       </ul>
                     </li>
                     <li class="toggleable"><a class="menu-item" href="{{URL::to('/contact_us')}}">Liên Hệ</a></li>
-                    <li class="toggleable"> <a class="menu-item" href="#">Giới Thiệu</a></li>
+                    <li class="toggleable"> <a class="menu-item" href="{{URL::to('/about_us')}}">Giới Thiệu</a></li>
                   </ul>
                 </div>
               </div>
@@ -240,40 +215,30 @@
         <div class="ogami-container-fluid">
           <div class="footer-v2_header">
             <div class="row">
-              <div class="col-12 col-lg-4 col-xl-3 text-sm-center text-lg-left">
+              <div class="col-12 col-lg-5 col-xl-6 text-sm-center text-lg-left">
                 <div class="footer-logo"><img src="{{asset('public/frontend/assets/images/logo.png')}}" alt=""></div>
                 <div class="footer-contact">
-                  {{-- <p>Địa Chỉ: {{$contact->DiaChi}}</p>
-                  <p>Số Điện Thoại: {{$contact->SoDienThoai}}</p>
-                  <p>Email: {{$contact->Email}}</p> --}}
+                  <p><b>Địa Chỉ:</b> 27 Hai Bà Trưng, Phường 3, Thành phố Sóc Trăng</p>
+                  <p><b>Số Điện Thoại:</b> 0859083181</p>
+                  <p><b>Email:</b> qtran8219@gmail.com</p>
                 </div>
                 <div class="footer-social"><a class="round-icon-btn" href=""><i class="fab fa-facebook-f"> </i></a><a class="round-icon-btn" href=""><i class="fab fa-twitter"></i></a><a class="round-icon-btn" href=""><i class="fab fa-invision"> </i></a><a class="round-icon-btn" href=""><i class="fab fa-pinterest-p"></i></a></div>
               </div>
-              <div class="col-lg-8 col-xl-9">
+              <div class="col-lg-7 col-xl-6">
                 <div class="row no-gutters justify-content-md-center justify-content-lg-between">
-                  <div class="col-12 col-sm-4 col-lg-4 col-xl-2 col-xxl-3 text-sm-center text-lg-left">
+                  <div class="col-12 col-sm-4 col-lg-4 col-xl-4 col-xxl-4 text-sm-center text-lg-left">
                     <div class="footer-quicklink">
-                      <h5>Infomation</h5><a href="about_us.html">About us</a><a href="checkout.html">Check out</a><a href="contact.html">Contact</a><a href="about_us.html">Service</a>
+                      <h5>Thông Tin</h5><a href="">Chính Sách Đổi Trả</a><a href="">Chính Sách Giao Hàng</a><a href="{{URL::to('/contact_us')}}">Liên Hệ</a><a href="">Giới Thiệu</a>
                     </div>
                   </div>
-                  <div class="col-12 col-sm-4 col-lg-4 col-xl-2 col-xxl-3 text-sm-center text-lg-left">
-                    <div class="footer-quicklink">
-                      <h5>My Account</h5><a href="login.html">My Account</a><a href="contact.html">Contact</a><a href="shop_cart.html">Shopping cart</a><a href="shop_grid+list_3col.html">Shop</a>
-                    </div>
-                  </div>
-                  <div class="col-12 col-sm-4 col-lg-4 col-xl-2 col-xxl-3 text-sm-center text-lg-left">
-                    <div class="footer-quicklink">
-                      <h5>Quick Shop</h5><a href="about_us.html">About us</a><a href="checkout.html">Check out</a><a href="contact.html">Contact</a><a href="about_us.html">Service</a>
-                    </div>
-                  </div>
-                  <div class="col-12 col-md-8 col-lg-8 col-xl-6 col-xxl-3 text-sm-center text-lg-left">
+                  <div class="col-12 col-md-8 col-lg-8 col-xl-8 col-xxl-8 text-sm-center text-lg-left">
                     <div class="newletter newletter_v2">
                       <div class="newletter_text">
                         <h5>Đăng ký nhận tin khuyến mãi</h5>
                       </div>
                       <div class="newletter_input">
                         <input class="round-input" type="email" placeholder="Email">
-                        <button>Subcribe</button>
+                        <button>Đăng Ký</button>
                       </div>
                     </div>
                   </div>
@@ -285,7 +250,7 @@
         <div class="footer-credit">
           <div class="ogami-container-fluid">
             <div class="footer-creadit_block d-flex flex-column flex-md-row justify-content-start justify-content-md-between align-items-baseline align-items-md-center">
-              <p class="author">Copyright © 2019 Ogami - All Rights Reserved.</p><img class="payment-method" src="{{asset('public/frontend/assets/images/payment.png')}}" alt="">
+              <p class="author"></p><img class="payment-method" src="{{asset('public/frontend/assets/images/payment.png')}}" alt="">
             </div>
           </div>
         </div>
@@ -317,7 +282,7 @@
       $(document).on('click', '.quickview', function(event) {
       event.preventDefault();
       //Wirte Quick view block to DOM
-      $('body').prepend('<div id="quickview"> <div class="quickview-box"> <button class="round-icon-btn" id="quickview-close-btn"><i class="fas fa-times"></i></button> <div class="row"> <div class="col-12 col-md-6" id="product-image"> </div><div class="col-12 col-md-6"> <div class="shop-detail_info"> <h5 class="product-type color-type" id="product-type">Oranges</h5><div id="product-name" ></div> <div class="price-rate"> <h3 class="product-price" id="product-price"> <del>$35.00</del>$14.00 </h3> </div><p class="product-describe" id="product-desc"> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Provident vero saepe nihil nisi ipsum officiis, tempora reiciendis, rerum ipsa aliquid, repudiandae expedita placeat, vel quae commodi sequi. Repellat, laudantium voluptas.</p><div class="quantity-select"> <label for="quantity">Số Lượng:</label> <input class="no-round-input" id="quantity" type="number" min="0" value="1"> <label id="product-qty"></label> </div><div class="product-select"> <button class="add-to-cart normal-btn outline">Add to Cart</button> <button class="add-to-compare normal-btn outline">+ Add to Compare</button> </div><div class="product-share"> <h5>Share link:</h5><a href=""><i class="fab fa-facebook-f"> </i></a><a href=""><i class="fab fa-twitter"></i></a><a href=""><i class="fab fa-invision"> </i></a><a href=""><i class="fab fa-pinterest-p"></i></a> </div></div></div></div></div></div>')
+      $('body').prepend('<div id="quickview"> <div class="quickview-box"> <button class="round-icon-btn" id="quickview-close-btn"><i class="fas fa-times"></i></button> <div class="row"> <div class="col-12 col-md-6" id="product-image"> </div><div class="col-12 col-md-6"> <div class="shop-detail_info"> <h5 class="product-type color-type" id="product-type">Oranges</h5><div id="product-name" ></div> <div class="price-rate"> <h3 class="product-price" id="product-price"> <del>$35.00</del>$14.00 </h3> </div><p class="product-describe" id="product-desc"> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Provident vero saepe nihil nisi ipsum officiis, tempora reiciendis, rerum ipsa aliquid, repudiandae expedita placeat, vel quae commodi sequi. Repellat, laudantium voluptas.</p><div class="quantity-select"> <label for="quantity">Số Lượng:</label> <input class="no-round-input" id="quantity" type="number" min="0" value="1"> <label id="product-qty"></label> </div> <div class="product-share"> <h5>Share link:</h5><a href=""><i class="fab fa-facebook-f"> </i></a><a href=""><i class="fab fa-twitter"></i></a><a href=""><i class="fab fa-invision"> </i></a><a href=""><i class="fab fa-pinterest-p"></i></a> </div></div></div></div></div></div>')
       $('#quickview .big-img_qv').slick({
         slidesToShow: 1,
         slidesToScroll: 1,
@@ -355,7 +320,7 @@
     $(document).on('click', '.update_address', function(event) {
         event.preventDefault();
       //Wirte Quick view block to DOM
-    $('body').prepend('<div id="quickview"> <div class="quickview-box"> <button class="round-icon-btn" id="quickview-close-btn"><i class="fas fa-times"></i></button> <div class="row"> <div class="col-12 col-md-12" id="product-image"> <div class="account"><div class="container"><div class="row"><div class="col-12 col-md-10 mx-auto"><h1 class="title">THÊM ĐỊA CHỈ</h1><form action="{{URL::to('/update_address')}}" method="post">{{csrf_field()}}<label for="HoTenKH">Họ Tên</label><input class="no-round-input" id="HoTen" type="text" name="HoTen" value=""><label for="HoTenKH">Số Điện Thoại</label><input class="no-round-input" id="SDT" type="text" name="SDT" value=""><label for="HoTenKH">Địa Chỉ</label><input class="no-round-input" id="DiaChi" type="text" name="DiaChi" value=""><input class="no-round-input" id="MaDC" type="hidden" name="MaDC" value=""><div class="account-function"><button class="no-round-btn" type="submit" name="Them">Cập Nhật</button></div></form></div></div></div></div> </div> </div> </div> </div>')
+    $('body').prepend('<div id="quickview"> <div class="quickview-box"> <button class="round-icon-btn" id="quickview-close-btn"><i class="fas fa-times"></i></button> <div class="row"> <div class="col-12 col-md-12" id="product-image"> <div class="account"><div class="container"><div class="row"><div class="col-12 col-md-10 mx-auto"><h1 class="title">CẬP NHẬT ĐỊA CHỈ</h1><form action="{{URL::to('/update_address')}}" method="post">{{csrf_field()}}<label for="HoTenKH">Họ Tên</label><input class="no-round-input" id="HoTen" type="text" name="HoTen" value=""><label for="HoTenKH">Số Điện Thoại</label><input class="no-round-input" id="SDT" type="text" name="SDT" value=""><label for="HoTenKH">Địa Chỉ</label><input class="no-round-input" id="DiaChi" type="text" name="DiaChi" value=""><input class="no-round-input" id="MaDC" type="hidden" name="MaDC" value=""><div class="account-function"><button class="no-round-btn" type="submit" name="Them">Cập Nhật</button></div></form></div></div></div></div> </div> </div> </div> </div>')
       $('#quickview-close-btn').on('click', function(event) {
         $('#quickview').remove()
       });
@@ -438,8 +403,6 @@
             $('#product-type').html(data.DanhMuc)
             $('#product-qty').html(data.SoLuong);
             $('#product-price').html(data.Gia);
-            // $('#product-review').html(data.review);
-            // $('#product-rating').html(data.rating);
           }
         });
       });

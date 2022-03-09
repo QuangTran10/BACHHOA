@@ -124,4 +124,24 @@ class HomeController extends Controller
         ->with('meta_tittle',$meta_tittle)->with('url',$url)
         ->with('contact_list',$contact_list);
     }
+
+    public function about_us(Request $re){
+        $meta_desc="Giới Thiệu";
+        $meta_keywords="Giới Thiệu";
+        $meta_tittle="BACHHOA.COM";
+        $url=url()->current();
+
+        $all_category = DB::table('danhmuc')->get();
+        $loaihang = DB::table('loaihang')->get();
+
+        $subscribers = DB::table('khachhang')->get()->count();
+
+        $products = DB::table('sanpham')->get()->count();
+
+        return view('User.Contact.about_us')
+        ->with('category',$all_category)->with('list',$loaihang)
+        ->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)
+        ->with('meta_tittle',$meta_tittle)->with('url',$url)
+        ->with('subscribers', $subscribers)->with('products',$products);
+    }
 }

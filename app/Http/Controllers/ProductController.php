@@ -184,52 +184,6 @@ class ProductController extends Controller
 
     //END ADMIN
 
-    public function show_all_product(Request $re){
-        $all_category = DB::table('loaisanpham')->where('TinhTrang',1)->get();
-        $all_producer = DB::table('nhasanxuat')->where('TinhTrang',1)->get();
-
-        $product_all =DB::table('sanpham')->where('TrangThai',1)->get();
-
-        if (isset($_GET['sort_by'])) {
-
-            $sort_by= $_GET['sort_by'];
-
-            if($sort_by=='az'){
-
-                $product_all =DB::table('sanpham')->where('TrangThai',1)->orderBy('TenHH','ASC')->get();
-
-            }elseif ($sort_by=='za') {
-
-                $product_all =DB::table('sanpham')->where('TrangThai',1)->orderBy('TenHH','DESC')->get();
-
-            }elseif ($sort_by=='increase') {
-
-                $product_all =DB::table('sanpham')->where('TrangThai',1)->orderBy('Gia','ASC')->get();
-
-            }elseif ($sort_by=='decrease') {
-
-                $product_all =DB::table('sanpham')->where('TrangThai',1)->orderBy('Gia','DESC')->get();
-                
-            }
-        }else{
-            $product_all =DB::table('sanpham')->where('TrangThai',1)->orderBy('MSHH','ASC')->get();
-        }
-
-        //Seo
-        $meta_desc="Tất cả sản phẩm";
-        $meta_keywords="All Product";
-        $meta_tittle="QPharmacy";
-        $url=$re->url();
-        // end seo
-
-        $count_product_all=DB::table('sanpham')->where('TrangThai',1)->get()->count();
-        return view('pages.category.show_category')
-        ->with('category',$all_category)->with('producer',$all_producer)
-        ->with('product',$product_all)->with('soluong',$count_product_all)
-        ->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)
-        ->with('meta_tittle',$meta_tittle)->with('url',$url);
-    }
-
     public function product_detail($id,  Request $re){
         $all_category = DB::table('danhmuc')->get();
         $loaihang = DB::table('loaihang')->get();
@@ -283,23 +237,6 @@ class ProductController extends Controller
 
         $images_product = DB::table('hinhanh')->where('MSSP',$id_product)->limit(3)->get();
 
-        // $reviews=DB::table('binhluan')->where('MSHH',$id_product)->get();
-        // $count=0;
-        // $total=0;
-        // foreach ($reviews as $k => $val) {
-        //     $count++;
-        //     $total=$total+$val->DanhGia;
-        // }
-        // $output['rating']='';
-        // if ($count==0) {
-        //     $total=0;
-        // }else{
-        //     $total=round($total/$count);
-        //     for ($i=1; $i <=$total ; $i++) { 
-        //         $output['rating'].='<span><i class="lnr lnr-star"></i></span>';
-        //     }
-        // }
-
         foreach ($product_detail as $key => $value) {
             $output['MSSP']=$value->MSSP;
             $output['TenSP']='<a class="product-name" href="'.url('/product_details/ '.$value->MSSP.'').'">'.$value->TenSP.'</a>';
@@ -324,16 +261,6 @@ class ProductController extends Controller
                     </div>
                 </div>
             </div> ';
-
-            // $output['quickview_value']='
-            //     <input type="hidden" name="Id_'.$value->MSHH.'" value="'.$value->MSHH.'" class="cart_product_id_'.$value->MSHH.'">
-            //     <input type="hidden" name="Name" value="'.$value->TenHH.'" class="cart_product_name_'.$value->MSHH.'">
-            //     <input type="hidden" name="Image" value="'.$value->hinhanh1.'" class="cart_product_image_'.$value->MSHH.'">
-            //     <input type="hidden" name="Price" value="'.$value->Gia.'" class="cart_product_price_'.$value->MSHH.'">
-            //     <input type="hidden" name="Discount" value="'.$value->GiamGia.'" class="cart_product_discount_'.$value->MSHH.'">
-            //     <input type="hidden" name="SoLuong" value="1" class="cart_product_qty_'.$value->MSHH.'">';
-            // $output['button_quickview']='
-            // <a class="btn btn-cart2" href="#">Thêm Vào Giỏ Hàng</a>';   
         }
 
         // $output['review']='<span>'.$count.' Đánh Giá</span>';
@@ -404,5 +331,76 @@ class ProductController extends Controller
     public function delete_wishlist(Request $re){
         $Ma= $re->Ma;
         DB::table('yeuthich')->where('Ma',$Ma)->delete();
+    }
+
+    public function product_discount(Request $re){
+        $all_category = DB::table('danhmuc')->get();
+        $loaihang = DB::table('loaihang')->get();
+
+        if (isset($_GET['sort_by'])) {
+
+            $sort_by= $_GET['sort_by'];
+
+            if($sort_by=='az'){
+
+                $category_by_id =DB::table('sanpham')->where('sanpham.GiamGia', '>', 0)
+                ->join('danhmuc', 'sanpham.MaDM', '=', 'danhmuc.MaDM')
+                ->orderBy('TenSP','ASC')->Paginate(9);
+
+            }elseif ($sort_by=='za') {
+
+                $category_by_id =DB::table('sanpham')->where('sanpham.GiamGia', '>', 0)
+                ->join('danhmuc', 'sanpham.MaDM', '=', 'danhmuc.MaDM')
+                ->orderBy('TenSP','DESC')->Paginate(9);
+
+            }elseif ($sort_by=='increase') {
+
+                $category_by_id =DB::table('sanpham')->where('sanpham.GiamGia', '>', 0)
+                ->join('danhmuc', 'sanpham.MaDM', '=', 'danhmuc.MaDM')
+                ->orderBy('Gia','DESC')->Paginate(9);
+
+            }elseif ($sort_by=='decrease') {
+
+                $category_by_id =DB::table('sanpham')->where('sanpham.GiamGia', '>', 0)
+                ->join('danhmuc', 'sanpham.MaDM', '=', 'danhmuc.MaDM')
+                ->orderBy('Gia','ASC')->Paginate(9);
+            }elseif ($sort_by=='price') {
+                $nho=0;
+                $lon=500000;
+                if(isset($_GET['MAX']) && isset($_GET['MIN'])){
+                    $nho = $_GET['MIN'];
+                    $lon = $_GET['MAX'];
+                }
+
+                $category_by_id =DB::table('sanpham')->where('sanpham.GiamGia', '>', 0)
+                ->join('danhmuc', 'sanpham.MaDM', '=', 'danhmuc.MaDM')
+                ->whereBetween('sanpham.Gia', [$nho, $lon])->Paginate(9);
+
+            }
+            else{
+                $category_by_id =DB::table('sanpham')->where('sanpham.GiamGia', '>', 0)
+                ->join('danhmuc', 'sanpham.MaDM', '=', 'danhmuc.MaDM')
+                ->orderBy('MSSP','ASC')
+                ->Paginate(9);
+            }
+        }else{
+            $category_by_id =DB::table('sanpham')->where('sanpham.GiamGia', '>', 0)
+            ->join('danhmuc', 'sanpham.MaDM', '=', 'danhmuc.MaDM')
+            ->orderBy('MSSP','ASC')
+            ->Paginate(9);
+        }
+
+        //Seo
+        $meta_desc="Giảm Giá Trong Tuần";
+        $meta_keywords="Product";
+        $meta_tittle="BACHHOA.COM";
+        $url=$re->url();
+
+
+        return view('User.Product.show_product')
+        ->with('category',$all_category)->with('list',$loaihang)
+        ->with('product',$category_by_id)->with('meta_desc',$meta_desc)
+        ->with('meta_keywords',$meta_keywords)->with('meta_tittle',$meta_tittle)
+        ->with('url',$url);
     }
 }

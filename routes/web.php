@@ -24,6 +24,8 @@ Route::get('/search', 'App\Http\Controllers\HomeController@search');
 
 Route::get('/contact_us', 'App\Http\Controllers\HomeController@contact_us');
 
+Route::get('/about_us', 'App\Http\Controllers\HomeController@about_us');
+
 //user interface -> shopping cart
 
 Route::get('/update_total', 'App\Http\Controllers\CartController@update_total');
@@ -88,7 +90,7 @@ Route::get('/product_details/{id}', 'App\Http\Controllers\ProductController@prod
 
 Route::post('/quickview', 'App\Http\Controllers\ProductController@quick_view');
 
-Route::get('/show_all_product', 'App\Http\Controllers\ProductController@show_all_product');
+Route::get('/product_discount', 'App\Http\Controllers\ProductController@product_discount');
 
 //user interface -> favourite product page
 
