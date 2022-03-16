@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 06, 2022 at 03:25 AM
+-- Generation Time: Mar 16, 2022 at 01:54 PM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 7.3.27
 
@@ -43,7 +43,10 @@ CREATE TABLE `binhluan` (
 
 INSERT INTO `binhluan` (`MaBinhLuan`, `ThoiGian`, `NoiDung`, `DanhGia`, `MSKH`, `MSSP`, `TrangThai`) VALUES
 (1, '2022-03-01 13:06:09', 'Là một loại thực phẩm vô cùng quen thuộc, rất dễ mua và chế biến thành nhiều món ăn đa dạng khác nhau trong bữa cơm hằng ngày. Bắp cải trắng đặc biệt mang đến lợi ích trong việc hỗ trợ phòng chống ung thư, giúp cơ thể khỏe mạnh toàn diện.', 5, 1, 27, 1),
-(2, '2022-03-01 22:03:33', 'Hôm qua (28/2/2022) đặt mua 2 túi cà rốt, mỗi túi 500 gram thì lúc nhận hàng thấy 1 túi cà rốt hơi mềm. Nhưng vì chiều về nấu liền nên không muốn gọi điện khiếu nại. Mong rằng lần sau BHX lựa chọn rau củ tươi hơn để giao cho khách.', 5, 1, 25, 1);
+(2, '2022-03-01 22:03:33', 'Hôm qua (28/2/2022) đặt mua 2 túi cà rốt, mỗi túi 500 gram thì lúc nhận hàng thấy 1 túi cà rốt hơi mềm. Nhưng vì chiều về nấu liền nên không muốn gọi điện khiếu nại. Mong rằng lần sau BHX lựa chọn rau củ tươi hơn để giao cho khách.', 5, 1, 25, 1),
+(3, '2022-03-07 18:48:02', 'Bao bì đẹp, chất lượng như mong đợi.', 3, 1, 22, 1),
+(4, '2022-03-07 18:52:01', 'Bắp tím giao tươi, vỏ bên ngoài có dập 1 xíu nhưng chỉ có cái lố bên ngoài thui, bên trong okela nha', 3, 1, 27, 1),
+(5, '2022-03-07 19:13:16', 'Sản phẩm rất tốt', 1, 1, 27, 1);
 
 -- --------------------------------------------------------
 
@@ -65,12 +68,11 @@ CREATE TABLE `chitietdathang` (
 --
 
 INSERT INTO `chitietdathang` (`MSDH`, `MSSP`, `SoLuong`, `GiaDatHang`, `GiamGia`, `ThanhTien`) VALUES
-(4, 9, 1, 69000, 0.1, 62100),
-(5, 22, 3, 23000, 0, 69000),
-(5, 27, 1, 20000, 0.1, 18000),
-(5, 29, 1, 65700, 0.2, 52560),
-(6, 27, 1, 20000, 0.1, 18000),
-(6, 28, 1, 58000, 0, 58000);
+(12, 24, 1, 17000, 0, 17000),
+(12, 28, 1, 58000, 0, 58000),
+(12, 29, 1, 65700, 0.2, 52560),
+(13, 22, 1, 23000, 0.3, 16100),
+(13, 25, 1, 12500, 0, 12500);
 
 --
 -- Triggers `chitietdathang`
@@ -134,8 +136,8 @@ CREATE TABLE `dathang` (
   `NgayDat` datetime NOT NULL,
   `NgayGiao` datetime DEFAULT NULL,
   `GhiChu` text DEFAULT NULL,
-  `PhuongThuc` int(11) NOT NULL,
   `TrangThai` int(11) NOT NULL,
+  `MaThanhToan` int(11) NOT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -144,11 +146,10 @@ CREATE TABLE `dathang` (
 -- Dumping data for table `dathang`
 --
 
-INSERT INTO `dathang` (`MSDH`, `MSKH`, `MSNV`, `HoTen`, `SDT`, `DiaChi`, `ThanhTien`, `NgayDat`, `NgayGiao`, `GhiChu`, `PhuongThuc`, `TrangThai`, `created_at`, `updated_at`) VALUES
-(3, 1, NULL, 'Trần Thanh Quang', '0859083181', '180 Triệu Nương, Mỹ Xuyên, Sóc Trăng', 180100, '2022-02-23 17:50:31', NULL, NULL, 0, 3, '2022-02-23 17:50:31', '2022-02-23 17:50:31'),
-(4, 1, 1, 'Trần Thanh Quang', '0859083181', '180 Triệu Nương, Mỹ Xuyên, Sóc Trăng', 92100, '2022-02-25 08:25:10', NULL, NULL, 0, 2, '2022-02-25 08:25:10', '2022-02-25 08:25:10'),
-(5, 1, 1, 'Trần Thanh Quang', '0859083181', '180 Triệu Nương, Mỹ Xuyên, Sóc Trăng', 169560, '2022-02-27 19:22:38', NULL, NULL, 0, 1, '2022-02-27 19:22:38', '2022-02-27 19:22:38'),
-(6, 1, 1, 'Trần Thanh Quang', '0859083181', '180 Triệu Nương, Mỹ Xuyên, Sóc Trăng', 106000, '2022-03-04 13:57:30', NULL, NULL, 0, 1, '2022-03-04 13:57:30', '2022-03-04 13:57:30');
+INSERT INTO `dathang` (`MSDH`, `MSKH`, `MSNV`, `HoTen`, `SDT`, `DiaChi`, `ThanhTien`, `NgayDat`, `NgayGiao`, `GhiChu`, `TrangThai`, `MaThanhToan`, `created_at`, `updated_at`) VALUES
+(11, 1, 1, 'Trần Thanh Quang', '0859083181', '180 Triệu Nương, Mỹ Xuyên, Sóc Trăng', 80000, '2022-03-15 15:10:54', NULL, NULL, 3, 4, '2022-03-15 15:10:54', '2022-03-15 15:10:54'),
+(12, 1, 1, 'Trần Thanh Quang', '0859083181', '180 Triệu Nương, Mỹ Xuyên, Sóc Trăng', 157560, '2022-03-15 15:42:15', NULL, NULL, 2, 5, '2022-03-15 15:42:15', '2022-03-15 15:42:15'),
+(13, 1, NULL, 'Trần Thanh Quang', '0859083181', '180 Triệu Nương, Mỹ Xuyên, Sóc Trăng', 58600, '2022-03-15 21:57:09', NULL, NULL, 0, 6, '2022-03-15 21:57:09', '2022-03-15 21:57:09');
 
 -- --------------------------------------------------------
 
@@ -352,17 +353,44 @@ INSERT INTO `sanpham` (`MSSP`, `TenSP`, `SoLuong`, `Gia`, `GiamGia`, `MaDM`, `Th
 (6, 'Ba rọi heo C.P khay 500g', 50, 88000, 0, 1, NULL, 1, 'ba-roi-heo-khay-500g-2021112620491023811644932886.jpg', '2022-02-15 20:48:06', '2022-02-15 21:26:47'),
 (7, 'Thùng 24 chai trà xanh C2 hương chanh 230ml', 20, 69000, 0, 6, '<p>Được sản xuất từ những l&aacute; tr&agrave; xanh tự nhi&ecirc;n h&ograve;a quyện c&ugrave;ng hương chanh tươi m&aacute;t cho bạn một thức uống giải kh&aacute;t tuyệt vời. Tr&agrave; xanh chứa h&agrave;m lượng chất chống oxy h&oacute;a cao c&ugrave;ng vitamin C dồi d&agrave;o từ chanh gi&uacute;p bạn lu&ocirc;n giữ trạng th&aacute;i năng động v&agrave; hứng khởi.</p>', 1, 'thung-24-chai-tra-xanh-c2-huong-chanh-230ml-2020121713525886451645084933.jpg', '2022-02-17 15:02:13', '2022-02-17 15:02:13'),
 (8, '3/7 Nấm đùi gà túi 200g (2-4 cái)', 20, 27500, 0, 5, '<p>Nấm đ&ugrave;i g&agrave; được nu&ocirc;i trồng v&agrave; đ&oacute;ng g&oacute;i theo những ti&ecirc;u chuẩn nghi&ecirc;m ngặt, bảo đảm c&aacute;c ti&ecirc;u chuẩn xanh - sach, chất lượng v&agrave; an to&agrave;n với người d&ugrave;ng. Nấm gi&ograve;n dai, ngọt thịt, nhiều dinh dưỡng thường được d&ugrave;ng cho c&aacute;c m&oacute;n x&agrave;o, chi&ecirc;n gi&ograve;n hoặc nướng ăn k&egrave;m với c&aacute;c loại xốt chấm.</p>', 1, 'nam-dui-ga-vi-200g-2020110717084546431645085049.jpg', '2022-02-17 15:04:09', '2022-02-17 15:04:09'),
-(9, 'Nấm mỡ nâu hộp 150g (6-8 cái)', 29, 69000, 0.1, 5, '<p>Nấm mỡ trắng&nbsp;của B&aacute;ch H&oacute;a Xanh được nu&ocirc;i trồng v&agrave; đ&oacute;ng g&oacute;i theo những ti&ecirc;u chuẩn nghi&ecirc;m ngặt, bảo đảm c&aacute;c ti&ecirc;u chuẩn xanh - sach, chất lượng v&agrave; an to&agrave;n với người d&ugrave;ng. Nấm mỡ chứa h&agrave;m lượng chất dinh dưỡng cao, nhiều vitamin v&agrave; protein quan trọng n&ecirc;n thường được chế biến bằng c&aacute;ch x&agrave;o hoặc nướng.</p>', 1, 'nam-mo-nau-hop-150g-2021012922202210561645085441.jpg', '2022-02-17 15:10:41', '2022-02-27 18:46:47'),
+(9, 'Nấm mỡ nâu hộp 150g (6-8 cái)', 30, 69000, 0.1, 5, '<p>Nấm mỡ trắng&nbsp;của B&aacute;ch H&oacute;a Xanh được nu&ocirc;i trồng v&agrave; đ&oacute;ng g&oacute;i theo những ti&ecirc;u chuẩn nghi&ecirc;m ngặt, bảo đảm c&aacute;c ti&ecirc;u chuẩn xanh - sach, chất lượng v&agrave; an to&agrave;n với người d&ugrave;ng. Nấm mỡ chứa h&agrave;m lượng chất dinh dưỡng cao, nhiều vitamin v&agrave; protein quan trọng n&ecirc;n thường được chế biến bằng c&aacute;ch x&agrave;o hoặc nướng.</p>', 1, 'nam-mo-nau-hop-150g-2021012922202210561645085441.jpg', '2022-02-17 15:10:41', '2022-02-27 18:46:47'),
 (10, 'Muối tôm kiểu Tây Ninh Guyumi hũ 60g', 20, 7400, 0, 7, '<p><a href=\"https://www.bachhoaxanh.com/muoi-an-guyumi\" target=\"_blank\">Muối Guyumi</a>&nbsp;với nguồn nguy&ecirc;n liệu sạch, tạo n&ecirc;n một loại muối t&ocirc;m thơm ngon đ&uacute;ng kiểu T&acirc;y Ninh.&nbsp;<a href=\"https://www.bachhoaxanh.com/muoi-an/muoi-tom-kieu-tay-ninh-guyumi-chai-60g\" target=\"_blank\">Muối t&ocirc;m kiểu T&acirc;y Ninh Guyumi chai 60g</a>&nbsp;l&agrave; loại&nbsp;<a href=\"https://www.bachhoaxanh.com/muoi-an\" target=\"_blank\">muối</a>&nbsp;chấm được tạo n&ecirc;n bởi hương vị ngọt của t&ocirc;m, kết hợp với vị cay của ớt v&agrave; gia vị, c&oacute; độ mặn vừa phải</p>', 1, 'muoi-tom-kieu-tay-ninh-guyumi-chai-60g1645086063.jpg', '2022-02-17 15:21:03', '2022-02-17 15:21:03'),
 (21, 'Đuôi heo Meat Master khay 400g (6-8 miếng)', 10, 84500, 0.2, 1, NULL, 1, 'duoi-heo-meat-master-khay-400g1645261640.jpg', '2022-02-19 16:07:20', '2022-02-19 16:07:20'),
-(22, 'Đường tinh luyện Lam Sơn gói 1kg', 47, 23000, 0.3, 7, '<p><a href=\"https://www.bachhoaxanh.com/duong\" target=\"_blank\">Đường</a>&nbsp;được ứng dụng c&ocirc;ng nghệ ti&ecirc;n tiến, chiết &eacute;p từ những c&acirc;y m&iacute;a tốt nhất,&nbsp;kh&ocirc;ng sử dụng h&oacute;a chất tẩy trắng đến từ thương hiệu&nbsp;<a href=\"https://www.bachhoaxanh.com/duong-lam-son\" target=\"_blank\">đường Lam Sơn</a>.&nbsp;<a href=\"https://www.bachhoaxanh.com/duong/duong-tinh-luyen-lam-son-goi-1kg\" target=\"_blank\">Đường tinh luyện Lam Sơn g&oacute;i 1kg</a>&nbsp;c&oacute;&nbsp;vị ngọt dịu, thơm ngon, hấp dẫn, c&oacute; m&agrave;u trắng tự nhi&ecirc;n, dễ h&ograve;a tan.</p>', 1, 'duong-tinh-luyen-lam-son-goi-1kg1645962577.jpg', '2022-02-27 18:49:37', '2022-03-01 11:19:09'),
+(22, 'Đường tinh luyện Lam Sơn gói 1kg', 49, 23000, 0.3, 7, '<p><a href=\"https://www.bachhoaxanh.com/duong\" target=\"_blank\">Đường</a>&nbsp;được ứng dụng c&ocirc;ng nghệ ti&ecirc;n tiến, chiết &eacute;p từ những c&acirc;y m&iacute;a tốt nhất,&nbsp;kh&ocirc;ng sử dụng h&oacute;a chất tẩy trắng đến từ thương hiệu&nbsp;<a href=\"https://www.bachhoaxanh.com/duong-lam-son\" target=\"_blank\">đường Lam Sơn</a>.&nbsp;<a href=\"https://www.bachhoaxanh.com/duong/duong-tinh-luyen-lam-son-goi-1kg\" target=\"_blank\">Đường tinh luyện Lam Sơn g&oacute;i 1kg</a>&nbsp;c&oacute;&nbsp;vị ngọt dịu, thơm ngon, hấp dẫn, c&oacute; m&agrave;u trắng tự nhi&ecirc;n, dễ h&ograve;a tan.</p>', 1, 'duong-tinh-luyen-lam-son-goi-1kg1645962577.jpg', '2022-02-27 18:49:37', '2022-03-01 11:19:09'),
 (23, 'Nấm kim châm Hàn Quốc túi 150g', 10, 16000, 0, 5, '<p>Nấm kim ch&acirc;m H&agrave;n Quốc của B&aacute;ch h&oacute;a Xanh được nu&ocirc;i trồng v&agrave; đ&oacute;ng g&oacute;i theo những ti&ecirc;u chuẩn nghi&ecirc;m ngặt, bảo đảm c&aacute;c ti&ecirc;u chuẩn xanh - sach, chất lượng v&agrave; an to&agrave;n với người d&ugrave;ng. Sợi nấm dai, gi&ograve;n v&agrave; ngọt, khi nấu ch&iacute;n rất thơm n&ecirc;n thường được lăn bột chi&ecirc;n gi&ograve;n, nấu s&uacute;p hoặc để nướng ăn k&egrave;m.</p>', 1, 'nam-kim-cham-goi-150g-11645962766.jpg', '2022-02-27 18:52:46', '2022-02-27 18:52:46'),
-(24, 'Bắp mỹ gói 2 trái', 50, 17000, 0, 4, '<p>Bắp Mỹ l&agrave; một loại thực phẩm được trồng rất nhiều ở khắp nơi tr&ecirc;n thế giới. Đ&acirc;y l&agrave; một loại quả vừa ngon, lại c&oacute; rất nhiều chất kho&aacute;ng chất v&agrave; vitamin. Bắp c&oacute; thể chế biến th&agrave;nh nhiều m&oacute;n ăn ngon như: cơm bắp, ch&egrave; bắp, sữa bắp,... bất kỳ m&oacute;n g&igrave; cũng tạo n&ecirc;n hương vị tuyệt hảo.</p>', 1, 'bap-my-2-trai-11645962860.jpg', '2022-02-27 18:54:20', '2022-02-27 18:54:20'),
-(25, 'Cà rốt Đà Lạt túi 500g', 10, 12500, 0, 4, '<p>C&agrave; rốt Đ&agrave; Lạt l&agrave; một loại củ rất quen thuộc trong c&aacute;c m&oacute;n ăn của người Việt.&nbsp;Loại củ n&agrave;y c&oacute; h&agrave;m lượng chất dinh dưỡng v&agrave; vitamin A cao, được xem l&agrave; nguy&ecirc;n liệu cần thiết cho c&aacute;c m&oacute;n ăn dặm của trẻ nhỏ, gi&uacute;p trẻ s&aacute;ng mắt v&agrave; cung cấp nguồn chất xơ dồi d&agrave;o.</p>', 1, 'ca-rot-da-lat-tui-500g-2-4-cu-11645962958.jpg', '2022-02-27 18:55:58', '2022-02-27 18:55:58'),
+(24, 'Bắp mỹ gói 2 trái', 49, 17000, 0, 4, '<p>Bắp Mỹ l&agrave; một loại thực phẩm được trồng rất nhiều ở khắp nơi tr&ecirc;n thế giới. Đ&acirc;y l&agrave; một loại quả vừa ngon, lại c&oacute; rất nhiều chất kho&aacute;ng chất v&agrave; vitamin. Bắp c&oacute; thể chế biến th&agrave;nh nhiều m&oacute;n ăn ngon như: cơm bắp, ch&egrave; bắp, sữa bắp,... bất kỳ m&oacute;n g&igrave; cũng tạo n&ecirc;n hương vị tuyệt hảo.</p>', 1, 'bap-my-2-trai-11645962860.jpg', '2022-02-27 18:54:20', '2022-02-27 18:54:20'),
+(25, 'Cà rốt Đà Lạt túi 500g', 9, 12500, 0, 4, '<p>C&agrave; rốt Đ&agrave; Lạt l&agrave; một loại củ rất quen thuộc trong c&aacute;c m&oacute;n ăn của người Việt.&nbsp;Loại củ n&agrave;y c&oacute; h&agrave;m lượng chất dinh dưỡng v&agrave; vitamin A cao, được xem l&agrave; nguy&ecirc;n liệu cần thiết cho c&aacute;c m&oacute;n ăn dặm của trẻ nhỏ, gi&uacute;p trẻ s&aacute;ng mắt v&agrave; cung cấp nguồn chất xơ dồi d&agrave;o.</p>', 1, 'ca-rot-da-lat-tui-500g-2-4-cu-11645962958.jpg', '2022-02-27 18:55:58', '2022-02-27 18:55:58'),
 (26, 'Khoai mỡ túi 1kg', 20, 45000, 0, 4, '<p>L&agrave; nguy&ecirc;n liệu kh&aacute; quen thuộc của c&aacute;c chị em khi nấu ăn cho cả gia đ&igrave;nh. Với h&agrave;m lượng kho&aacute;ng chất v&agrave; vitamin c&oacute; trong khoai mỡ sẽ gi&uacute;p cải thiện hệ ti&ecirc;u ho&aacute;, gi&uacute;p nhuận tr&agrave;ng, chữa t&aacute;o b&oacute;n rất tốt. Khoai mỡ c&oacute; thể sử dụng để chế biến th&agrave;nh c&aacute;c m&oacute;n như: canh, b&aacute;nh khoai mỡ, khoai mỡ chi&ecirc;n gi&ograve;n,...</p>', 1, 'khoai-mo-tui-1kg-11645963037.jpg', '2022-02-27 18:57:17', '2022-02-27 18:57:17'),
-(27, 'Bắp cải tím gói 500g', 8, 20000, 0.1, 4, '<p>L&agrave; một loại thực phẩm v&ocirc; c&ugrave;ng quen thuộc, c&oacute; m&agrave;u sắc v&ocirc; c&ugrave;ng bắt mắt, rất dễ mua v&agrave; chế biến th&agrave;nh nhiều m&oacute;n ăn đa dạng kh&aacute;c nhau trong bữa cơm hằng ng&agrave;y.&nbsp; Bắp cải t&iacute;m đặc biệt mang đến lợi &iacute;ch trong việc hỗ trợ ph&ograve;ng chống ung thư, gi&uacute;p cơ thể khỏe mạnh to&agrave;n diện.</p>', 1, 'bap-cai-tim-tui-1kg-11645963117.jpg', '2022-02-27 18:58:37', '2022-02-27 19:04:26'),
+(27, 'Bắp cải tím gói 500g', 10, 20000, 0.1, 4, '<p>L&agrave; một loại thực phẩm v&ocirc; c&ugrave;ng quen thuộc, c&oacute; m&agrave;u sắc v&ocirc; c&ugrave;ng bắt mắt, rất dễ mua v&agrave; chế biến th&agrave;nh nhiều m&oacute;n ăn đa dạng kh&aacute;c nhau trong bữa cơm hằng ng&agrave;y.&nbsp; Bắp cải t&iacute;m đặc biệt mang đến lợi &iacute;ch trong việc hỗ trợ ph&ograve;ng chống ung thư, gi&uacute;p cơ thể khỏe mạnh to&agrave;n diện.</p>', 1, 'bap-cai-tim-tui-1kg-11645963117.jpg', '2022-02-27 18:58:37', '2022-02-27 19:04:26'),
 (28, 'Tôm thẻ khay 300g (7-9 con)', 19, 58000, 0, 3, NULL, 1, 'tom-the-nguyen-con-khay-300g-11645964123.jpeg', '2022-02-27 19:15:23', '2022-02-27 19:15:23'),
 (29, 'Mực ghim nhập khẩu đông lạnh túi 300g', 19, 65700, 0.2, 3, '<p>Mực ghim l&agrave; loại mực th&acirc;n d&agrave;i, cuộn tr&ograve;n như c&acirc;y ghim, vừa gi&agrave;u chất dinh dưỡng v&agrave; thơm ngon đậm vị. Mực ghim nhập khẩu đ&ocirc;ng lạnh vẫn giữ được độ săn chắc, gi&uacute;p bảo quản l&acirc;u hơn, mang đến vị đậm đ&agrave; cho m&oacute;n ăn</p>', 1, 'muc-ghim-nhap-khau-dong-lanh-tui-300g-11645964230.jpg', '2022-02-27 19:17:10', '2022-02-27 19:20:17');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `thanhtoan`
+--
+
+CREATE TABLE `thanhtoan` (
+  `MaThanhToan` int(11) NOT NULL,
+  `TT_Ten` varchar(200) NOT NULL,
+  `TT_DienGiai` text DEFAULT NULL,
+  `TT_TrangThai` int(11) NOT NULL,
+  `TT_BankCode` varchar(255) DEFAULT NULL,
+  `TT_CodeVnpay` varchar(255) DEFAULT NULL,
+  `TT_ResponseCode` varchar(255) DEFAULT NULL,
+  `TT_TaoMoi` datetime NOT NULL,
+  `TT_CapNhat` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `thanhtoan`
+--
+
+INSERT INTO `thanhtoan` (`MaThanhToan`, `TT_Ten`, `TT_DienGiai`, `TT_TrangThai`, `TT_BankCode`, `TT_CodeVnpay`, `TT_ResponseCode`, `TT_TaoMoi`, `TT_CapNhat`) VALUES
+(4, 'Thanh Toán Khi Nhận Hàng', NULL, 0, NULL, NULL, NULL, '2022-03-15 15:10:54', '2022-03-15 15:10:54'),
+(5, 'Thanh Toán Khi Nhận Hàng', NULL, 1, NULL, NULL, NULL, '2022-03-15 15:42:15', '2022-03-15 15:42:15'),
+(6, 'Thanh Toán Bằng VnPay', 'Thanh toan don hang', 2, 'NCB', '20220315215345', '00', '2022-03-15 21:57:09', '2022-03-15 21:57:09');
 
 -- --------------------------------------------------------
 
@@ -377,6 +405,13 @@ CREATE TABLE `yeuthich` (
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `yeuthich`
+--
+
+INSERT INTO `yeuthich` (`Ma`, `MSSP`, `MSKH`, `created_at`, `updated_at`) VALUES
+(6, 22, 1, '2022-03-07 19:20:29', '2022-03-07 19:20:29');
 
 --
 -- Indexes for dumped tables
@@ -409,7 +444,8 @@ ALTER TABLE `danhmuc`
 ALTER TABLE `dathang`
   ADD PRIMARY KEY (`MSDH`),
   ADD KEY `MSKH` (`MSKH`),
-  ADD KEY `MSNV` (`MSNV`);
+  ADD KEY `MSNV` (`MSNV`),
+  ADD KEY `MaThanhToan` (`MaThanhToan`);
 
 --
 -- Indexes for table `diachikh`
@@ -451,6 +487,12 @@ ALTER TABLE `sanpham`
   ADD KEY `MaDM` (`MaDM`);
 
 --
+-- Indexes for table `thanhtoan`
+--
+ALTER TABLE `thanhtoan`
+  ADD PRIMARY KEY (`MaThanhToan`);
+
+--
 -- Indexes for table `yeuthich`
 --
 ALTER TABLE `yeuthich`
@@ -466,7 +508,7 @@ ALTER TABLE `yeuthich`
 -- AUTO_INCREMENT for table `binhluan`
 --
 ALTER TABLE `binhluan`
-  MODIFY `MaBinhLuan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `MaBinhLuan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `danhmuc`
@@ -478,7 +520,7 @@ ALTER TABLE `danhmuc`
 -- AUTO_INCREMENT for table `dathang`
 --
 ALTER TABLE `dathang`
-  MODIFY `MSDH` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `MSDH` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `diachikh`
@@ -517,10 +559,16 @@ ALTER TABLE `sanpham`
   MODIFY `MSSP` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
+-- AUTO_INCREMENT for table `thanhtoan`
+--
+ALTER TABLE `thanhtoan`
+  MODIFY `MaThanhToan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
 -- AUTO_INCREMENT for table `yeuthich`
 --
 ALTER TABLE `yeuthich`
-  MODIFY `Ma` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `Ma` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Constraints for dumped tables
@@ -544,7 +592,8 @@ ALTER TABLE `danhmuc`
 --
 ALTER TABLE `dathang`
   ADD CONSTRAINT `dathang_ibfk_1` FOREIGN KEY (`MSKH`) REFERENCES `khachhang` (`MSKH`),
-  ADD CONSTRAINT `dathang_ibfk_2` FOREIGN KEY (`MSNV`) REFERENCES `nhanvien` (`MSNV`);
+  ADD CONSTRAINT `dathang_ibfk_2` FOREIGN KEY (`MSNV`) REFERENCES `nhanvien` (`MSNV`),
+  ADD CONSTRAINT `dathang_ibfk_3` FOREIGN KEY (`MaThanhToan`) REFERENCES `thanhtoan` (`MaThanhToan`);
 
 --
 -- Constraints for table `diachikh`

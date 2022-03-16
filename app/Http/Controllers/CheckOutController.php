@@ -34,6 +34,8 @@ class CheckOutController extends Controller
     public function save_check_out(Request $re){
     	$content = Session::get('cart');
     	$MSKH=Session::get('user_id');
+        $total=0;
+        
     	//Lấy dữ liệu từ bảng diachikh
     	$MaDC=$re->DiaChi;
     	$address_info=DB::table('diachikh')->where('MaDC',$MaDC)->get();
@@ -46,24 +48,39 @@ class CheckOutController extends Controller
     	$now = Carbon::now('Asia/Ho_Chi_Minh');
     	$data=array();
         $order=array();
+        $payment = array();
+        //Xử lý thành tiền
+        foreach ($content as $value) {
+            $total=$total+$value['product_price']*$value['product_qty']*(1-$value['product_discount']);
+        }
+        if($total<1000000){
+            $total = $total +30000;
+        }
+        //insert table thanhtoan
+        $payment['TT_Ten'] = $re->PhuongThuc;
+        $payment['TT_DienGiai']="Thanh toan don hang";
+        $payment['TT_TrangThai']=0; // Có 2 trạng thái: Chưa TT và Đã Thanh Toán
+        $payment['TT_BankCode']=null;
+        $payment['TT_CodeVnpay']=null;
+        $payment['TT_ResponseCode']=null;
+        $payment['TT_TaoMoi'] = $now;
+        $payment['TT_CapNhat'] = $now;
+        $MaThanhToan = DB::table('thanhtoan')->insertGetId($payment);
 
         //insert table dathang
     	$data['MSKH']=$MSKH;
     	$data['MSNV']=NULL;
-    	$data['ThanhTien']=0;
+    	$data['ThanhTien']=$total;
     	$data['HoTen']=$HoTen;
     	$data['SDT']=$SDT;
     	$data['DiaChi']=$DiaChi;
     	$data['NgayDat']=$now;
     	$data['NgayGiao']=NULL;
-    	$data['PhuongThuc']=$re->PhuongThuc;
-    	$data['TrangThai'] = 0;
+        $data['MaThanhToan']=$MaThanhToan;
         $data['GhiChu']=$re->GhiChu;
+        $data['TrangThai']=0;   // 4 trạng thái: chờ xn, đang vận chuyển, đã nhận và đã huỷ
         $data['created_at'] = $now;
         $data['updated_at'] = $now;
-
-        $total=0;
-        
         
         if($re->check==0){
             $SoDonDH=DB::table('dathang')->insertGetId($data);
@@ -75,14 +92,9 @@ class CheckOutController extends Controller
                 $order['GiamGia']=$v_content['product_discount'];
                 $order['GiaDatHang']=$v_content['product_price'];
                 $order['ThanhTien']=($v_content['product_price']*$v_content['product_qty']*(1-$v_content['product_discount']));
-                $total=$total+$v_content['product_price']*$v_content['product_qty']*(1-$v_content['product_discount']);
                 $result=DB::table('chitietdathang')->insert($order);
             }   
-            if($total<1000000){
-                $total = $total +30000;
-            }
             if ($result) {
-                DB::table('dathang')->where('MSDH',$SoDonDH)->update(['ThanhTien' => $total]);
                 Session::put('cart',null);
                 return Redirect::to('/complete_check_out');
             }else{
@@ -118,5 +130,25 @@ class CheckOutController extends Controller
         ->with('category',$all_category)->with('list',$loaihang)
         ->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)
         ->with('meta_tittle',$meta_tittle)->with('url',$url);
+    }
+
+    public function vnpay_check_out(Request $re){
+        $all_category = DB::table('danhmuc')->get();
+        $loaihang = DB::table('loaihang')->get();
+        $MSKH=Session::get('user_id');
+        $all_address_by_id=DB::table('diachikh')->where('MSKH',$MSKH)->get();
+
+        //Seo
+        $meta_desc="Thanh Toán Đơn Hàng";
+        $meta_keywords="CheckOut";
+        $meta_tittle="BACHHOA.COM";
+        $url=$re->url();
+        // end seo
+
+        return view('User.CheckOut.vnpay_checkout')
+        ->with('category',$all_category)->with('list',$loaihang)
+        ->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)
+        ->with('meta_tittle',$meta_tittle)->with('url',$url)
+        ->with('all_address_by_id',$all_address_by_id);
     }
 }

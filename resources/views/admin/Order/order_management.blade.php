@@ -20,12 +20,13 @@
         <div class="card-body table-responsive">
           <table class="table table-hover">
             <thead class="text-warning">
-              <th width="15%">Mã Đơn Hàng</th>
+              <th width="10%">Mã Đơn Hàng</th>
               <th width="15%">Tên Khách Hàng</th>
               <th width="10%">SDT</th>
               <th width="20%">Địa Chỉ</th>
               <th width="20%">Ngày Đặt Hàng</th>
-              <th style="text-align: center;" width="15%">Tình Trạng</th>
+              <th width="10%">Trạng Thái</th>
+              <th style="text-align: center;" width="10%">Thanh Toán</th>
               <th width="5%"></th>
             </thead>
             <tbody>
@@ -36,7 +37,7 @@
                 <td>{{$value->SDT}}</td>
                 <td>{{$value->DiaChi}}</td>
                 <td>{{$value->NgayDat}}</td>
-                <td style="text-align: center;">
+                <td>
                   <?php
                     if($value->TrangThai ==0)
                         echo 'Đang Xử Lý';
@@ -47,6 +48,15 @@
                     }else{
                         echo 'Đã Huỷ';
                     } 
+                  ?>
+                </td>  
+                <td style="text-align: center;">
+                  <?php
+                    if($value->TT_TrangThai ==0)
+                        echo 'Chưa Thanh Toán';
+                    elseif($value->TT_TrangThai ==1){
+                        echo 'Đã Thanh Toán';
+                    }
                   ?>
                 </td>
                 <td>

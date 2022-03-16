@@ -92,11 +92,19 @@
           <tr>
             <td>Loại Giao Hàng</td>
             <td>
-              @if($value->PhuongThuc=='0')
-              Thanh Toán Khi Nhận Hàng
-              @else
-              Khác
-              @endif
+              {{$value->TT_Ten}}
+            </td>
+          </tr>
+          <tr>
+            <td>Thanh Toán</td>
+            <td>
+              <?php
+              if($value->TT_TrangThai ==0)
+                echo 'Chưa Thanh Toán';
+              elseif($value->TT_TrangThai ==1){
+                echo 'Đã Thanh Toán bằng VNPay';
+              }
+              ?>
             </td>
           </tr>
         </tbody>

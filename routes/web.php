@@ -50,6 +50,14 @@ Route::post('/save_check_out', 'App\Http\Controllers\CheckOutController@save_che
 
 Route::get('/complete_check_out', 'App\Http\Controllers\CheckOutController@complete_check_out');
 
+Route::get('/vnpay_check_out', 'App\Http\Controllers\CheckOutController@vnpay_check_out');
+
+//user interface -> payment
+
+Route::post('/vnpay_payment', 'App\Http\Controllers\PaymentController@vnpay_payment');
+
+Route::get('/vnpay_return', 'App\Http\Controllers\PaymentController@vnpay_return');
+
 //user interface -> login/register/logout
 
 Route::get('/register_home', 'App\Http\Controllers\UserManagement@user_register');

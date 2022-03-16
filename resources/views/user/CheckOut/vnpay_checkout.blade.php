@@ -43,7 +43,7 @@ if($total<1000000){
 						<div class="col-12 col-md-4">
 							<div class="step-block active">
 								<div class="step">
-									<h2>Thanh Toán</h2><span>02</span>
+									<h2>Thanh Toán VNPAY</h2><span>02</span>
 								</div>
 							</div>
 						</div>
@@ -73,8 +73,9 @@ if($total<1000000){
 			</p>
 			@endif
 			<div class="col-12 col-lg-8">
-				<form action="{{URL::to('/save_check_out')}}" method="post">	
+				<form action="{{URL::to('/vnpay_payment')}}" method="post">	
 					{{csrf_field()}}
+					<input type="hidden" name="Total" value="{{$total}}">
 					<h2 class="form-title">THÔNG TIN ĐƠN HÀNG</h2>
 					<div class="form-group">
 						<label for="inputCountry">Địa Chỉ Nhận Hàng*</label>
@@ -84,7 +85,7 @@ if($total<1000000){
 							@endforeach
 						</select>
 					</div>
-					<input type="hidden" name="PhuongThuc" id="paymethod" value="Thanh Toán Khi Nhận Hàng">
+					<input type="hidden" name="PhuongThuc" id="paymethod" value="Thanh Toán Bằng VnPay">
 					<div class="form-group">
 						<label for="inputNote">Ghi Chú</label>
 						<textarea class="textarea-form-bg" id="inputNote" name="GhiChu" cols="30" rows="7" style="resize: none;"></textarea>
@@ -94,7 +95,7 @@ if($total<1000000){
 						<label>Tôi đồng ý với các điều khoản.</label>
 					</div>
 					<h2 class="form-title">Phương thức thanh toán</h2>
-					<input type="submit" class="normal-btn" name="checkout" value="THANH TOÁN" <?php if($user_id==null) echo "disabled" ?>>
+					<input type="submit" class="normal-btn" name="redirect" value="THANH TOÁN KHI VNPAY" <?php if($user_id==null) echo "disabled" ?>>
 				</form>
 			</div>
 			<div class="col-12 col-md-6 col-lg-4">

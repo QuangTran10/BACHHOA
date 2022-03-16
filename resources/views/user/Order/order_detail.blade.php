@@ -70,6 +70,7 @@
 					{{csrf_field() }}
 					{{-- Trạng thái Đang Xử Lý có thể huỷ đơn --}}
 					<input type="hidden" name="TinhTrang" value="3">
+					<input type="hidden" name="TT_TrangThai" value="0">
 					<input type="hidden" name="MSDH" value="{{$order->MSDH}}">
 					<button class="no-round-btn cart-update">Huỷ Đơn Hàng</button>
 				</form>
@@ -126,6 +127,20 @@
 									?>
 								</td>
 							</tr>
+							<tr>
+								<th>THANH TOÁN</th>
+								<td>
+									<?php
+									if($order->TT_TrangThai ==0)
+										echo '<p style="color:red">Chưa Thanh Toán</p>';
+									elseif($order->TT_TrangThai ==1){
+										echo '<p style="color:green">Đã Thanh Toán</p>';
+									}else{
+										echo '<p style="color:green">Đã Thanh Toán VnPay</p>';
+									}
+									?>
+								</td>
+							</tr>
 						</tbody>
 					</table>
 					<div class="row">
@@ -134,6 +149,7 @@
 							<form action="{{URL::to('/update_order')}}" method="post">
 								{{csrf_field() }}
 								<input type="hidden" name="TinhTrang" value="2">
+								<input type="hidden" name="TT_TrangThai" value="1">
 								<input type="hidden" name="MSDH" value="{{$order->MSDH}}">
 								<button class="normal-btn cart-update">Đã Nhận Hàng</button>
 							</form>

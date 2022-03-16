@@ -153,6 +153,7 @@
 					<div class="row">
 						<div class="col-12 justify-content-center align-items-center text-center">
 							<a href="{{URL::to('/check_out')}}" class="normal-btn">THANH TOÁN</a>
+							<a href="{{URL::to('/vnpay_check_out')}}" class="normal-btn">THANH TOÁN VNPAY</a>
 						</div>
 					</div>
 				</div>
