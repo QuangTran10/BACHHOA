@@ -102,7 +102,11 @@
               if($value->TT_TrangThai ==0)
                 echo 'Chưa Thanh Toán';
               elseif($value->TT_TrangThai ==1){
-                echo 'Đã Thanh Toán bằng VNPay';
+                echo 'Đã Thanh Toán';
+              }elseif($value->TT_TrangThai==2){
+                echo 'Thanh Toán VNPAY';
+              }else{
+                echo 'Thanh Toán MOMO';
               }
               ?>
             </td>

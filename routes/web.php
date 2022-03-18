@@ -52,11 +52,17 @@ Route::get('/complete_check_out', 'App\Http\Controllers\CheckOutController@compl
 
 Route::get('/vnpay_check_out', 'App\Http\Controllers\CheckOutController@vnpay_check_out');
 
+Route::get('/momo_check_out', 'App\Http\Controllers\CheckOutController@momo_check_out');
+
 //user interface -> payment
 
 Route::post('/vnpay_payment', 'App\Http\Controllers\PaymentController@vnpay_payment');
 
 Route::get('/vnpay_return', 'App\Http\Controllers\PaymentController@vnpay_return');
+
+Route::post('/momo_payment', 'App\Http\Controllers\PaymentController@momo_payment');
+
+Route::get('/momo_return', 'App\Http\Controllers\PaymentController@momo_return');
 
 //user interface -> login/register/logout
 

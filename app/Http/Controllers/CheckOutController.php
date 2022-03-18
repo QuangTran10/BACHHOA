@@ -12,7 +12,17 @@ session_start();
 
 class CheckOutController extends Controller
 {
+    public function LoginCheck(){
+        $MSKH=Session::get('user_id');
+        if($MSKH){
+            
+        }else{
+            return Redirect::to('login_home')->send();
+        }
+    }
+
     public function check_out(Request $re){
+        $this->LoginCheck();
     	$MSKH=Session::get('user_id');
     	$all_address_by_id=DB::table('diachikh')->where('MSKH',$MSKH)->get();
     	$all_category = DB::table('danhmuc')->get();
@@ -133,6 +143,7 @@ class CheckOutController extends Controller
     }
 
     public function vnpay_check_out(Request $re){
+        $this->LoginCheck();
         $all_category = DB::table('danhmuc')->get();
         $loaihang = DB::table('loaihang')->get();
         $MSKH=Session::get('user_id');
@@ -146,6 +157,27 @@ class CheckOutController extends Controller
         // end seo
 
         return view('User.CheckOut.vnpay_checkout')
+        ->with('category',$all_category)->with('list',$loaihang)
+        ->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)
+        ->with('meta_tittle',$meta_tittle)->with('url',$url)
+        ->with('all_address_by_id',$all_address_by_id);
+    }
+
+    public function momo_check_out(Request $re){
+        $this->LoginCheck();
+        $all_category = DB::table('danhmuc')->get();
+        $loaihang = DB::table('loaihang')->get();
+        $MSKH=Session::get('user_id');
+        $all_address_by_id=DB::table('diachikh')->where('MSKH',$MSKH)->get();
+
+        //Seo
+        $meta_desc="Thanh Toán Đơn Hàng";
+        $meta_keywords="CheckOut";
+        $meta_tittle="BACHHOA.COM";
+        $url=$re->url();
+        // end seo
+
+        return view('User.CheckOut.momo_checkout')
         ->with('category',$all_category)->with('list',$loaihang)
         ->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)
         ->with('meta_tittle',$meta_tittle)->with('url',$url)

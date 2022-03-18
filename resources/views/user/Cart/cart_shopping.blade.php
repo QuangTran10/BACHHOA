@@ -116,7 +116,7 @@
 		</div>
 		</form>
 		<div class="row justify-content-end">
-			<div class="col-12 col-md-6 col-lg-4">
+			<div class="col-12 col-md-6 col-lg-6">
 				<div class="cart-total_block">
 					<table class="table">
 						<colgroup>
@@ -154,6 +154,7 @@
 						<div class="col-12 justify-content-center align-items-center text-center">
 							<a href="{{URL::to('/check_out')}}" class="normal-btn">THANH TOÁN</a>
 							<a href="{{URL::to('/vnpay_check_out')}}" class="normal-btn">THANH TOÁN VNPAY</a>
+							<a href="{{URL::to('/momo_check_out')}}" class="normal-btn pink">Thanh Toán MOMO</a>
 						</div>
 					</div>
 				</div>
