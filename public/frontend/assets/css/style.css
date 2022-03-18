@@ -6127,6 +6127,9 @@ footer.coffee .newletter {
       .shopping-cart .cart-total_block .checkout-method button {
         width: 100%;
         margin-bottom: 20px; }
+      .shopping-cart .cart-total_block .checkout-method .normal-btn {
+        width: 100%;
+        margin-bottom: 20px; }
       .shopping-cart .cart-total_block .checkout-method span {
         font-family: "Roboto Regular";
         font-size: 16px;

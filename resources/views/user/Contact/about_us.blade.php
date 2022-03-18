@@ -4,8 +4,8 @@
 <div class="ogami-breadcrumb">
 	<div class="container">
 		<ul>
-			<li> <a class="breadcrumb-link" href="index.html"> <i class="fas fa-home"></i>Home</a></li>
-			<li> <a class="breadcrumb-link active" href="#">About us</a></li>
+			<li> <a class="breadcrumb-link" href="{{URL::to('/home')}}"> <i class="fas fa-home"></i>Trang Chủ</a></li>
+			<li> <a class="breadcrumb-link active" href="{{URL::to('/about_us')}}">Giới Thiệu</a></li>
 		</ul>
 	</div>
 </div>
@@ -22,7 +22,7 @@
 					</div>
 				</div>
 				<div class="col-12 col-md-6">
-					<div class="our-story_video"><img src="{{('public/frontend/assets/images/pages/video_play.png')}}" alt="play video"><a class="play-btn" href="https://www.youtube.com/watch?v=7e90gBu4pas" target="_blank"><i class="fas fa-play"></i></a></div>
+					<div class="our-story_video"><img src="{{('public/frontend/assets/images/poster/tree-logo.png')}}"></div>
 				</div>
 			</div>
 		</div>
@@ -58,7 +58,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="full-fluid">
+	{{-- <div class="full-fluid">
 		<div class="why-choose-us">
 			<div class="container">
 				<div class="row justify-content-center">
@@ -125,62 +125,7 @@
 				</div>
 			</div>
 		</div>
-	</div>
-	<div class="container">
-		<div class="our-farmer">
-			<h1 class="title green-underline">We are farmer</h1>
-			<div class="row">
-				<div class="col-sm-6 col-lg-3">
-					<div class="our-farmer-block our-farmer-block--1">
-						<div class="farmer-img"><img src="{{('public/frontend/assets/images/pages/farmer_1.png')}}" alt="farmer"></div>
-						<div class="farmer-contact_wrapper">
-							<div class="farmer-contact">
-								<h2>Katie Harrison</h2>
-								<h5>BARBER</h5>
-								<div class="farmer-social"><a href=""><i class="fab fa-facebook-f"> </i></a><a href=""><i class="fab fa-twitter"></i></a><a href=""><i class="fab fa-invision"> </i></a><a href=""><i class="fab fa-pinterest-p"></i></a></div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-sm-6 col-lg-3">
-					<div class="our-farmer-block our-farmer-block--2">
-						<div class="farmer-img"><img src="{{('public/frontend/assets/images/pages/farmer_2.png')}}" alt="farmer"></div>
-						<div class="farmer-contact_wrapper">
-							<div class="farmer-contact">
-								<h2>Katie Harrison</h2>
-								<h5>BARBER</h5>
-								<div class="farmer-social"><a href=""><i class="fab fa-facebook-f"> </i></a><a href=""><i class="fab fa-twitter"></i></a><a href=""><i class="fab fa-invision"> </i></a><a href=""><i class="fab fa-pinterest-p"></i></a></div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-sm-6 col-lg-3">
-					<div class="our-farmer-block our-farmer-block--3">
-						<div class="farmer-img"><img src="{{('public/frontend/assets/images/pages/farmer_3.png')}}" alt="farmer"></div>
-						<div class="farmer-contact_wrapper">
-							<div class="farmer-contact">
-								<h2>Katie Harrison</h2>
-								<h5>BARBER</h5>
-								<div class="farmer-social"><a href=""><i class="fab fa-facebook-f"> </i></a><a href=""><i class="fab fa-twitter"></i></a><a href=""><i class="fab fa-invision"> </i></a><a href=""><i class="fab fa-pinterest-p"></i></a></div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-sm-6 col-lg-3">
-					<div class="our-farmer-block our-farmer-block--4">
-						<div class="farmer-img"><img src="{{('public/frontend/assets/images/pages/farmer_1.png')}}" alt="farmer"></div>
-						<div class="farmer-contact_wrapper">
-							<div class="farmer-contact">
-								<h2>Katie Harrison</h2>
-								<h5>BARBER</h5>
-								<div class="farmer-social"><a href=""><i class="fab fa-facebook-f"> </i></a><a href=""><i class="fab fa-twitter"></i></a><a href=""><i class="fab fa-invision"> </i></a><a href=""><i class="fab fa-pinterest-p"></i></a></div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+	</div> --}}
 </div>
 <!-- End about us-->
 
