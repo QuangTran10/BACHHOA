@@ -94,71 +94,78 @@ class PaymentController extends Controller
     	$payment = array();
 		$data=array();
 		$order=array();
+        if ($_GET['vnp_ResponseCode'] == '00') {
+            //Lấy dữ liệu từ link
+            $TT_Bankcode = $_GET['vnp_BankCode'];
+            $TT_CodeVnpay= $_GET['vnp_BankTranNo'];
+            $TT_Response = $_GET['vnp_TransactionStatus'];
+            $Note = $_GET['vnp_OrderInfo'];
+            $Amount = $_GET['vnp_Amount'] /100;
+            
+            //insert table thanhtoan
+            $payment['TT_Ten'] = "Thanh Toán Bằng VnPay";
+            $payment['TT_DienGiai']=$Note;
+            $payment['TT_TrangThai']=1; // Có 2 trạng thái: Chưa TT và Đã Thanh Toán
+            $payment['TT_BankCode']=$TT_Bankcode;
+            $payment['TT_CodeVnpay']=$TT_CodeVnpay;
+            $payment['TT_ResponseCode']=$TT_Response;
+            $payment['TT_TaoMoi'] = $now;
+            $payment['TT_CapNhat'] = $now;
+            $MaThanhToan = DB::table('thanhtoan')->insertGetId($payment);
 
-		//Lấy dữ liệu từ link
-    	$TT_Bankcode = $_GET['vnp_BankCode'];
-    	$TT_CodeVnpay= $_GET['vnp_BankTranNo'];
-    	$TT_Response = $_GET['vnp_TransactionStatus'];
-    	$Note = $_GET['vnp_OrderInfo'];
-    	$Amount = $_GET['vnp_Amount'] /100;
-    	
-    	//insert table thanhtoan
-    	$payment['TT_Ten'] = "Thanh Toán Bằng VnPay";
-        $payment['TT_DienGiai']=$Note;
-        $payment['TT_TrangThai']=1; // Có 2 trạng thái: Chưa TT và Đã Thanh Toán
-        $payment['TT_BankCode']=$TT_Bankcode;
-        $payment['TT_CodeVnpay']=$TT_CodeVnpay;
-        $payment['TT_ResponseCode']=$TT_Response;
-        $payment['TT_TaoMoi'] = $now;
-        $payment['TT_CapNhat'] = $now;
-        $MaThanhToan = DB::table('thanhtoan')->insertGetId($payment);
-
-    	
-    	//Lấy dữ liệu từ bảng diachikh
-    	
-    	$address_info=DB::table('diachikh')->where('MaDC',$MaDC)->get();
-    	foreach ($address_info as $key => $value) {
-            $HoTen = $value->HoTen;
-            $SDT   = $value->SDT;;
-    		$DiaChi= $value->DiaChi;
-    	}
-
-        //insert table dathang
-    	$data['MSKH']=$MSKH;
-    	$data['MSNV']=NULL;
-    	$data['ThanhTien']=$Amount;
-    	$data['HoTen']=$HoTen;
-    	$data['SDT']=$SDT;
-    	$data['DiaChi']=$DiaChi;
-    	$data['NgayDat']=$now;
-    	$data['NgayGiao']=NULL;
-        $data['MaThanhToan']=$MaThanhToan;
-        $data['GhiChu']=$re->GhiChu;
-        $data['TrangThai']=0;   // 4 trạng thái: chờ xn, đang vận chuyển, đã nhận và đã huỷ
-        $data['created_at'] = $now;
-        $data['updated_at'] = $now;
-        
-        if($re->check==0){
-            $SoDonDH=DB::table('dathang')->insertGetId($data);
-            //insert table chitietdathang
-            foreach ($content as $v_content) {
-                $order['MSDH']=$SoDonDH;
-                $order['MSSP']=$v_content['product_id'];
-                $order['SoLuong']=$v_content['product_qty'];
-                $order['GiamGia']=$v_content['product_discount'];
-                $order['GiaDatHang']=$v_content['product_price'];
-                $order['ThanhTien']=($v_content['product_price']*$v_content['product_qty']*(1-$v_content['product_discount']));
-                $result=DB::table('chitietdathang')->insert($order);
-            }   
-            if ($result) {
-                Session::put('cart',null);
-                Session::put('Addr', null);
-                Session::put('Note',null);
-                return Redirect::to('/complete_check_out');
-            }else{
-                return redirect('/vnpay_check_out')->with('notice','Thanh Toán Thất Bại');
+            
+            //Lấy dữ liệu từ bảng diachikh
+            
+            $address_info=DB::table('diachikh')->where('MaDC',$MaDC)->get();
+            foreach ($address_info as $key => $value) {
+                $HoTen = $value->HoTen;
+                $SDT   = $value->SDT;;
+                $DiaChi= $value->DiaChi;
             }
-        }
+
+            //insert table dathang
+            $data['MSKH']=$MSKH;
+            $data['MSNV']=NULL;
+            $data['ThanhTien']=$Amount;
+            $data['HoTen']=$HoTen;
+            $data['SDT']=$SDT;
+            $data['DiaChi']=$DiaChi;
+            $data['NgayDat']=$now;
+            $data['NgayGiao']=NULL;
+            $data['MaThanhToan']=$MaThanhToan;
+            $data['GhiChu']=$re->GhiChu;
+            $data['TrangThai']=0;   // 4 trạng thái: chờ xn, đang vận chuyển, đã nhận và đã huỷ
+            $data['created_at'] = $now;
+            $data['updated_at'] = $now;
+            
+            if($re->check==0){
+                $SoDonDH=DB::table('dathang')->insertGetId($data);
+                //insert table chitietdathang
+                foreach ($content as $v_content) {
+                    $order['MSDH']=$SoDonDH;
+                    $order['MSSP']=$v_content['product_id'];
+                    $order['SoLuong']=$v_content['product_qty'];
+                    $order['GiamGia']=$v_content['product_discount'];
+                    $order['GiaDatHang']=$v_content['product_price'];
+                    $order['ThanhTien']=($v_content['product_price']*$v_content['product_qty']*(1-$v_content['product_discount']));
+                    $result=DB::table('chitietdathang')->insert($order);
+                }   
+                if ($result) {
+                    Session::put('cart',null);
+                    Session::put('Addr', null);
+                    Session::put('Note',null);
+                    return Redirect::to('/complete_check_out');
+                }else{
+                    return redirect('/vnpay_check_out')->with('notice','Thanh Toán Thất Bại');
+                }
+            }
+        }else{
+            return Redirect::to('/error_payment');
+        }    
+		
+
+
+
     }
 
     public function execPostRequest($url, $data){

@@ -144,4 +144,23 @@ class HomeController extends Controller
         ->with('meta_tittle',$meta_tittle)->with('url',$url)
         ->with('subscribers', $subscribers)->with('products',$products);
     }
+
+    public function error_payment(Request $re){
+        $meta_desc="ERROR";
+        $meta_keywords="ERROR";
+        $meta_tittle="BACHHOA.COM";
+        $url=url()->current();
+
+        $all_category = DB::table('danhmuc')->get();
+        $loaihang = DB::table('loaihang')->get();
+
+        $message = "THANH TOÁN KHÔNG THÀNH CÔNG";
+        $contend = "Vui lòng kiểm tra tài khoản thanh toán hoặc số tiền còn trong tài khoản";
+
+        return view('User.Error.error')
+        ->with('category',$all_category)->with('list',$loaihang)
+        ->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)
+        ->with('meta_tittle',$meta_tittle)->with('url',$url)
+        ->with('message',$message)->with('contend',$contend);
+    }
 }
