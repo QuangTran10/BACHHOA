@@ -44,9 +44,9 @@
           </div>
           <div class="slider-banner">
             <div class="row">
-              <div class="col-12 col-sm-4 col-lg-4"><a href="shop_grid+list_3col.html"><img class="img-fluid" src="{{('public/frontend/assets/images/poster/poster3.jpg')}}" alt=""></a></div>
-              <div class="col-12 col-sm-4 col-lg-4"><a href="shop_grid+list_3col.html"><img class="img-fluid" src="{{('public/frontend/assets/images/poster/poster4.jpg')}}" alt=""></a></div>
-              <div class="col-12 col-sm-4 col-lg-4"><a href="shop_grid+list_3col.html"><img class="img-fluid" src="{{('public/frontend/assets/images/poster/poster5.jpg')}}" alt=""></a></div>
+              <div class="col-12 col-sm-4 col-lg-4"><a href=""><img class="img-fluid" src="{{('public/frontend/assets/images/poster/poster3.jpg')}}" alt=""></a></div>
+              <div class="col-12 col-sm-4 col-lg-4"><a href=""><img class="img-fluid" src="{{('public/frontend/assets/images/poster/poster4.jpg')}}" alt=""></a></div>
+              <div class="col-12 col-sm-4 col-lg-4"><a href=""><img class="img-fluid" src="{{('public/frontend/assets/images/poster/poster5.jpg')}}" alt=""></a></div>
             </div>
           </div>
         </div>

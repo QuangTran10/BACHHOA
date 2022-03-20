@@ -505,6 +505,7 @@ window.onload = function () {
 		 		{
 		 			var fileurl=e.target.result;
 		 			$('.profile-pic').attr('src',fileurl);
+		 			$('#Avatar').val(fileurl);
 		 		}
 		 		reader.readAsDataURL(input.files[0]);
 		 	}

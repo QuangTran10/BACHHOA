@@ -79,16 +79,10 @@
               <div class="col-3">
                 <div class="mobile-menu_block d-flex align-items-center"><a class="mobile-menu--control" href="#"><i class="fas fa-bars"></i></a>
                   <div id="ogami-mobile-menu">
-                    <button class="no-round-btn" id="mobile-menu--closebtn">Close menu</button>
+                    <button class="no-round-btn" id="mobile-menu--closebtn"><i class="fas fa-times"></i></button>
                     <div class="mobile-menu_items">
                       <ul class="mb-0 d-flex flex-column">
-                        <li class="toggleable"> <a class="menu-item active" href="">Trang Chủ</a></li>
-                        <li class="toggleable"><a class="menu-item" href="">Sản Phẩm</a><span class="sub-menu--expander"><i class="icon_plus"></i></span>
-                          <ul class="sub-menu">
-                            <li><a href="shop_grid+list_fullwidth.html">Shop grid fullwidth</a></li>
-                            
-                          </ul>
-                        </li>
+                        <li class="toggleable"> <a class="menu-item active" href="{{URL::to('/home')}}">Trang Chủ</a></li>
                         <li class="toggleable"> <a class="menu-item" href=>Danh Mục</a><span class="sub-menu--expander"><i class="icon_plus"></i></span>
                           <ul class="sub-menu">
                             @foreach($category as $key => $val_cate)
@@ -101,7 +95,18 @@
                       </ul>
                     </div>
                     <div class="mobile-login">
-                      <h2>Tài Khoản Của Tôi</h2><a href="">Đăng Nhập</a><a href="register.html">Đăng Ký</a>
+                      <h2>Tài Khoản Của Tôi</h2>
+                      <?php
+                        if($name_user){
+                      ?>
+                        <a href="{{URL::to('/my_account')}}">Tài Khoản</a><a href="{{URL::to('/show_order')}}">Quản Lý Đơn Hàng</a>
+                      <?php
+                        }else{
+                      ?>  
+                        <a href="{{URL::to('/login_home')}}">Đăng Nhập</a><a href="{{URL::to('/register_home')}}">Đăng Ký</a>
+                      <?php
+                        }
+                      ?>
                     </div>
                   </div>
                   <div class="ogamin-mobile-menu_bg"></div>
@@ -111,7 +116,7 @@
                 <div class="mobile-menu_logo text-center d-flex justify-content-center align-items-center"><a href=""><img src="{{asset('public/frontend/assets/images/logo_white.png')}}" alt=""></a></div>
               </div>
               <div class="col-3">
-                <div class="mobile-product_function d-flex align-items-center justify-content-end"><a class="function-icon icon_heart_alt" href="wishlist.html"></a><a class="function-icon icon_bag_alt" href=""></a></div>
+                <div class="mobile-product_function d-flex align-items-center justify-content-end"><a class="function-icon icon_heart_alt" href="{{URL::to('/wish_list')}}"></a><a class="function-icon icon_bag_alt" href="{{URL::to('/cart_shopping')}}"></a></div>
               </div>
             </div>
           </div>

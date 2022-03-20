@@ -45,6 +45,7 @@
                                         <div class="col-12 col-md-10 mx-auto">
                                             <h1 class="title">HỒ SƠ CỦA TÔI</h1>
 
+                                            <form action="{{URL::to('/change_info')}}" method="post" id="Register" enctype="multipart/form-data">
                                             <div class="user-profilesinglepage" id="avatar-header">
                                                 <div class="avatar-header">
                                                     <div class="avatar-wrapper">
@@ -52,7 +53,7 @@
                                                         <div class="upload-button">
                                                             <i class="fa fa-arrow-circle-up" aria-hidden="true"></i>
                                                         </div>
-                                                        <input class="file-upload" type="file" name="Avatar" accept="image/*"/>
+                                                        <input class="file-upload" type="file" name="Avatar" accept="image/*" id="Avatar" />
                                                     </div>
                                                     <div class="nametitle text-center">
                                                         <h4>{{$user_infor->HoTenKH}}</h4>
@@ -66,7 +67,7 @@
                                                 </div>
                                             </div> 
 
-                                            <form action="{{URL::to('/change_info')}}" method="post" id="Register">
+                                            
                                                 {{csrf_field() }}
                                                 <label for="HoTenKH">Họ Tên</label>
                                                 <input class="no-round-input" id="HoTenKH" type="text" name="HoTenKH" value="{{$user_infor->HoTenKH}}">

@@ -6148,7 +6148,7 @@ footer.coffee .newletter {
         -ms-transition: 0.3s ease;
         -o-transition: 0.3s ease;
         transition: 0.3s ease; }
-        .shopping-cart .cart-total_block .checkout-method a:hover {
+      .shopping-cart .cart-total_block .checkout-method a:hover {
           color: #88c74a;
           text-decoration: none; }
 

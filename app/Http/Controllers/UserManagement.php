@@ -216,6 +216,24 @@ class UserManagement extends Controller
             $SoDienThoai = $request->SDT;
             $NgaySinh = $request->NgaySinh;
 
+            $get_image = $request->file('Avatar');
+
+            if($get_image){
+                $get_name = $get_image->getClientOriginalName();
+                $name = current(explode('.', $get_name));
+                $new_image = $name.time() .'.'.$get_image->getClientOriginalExtension();
+                $get_image->move('public\frontend\assets\images\Avatar',$new_image);
+                $Avatar=$new_image;
+                DB::table('khachhang')->where('MSKH',$MSKH)->update([
+                    'HoTenKH'   => $HoTenKH, 
+                    'GioiTinh'  => $GioiTinh,
+                    'NgaySinh'  => $NgaySinh,
+                    'SDT'       => $SoDienThoai,
+                    'Avatar'    => $Avatar,
+                    'updated_at'=> $now
+                ]);
+                return Redirect::to('/my_account');
+            }
             DB::table('khachhang')->where('MSKH',$MSKH)->update([
                 'HoTenKH'   => $HoTenKH, 
                 'GioiTinh'  => $GioiTinh,
@@ -223,7 +241,7 @@ class UserManagement extends Controller
                 'SDT'       => $SoDienThoai,
                 'updated_at'=> $now
             ]);
-            return Redirect::to('/my_account');
+            return Redirect::to('/my_account');        
         }
     }
 
