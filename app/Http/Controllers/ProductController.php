@@ -141,7 +141,7 @@ class ProductController extends Controller
     //Chuyển trang xoá SP
     public function delete($id,$hinhanh){
         $this->AuthLogin();
-        DB::table('sanpham')->where('MSHH',$id)->update(['TrangThai'=>0]);
+        DB::table('sanpham')->where('MSSP',$id)->update(['TrangThai'=>0]);
         return Redirect::to('product_management');
     }
 
@@ -155,7 +155,8 @@ class ProductController extends Controller
         $labels=array();
         $series=array();
         foreach ($bestsell as $key => $value) {
-            $labels[]=$value->MSSP;
+            $a = DB::table('sanpham')->where('MSSP', $value->MSSP)->get('TenSP')->first();
+            $labels[]=$a->TenSP;
             $series[]=$value->sl;
         }
         $chart_data = array(

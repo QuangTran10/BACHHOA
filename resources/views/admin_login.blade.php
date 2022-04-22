@@ -95,22 +95,12 @@
             <ul>
               <li>
                 <a href="{{URL::to('/home')}}">
-                  Qpharmacy
+                  BACHHOA.COM
                 </a>
               </li>
               <li>
                 <a href="{{URL::to('/admin')}}">
                   Trang Chủ
-                </a>
-              </li>
-              <li>
-                <a href="">
-                  Blog
-                </a>
-              </li>
-              <li>
-                <a href="">
-                  Điều Khoản
                 </a>
               </li>
             </ul>
