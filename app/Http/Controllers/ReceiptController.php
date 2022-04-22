@@ -8,6 +8,7 @@ use DB;
 use App\Models\Product;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\File; 
+use Illuminate\Support\Collection;
 use Session;
 session_start();
 
@@ -32,11 +33,24 @@ class ReceiptController extends Controller
     //Thêm phiếu nhập
     public function show_add(){
         $this->AuthLogin();
-    	$all_product = DB::table('hanghoa')->join('nhasanxuat', 'hanghoa.MaNSX', '=', 'nhasanxuat.MaNSX')
-        ->where('MaPhieu',NULL)->get();
+        $all_receipt = DB::table('chitietphieuthu')->select("MSSP")->get()->toArray();
 
-        $all_producer = DB::table('nhasanxuat')->where('TinhTrang',1)->get();
-    	return view('admin.Receipt.add_receipt')->with('all_product',$all_product)->with('all_producer',$all_producer);
+        $data = array();
+        foreach ($all_receipt as $key => $value) {
+            $data[]=$value->MSSP;
+        }
+
+        $all_product = DB::table('sanpham')->select("MSSP")->whereNotIn("MSSP",$data)->get();
+        
+        $product = array();
+        foreach ($all_product as $key => $value) {
+            $product[]=DB::table('sanpham')
+            ->join('danhmuc', 'danhmuc.MaDM', '=', 'sanpham.MaDM')
+            ->where('MSSP',$value->MSSP)
+            ->select('sanpham.*','danhmuc.TenDanhMuc')->first();
+        }
+
+    	return view('admin.Receipt.add_receipt')->with('all_product',$product);
     }
 
     //add
@@ -62,18 +76,17 @@ class ReceiptController extends Controller
     	$ThanhTien=0;
     	$kq=0;
     	foreach ($data['sp'] as $key => $value) {
-    		$ds['MSHH']=$key;
+    		$ds['MSSP']=$key;
     		$ds['MaPhieu']=$MaPhieu;
-    		$product = DB::table('hanghoa')->where('MSHH',$key)->get();
+    		$product = DB::table('sanpham')->where('MSSP',$key)->get();
     		foreach ($product as $k => $val) {
-    			$ThanhTien=$ThanhTien + $val->SoLuongHang*$val->Gia;
-    			$ds['SoLuong']=$val->SoLuongHang;
+    			$ThanhTien=$ThanhTien + $val->SoLuong*$val->Gia;
+    			$ds['SoLuong']=$val->SoLuong;
     			$ds['DonGia']=$val->Gia;
     			$ds['TG_Tao']=$now;
     			$ds['TG_CapNhat']=$now;
     		}
     		$result=DB::table('chitietphieuthu')->insert($ds);
-    		DB::table('hanghoa')->where('MSHH', $val->MSHH)->update(['MaPhieu' =>$MaPhieu]);
     		if ($result) {
     			$kq=1;
     		}

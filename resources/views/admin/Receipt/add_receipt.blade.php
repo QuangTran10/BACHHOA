@@ -45,7 +45,7 @@
                 @foreach($all_product as $key => $value)
                 <div class="form-check">
                   <label class="form-check-label">
-                    <input class="form-check-input" type="checkbox" name="sp[{{$value->MSHH}}]" value="{{$value->MSHH}}">{{$value->TenHH . " - " . $value->MaNSX}}
+                    <input class="form-check-input" type="checkbox" name="sp[{{$value->MSSP}}]" value="{{$value->MSSP}}">{{$value->TenSP . " - "}}
                     <span class="form-check-sign">
                       <span class="check"></span>
                     </span>

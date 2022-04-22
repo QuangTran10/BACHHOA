@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 16, 2022 at 01:54 PM
+-- Generation Time: Apr 22, 2022 at 12:59 PM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 7.3.27
 
@@ -72,7 +72,11 @@ INSERT INTO `chitietdathang` (`MSDH`, `MSSP`, `SoLuong`, `GiaDatHang`, `GiamGia`
 (12, 28, 1, 58000, 0, 58000),
 (12, 29, 1, 65700, 0.2, 52560),
 (13, 22, 1, 23000, 0.3, 16100),
-(13, 25, 1, 12500, 0, 12500);
+(13, 25, 1, 12500, 0, 12500),
+(14, 22, 1, 23000, 0.3, 16100),
+(14, 23, 1, 16000, 0, 16000),
+(14, 28, 1, 58000, 0, 58000),
+(16, 29, 2, 65700, 0.2, 105120);
 
 --
 -- Triggers `chitietdathang`
@@ -89,6 +93,37 @@ DELIMITER $$
 CREATE TRIGGER `xoa_hang` AFTER DELETE ON `chitietdathang` FOR EACH ROW update sanpham set SoLuong=SoLuong+old.SoLuong where MSSP=old.MSSP
 $$
 DELIMITER ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `chitietphieuthu`
+--
+
+CREATE TABLE `chitietphieuthu` (
+  `MaPhieu` int(11) NOT NULL,
+  `MSSP` int(11) NOT NULL,
+  `SoLuong` int(11) NOT NULL,
+  `DonGia` double NOT NULL,
+  `TG_Tao` datetime NOT NULL,
+  `TG_CapNhat` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `chitietphieuthu`
+--
+
+INSERT INTO `chitietphieuthu` (`MaPhieu`, `MSSP`, `SoLuong`, `DonGia`, `TG_Tao`, `TG_CapNhat`) VALUES
+(10, 6, 50, 88000, '2022-04-22 14:40:07', '2022-04-22 14:40:07'),
+(10, 21, 10, 84500, '2022-04-22 14:40:07', '2022-04-22 14:40:07'),
+(10, 28, 19, 58000, '2022-04-22 14:40:07', '2022-04-22 14:40:07'),
+(11, 8, 20, 27500, '2022-04-22 14:47:21', '2022-04-22 14:47:21'),
+(11, 9, 30, 69000, '2022-04-22 14:47:21', '2022-04-22 14:47:21'),
+(11, 23, 10, 16000, '2022-04-22 14:47:21', '2022-04-22 14:47:21'),
+(11, 24, 49, 17000, '2022-04-22 14:47:21', '2022-04-22 14:47:21'),
+(11, 25, 9, 12500, '2022-04-22 14:47:21', '2022-04-22 14:47:21'),
+(11, 26, 20, 45000, '2022-04-22 14:47:21', '2022-04-22 14:47:21'),
+(11, 27, 10, 20000, '2022-04-22 14:47:21', '2022-04-22 14:47:21');
 
 -- --------------------------------------------------------
 
@@ -149,7 +184,10 @@ CREATE TABLE `dathang` (
 INSERT INTO `dathang` (`MSDH`, `MSKH`, `MSNV`, `HoTen`, `SDT`, `DiaChi`, `ThanhTien`, `NgayDat`, `NgayGiao`, `GhiChu`, `TrangThai`, `MaThanhToan`, `created_at`, `updated_at`) VALUES
 (11, 1, 1, 'Trần Thanh Quang', '0859083181', '180 Triệu Nương, Mỹ Xuyên, Sóc Trăng', 80000, '2022-03-15 15:10:54', NULL, NULL, 3, 4, '2022-03-15 15:10:54', '2022-03-15 15:10:54'),
 (12, 1, 1, 'Trần Thanh Quang', '0859083181', '180 Triệu Nương, Mỹ Xuyên, Sóc Trăng', 157560, '2022-03-15 15:42:15', NULL, NULL, 2, 5, '2022-03-15 15:42:15', '2022-03-15 15:42:15'),
-(13, 1, NULL, 'Trần Thanh Quang', '0859083181', '180 Triệu Nương, Mỹ Xuyên, Sóc Trăng', 58600, '2022-03-15 21:57:09', NULL, NULL, 0, 6, '2022-03-15 21:57:09', '2022-03-15 21:57:09');
+(13, 1, NULL, 'Trần Thanh Quang', '0859083181', '180 Triệu Nương, Mỹ Xuyên, Sóc Trăng', 58600, '2022-03-15 21:57:09', NULL, NULL, 0, 6, '2022-03-15 21:57:09', '2022-03-15 21:57:09'),
+(14, 1, NULL, 'Trần Tuấn Anh', '0918151004', '185 Nguyễn Thị Minh Khai', 120100, '2022-04-22 17:44:17', NULL, NULL, 0, 7, '2022-04-22 17:44:17', '2022-04-22 17:44:17'),
+(15, 1, NULL, 'Trần Thanh Quang', '0859083181', '180 Triệu Nương, Mỹ Xuyên, Sóc Trăng', 135120, '2022-04-22 17:50:46', NULL, NULL, 3, 8, '2022-04-22 17:50:46', '2022-04-22 17:50:46'),
+(16, 1, NULL, 'Trần Tuấn Anh', '0918151004', '185 Nguyễn Thị Minh Khai', 135120, '2022-04-22 17:53:14', NULL, NULL, 0, 9, '2022-04-22 17:53:14', '2022-04-22 17:53:14');
 
 -- --------------------------------------------------------
 
@@ -244,7 +282,7 @@ CREATE TABLE `khachhang` (
 --
 
 INSERT INTO `khachhang` (`MSKH`, `HoTenKH`, `GioiTinh`, `NgaySinh`, `SDT`, `Email`, `MatKhau`, `TrangThai`, `Avatar`, `created_at`, `updated_at`) VALUES
-(1, 'Trần Thanh Quang', 0, '2000-10-29', '0859083181', 'qtran8219@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b', 1, 'avatar.jpeg', '2022-02-20 10:03:25', '2022-03-04 13:53:44'),
+(1, 'Trần Thanh Quang', 0, '2000-10-29', '0859083181', 'qtran8219@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b', 1, 'Anh-vit-cute-61650460683.jpg', '2022-02-20 10:03:25', '2022-04-20 20:18:03'),
 (2, 'Trần Phú Vinh', 0, '2000-10-15', '0918151004', 'vinhtran2211@gmail.com', '25d55ad283aa400af464c76d713c07ad', 1, 'avatar.jpeg', '2022-03-03 19:50:16', '2022-03-03 19:50:16');
 
 -- --------------------------------------------------------
@@ -328,6 +366,32 @@ INSERT INTO `nhanvien` (`MSNV`, `HoTenNV`, `GioiTinh`, `Ngay`, `Thang`, `Nam`, `
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `phieuthu`
+--
+
+CREATE TABLE `phieuthu` (
+  `MaPhieu` int(11) NOT NULL,
+  `NguoiNP` varchar(60) NOT NULL,
+  `ThanhTien` double DEFAULT NULL,
+  `NgayLap` datetime NOT NULL,
+  `NCC` text NOT NULL,
+  `GhiChu` text DEFAULT NULL,
+  `TinhTrang` int(11) NOT NULL,
+  `TG_Tao` datetime NOT NULL,
+  `TG_CapNhat` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `phieuthu`
+--
+
+INSERT INTO `phieuthu` (`MaPhieu`, `NguoiNP`, `ThanhTien`, `NgayLap`, `NCC`, `GhiChu`, `TinhTrang`, `TG_Tao`, `TG_CapNhat`) VALUES
+(10, 'Trần Thanh Quang', 6347000, '2022-04-22 14:40:07', 'Công ty Meet Master', NULL, 1, '2022-04-22 14:40:07', '2022-04-22 14:40:07'),
+(11, 'Trần Thanh Quang', 4825500, '2022-04-22 14:47:21', 'Công ty Dalat Farm', NULL, 1, '2022-04-22 14:47:21', '2022-04-22 14:47:21');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `sanpham`
 --
 
@@ -356,14 +420,14 @@ INSERT INTO `sanpham` (`MSSP`, `TenSP`, `SoLuong`, `Gia`, `GiamGia`, `MaDM`, `Th
 (9, 'Nấm mỡ nâu hộp 150g (6-8 cái)', 30, 69000, 0.1, 5, '<p>Nấm mỡ trắng&nbsp;của B&aacute;ch H&oacute;a Xanh được nu&ocirc;i trồng v&agrave; đ&oacute;ng g&oacute;i theo những ti&ecirc;u chuẩn nghi&ecirc;m ngặt, bảo đảm c&aacute;c ti&ecirc;u chuẩn xanh - sach, chất lượng v&agrave; an to&agrave;n với người d&ugrave;ng. Nấm mỡ chứa h&agrave;m lượng chất dinh dưỡng cao, nhiều vitamin v&agrave; protein quan trọng n&ecirc;n thường được chế biến bằng c&aacute;ch x&agrave;o hoặc nướng.</p>', 1, 'nam-mo-nau-hop-150g-2021012922202210561645085441.jpg', '2022-02-17 15:10:41', '2022-02-27 18:46:47'),
 (10, 'Muối tôm kiểu Tây Ninh Guyumi hũ 60g', 20, 7400, 0, 7, '<p><a href=\"https://www.bachhoaxanh.com/muoi-an-guyumi\" target=\"_blank\">Muối Guyumi</a>&nbsp;với nguồn nguy&ecirc;n liệu sạch, tạo n&ecirc;n một loại muối t&ocirc;m thơm ngon đ&uacute;ng kiểu T&acirc;y Ninh.&nbsp;<a href=\"https://www.bachhoaxanh.com/muoi-an/muoi-tom-kieu-tay-ninh-guyumi-chai-60g\" target=\"_blank\">Muối t&ocirc;m kiểu T&acirc;y Ninh Guyumi chai 60g</a>&nbsp;l&agrave; loại&nbsp;<a href=\"https://www.bachhoaxanh.com/muoi-an\" target=\"_blank\">muối</a>&nbsp;chấm được tạo n&ecirc;n bởi hương vị ngọt của t&ocirc;m, kết hợp với vị cay của ớt v&agrave; gia vị, c&oacute; độ mặn vừa phải</p>', 1, 'muoi-tom-kieu-tay-ninh-guyumi-chai-60g1645086063.jpg', '2022-02-17 15:21:03', '2022-02-17 15:21:03'),
 (21, 'Đuôi heo Meat Master khay 400g (6-8 miếng)', 10, 84500, 0.2, 1, NULL, 1, 'duoi-heo-meat-master-khay-400g1645261640.jpg', '2022-02-19 16:07:20', '2022-02-19 16:07:20'),
-(22, 'Đường tinh luyện Lam Sơn gói 1kg', 49, 23000, 0.3, 7, '<p><a href=\"https://www.bachhoaxanh.com/duong\" target=\"_blank\">Đường</a>&nbsp;được ứng dụng c&ocirc;ng nghệ ti&ecirc;n tiến, chiết &eacute;p từ những c&acirc;y m&iacute;a tốt nhất,&nbsp;kh&ocirc;ng sử dụng h&oacute;a chất tẩy trắng đến từ thương hiệu&nbsp;<a href=\"https://www.bachhoaxanh.com/duong-lam-son\" target=\"_blank\">đường Lam Sơn</a>.&nbsp;<a href=\"https://www.bachhoaxanh.com/duong/duong-tinh-luyen-lam-son-goi-1kg\" target=\"_blank\">Đường tinh luyện Lam Sơn g&oacute;i 1kg</a>&nbsp;c&oacute;&nbsp;vị ngọt dịu, thơm ngon, hấp dẫn, c&oacute; m&agrave;u trắng tự nhi&ecirc;n, dễ h&ograve;a tan.</p>', 1, 'duong-tinh-luyen-lam-son-goi-1kg1645962577.jpg', '2022-02-27 18:49:37', '2022-03-01 11:19:09'),
-(23, 'Nấm kim châm Hàn Quốc túi 150g', 10, 16000, 0, 5, '<p>Nấm kim ch&acirc;m H&agrave;n Quốc của B&aacute;ch h&oacute;a Xanh được nu&ocirc;i trồng v&agrave; đ&oacute;ng g&oacute;i theo những ti&ecirc;u chuẩn nghi&ecirc;m ngặt, bảo đảm c&aacute;c ti&ecirc;u chuẩn xanh - sach, chất lượng v&agrave; an to&agrave;n với người d&ugrave;ng. Sợi nấm dai, gi&ograve;n v&agrave; ngọt, khi nấu ch&iacute;n rất thơm n&ecirc;n thường được lăn bột chi&ecirc;n gi&ograve;n, nấu s&uacute;p hoặc để nướng ăn k&egrave;m.</p>', 1, 'nam-kim-cham-goi-150g-11645962766.jpg', '2022-02-27 18:52:46', '2022-02-27 18:52:46'),
+(22, 'Đường tinh luyện Lam Sơn gói 1kg', 48, 23000, 0.3, 7, '<p><a href=\"https://www.bachhoaxanh.com/duong\" target=\"_blank\">Đường</a>&nbsp;được ứng dụng c&ocirc;ng nghệ ti&ecirc;n tiến, chiết &eacute;p từ những c&acirc;y m&iacute;a tốt nhất,&nbsp;kh&ocirc;ng sử dụng h&oacute;a chất tẩy trắng đến từ thương hiệu&nbsp;<a href=\"https://www.bachhoaxanh.com/duong-lam-son\" target=\"_blank\">đường Lam Sơn</a>.&nbsp;<a href=\"https://www.bachhoaxanh.com/duong/duong-tinh-luyen-lam-son-goi-1kg\" target=\"_blank\">Đường tinh luyện Lam Sơn g&oacute;i 1kg</a>&nbsp;c&oacute;&nbsp;vị ngọt dịu, thơm ngon, hấp dẫn, c&oacute; m&agrave;u trắng tự nhi&ecirc;n, dễ h&ograve;a tan.</p>', 1, 'duong-tinh-luyen-lam-son-goi-1kg1645962577.jpg', '2022-02-27 18:49:37', '2022-03-01 11:19:09'),
+(23, 'Nấm kim châm Hàn Quốc túi 150g', 9, 16000, 0, 5, '<p>Nấm kim ch&acirc;m H&agrave;n Quốc của B&aacute;ch h&oacute;a Xanh được nu&ocirc;i trồng v&agrave; đ&oacute;ng g&oacute;i theo những ti&ecirc;u chuẩn nghi&ecirc;m ngặt, bảo đảm c&aacute;c ti&ecirc;u chuẩn xanh - sach, chất lượng v&agrave; an to&agrave;n với người d&ugrave;ng. Sợi nấm dai, gi&ograve;n v&agrave; ngọt, khi nấu ch&iacute;n rất thơm n&ecirc;n thường được lăn bột chi&ecirc;n gi&ograve;n, nấu s&uacute;p hoặc để nướng ăn k&egrave;m.</p>', 1, 'nam-kim-cham-goi-150g-11645962766.jpg', '2022-02-27 18:52:46', '2022-02-27 18:52:46'),
 (24, 'Bắp mỹ gói 2 trái', 49, 17000, 0, 4, '<p>Bắp Mỹ l&agrave; một loại thực phẩm được trồng rất nhiều ở khắp nơi tr&ecirc;n thế giới. Đ&acirc;y l&agrave; một loại quả vừa ngon, lại c&oacute; rất nhiều chất kho&aacute;ng chất v&agrave; vitamin. Bắp c&oacute; thể chế biến th&agrave;nh nhiều m&oacute;n ăn ngon như: cơm bắp, ch&egrave; bắp, sữa bắp,... bất kỳ m&oacute;n g&igrave; cũng tạo n&ecirc;n hương vị tuyệt hảo.</p>', 1, 'bap-my-2-trai-11645962860.jpg', '2022-02-27 18:54:20', '2022-02-27 18:54:20'),
 (25, 'Cà rốt Đà Lạt túi 500g', 9, 12500, 0, 4, '<p>C&agrave; rốt Đ&agrave; Lạt l&agrave; một loại củ rất quen thuộc trong c&aacute;c m&oacute;n ăn của người Việt.&nbsp;Loại củ n&agrave;y c&oacute; h&agrave;m lượng chất dinh dưỡng v&agrave; vitamin A cao, được xem l&agrave; nguy&ecirc;n liệu cần thiết cho c&aacute;c m&oacute;n ăn dặm của trẻ nhỏ, gi&uacute;p trẻ s&aacute;ng mắt v&agrave; cung cấp nguồn chất xơ dồi d&agrave;o.</p>', 1, 'ca-rot-da-lat-tui-500g-2-4-cu-11645962958.jpg', '2022-02-27 18:55:58', '2022-02-27 18:55:58'),
 (26, 'Khoai mỡ túi 1kg', 20, 45000, 0, 4, '<p>L&agrave; nguy&ecirc;n liệu kh&aacute; quen thuộc của c&aacute;c chị em khi nấu ăn cho cả gia đ&igrave;nh. Với h&agrave;m lượng kho&aacute;ng chất v&agrave; vitamin c&oacute; trong khoai mỡ sẽ gi&uacute;p cải thiện hệ ti&ecirc;u ho&aacute;, gi&uacute;p nhuận tr&agrave;ng, chữa t&aacute;o b&oacute;n rất tốt. Khoai mỡ c&oacute; thể sử dụng để chế biến th&agrave;nh c&aacute;c m&oacute;n như: canh, b&aacute;nh khoai mỡ, khoai mỡ chi&ecirc;n gi&ograve;n,...</p>', 1, 'khoai-mo-tui-1kg-11645963037.jpg', '2022-02-27 18:57:17', '2022-02-27 18:57:17'),
 (27, 'Bắp cải tím gói 500g', 10, 20000, 0.1, 4, '<p>L&agrave; một loại thực phẩm v&ocirc; c&ugrave;ng quen thuộc, c&oacute; m&agrave;u sắc v&ocirc; c&ugrave;ng bắt mắt, rất dễ mua v&agrave; chế biến th&agrave;nh nhiều m&oacute;n ăn đa dạng kh&aacute;c nhau trong bữa cơm hằng ng&agrave;y.&nbsp; Bắp cải t&iacute;m đặc biệt mang đến lợi &iacute;ch trong việc hỗ trợ ph&ograve;ng chống ung thư, gi&uacute;p cơ thể khỏe mạnh to&agrave;n diện.</p>', 1, 'bap-cai-tim-tui-1kg-11645963117.jpg', '2022-02-27 18:58:37', '2022-02-27 19:04:26'),
-(28, 'Tôm thẻ khay 300g (7-9 con)', 19, 58000, 0, 3, NULL, 1, 'tom-the-nguyen-con-khay-300g-11645964123.jpeg', '2022-02-27 19:15:23', '2022-02-27 19:15:23'),
-(29, 'Mực ghim nhập khẩu đông lạnh túi 300g', 19, 65700, 0.2, 3, '<p>Mực ghim l&agrave; loại mực th&acirc;n d&agrave;i, cuộn tr&ograve;n như c&acirc;y ghim, vừa gi&agrave;u chất dinh dưỡng v&agrave; thơm ngon đậm vị. Mực ghim nhập khẩu đ&ocirc;ng lạnh vẫn giữ được độ săn chắc, gi&uacute;p bảo quản l&acirc;u hơn, mang đến vị đậm đ&agrave; cho m&oacute;n ăn</p>', 1, 'muc-ghim-nhap-khau-dong-lanh-tui-300g-11645964230.jpg', '2022-02-27 19:17:10', '2022-02-27 19:20:17');
+(28, 'Tôm thẻ khay 300g (7-9 con)', 18, 58000, 0, 3, NULL, 1, 'tom-the-nguyen-con-khay-300g-11645964123.jpeg', '2022-02-27 19:15:23', '2022-02-27 19:15:23'),
+(29, 'Mực ghim nhập khẩu đông lạnh túi 300g', 17, 65700, 0.2, 3, '<p>Mực ghim l&agrave; loại mực th&acirc;n d&agrave;i, cuộn tr&ograve;n như c&acirc;y ghim, vừa gi&agrave;u chất dinh dưỡng v&agrave; thơm ngon đậm vị. Mực ghim nhập khẩu đ&ocirc;ng lạnh vẫn giữ được độ săn chắc, gi&uacute;p bảo quản l&acirc;u hơn, mang đến vị đậm đ&agrave; cho m&oacute;n ăn</p>', 1, 'muc-ghim-nhap-khau-dong-lanh-tui-300g-11645964230.jpg', '2022-02-27 19:17:10', '2022-02-27 19:20:17');
 
 -- --------------------------------------------------------
 
@@ -390,7 +454,10 @@ CREATE TABLE `thanhtoan` (
 INSERT INTO `thanhtoan` (`MaThanhToan`, `TT_Ten`, `TT_DienGiai`, `TT_TrangThai`, `TT_BankCode`, `TT_CodeVnpay`, `TT_ResponseCode`, `TT_TaoMoi`, `TT_CapNhat`) VALUES
 (4, 'Thanh Toán Khi Nhận Hàng', NULL, 0, NULL, NULL, NULL, '2022-03-15 15:10:54', '2022-03-15 15:10:54'),
 (5, 'Thanh Toán Khi Nhận Hàng', NULL, 1, NULL, NULL, NULL, '2022-03-15 15:42:15', '2022-03-15 15:42:15'),
-(6, 'Thanh Toán Bằng VnPay', 'Thanh toan don hang', 2, 'NCB', '20220315215345', '00', '2022-03-15 21:57:09', '2022-03-15 21:57:09');
+(6, 'Thanh Toán Bằng VnPay', 'Thanh toan don hang', 2, 'NCB', '20220315215345', '00', '2022-03-15 21:57:09', '2022-03-15 21:57:09'),
+(7, 'Thanh Toán Bằng Ví MOMO', 'Thanh toán qua MoMo', 1, 'MOMO', '1650624253132', '1005', '2022-04-22 17:44:17', '2022-04-22 17:44:17'),
+(8, 'Thanh Toán Khi Nhận Hàng', 'Thanh toan don hang', 0, NULL, NULL, NULL, '2022-04-22 17:50:46', '2022-04-22 17:50:46'),
+(9, 'Thanh Toán Bằng Ví MOMO', 'Thanh toán qua MoMo', 1, 'MOMO', '1650624791281', '1005', '2022-04-22 17:53:14', '2022-04-22 17:53:14');
 
 -- --------------------------------------------------------
 
@@ -429,7 +496,15 @@ ALTER TABLE `binhluan`
 -- Indexes for table `chitietdathang`
 --
 ALTER TABLE `chitietdathang`
-  ADD PRIMARY KEY (`MSDH`,`MSSP`);
+  ADD PRIMARY KEY (`MSDH`,`MSSP`),
+  ADD KEY `MSSP` (`MSSP`);
+
+--
+-- Indexes for table `chitietphieuthu`
+--
+ALTER TABLE `chitietphieuthu`
+  ADD PRIMARY KEY (`MaPhieu`,`MSSP`),
+  ADD KEY `MSHH` (`MSSP`);
 
 --
 -- Indexes for table `danhmuc`
@@ -480,6 +555,12 @@ ALTER TABLE `nhanvien`
   ADD PRIMARY KEY (`MSNV`);
 
 --
+-- Indexes for table `phieuthu`
+--
+ALTER TABLE `phieuthu`
+  ADD PRIMARY KEY (`MaPhieu`);
+
+--
 -- Indexes for table `sanpham`
 --
 ALTER TABLE `sanpham`
@@ -520,7 +601,7 @@ ALTER TABLE `danhmuc`
 -- AUTO_INCREMENT for table `dathang`
 --
 ALTER TABLE `dathang`
-  MODIFY `MSDH` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `MSDH` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `diachikh`
@@ -553,6 +634,12 @@ ALTER TABLE `nhanvien`
   MODIFY `MSNV` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT for table `phieuthu`
+--
+ALTER TABLE `phieuthu`
+  MODIFY `MaPhieu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
 -- AUTO_INCREMENT for table `sanpham`
 --
 ALTER TABLE `sanpham`
@@ -562,7 +649,7 @@ ALTER TABLE `sanpham`
 -- AUTO_INCREMENT for table `thanhtoan`
 --
 ALTER TABLE `thanhtoan`
-  MODIFY `MaThanhToan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `MaThanhToan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `yeuthich`
@@ -580,6 +667,20 @@ ALTER TABLE `yeuthich`
 ALTER TABLE `binhluan`
   ADD CONSTRAINT `binhluan_ibfk_1` FOREIGN KEY (`MSKH`) REFERENCES `khachhang` (`MSKH`),
   ADD CONSTRAINT `binhluan_ibfk_2` FOREIGN KEY (`MSSP`) REFERENCES `sanpham` (`MSSP`);
+
+--
+-- Constraints for table `chitietdathang`
+--
+ALTER TABLE `chitietdathang`
+  ADD CONSTRAINT `chitietdathang_ibfk_1` FOREIGN KEY (`MSSP`) REFERENCES `sanpham` (`MSSP`),
+  ADD CONSTRAINT `chitietdathang_ibfk_2` FOREIGN KEY (`MSDH`) REFERENCES `dathang` (`MSDH`);
+
+--
+-- Constraints for table `chitietphieuthu`
+--
+ALTER TABLE `chitietphieuthu`
+  ADD CONSTRAINT `chitietphieuthu_ibfk_1` FOREIGN KEY (`MSSP`) REFERENCES `sanpham` (`MSSP`),
+  ADD CONSTRAINT `chitietphieuthu_ibfk_2` FOREIGN KEY (`MaPhieu`) REFERENCES `phieuthu` (`MaPhieu`);
 
 --
 -- Constraints for table `danhmuc`

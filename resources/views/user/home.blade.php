@@ -552,4 +552,10 @@
         </div>
       </div>
       <!-- End quick banner-->
+      <?php
+        $content = Session::get('cart');
+        echo '<pre>';
+        print_r($content);
+        echo '</pre>';
+      ?>
 @endsection       
