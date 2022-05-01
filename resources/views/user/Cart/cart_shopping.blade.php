@@ -158,9 +158,9 @@
 								<a href="{{URL::to('/vnpay_check_out')}}">
 								THANH TOÁN VNPAY
 								</a>
-								<a href="{{URL::to('/momo_check_out')}}">
+								{{-- <a href="{{URL::to('/momo_check_out')}}">
 								<img src="{{asset('public/frontend/assets/images/MoMo-Logo.png')}}" alt="" style="width: 30%">
-								</a>
+								</a> --}}
 							</div>
 						</div>
 					</div>
