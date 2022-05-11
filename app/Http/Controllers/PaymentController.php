@@ -162,10 +162,6 @@ class PaymentController extends Controller
         }else{
             return Redirect::to('/error_payment');
         }    
-		
-
-
-
     }
 
     public function execPostRequest($url, $data){
