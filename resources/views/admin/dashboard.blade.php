@@ -63,7 +63,7 @@
           <form>
             @csrf
             <br>
-            <div class="ct-chart" id="chart2"></div>
+            <div class="ct-chart" id="chart2" style="height: 400px"></div>
           </form>
         </div> {{-- end card body --}}
       </div>

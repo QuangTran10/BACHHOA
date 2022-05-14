@@ -101,6 +101,7 @@
                     			<div class="product-info_block">
                     				<h5 class="product-type">{{$value->TenDanhMuc}}</h5><a class="product-name" href="">{{$value->TenSP}}</a>
                     				<h3 class="product-price">
+                            @if($value->TrangThai==1)      
                               @if($value->GiamGia==0)
                       					<?php
                       					$GiaSP = number_format($value->Gia, 0, ',', ' ');
@@ -118,6 +119,9 @@
                                   ?>     
                                 </del>
                               @endif
+                            @else
+                              Hết Hàng
+                            @endif  
                     				</h3>
                     				<h5 class="product-rated"><i class="icon_star"></i><i class="icon_star"></i><i class="icon_star"></i><i class="icon_star"></i><i class="icon_star-half"></i><span>(5)</span></h5>
                     				<h5 class="product-avaiable">Còn <span>{{$value->SoLuong}} trong kho</span></h5>
@@ -141,6 +145,7 @@
                     			<div class="product-select_list">
                     				<p class="delivery-status">Miễn Phí Giao Hàng</p>
                     				<h3 class="product-price"> 
+                            @if($value->TrangThai==1)    
                     					@if($value->GiamGia==0)
                                 <?php
                                 $GiaSP = number_format($value->Gia, 0, ',', ' ');
@@ -158,6 +163,9 @@
                                   ?>     
                                 </del>
                               @endif
+                            @else
+                              Hết Hàng
+                            @endif  
                     				</h3>
                     				<button class="add-to-cart normal-btn outline">Thêm Vào Giỏ Hàng</button>
                     				{{-- <button class="add-to-compare normal-btn outline">+ Add to Compare</button> --}}

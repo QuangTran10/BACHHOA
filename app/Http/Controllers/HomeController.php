@@ -163,4 +163,5 @@ class HomeController extends Controller
         ->with('meta_tittle',$meta_tittle)->with('url',$url)
         ->with('message',$message)->with('contend',$contend);
     }
+
 }

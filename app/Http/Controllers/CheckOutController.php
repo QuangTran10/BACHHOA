@@ -103,7 +103,16 @@ class CheckOutController extends Controller
                 $order['GiaDatHang']=$v_content['product_price'];
                 $order['ThanhTien']=($v_content['product_price']*$v_content['product_qty']*(1-$v_content['product_discount']));
                 $result=DB::table('chitietdathang')->insert($order);
-            }   
+                //Kiểm tra sau khi thêm sản phẩm vào chitietdathang nếu soluong còn lại bằng 0 thì cập nhật tình trạng bằng 0
+                $kq = DB::table('sanpham')->where('MSSP',$v_content['product_id'])->select('SoLuong')->get();
+                foreach ($kq as $val) {
+                    $qty_ton=$val->SoLuong;
+                }
+                if($qty_ton==0){
+                    DB::table('sanpham')->where('MSSP',$v_content['product_id'])->update(['TrangThai'=>0]);
+                }
+            }
+
             if ($result) {
                 Session::put('cart',null);
                 return Redirect::to('/complete_check_out');

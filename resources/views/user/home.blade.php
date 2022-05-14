@@ -75,6 +75,7 @@
                         <h5 class="product-type">{{$val_new->TenDanhMuc}}</h5>
                         <h3 class="product-name">{{$val_new->TenSP}}</h3>
                         <h3 class="product-price">
+                        @if($val_new->TrangThai!=0)  
                           @if($val_new->GiamGia==0)
                           <?php
                           $GiaSP = number_format($val_new->Gia, 0, ',', ' ');
@@ -92,6 +93,9 @@
                             ?>     
                           </del>
                           @endif
+                        @else
+                          Hết Hàng
+                        @endif  
                         </h3>
                         <form>
                             {{csrf_field()}}
@@ -121,6 +125,7 @@
                         <h5 class="product-type">{{$val->TenDanhMuc}}</h5>
                         <h3 class="product-name">{{$val->TenSP}}</h3>
                         <h3 class="product-price">
+                        @if($val->TrangThai!=0)    
                           @if($val->GiamGia==0)
                           <?php
                           $GiaSP = number_format($val->Gia, 0, ',', ' ');
@@ -138,6 +143,9 @@
                             ?>     
                           </del>
                           @endif
+                        @else
+                          Hết Hàng
+                        @endif  
                         </h3>
                         <form>
                             {{csrf_field()}}
@@ -167,22 +175,26 @@
                         <h5 class="product-type">{{$val->TenDanhMuc}}</h5>
                         <h3 class="product-name">{{$val->TenSP}}</h3>
                         <h3 class="product-price">
-                          @if($val->GiamGia==0)
-                          <?php
-                          $GiaSP = number_format($val->Gia, 0, ',', ' ');
-                          echo $GiaSP." đ";
-                          ?>
-                          @else
-                          <?php
-                          $GiaSP = number_format($val->Gia*(1-$val->GiamGia), 0, ',', ' ');
-                          echo $GiaSP." đ";
-                          ?>
-                          <del>
+                          @if($val->TrangThai!=0)    
+                            @if($val->GiamGia==0)
                             <?php
                             $GiaSP = number_format($val->Gia, 0, ',', ' ');
                             echo $GiaSP." đ";
-                            ?>     
-                          </del>
+                            ?>
+                            @else
+                            <?php
+                            $GiaSP = number_format($val->Gia*(1-$val->GiamGia), 0, ',', ' ');
+                            echo $GiaSP." đ";
+                            ?>
+                            <del>
+                              <?php
+                              $GiaSP = number_format($val->Gia, 0, ',', ' ');
+                              echo $GiaSP." đ";
+                              ?>     
+                            </del>
+                            @endif
+                          @else
+                          Hết Hàng
                           @endif
                         </h3>
                         <form>
@@ -213,22 +225,26 @@
                         <h5 class="product-type">{{$val->TenDanhMuc}}</h5>
                         <h3 class="product-name">{{$val->TenSP}}</h3>
                         <h3 class="product-price">
-                          @if($val->GiamGia==0)
-                          <?php
-                          $GiaSP = number_format($val->Gia, 0, ',', ' ');
-                          echo $GiaSP." đ";
-                          ?>
-                          @else
-                          <?php
-                          $GiaSP = number_format($val->Gia*(1-$val->GiamGia), 0, ',', ' ');
-                          echo $GiaSP." đ";
-                          ?>
-                          <del>
+                          @if($val->TrangThai!=0)    
+                            @if($val->GiamGia==0)
                             <?php
                             $GiaSP = number_format($val->Gia, 0, ',', ' ');
                             echo $GiaSP." đ";
-                            ?>     
-                          </del>
+                            ?>
+                            @else
+                            <?php
+                            $GiaSP = number_format($val->Gia*(1-$val->GiamGia), 0, ',', ' ');
+                            echo $GiaSP." đ";
+                            ?>
+                            <del>
+                              <?php
+                              $GiaSP = number_format($val->Gia, 0, ',', ' ');
+                              echo $GiaSP." đ";
+                              ?>     
+                            </del>
+                            @endif
+                          @else
+                          Hết Hàng
                           @endif
                         </h3>
                         <form>
@@ -259,22 +275,26 @@
                         <h5 class="product-type">{{$val->TenDanhMuc}}</h5>
                         <h3 class="product-name">{{$val->TenSP}}</h3>
                         <h3 class="product-price">
-                          @if($val->GiamGia==0)
-                          <?php
-                          $GiaSP = number_format($val->Gia, 0, ',', ' ');
-                          echo $GiaSP." đ";
-                          ?>
-                          @else
-                          <?php
-                          $GiaSP = number_format($val->Gia*(1-$val->GiamGia), 0, ',', ' ');
-                          echo $GiaSP." đ";
-                          ?>
-                          <del>
+                          @if($val->TrangThai!=0)    
+                            @if($val->GiamGia==0)
                             <?php
                             $GiaSP = number_format($val->Gia, 0, ',', ' ');
                             echo $GiaSP." đ";
-                            ?>     
-                          </del>
+                            ?>
+                            @else
+                            <?php
+                            $GiaSP = number_format($val->Gia*(1-$val->GiamGia), 0, ',', ' ');
+                            echo $GiaSP." đ";
+                            ?>
+                            <del>
+                              <?php
+                              $GiaSP = number_format($val->Gia, 0, ',', ' ');
+                              echo $GiaSP." đ";
+                              ?>     
+                            </del>
+                            @endif
+                          @else
+                          Hết Hàng
                           @endif
                         </h3>
                         <form>
@@ -376,22 +396,26 @@
                         <h5 class="product-type">{{$val->TenDanhMuc}}</h5>
                         <h3 class="product-name">{{$val->TenSP}}</h3>
                         <h3 class="product-price">
-                          @if($val->GiamGia==0)
-                          <?php
-                          $GiaSP = number_format($val->Gia, 0, ',', ' ');
-                          echo $GiaSP." đ";
-                          ?>
-                          @else
-                          <?php
-                          $GiaSP = number_format($val->Gia*(1-$val->GiamGia), 0, ',', ' ');
-                          echo $GiaSP." đ";
-                          ?>
-                          <del>
+                          @if($val->TrangThai!=0)    
+                            @if($val->GiamGia==0)
                             <?php
                             $GiaSP = number_format($val->Gia, 0, ',', ' ');
                             echo $GiaSP." đ";
-                            ?>     
-                          </del>
+                            ?>
+                            @else
+                            <?php
+                            $GiaSP = number_format($val->Gia*(1-$val->GiamGia), 0, ',', ' ');
+                            echo $GiaSP." đ";
+                            ?>
+                            <del>
+                              <?php
+                              $GiaSP = number_format($val->Gia, 0, ',', ' ');
+                              echo $GiaSP." đ";
+                              ?>     
+                            </del>
+                            @endif
+                          @else
+                          Hết Hàng
                           @endif
                         </h3>
                         <form>
@@ -435,22 +459,26 @@
                       <h5 class="product-type">{{$val->TenDanhMuc}}</h5>
                       <h3 class="product-name">{{$val->TenSP}}</h3>
                       <h3 class="product-price">
-                        @if($val->GiamGia==0)
-                        <?php
-                        $GiaSP = number_format($val->Gia, 0, ',', ' ');
-                        echo $GiaSP." đ";
-                        ?>
-                        @else
-                        <?php
-                        $GiaSP = number_format($val->Gia*(1-$val->GiamGia), 0, ',', ' ');
-                        echo $GiaSP." đ";
-                        ?>
-                        <del>
+                        @if($val->TrangThai!=0)    
+                          @if($val->GiamGia==0)
                           <?php
                           $GiaSP = number_format($val->Gia, 0, ',', ' ');
                           echo $GiaSP." đ";
-                          ?>     
-                        </del>
+                          ?>
+                          @else
+                          <?php
+                          $GiaSP = number_format($val->Gia*(1-$val->GiamGia), 0, ',', ' ');
+                          echo $GiaSP." đ";
+                          ?>
+                          <del>
+                            <?php
+                            $GiaSP = number_format($val->Gia, 0, ',', ' ');
+                            echo $GiaSP." đ";
+                            ?>     
+                          </del>
+                          @endif
+                        @else
+                        Hết Hàng
                         @endif
                       </h3>
                       <form>
@@ -494,6 +522,7 @@
                   </div>
                   <div class="mini-product_info"> <a href="{{URL::to('/product_details/'.$value->MSSP)}}">{{$value->TenSP}}</a>
                     <p>
+                    @if($value->TrangThai==1)  
                       <?php
                       $GiaSP = number_format($value->Gia, 0, ',', ' ');
                       echo $GiaSP." đ";
@@ -504,6 +533,9 @@
                         echo $GiaSP." đ";
                         ?>
                       </del>
+                    @else
+                      Hết Hàng
+                    @endif  
                     </p>
                   </div>
                 </div>

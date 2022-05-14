@@ -52,7 +52,6 @@
                             </p>
                           </div>
                           <div class="product-share">
-                            <h5>Share link:</h5><a href=""><i class="fab fa-facebook-f"> </i></a><a href=""><i class="fab fa-twitter"></i></a><a href=""><i class="fab fa-invision"> </i></a><a href=""><i class="fab fa-pinterest-p"></i></a>
                           </div>
                         </div>
                       </div>
@@ -99,7 +98,11 @@
                               <input type="number" min="1" value="1" class="cart_product_qty_{{$product_detail->MSSP}}" name="SoLuong">
                             </div>
                             <div class="product-select">
-                              <input type="button" data-id="{{$product_detail->MSSP}}" class="add-to-cart normal-btn outline" name="add_cart" value="Thêm vào giỏ hàng" <?php if($product_detail->SoLuong==0) echo 'disabled="disabled"';?>>
+                              @if($product_detail->SoLuong==0)
+                                <input type="button" data-id="{{$product_detail->MSSP}}" class="add-to-cart normal-btn outline" name="add_cart" value="Hết Hàng" disabled>
+                              @else
+                                <input type="button" data-id="{{$product_detail->MSSP}}" class="add-to-cart normal-btn outline" name="add_cart" value="Thêm vào giỏ hàng" <?php if($product_detail->SoLuong==0) echo 'disabled="disabled"';?>>
+                              @endif
                             </div>  
                           </form>
                           
