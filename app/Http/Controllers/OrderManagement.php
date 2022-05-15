@@ -80,9 +80,19 @@ class OrderManagement extends Controller
 
     	$order_details=DB::table('chitietdathang')->join('sanpham', 'chitietdathang.MSSP', '=', 'sanpham.MSSP')->where('MSDH',$SoDonDH)->select('chitietdathang.*', 'TenSP')->get();
 
+        $staff = DB::table('dathang')
+        ->join('nhanvien', 'dathang.MSNV', '=', 'nhanvien.MSNV')
+        ->where('dathang.MSDH',$SoDonDH)->first();
+        $name_staff;
+        if ($staff!=NULL) {
+            $name_staff=$staff->HoTenNV;
+        }else{
+            $name_staff="Chưa Xác Nhận";
+        }
+
     	return view('admin.Order.view_order')
         ->with('order_by_id',$order_by_id)->with('order_details',$order_details)
-        ->with('MSDH',$SoDonDH);
+        ->with('MSDH',$SoDonDH)->with("NameStaff", $name_staff);
     }
 
     //Xác nhận đơn hàng. Ko cập nhật TT_TinhTrang

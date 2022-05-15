@@ -77,7 +77,6 @@ class StaffController extends Controller
         $now = Carbon::now('Asia/Ho_Chi_Minh');
     	// $data=$re->all();
         $user_name = vn_to_str($re->HoTenNV);
-        $password=$re->Ngay.$re->Thang.$re->Nam;
         $data= array();
         $data['HoTenNV'] = $re->HoTenNV;
         $data['GioiTinh'] = $re->GioiTinh;
@@ -88,7 +87,7 @@ class StaffController extends Controller
         $data['Ngay'] = $re->Ngay;
         $data['Thang'] = $re->Thang;
         $data['Nam'] = $re->Nam;
-        $data['MatKhau']=md5($password);
+        $data['MatKhau']=md5(123456);
         $data['Avatar']='avatar_macdinh.jpeg';
         $data['TrangThai']=1;
         $data['created_at'] = $now;

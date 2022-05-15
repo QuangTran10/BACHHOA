@@ -31,7 +31,7 @@
             </thead>
             <tbody>
               @foreach($all_order as $key => $value)
-              <tr>
+              <tr <?php if($value->TrangThai ==0) echo 'class="table-danger" ';?>>
                 <td>{{$value->MSDH}}</td>
                 <td>{{$value->HoTen}}</td>
                 <td>{{$value->SDT}}</td>

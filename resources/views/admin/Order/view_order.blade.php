@@ -2,7 +2,10 @@
 @section('admin_content')
 
 <div class="container-fluid">
-	<h3 class="title mt-4 text-center" style="font-weight: bold;">CHI TIẾT ĐƠN HÀNG</h3>
+	<div class="header text-center ml-auto mr-auto">
+		<h3 class="title mt-4 text-center" style="font-weight: bold;">CHI TIẾT ĐƠN HÀNG</h3>
+		<p class="category">Nhân Viên: {{$NameStaff}}</p>
+	</div>
 	@foreach($order_by_id as $key =>$value)
 	@php
 		$tong=$value->ThanhTien;
