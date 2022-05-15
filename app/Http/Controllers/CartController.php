@@ -138,7 +138,6 @@ class CartController extends Controller
         }
         
         Session::save();
-        $notification['count']= count($cart);
         echo json_encode($notification);
 
     }
