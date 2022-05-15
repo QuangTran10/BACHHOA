@@ -55,8 +55,11 @@
               @endforeach
             </tbody>
           </table>
-          <div style="text-align: center;">
-            {{$all_product->links()}}
+          <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+              {{$all_product->links('partials.admin_paginate')}}
+            </div>
           </div>
           
         </div>

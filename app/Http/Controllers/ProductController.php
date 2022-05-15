@@ -31,7 +31,7 @@ class ProductController extends Controller
         $this->AuthLogin();
         $all_product = DB::table('sanpham')
         ->join('danhmuc', 'sanpham.MaDM', '=', 'danhmuc.MaDM')
-        ->simplePaginate(5);
+        ->Paginate(5);
         Session::put('page',2);
         $manage_product = view('admin.Product.product_management')->with('all_product',$all_product);
         return view('admin_layout')->with('admin.Product.product_management',$manage_product);
