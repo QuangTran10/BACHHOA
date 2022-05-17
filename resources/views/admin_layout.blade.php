@@ -343,6 +343,7 @@
   <script src="{{asset('public/backend/assets/js/material-dashboard.js?v=2.1.2')}}" type="text/javascript"></script>
   <!-- Material Dashboard DEMO methods, don't include it in your project! -->
  {{--  <script src="{{asset('public/backend/assets/demo/demo.js')}}"></script> --}}
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js" integrity="sha512-QSkVNOCYLtj73J4hbmVoOV6KVZuMluZlioC+trLpewV8qMjsWqlIQvkn1KGX2StWvPMdWGBqim1xlC8krl1EKQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script>
     $(document).ready(function() {
       $().ready(function() {

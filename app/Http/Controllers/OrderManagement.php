@@ -143,7 +143,8 @@ class OrderManagement extends Controller
 
         $MSKH=Session::get('user_id');
         //Các đơn hàng chưa xử lý
-        $orders_process = DB::table('dathang')->where('MSKH',$MSKH)->where('TrangThai',0)->get();
+        $orders_process = DB::table('dathang')->where('MSKH',$MSKH)->where('TrangThai',0)
+        ->orderBy('MSDH','desc')->get();
         //Các đơn hàng đang giao hàng
         $orders_shipping = DB::table('dathang')->where('MSKH',$MSKH)->where('TrangThai',1)->get();
         //Các đơn hàng đã nhận hàng
