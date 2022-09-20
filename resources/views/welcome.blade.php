@@ -9,7 +9,8 @@
     <meta name="keywords" content="{{$meta_keywords}}"/>
     <meta name="robots" content="INDEX,FOLLOW"/>
     <link  rel="canonical" href="{{$url}}" />
-    <link rel='stylesheet prefetch' href='https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css'>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
+    {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> --}}
     <link rel="stylesheet" href="{{asset('public/frontend/assets/css/style.css')}}">
     <link rel="stylesheet" href="{{asset('public/frontend/assets/css/custom_bootstrap.css')}}">
     <link rel="stylesheet" href="{{asset('public/frontend/assets/css/normalize.css')}}">
@@ -23,6 +24,7 @@
     <link href="{{asset('public/frontend/assets/css/sweetalert.css')}}" rel="stylesheet">
     <script src="{{asset('public/frontend/assets/js/jquery-3.6.0.js')}}"></script>
     <link rel="shortcut icon" href="{{asset('public/frontend/assets/images/shortcut_logo.png')}}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
   </head>
   <body>
     <div id="main">
@@ -63,7 +65,7 @@
                     <?php
                     if($name_user){
                     ?>
-                    <a href="{{URL::to('/logout_user')}}">&nbsp;&nbsp;&nbsp;<i class="fas fa-sign-out-alt"></i></a>
+                    <a href="{{URL::to('/logout_user')}}">&nbsp;&nbsp;&nbsp;<i class="fas fa-sign-out-alt fa-lg"></i></a>
                     <?php
                     }
                     ?>
@@ -145,7 +147,7 @@
                       </div>
                       <div class="col-8 col-md-7 col-lg-8 col-xl-7">
                         <div class="search-input">
-                          <input class="no-round-input no-border search-txt" type="text" placeholder="Tìm Kiếm" name="key">
+                          <input class="no-round-input no-border search-txt" type="text" placeholder="Tìm Kiếm" name="key" id="search-txt">
                         </div>
                       </div>
                       <div class="col-4 col-md-2 col-lg-1 col-xl-1">
@@ -158,7 +160,7 @@
               <div class="col-8 col-xl-6 col-xxxl-5 order-xl-4 order-xxxl-3">
                 <div class="navgition-menu d-flex align-items-center justify-content-center justify-content-xl-center">
                   <ul class="mb-0">
-                    <li class="toggleable"> <a class="menu-item active" href="">Trang Chủ</a>
+                    <li class="toggleable"> <a class="menu-item" href="{{URL::to('/home')}}">Trang Chủ</a>
                     </li>
                     <li class="toggleable"> <a class="menu-item" href="">Sản Phẩm</a>
                       <ul class="sub-menu shop d-flex">
@@ -177,7 +179,7 @@
                       </ul>
                     </li>
                     <li class="toggleable"><a class="menu-item" href="{{URL::to('/contact_us')}}">Liên Hệ</a></li>
-                    <li class="toggleable"> <a class="menu-item" href="{{URL::to('/about_us')}}">Giới Thiệu</a></li>
+                    <li class="toggleable"><a class="menu-item" href="{{URL::to('/about_us')}}">Giới Thiệu</a></li>
                   </ul>
                 </div>
               </div>
@@ -261,6 +263,8 @@
         </div>
       </footer>
       <!-- End footer-->
+
+     
     </div>
     
     <script src="{{asset('public/frontend/assets/js/jquery-ui.min.js')}}"></script>
@@ -277,59 +281,12 @@
     <script src="{{asset('public/frontend/assets/js/jquery.validate.min.js')}}"></script>
     <script src="{{asset('public/frontend/assets/js/process.js')}}"></script>
     <script src="{{asset('public/frontend/assets/js/sweetalert.min.js')}}"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script>
       var sence = document.getElementById('img-block')
       var parallaxInstance = new Parallax(sence, {
         hoverOnly: true,
       });
-    </script>
-    <script type="text/javascript">
-      $(document).on('click', '.quickview', function(event) {
-      event.preventDefault();
-      //Wirte Quick view block to DOM
-      $('body').prepend('<div id="quickview"> <div class="quickview-box"> <button class="round-icon-btn" id="quickview-close-btn"><i class="fas fa-times"></i></button> <div class="row"> <div class="col-12 col-md-6" id="product-image"> </div><div class="col-12 col-md-6"> <div class="shop-detail_info"> <h5 class="product-type color-type" id="product-type">Oranges</h5><div id="product-name" ></div> <div class="price-rate"> <h3 class="product-price" id="product-price"> <del>$35.00</del>$14.00 </h3> </div><p class="product-describe" id="product-desc"> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Provident vero saepe nihil nisi ipsum officiis, tempora reiciendis, rerum ipsa aliquid, repudiandae expedita placeat, vel quae commodi sequi. Repellat, laudantium voluptas.</p><div class="quantity-select"> <label for="quantity">Số Lượng:</label> <input class="no-round-input" id="quantity" type="number" min="0" value="1"> <label id="product-qty"></label> </div> <div class="product-share"> <h5>Share link:</h5><a href=""><i class="fab fa-facebook-f"> </i></a><a href=""><i class="fab fa-twitter"></i></a><a href=""><i class="fab fa-invision"> </i></a><a href=""><i class="fab fa-pinterest-p"></i></a> </div></div></div></div></div></div>')
-      $('#quickview .big-img_qv').slick({
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        arrows: false,
-        asNavFor: '.slide-img_qv',
-        swipe: false,
-        infinite: false,
-      });
-      $('#quickview .slide-img_qv').slick({
-        slidesToShow: 3,
-        slidesToScroll: 1,
-        asNavFor: '.big-img',
-        focusOnSelect: true,
-        appendArrows: $('.slide-img_qv'),
-        adaptiveHeight: false,
-        infinite: false,
-        prevArrow: '<button type="button" class="slick-prev"><i class="fas fa-chevron-left"></i></button>',
-        nextArrow: '<button type="button" class="slick-next"><i class="fas fa-chevron-right"></i></button>',
-      });
-      $('#quickview-close-btn').on('click', function(event) {
-        $('#quickview').remove()
-      });
-    });
-
-
-    $(document).on('click', '.add_address', function(event) {
-        event.preventDefault();
-      //Wirte Quick view block to DOM
-    $('body').prepend('<div id="quickview"> <div class="quickview-box"> <button class="round-icon-btn" id="quickview-close-btn"><i class="fas fa-times"></i></button> <div class="row"> <div class="col-12 col-md-12" id="product-image"> <div class="account"><div class="container"><div class="row"><div class="col-12 col-md-10 mx-auto"><h1 class="title">THÊM ĐỊA CHỈ</h1><form action="{{URL::to('/add_address')}}" method="post">{{csrf_field() }}<label for="HoTenKH">Họ Tên</label><input class="no-round-input" id="HoTen" type="text" name="HoTen" value=""><label for="HoTenKH">Số Điện Thoại</label><input class="no-round-input" id="SDT" type="text" name="SDT" value=""><label for="HoTenKH">Địa Chỉ</label><input class="no-round-input" id="DiaChi" type="text" name="DiaChi" value=""><div class="account-function"><button class="no-round-btn" type="submit" name="Them">Thêm</button></div></form></div></div></div></div> </div> </div> </div> </div>')
-      $('#quickview-close-btn').on('click', function(event) {
-        $('#quickview').remove()
-      });
-    });
-
-    $(document).on('click', '.update_address', function(event) {
-        event.preventDefault();
-      //Wirte Quick view block to DOM
-    $('body').prepend('<div id="quickview"> <div class="quickview-box"> <button class="round-icon-btn" id="quickview-close-btn"><i class="fas fa-times"></i></button> <div class="row"> <div class="col-12 col-md-12" id="product-image"> <div class="account"><div class="container"><div class="row"><div class="col-12 col-md-10 mx-auto"><h1 class="title">CẬP NHẬT ĐỊA CHỈ</h1><form action="{{URL::to('/update_address')}}" method="post">{{csrf_field()}}<label for="HoTenKH">Họ Tên</label><input class="no-round-input" id="HoTen" type="text" name="HoTen" value=""><label for="HoTenKH">Số Điện Thoại</label><input class="no-round-input" id="SDT" type="text" name="SDT" value=""><label for="HoTenKH">Địa Chỉ</label><input class="no-round-input" id="DiaChi" type="text" name="DiaChi" value=""><input class="no-round-input" id="MaDC" type="hidden" name="MaDC" value=""><div class="account-function"><button class="no-round-btn" type="submit" name="Them">Cập Nhật</button></div></form></div></div></div></div> </div> </div> </div> </div>')
-      $('#quickview-close-btn').on('click', function(event) {
-        $('#quickview').remove()
-      });
-    });
     </script>
 
     <script type="text/javascript">
@@ -346,6 +303,49 @@
           data:{},
           success:function(data){
             $('#total').html(data);
+          }
+        });
+      }
+
+      function getSelectDistrict(){
+        var matp = $('#update_province option:selected').val();
+        var _token = $('input[name="_token"]').val();
+        var option = 'district';
+        var id_need_select = $('#id_district').val();
+
+        $.ajax({
+          url: '{{url('/get_delivery')}}',
+          method: "POST",
+          data:{
+            option: option,
+            _token: _token,
+            ma_id: matp,
+            is_district: id_need_select
+          },
+          success:function(data){
+            $('#update_district').html(data);
+            getSelectHamlet();
+          }
+        });
+        
+      }
+      function getSelectHamlet(){
+        var maqh = $('#update_district option:selected').val();
+        var _token = $('input[name="_token"]').val();
+        var option = 'hamlet';
+        var id_need_select = $('#id_hamlet').val();
+        
+        $.ajax({
+          url: '{{url('/get_delivery')}}',
+          method: "POST",
+          data:{
+            option: option,
+            _token: _token,
+            ma_id: maqh,
+            is_hamlet: id_need_select
+          },
+          success:function(data){
+            $('#update_hamlet').html(data);
           }
         });
       }
@@ -388,27 +388,6 @@
                 });
               }
             }
-        });
-      });
-
-      //Quick view
-      $('.quickview').click(function(){
-        var id_product = $(this).data('id_product');
-        var _token = $('input[name="_token"]').val();
-
-        $.ajax({
-          url: '{{url('/quickview')}}',
-          method: "POST",
-          dataType: "JSON",
-          data:{id_product:id_product,_token:_token},
-          success:function(data){
-            $('#product-name').html(data.TenSP);
-            $('#product-image').html(data.Image);
-            $('#product-desc').html(data.ThongTin);
-            $('#product-type').html(data.DanhMuc)
-            $('#product-qty').html(data.SoLuong);
-            $('#product-price').html(data.Gia);
-          }
         });
       });
 
@@ -551,15 +530,87 @@
             _token:_token
           },
           success:function(data){
-            $('#HoTen').val(data.HoTen);
-            $('#SDT').val(data.SDT);
-            $('#DiaChi').val(data.DiaChi);
+            $('#HoTenKH').val(data.HoTen);
+            $('#SDTKH').val(data.SDT);
+            $('#DiaChiKH').val(data.DiaChi);
             $('#MaDC').val(data.MaDC);
+
+            $(".update_pro option[value='"+data.matp+"']").attr("selected", true);
+            $('#id_district').val(data.maqh);
+            $('#id_hamlet').val(data.xaid);
+            getSelectDistrict();
           }
         });
       });
 
 
+      // Select add address
+      $('.choose').change(function(event) {
+        var action = $(this).attr('id');
+        var maid = $(this).val();
+        var _token = $('input[name="_token"]').val();
+        var result ='';
+        if(action == 'province'){
+          result ='district';
+        }else{
+          result = 'hamlet';
+        }
+
+        $.ajax({
+          url: '{{url('/select_delivery')}}',
+          method: 'POST',
+          data:{
+            action: action,
+            maid: maid,
+            _token:_token},
+            success:function(data){
+              $('#'+result).html(data);
+              $("#"+result).prop( "disabled", false );
+            }
+          });
+
+      });
+
+      //Thêm địa chỉ giao hàng
+      $('.submit-address').click(function(event) {
+        var HoTen = $('#HoTen').val();
+        var SDT = $('#SDT').val();
+        var DiaChi = $('#DiaChi').val();
+        var province = $('#province').val();
+        var district = $('#district').val();
+        var hamlet = $('#hamlet').val();
+        var _token = $('input[name="_token"]').val();
+
+        $.ajax({
+          url: '{{url('/add_address')}}',
+          method: 'POST',
+          data:{
+            HoTen: HoTen,
+            SDT: SDT,
+            DiaChi: DiaChi,
+            province: province,
+            district: district,
+            hamlet: hamlet,
+            _token:_token},
+            success:function(data){
+              if(data=1){
+                location.reload();
+              }else{
+                swal({
+                  title: "Lỗi thêm địa chỉ giao hàng",
+                  icon: "error",
+                  button: "OK",
+                });
+              }
+            },error: function() {
+             swal({
+              title: "Lỗi thêm địa chỉ giao hàng",
+              icon: "error",
+              button: "OK",
+            });
+           }
+        });
+      });
 
 
   });

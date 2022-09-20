@@ -254,16 +254,34 @@ class UserManagement extends Controller
         $meta_tittle="BACHHOA.COM";
         $url=$re->url();
 
+        $address = array();
+
         $address_ship= DB::table('diachikh')->where('MSKH',$MSKH)->get();
 
-        $all_category = DB::table('danhmuc')->get();
-        $loaihang = DB::table('loaihang')->get();
         
-         return view('User.User.address')
-        ->with('category',$all_category)->with('list',$loaihang)
-        ->with('address_ship',$address_ship)
-        ->with('meta_desc',$meta_desc)->with('url',$url)
-        ->with('meta_keywords',$meta_keywords)->with('meta_tittle',$meta_tittle);
+        foreach ($address_ship as $key => $value) {
+            $infor_province = DB::table('tinhthanhpho')->where('tinhthanhpho.matp',$value->matp)->first();
+            $infor_district = DB::table('quanhuyen')->where('maqh',$value->maqh)->first();
+            $infor_hamlet = DB::table('xaphuongthitran')->where('xaid',$value->xaid)->first();
+
+            $address[] = array(
+                'MaDC'     => $value->MaDC,
+                'HoTen'    => $value->HoTen,
+                'SDT'      => $value->SDT,
+                'DiaChi'   => $value->DiaChi,
+                'province' => $infor_province->name,
+                'district' => $infor_district->name,
+                'hamlet'   => $infor_hamlet->name
+            );
+        }
+
+        $category = DB::table('danhmuc')->get();
+        $list = DB::table('loaihang')->get();
+
+        $province = DB::table('tinhthanhpho')->get();
+        
+        return view('User.User.address', compact('category','list','address','meta_desc','meta_keywords','meta_tittle','url','province'));
+
     }
 
     public function address_detail(Request $re){
@@ -274,6 +292,9 @@ class UserManagement extends Controller
         $data['MaDC']=$result->MaDC;
         $data['SDT']=$result->SDT;
         $data['DiaChi']=$result->DiaChi;
+        $data['matp'] = $result->matp;
+        $data['maqh'] = $result->maqh;
+        $data['xaid'] = $result->xaid;
 
         echo json_encode($data);
     }
@@ -288,11 +309,22 @@ class UserManagement extends Controller
         $data['SDT']=$re->SDT;
         $data['DiaChi']=$re->DiaChi;
         $data['MSKH']= $MSKH;
+        $data['matp']= $re->province;
+        $data['maqh']=$re->district;
+        $data['xaid']=$re->hamlet;
         $data['created_at'] = $now;
         $data['updated_at'] = $now;
 
-        DB::table('diachikh')->insert($data);
-        return Redirect::to('/show_address');
+        // echo '<pre>';
+        // print_r($data);
+        // echo '</pre>';
+
+        $re = DB::table('diachikh')->insert($data);
+        if($re){
+            echo 1;
+        }else{
+            echo 0;
+        }
     }
 
     public function update_address(Request $re){

@@ -140,7 +140,6 @@
                     				<button class="add-to-wishlist round-icon-btn"> <i class="icon_heart_alt"></i></button>
                     				<button class="add-to-cart round-icon-btn" data-id="{{$value->MSSP}}">  <i class="icon_bag_alt"></i></button>
                     				<button class="add-to-compare round-icon-btn"> <i class="fas fa-random"></i></button>
-                    				<button class="quickview round-icon-btn" data-id_product={{$value->MSSP}}> <i class="far fa-eye"></i></button>
                     			</div>
                     			<div class="product-select_list">
                     				<p class="delivery-status">Miễn Phí Giao Hàng</p>

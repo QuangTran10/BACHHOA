@@ -31,7 +31,7 @@
               @foreach($all_receipt as $key => $value)
               <tr>
                 <td>{{$value->MaPhieu}}</td>
-                <td>{{$value->NguoiNP}}</td>
+                <td>{{$value->HoTenNV}}</td>
                 <td>{{number_format($value->ThanhTien , 0, ',', ' ').'đ';}}</td>
                 <td>{{$value->NgayLap}}</td>
                 <td>{{$value->NCC}}</td>

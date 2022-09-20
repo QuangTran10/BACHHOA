@@ -21,7 +21,7 @@ class PaymentController extends Controller
     	$vnp_TmnCode = "J8XS0CKX"; //Website ID in VNPAY System
 		$vnp_HashSecret = "USMFQQRCEAMZGCCIQXNBEGJYMPLADLUA"; //Secret key
 		$vnp_Url = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
-		$vnp_Returnurl = "http://localhost/BachHoa/vnpay_return";
+		$vnp_Returnurl = "http://localhost/WebBanThuoc/vnpay_return";
 		$vnp_apiUrl = "http://sandbox.vnpayment.vn/merchant_webapi/merchant.html";
 
 		$vnp_TxnRef = $code; //Mã đơn hàng. 
@@ -107,10 +107,10 @@ class PaymentController extends Controller
             $payment['TT_DienGiai']=$Note;
             $payment['TT_TrangThai']=1; // Có 2 trạng thái: Chưa TT và Đã Thanh Toán
             $payment['TT_BankCode']=$TT_Bankcode;
-            $payment['TT_CodeVnpay']=$TT_CodeVnpay;
+            $payment['TT_Code']=$TT_CodeVnpay;
             $payment['TT_ResponseCode']=$TT_Response;
-            $payment['TT_TaoMoi'] = $now;
-            $payment['TT_CapNhat'] = $now;
+            $payment['created_at'] = $now;
+            $payment['updated_at'] = $now;
             $MaThanhToan = DB::table('thanhtoan')->insertGetId($payment);
 
             

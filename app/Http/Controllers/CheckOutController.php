@@ -35,10 +35,13 @@ class CheckOutController extends Controller
         $url=$re->url();
         // end seo
 
+        $province = DB::table('tinhthanhpho')->get();
+
     	return view('User.CheckOut.check_out')
         ->with('category',$all_category)->with('list',$loaihang)
         ->with('all_address_by_id',$all_address_by_id)->with('meta_desc',$meta_desc)
-        ->with('meta_keywords',$meta_keywords)->with('meta_tittle',$meta_tittle)->with('url',$url);
+        ->with('meta_keywords',$meta_keywords)->with('meta_tittle',$meta_tittle)->with('url',$url)
+        ->with('province', $province);
     }
 
     public function save_check_out(Request $re){

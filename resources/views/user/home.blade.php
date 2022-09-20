@@ -110,7 +110,6 @@
                           <button class="add-to-wishlist round-icon-btn" data-id_product={{$val_new->MSSP}}> <i class="icon_heart_alt"></i></button>
                           <button class="add-to-cart round-icon-btn" data-id="{{$val_new->MSSP}}" name="add_cart"><i class="icon_bag_alt"></i></button>
                           <button class="add-to-compare round-icon-btn"> <i class="fas fa-random"></i></button>
-                          <button class="quickview round-icon-btn" data-id_product={{$val_new->MSSP}}> <i class="far fa-eye"></i></button>
                         </div>
                       </div>
                     </div>
@@ -160,7 +159,6 @@
                           <button class="add-to-wishlist round-icon-btn" data-id_product={{$val->MSSP}}> <i class="icon_heart_alt"></i></button>
                           <button class="add-to-cart round-icon-btn" data-id="{{$val->MSSP}}" name="add_cart"><i class="icon_bag_alt"></i></button>
                           <button class="add-to-compare round-icon-btn"> <i class="fas fa-random"></i></button>
-                          <button class="quickview round-icon-btn" data-id_product={{$val->MSSP}}> <i class="far fa-eye"></i></button>
                         </div>
                       </div>
                     </div>
@@ -210,7 +208,6 @@
                           <button class="add-to-wishlist round-icon-btn" data-id_product={{$val->MSSP}}> <i class="icon_heart_alt"></i></button>
                           <button class="add-to-cart round-icon-btn" data-id="{{$val->MSSP}}" name="add_cart"><i class="icon_bag_alt"></i></button>
                           <button class="add-to-compare round-icon-btn"> <i class="fas fa-random"></i></button>
-                          <button class="quickview round-icon-btn" data-id_product={{$val->MSSP}}> <i class="far fa-eye"></i></button>
                         </div>
                       </div>
                     </div>
@@ -260,7 +257,6 @@
                           <button class="add-to-wishlist round-icon-btn" data-id_product={{$val->MSSP}}> <i class="icon_heart_alt"></i></button>
                           <button class="add-to-cart round-icon-btn" data-id="{{$val->MSSP}}" name="add_cart">  <i class="icon_bag_alt"></i></button>
                           <button class="add-to-compare round-icon-btn"> <i class="fas fa-random"></i></button>
-                          <button class="quickview round-icon-btn" data-id_product={{$val->MSSP}}> <i class="far fa-eye"></i></button>
                         </div>
                       </div>
                     </div>
@@ -310,7 +306,6 @@
                           <button class="add-to-wishlist round-icon-btn" data-id_product={{$val->MSSP}}> <i class="icon_heart_alt"></i></button>
                           <button class="add-to-cart round-icon-btn" data-id="{{$val->MSSP}}" name="add_cart">  <i class="icon_bag_alt"></i></button>
                           <button class="add-to-compare round-icon-btn"> <i class="fas fa-random"></i></button>
-                          <button class="quickview round-icon-btn" data-id_product={{$val->MSSP}}> <i class="far fa-eye"></i></button>
                         </div>
                       </div>
                     </div>
@@ -431,7 +426,6 @@
                           <button class="add-to-wishlist round-icon-btn" data-id_product={{$val->MSSP}}> <i class="icon_heart_alt"></i></button>
                           <button class="add-to-cart round-icon-btn" data-id="{{$val->MSSP}}" name="add_cart">  <i class="icon_bag_alt"></i></button>
                           <button class="add-to-compare round-icon-btn"> <i class="fas fa-random"></i></button>
-                          <button class="quickview round-icon-btn" data-id_product={{$val->MSSP}}> <i class="far fa-eye"></i></button>
                         </div>
                       </div>
                     </div>
@@ -494,7 +488,6 @@
                         <button class="add-to-wishlist round-icon-btn" data-id_product={{$val->MSSP}}> <i class="icon_heart_alt"></i></button>
                         <button class="add-to-cart round-icon-btn" data-id="{{$val->MSSP}}" name="add_cart">  <i class="icon_bag_alt"></i></button>
                         <button class="add-to-compare round-icon-btn"> <i class="fas fa-random"></i></button>
-                        <button class="quickview round-icon-btn" data-id_product={{$val->MSSP}}> <i class="far fa-eye"></i></button>
                       </div>
                     </div>
                   </div>
@@ -584,10 +577,4 @@
         </div>
       </div>
       <!-- End quick banner-->
-      <?php
-        $content = Session::get('cart');
-        echo '<pre>';
-        print_r($content);
-        echo '</pre>';
-      ?>
 @endsection       

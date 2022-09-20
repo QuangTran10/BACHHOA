@@ -25,7 +25,8 @@ class ReceiptController extends Controller
 	//Danh sách
 	public function show_all(){
         $this->AuthLogin();
-		$all= DB::table('phieuthu')->get();
+		$all= DB::table('phieuthu')
+        ->join('nhanvien', 'nhanvien.MSNV', '=', 'phieuthu.MSNV')->get();
 		Session::put('page',7);
 		return view('admin.Receipt.receipt_all')->with('all_receipt', $all);
 	}
@@ -61,7 +62,7 @@ class ReceiptController extends Controller
 
     	//Receipt
     	$receipt=array();
-    	$receipt['NguoiNP']=Session::get('full_name');
+    	$receipt['MSNV']=Session::get('admin_id');
     	$receipt['ThanhTien']=0;
     	$receipt['NgayLap']=$now;
     	$receipt['NCC']=$re->NCC;

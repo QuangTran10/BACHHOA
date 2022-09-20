@@ -78,11 +78,18 @@ if($total<1000000){
 					<h2 class="form-title">THÔNG TIN ĐƠN HÀNG</h2>
 					<div class="form-group">
 						<label for="inputCountry">Địa Chỉ Nhận Hàng*</label>
-						<select class="no-round-input-bg" id="Address" name="DiaChi" required>
-							@foreach($all_address_by_id as $key => $value)
-							<option value="{{$value->MaDC}}">{{$value->HoTen}} - {{$value->SDT}} - {{$value->DiaChi}}</option>
-							@endforeach
-						</select>
+						<div class="row">
+							<div class="col-xl-10 col-11">
+								<select class="no-round-input-bg" id="Address" name="DiaChi" required>
+									@foreach($all_address_by_id as $key => $value)
+									<option value="{{$value->MaDC}}">{{$value->HoTen}} - {{$value->SDT}} - {{$value->DiaChi}}</option>
+									@endforeach
+								</select>
+							</div>
+							<div class="col-xl-2 col-1">
+								<a class="normal-btn" data-toggle="modal" data-target="#add_address"><i class="fas fa-plus"></i></a>
+							</div>
+						</div>
 					</div>
 					<input type="hidden" name="PhuongThuc" id="paymethod" value="Thanh Toán Khi Nhận Hàng">
 					<div class="form-group">
@@ -149,5 +156,66 @@ if($total<1000000){
 		</div>
 	</div>
 </div>
+
+<div class="modal" id="add_address">
+	<div class="modal-dialog modal-lg modal-dialog-centered">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+			</div>
+			<div class="modal-body">
+				<div class="row">
+					<div class="col-12 col-md-12">
+						<div class="address">
+							<div class="row">
+								<div class="col-12 col-md-10 mx-auto">
+									<h3 class="address-title">THÊM ĐỊA CHỈ</h3>
+									<form>
+										{{csrf_field() }}
+										<div class="row">
+											<div class="col-md-6 col-12">
+												<input class="no-round-input" id="HoTen" type="text" name="HoTen" value="" placeholder="Họ và tên">
+											</div>
+											<div class="col-md-6 col-12">
+												<input class="no-round-input" id="SDT" type="text" name="SDT" value="" placeholder="Số điện thoại">
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-md-4 col-12 form-group">
+												<label for="province">Tỉnh/Thành Phố</label>
+												<select class="no-round-input-bg choose province" id="province" name="province">
+													<option>Chọn Tỉnh/Thành Phố</option>
+													@foreach($province as $tp)
+													<option value="{{$tp->matp}}">{{$tp->name}}</option>
+													@endforeach
+												</select>
+											</div>
+											<div class="col-md-4 col-12 form-group">
+												<label for="district">Quận/Huyện</label>
+												<select class="no-round-input-bg district choose" id="district" name="district" disabled="true">
+													<option>Chọn Quận/Huyện</option>
+												</select>
+											</div>
+											<div class="col-md-4 col-12 form-group">
+												<label for="hamlet">Phường/Xã</label>
+												<select class="no-round-input-bg hamlet" id="hamlet" name="hamlet" disabled="true">
+													<option>Chọn Phường/Xã</option>
+												</select>
+											</div>
+										</div>
+										<input class="no-round-input" id="DiaChi" type="text" name="DiaChi" value="" placeholder="Địa chỉ cụ thể">
+									</form>
+									<div class="account-function" style="float: right;">
+										<button class="no-round-btn submit-address" name="Them">Thêm</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div> 
 
 @endsection

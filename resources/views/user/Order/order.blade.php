@@ -19,12 +19,57 @@
 			<div class="col-12">
 				<div id="tab">
 					<ul class="tab-control">
-						<li><a class="active" href="#tab-1">Chờ Xác Nhận</a></li>
-						<li><a href="#tab-2">Đang Giao</a></li>
-						<li> <a href="#tab-3">Đã Giao</a></li>
-						<li><a href="#tab-4">Đã Huỷ</a></li>
+						<li><a class="active" href="#tab-1">Tất cả</a></li>
+						<li><a href="#tab-2">Chờ Xác Nhận</a></li>
+						<li><a href="#tab-3">Đang Giao</a></li>
+						<li> <a href="#tab-4">Đã Giao</a></li>
+						<li><a href="#tab-5">Đã Huỷ</a></li>
 					</ul>
+
 					<div id="tab-1">
+						<div class="no-gutters-sm">
+							<div class="shop-compare">
+								<div class="container">
+									<div class="row">
+										<div class="col-12">
+											<div class="compre-table">
+												<table class="table table-responsive"> 
+													<colgroup>
+														<col span="1" style="width: 25%">
+														<col span="1" style="width: 25%">
+														<col span="1" style="width: 25%">
+														<col span="1" style="width: 25%">
+													</colgroup>
+													<tbody>
+														{{-- <tr>
+															<th scope="row">Mã Đơn Hàng</th>
+															<th>Thời Gian Đặt Hàng</th>
+															<th>Thành Tiền</th>
+															<th></th>
+														</tr>
+														@foreach($orders_cancel as $value1)
+														<tr>
+															<th scope="row">{{$value1->MSDH}}</th>
+															<td class="product-price">{{$value1->NgayDat}}</td>
+															<td class="product-price">
+																{{number_format($value1->ThanhTien , 0, ',', ' ').'đ';}}</td>
+															</td>
+															<td class="product-price">
+																
+															</td>
+														</tr>
+														@endforeach --}}
+													</tbody>
+												</table>
+											</div>
+										</div>
+									</div>
+								</div>	
+							</div>
+						</div>
+					</div>
+
+					<div id="tab-2">
 						<div class="no-gutters-sm">
 							<div class="shop-compare">
 								<div class="container">
@@ -66,7 +111,7 @@
 							</div>
 						</div>
 					</div>
-					<div id="tab-2">
+					<div id="tab-3">
 						<div class="no-gutters-sm">
 							<div class="shop-compare">
 								<div class="container">
@@ -108,7 +153,7 @@
 							</div>
 						</div>
 					</div>
-					<div id="tab-3"> 
+					<div id="tab-4"> 
 						<div class="no-gutters-sm">
 							<div class="shop-compare">
 								<div class="container">
@@ -150,7 +195,7 @@
 							</div>
 						</div>
 					</div>
-					<div id="tab-4">
+					<div id="tab-5">
 						<div class="no-gutters-sm">
 							<div class="shop-compare">
 								<div class="container">
@@ -192,6 +237,7 @@
 							</div>
 						</div>
 					</div>
+
 				</div>
 			</div>
 		</div>

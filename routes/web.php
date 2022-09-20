@@ -130,6 +130,15 @@ Route::post('/load_comment', 'App\Http\Controllers\CommentController@load_commen
 
 Route::post('/add_comment', 'App\Http\Controllers\CommentController@add_comment');
 
+//user interface -> delivery
+
+Route::post('/select_delivery', 'App\Http\Controllers\DeliveryController@select_delivery');
+
+Route::post('/select_update_delivery', 'App\Http\Controllers\DeliveryController@select_update_delivery');
+
+Route::post('/get_delivery', 'App\Http\Controllers\DeliveryController@get_delivery');
+
+
 
 //ADMIN INTERFACE
 

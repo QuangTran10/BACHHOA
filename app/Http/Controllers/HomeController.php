@@ -24,6 +24,8 @@ class HomeController extends Controller
 
         $loaihang = DB::table('loaihang')->get();
 
+        $province = DB::table('tinhthanhpho')->get();
+
         //Sản phẩm bán chạy
         $bestsell = DB::table('chitietdathang')
         ->select(DB::raw('COUNT(MSSP) as sl', 'MSSP'),'MSSP')->groupBy('MSSP')->orderBy('sl','Desc')
