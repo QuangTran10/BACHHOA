@@ -8,6 +8,7 @@ use DB;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\File; 
+use App\Models\Customer;
 use Session;
 
 class HomeController extends Controller
@@ -164,6 +165,13 @@ class HomeController extends Controller
         ->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)
         ->with('meta_tittle',$meta_tittle)->with('url',$url)
         ->with('message',$message)->with('contend',$contend);
+    }
+
+    public function example(){
+
+        $customer = Customer::all();
+
+        return view('user.example', compact('customer'));
     }
 
 }

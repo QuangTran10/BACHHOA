@@ -28,6 +28,8 @@ Route::get('/about_us', 'App\Http\Controllers\HomeController@about_us');
 
 Route::get('/error_payment', 'App\Http\Controllers\HomeController@error_payment');
 
+Route::get('/example', 'App\Http\Controllers\HomeController@example');
+
 //user interface -> shopping cart
 
 Route::get('/update_total', 'App\Http\Controllers\CartController@update_total');
