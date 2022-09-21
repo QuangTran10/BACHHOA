@@ -4,21 +4,21 @@
 <div class="slider slider-hp-2">
         <div class="ogami-container-fluid">
           <div class="slider_wrapper" data-slick="{&quot;swipe&quot;: false, &quot;setting&quot;: &quot;unslick&quot;}">
-            <div class="slider-block" style="background-image: url('{{('public/frontend/assets/images/poster/background_newyear.png')}}')">
+            <div class="slider-block" style="background-image: url('{{('public/frontend/assets/images/poster/background-birthday.jpg')}}')">
               <div class="slider-content">
                 <div class="container">
                   <div class="row align-items-center justify-content-center">
                     <div class="col-12 col-md-5 col-xl-6">
                       <div class="slider-text d-flex flex-column align-items-center align-items-md-start">
-                        <h5>Chào 2022</h5>
-                        <h1 style="color: #d9d926">CHÚC MỪNG<br> NĂM MỚI</h1>
+                        <h5 style="color: red;">Happy Birthday</h5>
+                        <h1 style="color: #660066">MỪNG SINH NHẬT<br> 1 TUỔI</h1>
                         </h3><a class="normal-btn" href="">Mua Ngay</a>
                       </div>
                     </div>
                     <div class="col-12 col-md-6">
                       <div class="slider-img"><img src="{{asset('public/frontend/assets/images/homepage01/slider_subbackground_1.png')}}" alt="">
                         <div class="prallax-img">
-                          <div id="img-block"><img class="img" src="{{asset('public/frontend/assets/images/poster/newyear.png')}}" alt="" data-depth="1"></div>
+                          <div id="img-block"><img class="img" src="{{asset('public/frontend/assets/images/poster/one-year.png')}}" alt="" data-depth="1"></div>
                         </div>
                       </div>
                     </div>

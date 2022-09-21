@@ -40,6 +40,13 @@
               </div>
               <div class="col-12 col-md-6">
                 <div class="header-right d-flex flex-column flex-md-row justify-content-md-end justify-content-center align-items-center">
+                  <div class="language">
+                    <div class="selected-language"><img src="{{('public/frontend/assets/images/homepage01/vietnam.png')}}" alt="">Viet Nam<i class="arrow_carrot-down"></i>
+                      <ul class="list-language">
+                        <li><img src="{{('public/frontend/assets/images/homepage01/usa.png')}}" alt="">English</li>
+                      </ul>
+                    </div>
+                  </div>
                   <div class="login d-flex">
                       <?php
                       $name_user= Session::get('user_name');
@@ -65,7 +72,7 @@
                     <?php
                     if($name_user){
                     ?>
-                    <a href="{{URL::to('/logout_user')}}">&nbsp;&nbsp;&nbsp;<i class="fas fa-sign-out-alt fa-lg"></i></a>
+                    <a href="{{URL::to('/logout_user')}}">&nbsp;&nbsp;&nbsp;<i class="fas fa-sign-out-alt"></i></a>
                     <?php
                     }
                     ?>
