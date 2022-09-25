@@ -560,6 +560,23 @@
           }
         });
       }
+
+
+      $('.btn-find-order').click(function(event) {
+        var text_order = $('#find-order-txt').val();
+        var _token = $('input[name="_token"]').val();
+
+        $.ajax({
+          url: '{{url('/find-order')}}',
+          method: "POST",
+          data:{
+            text: text_order,
+            _token: _token },
+          success:function(data){
+            $('#table-order').html(data);
+          }
+        });
+      });
       
     });
   </script>

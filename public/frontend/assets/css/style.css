@@ -2681,23 +2681,7 @@ header .navigation_v2 {
   padding-bottom: 0; }
   header .navigation_v2 .logo {
     display: block; }
-  header .navigation_v2 .website-search_v2 button {
-    padding: 0; }
-  header .navigation_v2 .website-search_v2 .search-input .btn-voice-search {
-    width: 20%;
-    margin-right: 20px;
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    background-color: transparent;
-    outline: none;
-    border: none;
-    width: 4rem;
-    text-align: right;
-    font-size: 1.75rem;
-    cursor: pointer;
-    color: #333;}  
+  
 
 header .navigation-filter .department-menu_block {
   position: relative;
@@ -2742,8 +2726,9 @@ header .navigation-filter .department-menu_block {
           -moz-transition: 0.3s ease;
           -ms-transition: 0.3s ease;
           -o-transition: 0.3s ease;
-          transition: 0.3s ease; }
-          header .navigation-filter .department-menu_block .department-dropdown-menu ul li a:hover {
+          transition: 0.3s ease; 
+          text-decoration: none;}
+          header .navigation-filter .department-menu_block .department-dropdown-menu ul li:hover, header .navigation-filter .department-menu_block .department-dropdown-menu ul li a:hover {
             color: #88c74a;
             text-decoration: none; }
           header .navigation-filter .department-menu_block .department-dropdown-menu ul li a i {
@@ -2781,10 +2766,10 @@ header .navigation-filter .website-search, header .navigation-filter .navigation
         padding: 20px 30px;
         background-color: #fff;
         box-shadow: 0 0 18px 0 rgba(0, 0, 0, 0.1);
-        z-index: 100; }
-        header .navigation-filter .website-search .filter-search .categories-select_box ul li a, header .navigation-filter .navigation_v2 .website-search_v2 .filter-search .categories-select_box ul li a, header .navigation_v2 .navigation-filter .website-search_v2 .filter-search .categories-select_box ul li a{
+        z-index: 100; } 
+        header .navigation-filter .website-search .filter-search .categories-select_box ul li, header .navigation-filter .navigation_v2 .website-search_v2 .filter-search .categories-select_box ul li a, header .navigation_v2 .navigation-filter .website-search_v2 .filter-search .categories-select_box ul li a, header .navigation-filter .website-search .filter-search .categories-select_box ul li a{
           display: block !important;
-          padding: 10px 0;
+          padding: 5px 0;
           cursor: pointer;
           font-family: "Roboto Regular";
           font-size: 16px;
@@ -2795,10 +2780,28 @@ header .navigation-filter .website-search, header .navigation-filter .navigation
           -moz-transition: 0.3s ease;
           -ms-transition: 0.3s ease;
           -o-transition: 0.3s ease;
-          transition: 0.3s ease; }
-          header .navigation-filter .website-search .filter-search .categories-select_box ul li a:hover, header .navigation-filter .navigation_v2 .website-search_v2 .filter-search .categories-select_box ul li a:hover, header .navigation_v2 .navigation-filter .website-search_v2 .filter-search .categories-select_box ul li a:hover {
+          transition: 0.3s ease; 
+          text-decoration: none}
+          header .navigation-filter .website-search .filter-search .categories-select_box ul li:hover, header .navigation-filter .navigation_v2 .website-search_v2 .filter-search .categories-select_box ul li a:hover, header .navigation_v2 .navigation-filter .website-search_v2 .filter-search .categories-select_box ul li a:hover {
             color: #88c74a;
             text-decoration: none; }
+          header .navigation-filter .website-search .filter-search .categories-select_box ul li a:hover{
+            color: #88c74a;
+          }  
+ header .navigation-filter .website-search .search-input .btn-voice-search {
+    width: 20%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-color: transparent;
+    outline: none;
+    border: none;
+    margin-right: 20px;
+    text-align: right;
+    font-size: 1.75rem;
+    cursor: pointer;
+    color: #333;}            
   header .navigation-filter .website-search button, header .navigation-filter .navigation_v2 .website-search_v2 button, header .navigation_v2 .navigation-filter .website-search_v2 button {
     height: 100%;
     width: 100%; }
@@ -3626,6 +3629,7 @@ header.coffee-2 .navigation-filter .website-search .filter-search .categories-se
       color: #b2b2b2;
       line-height: 1;
       display: inline-block;
+      text-decoration: none;
       -webkit-transition: 0.3s ease;
       -moz-transition: 0.3s ease;
       -ms-transition: 0.3s ease;

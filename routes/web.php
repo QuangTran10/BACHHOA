@@ -228,6 +228,8 @@ Route::get('/print_order/{checkout_code}', 'App\Http\Controllers\OrderManagement
 
 Route::get('/count_order', 'App\Http\Controllers\OrderManagement@count_order');
 
+Route::post('/find-order', 'App\Http\Controllers\OrderManagement@find_order');
+
 //admin interface -> receipt
 
 Route::get('/add_receipt', 'App\Http\Controllers\ReceiptController@show_add');

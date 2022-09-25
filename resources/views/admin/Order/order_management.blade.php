@@ -12,16 +12,18 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-lg-4 col-md-4">
-      <form class="navbar-form">
+    <div class="col-lg-6 col-md-6">
         <div class="input-group no-border">
-          <input type="text" value="" class="form-control" placeholder="Tìm kiếm.....">
-          <button class="btn btn-white btn-round btn-just-icon">
+          <form>
+            {{csrf_field() }}
+            <div class="form-group">
+              <input type="text" class="form-control" id="find-order-txt" placeholder="Tìm kiếm.....">
+            </div>
+          </form>
+          <button class="btn btn-white btn-round btn-fab btn-find-order">
             <i class="material-icons">search</i>
-            <div class="ripple-container"></div>
           </button>
         </div>
-      </form>
     </div>
   </div>
   <div class="row">
@@ -30,7 +32,7 @@
         <div class="card-header card-header-primary">
           <h4 class="card-title">Danh sách đơn hàng</h4>
         </div>
-        <div class="card-body table-responsive">
+        <div class="card-body table-responsive" id="table-order">
           <table class="table table-hover">
             <thead class="text-warning">
               <th width="10%">Mã Đơn Hàng</th>

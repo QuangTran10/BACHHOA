@@ -134,6 +134,75 @@ class OrderManagement extends Controller
         return $pdf->stream($name);
     }
 
+    public function find_order(Request $request){
+        $data = $request->all();
+        $output='';
+
+        $order = DB::table('dathang')
+        ->join('thanhtoan', 'thanhtoan.MaThanhToan', '=', 'dathang.MaThanhToan')
+        ->where('MSDH','like','%'.$data['text'].'%')
+        ->orWhere('HoTen','like','%'.$data['text'].'%')
+        ->orWhere('SDT','like','%'.$data['text'].'%')->orderBy('MSDH','desc')->get();
+
+
+        $output.= '<table class="table table-hover">
+            <thead class="text-warning">
+              <th width="10%">Mã Đơn Hàng</th>
+              <th width="15%">Tên Khách Hàng</th>
+              <th width="10%">SDT</th>
+              <th width="20%">Địa Chỉ</th>
+              <th width="20%">Ngày Đặt Hàng</th>
+              <th width="10%">Trạng Thái</th>
+              <th style="text-align: center;" width="10%">Thanh Toán</th>
+              <th width="5%"></th>
+            </thead>
+            <tbody>';
+        foreach ($order as $key => $value) {
+            $output.='<tr';
+                if($value->TrangThai ==0)
+                    $output.=' class="table-danger" ';
+
+                $output.='> 
+                <td>'.$value->MSDH.'</td>
+                <td>'.$value->HoTen.'</td>
+                <td>'.$value->SDT.'</td>
+                <td>'.$value->DiaChi.'</td>
+                <td>'.$value->NgayDat.'</td>
+                <td>';
+
+                if($value->TrangThai ==0)
+                    $output.= 'Đang Xử Lý</td> ';
+                elseif($value->TrangThai ==1){
+                    $output.='Đang Giao Hàng</td> ';
+                }elseif($value->TrangThai ==2){
+                    $output.= 'Đã Giao Hàng</td> ';
+                }else{
+                    $output.= 'Đã Huỷ</td>';
+                } 
+
+                $output.='<td style="text-align: center;">';
+
+                if($value->TT_TrangThai ==0)
+                    $output.= 'Chưa Thanh Toán</td>';
+                elseif($value->TT_TrangThai ==1){
+                    $output.= 'Đã Thanh Toán</td>';
+                }elseif($value->TT_TrangThai==2){
+                    $output.= 'Thanh Toán VNPAY</td>';
+                }else{
+                    $output.= 'Thanh Toán MOMO</td>';
+                }
+
+                $url ='/view_order/'.$value->MSDH;
+                $output.='<td>
+                  <a href="'.url($url).'"><i class="material-icons">visibility</i></a>
+                </td>
+                </tr>
+                </tbody>';
+        }    
+            
+        echo $output;
+    }
+
     //USER
 
     public function show_order(Request $re){

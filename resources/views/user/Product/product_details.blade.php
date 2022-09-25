@@ -250,4 +250,9 @@
         </div>
       </div>
       <!-- End shop layout-->
+      <script type="text/javascript">
+        $(document).ready(function($) {
+          load_comment();
+        });
+      </script>
 @endsection

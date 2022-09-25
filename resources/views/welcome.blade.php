@@ -28,9 +28,9 @@
   </head>
   <body>
     <div id="main">
-      <header>
+      <header> 
         <div class="header-block d-flex align-items-center">
-          <div class="ogami-container-fluid">
+          <div class="container">
             <div class="row">
               <div class="col-12 col-md-6">
                 <div class="header-left d-flex flex-column flex-md-row align-items-center">
@@ -40,6 +40,7 @@
               </div>
               <div class="col-12 col-md-6">
                 <div class="header-right d-flex flex-column flex-md-row justify-content-md-end justify-content-center align-items-center">
+                  <div class="social-link d-flex"><a href=""><i class="fab fa-facebook-f"> </i></a><a href=""><i class="fab fa-twitter"></i></a><a href=""><i class="fab fa-invision"> </i></a><a href=""><i class="fab fa-pinterest-p"> </i></a></div>
                   <div class="language">
                     <div class="selected-language"><img src="{{('public/frontend/assets/images/homepage01/vietnam.png')}}" alt="">Viet Nam<i class="arrow_carrot-down"></i>
                       <ul class="list-language">
@@ -82,7 +83,48 @@
             </div>
           </div>
         </div>
-        <div id="mobile-menu">
+        <nav class="navigation d-flex align-items-center">
+          <div class="container">
+            <div class="row">
+              <div class="col-2"><a class="logo" href="index.html"><img src="assets/images/logo.png" alt=""></a></div>
+              <div class="col-8">
+                <div class="navgition-menu d-flex align-items-center justify-content-center">
+                  <ul class="mb-0">
+                    <li class="toggleable"> <a class="menu-item" href="{{URL::to('/home')}}">Trang Chủ</a>
+                    </li>
+                    <li class="toggleable"> <a class="menu-item" href="shop_grid+list_3col.html">Sản Phẩm</a>
+                       <ul class="sub-menu shop d-flex">
+                        <div class="nav-column">
+                          <h2>Danh Mục</h2>
+                          @foreach($category as $key => $val_cate)
+                          <li><a href="{{URL::to('/category_home/'.$val_cate->MaDM)}}">{{$val_cate->TenDanhMuc}}</a></li>
+                          @endforeach
+                        </div>
+                        <div class="nav-column">
+                          <h2>Loại Hàng</h2>
+                          @foreach($list as $key => $val)
+                          <li><a href="{{URL::to('/show_catechild/'.$val->MaLoai)}}">{{$val->TenLoai}}</a></li>
+                          @endforeach
+                        </div>
+                      </ul>
+                    </li>
+                    <li class="toggleable"><a class="menu-item" href="{{URL::to('/contact_us')}}">Liên Hệ</a></li>
+                    <li class="toggleable"><a class="menu-item" href="{{URL::to('/about_us')}}">Giới Thiệu</a></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="col-2">
+                <div class="product-function d-flex align-items-center justify-content-center justify-content-xl-end">
+                  <div id="wishlist"><a class="function-icon icon_heart_alt" href="{{URL::to('/wish_list')}}"></a></div>
+                  <div id="cart"><a class="function-icon icon_bag_alt" href="{{URL::to('/cart_shopping')}}">
+                    <span id="total">0</span>
+                  </a></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </nav>
+         <div id="mobile-menu">
           <div class="container">
             <div class="row">
               <div class="col-3">
@@ -130,82 +172,57 @@
             </div>
           </div>
         </div>
-        <nav class="navigation navigation_v2 d-flex align-items-center">
-          <div class="ogami-container-fluid">
-            <div class="row align-items-xxl-center">
-              <div class="col-12 col-xl-6 col-xxxl-1 text-lg-center text-xl-left order-xl-1 order-xxxl-1"><a class="logo" href="{{URL::to('/home')}}"><img src="{{asset('public/frontend/assets/images/logo_white.png')}}" alt=""></a></div>
-              <div class="col-12 col-md-12 col-xl-6 col-xxxl-4 order-xl-3 order-xxxl-2">
-                <div class="navigation-filter">
-                  <div class="website-search_v2">
-                    <div class="row no-gutters">
-                      <div class="col-0 col-md-3 col-lg-3 col-xl-4">
-                        <div class="filter-search">
-                          <div class="categories-select d-flex align-items-center justify-content-around"><span>Danh Mục Sản Phẩm</span><i class="arrow_carrot-down"></i></div>
-                          <div class="categories-select_box">
-                            <ul >
-                              @foreach($category as $key => $val_cate)
-                              <li>
-                                <a href="{{URL::to('/category_home/'.$val_cate->MaDM)}}" style="text-decoration: none; color: black;">{{$val_cate->TenDanhMuc}}</a>
-                              </li>
-                              @endforeach
-                            </ul>
-                          </div>
+        <div class="navigation-filter"> 
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-4 col-lg-4 col-xl-3 order-2 order-md-1">
+                <div class="department-menu_block">
+                  <div class="department-menu d-flex justify-content-between align-items-center"><i class="fas fa-bars"></i>Danh Mục Sản Phẩm<span><i class="arrow_carrot-down"></i></span></div>
+                  <div class="department-dropdown-menu">
+                    <ul>
+                      @foreach($category as $key => $val_cate)
+                      <li>
+                        <a href="{{URL::to('/category_home/'.$val_cate->MaDM)}}" style="text-decoration: none; color: black;">{{$val_cate->TenDanhMuc}}</a>
+                      </li>
+                      @endforeach
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 col-md-8 col-lg-8 col-xl-9 order-1 order-md-2">
+                <div class="website-search">
+                  <div class="row no-gutters">
+                    <div class="col-0 col-md-3 col-lg-3 col-xl-4">
+                      <div class="filter-search">
+                        <div class="categories-select d-flex align-items-center justify-content-around"><span>Tất cả loại hàng</span><i class="arrow_carrot-down"></i></div>
+                        <div class="categories-select_box">
+                          <ul>
+                            @foreach($list as $key => $val)
+                            <li><a href="{{URL::to('/show_catechild/'.$val->MaLoai)}}">{{$val->TenLoai}}</a></li>
+                            @endforeach
+                          </ul>
                         </div>
                       </div>
-                      <div class="col-8 col-md-7 col-lg-8 col-xl-7">
-                        <div class="search-input">
-                          <input class="no-round-input no-border search-txt" type="text" placeholder="Tìm Kiếm" name="key" id="search-txt">
-                        </div>
+                    </div>
+                    <div class="col-8 col-md-7 col-lg-8 col-xl-7">
+                      <div class="search-input">
+                        <input class="no-round-input no-border search-txt" type="text" placeholder="Tìm Kiếm" name="key" id="search-txt">
                       </div>
-                      <div class="col-4 col-md-2 col-lg-1 col-xl-1">
-                        <button class="no-round-btn search-btn"><i class="icon_search"></i></button>
-                      </div>
+                    </div>
+                    <div class="col-4 col-md-2 col-lg-1 col-xl-1">
+                      <button class="no-round-btn search-btn"><i class="icon_search"></i></button>
                     </div>
                   </div>
                 </div>
               </div>
-              <div class="col-8 col-xl-6 col-xxxl-5 order-xl-4 order-xxxl-3">
-                <div class="navgition-menu d-flex align-items-center justify-content-center justify-content-xl-center">
-                  <ul class="mb-0">
-                    <li class="toggleable"> <a class="menu-item" href="{{URL::to('/home')}}">Trang Chủ</a>
-                    </li>
-                    <li class="toggleable"> <a class="menu-item" href="">Sản Phẩm</a>
-                      <ul class="sub-menu shop d-flex">
-                        <div class="nav-column">
-                          <h2>Danh Mục</h2>
-                          @foreach($category as $key => $val_cate)
-                          <li><a href="{{URL::to('/category_home/'.$val_cate->MaDM)}}">{{$val_cate->TenDanhMuc}}</a></li>
-                          @endforeach
-                        </div>
-                        <div class="nav-column">
-                          <h2>Loại Hàng</h2>
-                          @foreach($list as $key => $val)
-                          <li><a href="{{URL::to('/show_catechild/'.$val->MaLoai)}}">{{$val->TenLoai}}</a></li>
-                          @endforeach
-                        </div>
-                      </ul>
-                    </li>
-                    <li class="toggleable"><a class="menu-item" href="{{URL::to('/contact_us')}}">Liên Hệ</a></li>
-                    <li class="toggleable"><a class="menu-item" href="{{URL::to('/about_us')}}">Giới Thiệu</a></li>
-                  </ul>
-                </div>
-              </div>
-              <div class="col-4 col-xl-6 col-xxxl-2 order-xl-2 order-xxxl-4">
-                <div class="product-function d-flex align-items-center justify-content-center justify-content-xl-end">
-                  <div id="wishlist"><a class="function-icon icon_heart_alt" href="{{URL::to('/wish_list')}}"></a></div>
-                  <div id="cart"><a class="function-icon icon_bag_alt" href="{{URL::to('/cart_shopping')}}">
-                    <span id="total">0</span>
-                  </a></div>
-                </div>
-              </div>
             </div>
           </div>
-        </nav>
+        </div>
       </header>
       <!-- End header-->
       
       @yield('contend')
-      
+
       <div class="partner partner_block-bgless">
         <div class="ogami-container-fluid">
           <div class="partner_block d-flex justify-content-between" data-slick="{&quot;slidesToShow&quot;: 8}">
@@ -226,36 +243,51 @@
       </div>
       <!-- End partner-->
       <footer>
-        <div class="ogami-container-fluid">
-          <div class="footer-v2_header">
-            <div class="row">
-              <div class="col-12 col-lg-5 col-xl-6 text-sm-center text-lg-left">
-                <div class="footer-logo"><img src="{{asset('public/frontend/assets/images/logo.png')}}" alt=""></div>
-                <div class="footer-contact">
-                  <p><b>Địa Chỉ:</b> 27 Hai Bà Trưng, Phường 3, Thành phố Sóc Trăng</p>
-                  <p><b>Số Điện Thoại:</b> 0859083181</p>
-                  <p><b>Email:</b> qtran8219@gmail.com</p>
-                </div>
-                <div class="footer-social"><a class="round-icon-btn" href=""><i class="fab fa-facebook-f"> </i></a><a class="round-icon-btn" href=""><i class="fab fa-twitter"></i></a><a class="round-icon-btn" href=""><i class="fab fa-invision"> </i></a><a class="round-icon-btn" href=""><i class="fab fa-pinterest-p"></i></a></div>
+        <div class="container">
+          <div class="row">
+            <div class="col-12 col-sm-12 col-md-4 text-sm-center text-md-left">
+              <div class="footer-logo"><img src="{{asset('public/frontend/assets/images/logo.png')}}" alt=""></div>
+              <div class="footer-contact">
+                <p><b>Địa Chỉ:</b> 27 Hai Bà Trưng, Phường 3, Thành phố Sóc Trăng</p>
+                <p><b>Số Điện Thoại:</b> 0859083181</p>
+                <p><b>Email:</b> qtran8219@gmail.com</p>
               </div>
-              <div class="col-lg-7 col-xl-6">
-                <div class="row no-gutters justify-content-md-center justify-content-lg-between">
-                  <div class="col-12 col-sm-4 col-lg-4 col-xl-4 col-xxl-4 text-sm-center text-lg-left">
-                    <div class="footer-quicklink">
-                      <h5>Thông Tin</h5><a href="">Chính Sách Đổi Trả</a><a href="">Chính Sách Giao Hàng</a><a href="{{URL::to('/contact_us')}}">Liên Hệ</a><a href="">Giới Thiệu</a>
-                    </div>
+              <div class="footer-social"><a class="round-icon-btn" href=""><i class="fab fa-facebook-f"> </i></a><a class="round-icon-btn" href=""><i class="fab fa-twitter"></i></a><a class="round-icon-btn" href=""><i class="fab fa-invision"> </i></a><a class="round-icon-btn" href=""><i class="fab fa-pinterest-p"></i></a></div>
+            </div>
+            <div class="col-md-8">
+              <div class="row">
+                <div class="col-12 col-sm-4 text-sm-center text-md-left">
+                  <div class="footer-quicklink">
+                    <h5>Thông Tin</h5><a href="">Chính Sách Đổi Trả</a><a href="">Chính Sách Giao Hàng</a><a href="{{URL::to('/contact_us')}}">Liên Hệ</a><a href="">Giới Thiệu</a>
                   </div>
-                  <div class="col-12 col-md-8 col-lg-8 col-xl-8 col-xxl-8 text-sm-center text-lg-left">
-                    <div class="newletter newletter_v2">
-                      <div class="newletter_text">
-                        <h5>Đăng ký nhận tin khuyến mãi</h5>
-                      </div>
-                      <div class="newletter_input">
-                        <input class="round-input" type="email" placeholder="Email">
-                        <button>Đăng Ký</button>
-                      </div>
-                    </div>
+                </div>
+                <div class="col-12 col-sm-4 text-sm-center text-md-left">
+                  <div class="footer-quicklink">
+                    <h5>My Account</h5><a href="login.html">My Account</a><a href="contact.html">Contact</a><a href="shop_cart.html">Shopping cart</a><a href="shop_grid+list_3col.html">Shop</a>
                   </div>
+                </div>
+                <div class="col-12 col-sm-4 text-sm-center text-md-left">
+                  <div class="footer-quicklink">
+                    <h5>Quick Shop</h5><a href="about_us.html">About us</a><a href="checkout.html">Check out</a><a href="contact.html">Contact</a><a href="about_us.html">Service</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="newletter">
+          <div class="container">
+            <div class="row justify-content-between align-items-center">
+              <div class="col-12 col-md-7">
+                <div class="newletter_text text-center text-md-left">
+                  <h5>Đăng ký nhận tin khuyến mãi</h5>
+                  <p>Nhận những thông tin khuyến mãi mới nhất</p>
+                </div>
+              </div>
+              <div class="col-12 col-md-5">
+                <div class="newletter_input">
+                  <input class="round-input" type="email" placeholder="Email">
+                  <button>Đăng Ký</button>
                 </div>
               </div>
             </div>
@@ -270,9 +302,8 @@
         </div>
       </footer>
       <!-- End footer-->
-
-     
     </div>
+    
     
     <script src="{{asset('public/frontend/assets/js/jquery-ui.min.js')}}"></script>
     <script src="{{asset('public/frontend/assets/js/jquery.countdown.min.js')}}"></script>
@@ -301,7 +332,7 @@
     $(document).ready(function() {
 
       load_total();
-      load_comment();
+      
 
       function load_total(){
         $.ajax({
