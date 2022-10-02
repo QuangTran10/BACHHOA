@@ -177,11 +177,11 @@
                                     <div class="col-12">
                                       <textarea class="textarea-form cmt_content" id="review" cols="30" rows="5"></textarea>
                                     </div>
-                                    <div class="col-12">
-                                      <button class="normal-btn cmt_add">Thêm Đánh Giá</button>
-                                    </div>
                                   </div>
                                 </form>
+                                <div class="col-12">
+                                      <button class="normal-btn cmt_add">Thêm Đánh Giá</button>
+                                    </div>
                               </div>
                             </div>
                           </div>
@@ -253,6 +253,20 @@
       <script type="text/javascript">
         $(document).ready(function($) {
           load_comment();
+
+          //Load các comment
+        function load_comment(){
+          var id_product = $('.cmt_pro_id').val();
+          var _token = $('input[name="_token"]').val();
+          $.ajax({
+            url: '{{url('/load_comment')}}',
+            method: "POST",
+            data:{id_product:id_product,_token:_token},
+            success:function(data){
+              $('#review').html(data);
+            }
+          });
+        }
         });
       </script>
 @endsection

@@ -83,7 +83,6 @@ class CateChildController extends Controller
         //Seo
         $meta_desc=$category->TenLoai;
         $meta_keywords="Category";
-        $meta_tittle="BACHHOA.COM";
         $url=$re->url();
         // end seo
         if (isset($_GET['sort_by'])) {
@@ -165,7 +164,6 @@ class CateChildController extends Controller
         return view('User.Product.show_product')
         ->with('category',$all_category)->with('list',$loaihang)
         ->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)
-        ->with('meta_tittle',$meta_tittle)->with('url',$url)
-        ->with('product',$product);
+        ->with('url',$url)->with('product',$product);
     }
 }

@@ -82,8 +82,8 @@
             </a>
           </li>
           <?php 
-            $admin_id = Session::get('Position');
-            if($admin_id==1){
+            $type_id = Session::get('position');
+            if($type_id==0){
           ?>
           <li class="nav-item <?php $page = Session::get('page'); if($page==3){echo "active";} ?>">
             <a class="nav-link" href="{{URL::to('/staff_management')}}">
@@ -128,6 +128,12 @@
             <a class="nav-link" href="{{URL::to('/show_statistic')}}">
               <i class="material-icons">paid</i>
               <p>Doanh Thu</p>
+            </a>
+          </li>
+          <li class="nav-item <?php $page = Session::get('page'); if($page==10){echo "active";} ?>">
+            <a class="nav-link" href="{{URL::to('/discount_management')}}">
+              <i class="material-icons">discount</i>
+              <p>Khuyến Mãi</p>
             </a>
           </li>
         </ul>
@@ -211,13 +217,13 @@
             &copy;
             <script>
               document.write(new Date().getFullYear())
-            </script> <i class="material-icons">favorite</i>
+            </script>
           </div>
         </div>
       </footer>
     </div>
   </div>
-  <div class="fixed-plugin">
+  {{-- <div class="fixed-plugin">
     <div class="dropdown show-dropdown">
       <a href="#" data-toggle="dropdown">
         <i class="fa fa-cog fa-2x"> </i>
@@ -299,7 +305,7 @@
         </li>
       </ul>
     </div>
-  </div>
+  </div> --}}
   <!--   Core JS Files   -->
   <script src="{{asset('public/backend/assets/js/plugins/perfect-scrollbar.jquery.min.js')}}" defer=""></script>
   <script src="{{asset('public/backend/assets/js/core/popper.min.js')}}"></script>

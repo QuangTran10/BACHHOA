@@ -145,7 +145,6 @@ class CartController extends Controller
         //Seo
         $meta_desc="Giỏ hàng của bạn";
         $meta_keywords="Shopping Cart";
-        $meta_tittle="BACHHOA.COM";
         $url=$re->url();
         // end seo
 
@@ -153,8 +152,7 @@ class CartController extends Controller
         $loaihang = DB::table('loaihang')->get();
         return view('User.Cart.cart_shopping')
         ->with('category',$all_category)->with('list',$loaihang)
-        ->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)
-        ->with('meta_tittle',$meta_tittle)->with('url',$url);
+        ->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)->with('url',$url);
     }
 
     public function update_total(Request $re){

@@ -92,7 +92,6 @@ class UserManagement extends Controller
         //Seo
         $meta_desc="Trang đăng ký";
         $meta_keywords="Register";
-        $meta_tittle="Đăng Ký";
         $url=$re->url();
         // end seo
         $all_category = DB::table('danhmuc')->get();
@@ -101,15 +100,13 @@ class UserManagement extends Controller
 
         return view('user.User.register')
         ->with('category',$all_category)->with('list',$loaihang)
-        ->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)
-        ->with('meta_tittle',$meta_tittle)->with('url',$url);
+        ->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)->with('url',$url);
     }
 
     public function user_login(Request $re){
         //Seo
         $meta_desc="Trang đăng nhập";
         $meta_keywords="Login";
-        $meta_tittle="Đăng Nhập";
         $url=$re->url();
         // end seo
 
@@ -119,8 +116,7 @@ class UserManagement extends Controller
 
         return view('user.User.login_home')
         ->with('category',$all_category)->with('list',$loaihang)
-        ->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)
-        ->with('meta_tittle',$meta_tittle)->with('url',$url);
+        ->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)->with('url',$url);
     }
 
     public function login(Request $request){
@@ -172,7 +168,6 @@ class UserManagement extends Controller
         //Seo
         $meta_desc="Tài khoản của tôi";
         $meta_keywords="My Account";
-        $meta_tittle="BACHHOA.COM";
         $url=$re->url();
         // end seo
         $all_category = DB::table('danhmuc')->get();
@@ -185,7 +180,7 @@ class UserManagement extends Controller
         ->with('category',$all_category)->with('list',$loaihang)
         ->with('user_infor',$user_infor)
         ->with('meta_desc',$meta_desc)->with('url',$url)
-        ->with('meta_keywords',$meta_keywords)->with('meta_tittle',$meta_tittle);
+        ->with('meta_keywords',$meta_keywords);
     }
 
     public function change_password(Request $request){
@@ -251,7 +246,6 @@ class UserManagement extends Controller
         //Seo
         $meta_desc="Tài khoản của tôi";
         $meta_keywords="My Address Ship";
-        $meta_tittle="BACHHOA.COM";
         $url=$re->url();
 
         $address = array();
@@ -280,7 +274,7 @@ class UserManagement extends Controller
 
         $province = DB::table('tinhthanhpho')->get();
         
-        return view('User.User.address', compact('category','list','address','meta_desc','meta_keywords','meta_tittle','url','province'));
+        return view('User.User.address', compact('category','list','address','meta_desc','meta_keywords','url','province'));
 
     }
 

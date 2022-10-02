@@ -9,15 +9,16 @@ use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\File; 
 use App\Models\Customer;
+use App\Models\Staff;
+use Auth;
 use Session;
 
 class HomeController extends Controller
 {
     public function index(Request $re){
         //Seo
-        $meta_desc="BACH HOA";
+        $meta_desc="BEE";
         $meta_keywords="Trang Chủ";
-        $meta_tittle="QPharmacy";
         $url=$re->url();
         // end seo
 
@@ -74,8 +75,7 @@ class HomeController extends Controller
 
     	return view('user.home')
         ->with('category',$all_category)->with('list',$loaihang)
-        ->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)
-        ->with('meta_tittle',$meta_tittle)->with('url',$url)
+        ->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)->with('url',$url)
         ->with('pro_best_seller',$pro_best_seller)->with('meat', $meat)
         ->with('new_product',$new_product)->with('seafood', $seafood)
         ->with('vegetables', $vegetables)->with('drinks',$drinks)
@@ -89,7 +89,6 @@ class HomeController extends Controller
         //Seo
         $meta_desc="Tìm kiếm";
         $meta_keywords=$key;
-        $meta_tittle="BACHHOA.COM";
         $url=url()->current();
         // end seo
 
@@ -105,14 +104,12 @@ class HomeController extends Controller
     	return view('user.Product.search_product')
         ->with('category',$all_category)->with('list',$loaihang)
         ->with('product',$product_search)->with('meta_desc',$meta_desc)
-        ->with('meta_keywords',$meta_keywords)->with('meta_tittle',$meta_tittle)
-        ->with('url',$url);
+        ->with('meta_keywords',$meta_keywords)->with('url',$url);
     }
 
     public function contact_us(Request $re){
         $meta_desc="Liên Hệ";
         $meta_keywords="Liên hệ";
-        $meta_tittle="BACHHOA.COM";
         $url=url()->current();
 
         $contact_list = DB::table('lienhe')->first();
@@ -124,14 +121,12 @@ class HomeController extends Controller
         return view('User.Contact.contact')
         ->with('category',$all_category)->with('list',$loaihang)
         ->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)
-        ->with('meta_tittle',$meta_tittle)->with('url',$url)
-        ->with('contact_list',$contact_list);
+        ->with('url',$url)->with('contact_list',$contact_list);
     }
 
     public function about_us(Request $re){
         $meta_desc="Giới Thiệu";
         $meta_keywords="Giới Thiệu";
-        $meta_tittle="BACHHOA.COM";
         $url=url()->current();
 
         $all_category = DB::table('danhmuc')->get();
@@ -144,14 +139,12 @@ class HomeController extends Controller
         return view('User.Contact.about_us')
         ->with('category',$all_category)->with('list',$loaihang)
         ->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)
-        ->with('meta_tittle',$meta_tittle)->with('url',$url)
-        ->with('subscribers', $subscribers)->with('products',$products);
+        ->with('url',$url)->with('subscribers', $subscribers)->with('products',$products);
     }
 
     public function error_payment(Request $re){
         $meta_desc="ERROR";
         $meta_keywords="ERROR";
-        $meta_tittle="BACHHOA.COM";
         $url=url()->current();
 
         $all_category = DB::table('danhmuc')->get();
@@ -162,8 +155,7 @@ class HomeController extends Controller
 
         return view('User.Error.error')
         ->with('category',$all_category)->with('list',$loaihang)
-        ->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)
-        ->with('meta_tittle',$meta_tittle)->with('url',$url)
+        ->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)->with('url',$url)
         ->with('message',$message)->with('contend',$contend);
     }
 
@@ -171,7 +163,16 @@ class HomeController extends Controller
 
         $customer = Customer::all();
 
-        return view('user.example', compact('customer'));
+        $staff = Staff::all();
+
+        $email = 'qtran8219@gmail.com';
+        $password = md5('123456');
+
+        foreach ($staff as $key => $value) {
+            echo $value->MSNV .'-'.$value->HoTenNV.'<br>';
+        }
+
+        //return view('user.example', compact('customer','staff'));
     }
 
 }

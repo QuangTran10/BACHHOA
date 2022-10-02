@@ -2728,7 +2728,7 @@ header .navigation-filter .department-menu_block {
           -o-transition: 0.3s ease;
           transition: 0.3s ease; 
           text-decoration: none;}
-          header .navigation-filter .department-menu_block .department-dropdown-menu ul li:hover, header .navigation-filter .department-menu_block .department-dropdown-menu ul li a:hover {
+          header .navigation-filter .department-menu_block .department-dropdown-menu ul li a:hover{
             color: #88c74a;
             text-decoration: none; }
           header .navigation-filter .department-menu_block .department-dropdown-menu ul li a i {

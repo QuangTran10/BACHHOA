@@ -197,7 +197,6 @@ class ProductController extends Controller
             //Seo
         $meta_desc=$product_detail->TenSP;
         $meta_keywords="Product Detail - ". $id;
-        $meta_tittle=$product_detail->TenSP;
         $url=$re->url();
         // end seo
 
@@ -222,9 +221,8 @@ class ProductController extends Controller
         return view('User.Product.product_details')
         ->with('category',$all_category)->with('list',$loaihang)
         ->with('product_detail',$product_detail)->with('images_product', $images_product)
-        ->with('related_product',$related_product)
+        ->with('related_product',$related_product)->with('url',$url)
         ->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)
-        ->with('meta_tittle',$meta_tittle)->with('url',$url)
         ->with('count_reviews',$count)->with('Total',$total);
     }
 
@@ -311,7 +309,6 @@ class ProductController extends Controller
         //Seo
         $meta_desc="";
         $meta_keywords="Trang yêu thích";
-        $meta_tittle="Wish List";
         $url=$re->url();
         // end seo
         $all_wish_list=array();
@@ -325,8 +322,7 @@ class ProductController extends Controller
         return view('User.Product.wishlist')
         ->with('category',$all_category)->with('list',$loaihang)
         ->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)
-        ->with('meta_tittle',$meta_tittle)->with('url',$url)
-        ->with('wish_list',$all_wish_list);
+        ->with('url',$url)->with('wish_list',$all_wish_list);
     }
 
     public function delete_wishlist(Request $re){
@@ -394,14 +390,12 @@ class ProductController extends Controller
         //Seo
         $meta_desc="Giảm Giá Trong Tuần";
         $meta_keywords="Product";
-        $meta_tittle="BACHHOA.COM";
         $url=$re->url();
 
 
         return view('User.Product.show_product')
         ->with('category',$all_category)->with('list',$loaihang)
         ->with('product',$category_by_id)->with('meta_desc',$meta_desc)
-        ->with('meta_keywords',$meta_keywords)->with('meta_tittle',$meta_tittle)
-        ->with('url',$url);
+        ->with('meta_keywords',$meta_keywords)->with('url',$url);
     }
 }

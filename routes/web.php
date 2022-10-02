@@ -250,6 +250,10 @@ Route::get('/delete_staff/{id}', 'App\Http\Controllers\StaffController@delete_st
 
 Route::get('/unblock_staff/{id}', 'App\Http\Controllers\StaffController@unblock_staff');
 
+//admin interface -> Discount
+
+Route::get('/discount_management', 'App\Http\Controllers\DiscountController@show_discount');
+
 //admin interface -> comment
 
 Route::get('/show_comment', 'App\Http\Controllers\CommentController@show_comment');

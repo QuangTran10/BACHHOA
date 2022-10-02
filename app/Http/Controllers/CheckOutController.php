@@ -143,15 +143,12 @@ class CheckOutController extends Controller
 
         //Seo
         $meta_desc="Thanh Toán Đơn Hàng";
-        $meta_keywords="CheckOut";
-        $meta_tittle="BACHHOA.COM";
         $url=$re->url();
         // end seo
 
         return view('User.CheckOut.complete_check_out')
         ->with('category',$all_category)->with('list',$loaihang)
-        ->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)
-        ->with('meta_tittle',$meta_tittle)->with('url',$url);
+        ->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)->with('url',$url);
     }
 
     public function vnpay_check_out(Request $re){
@@ -164,15 +161,13 @@ class CheckOutController extends Controller
         //Seo
         $meta_desc="Thanh Toán Đơn Hàng";
         $meta_keywords="CheckOut";
-        $meta_tittle="BACHHOA.COM";
         $url=$re->url();
         // end seo
 
         return view('User.CheckOut.vnpay_checkout')
         ->with('category',$all_category)->with('list',$loaihang)
         ->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)
-        ->with('meta_tittle',$meta_tittle)->with('url',$url)
-        ->with('all_address_by_id',$all_address_by_id);
+        ->with('url',$url)->with('all_address_by_id',$all_address_by_id);
     }
 
     public function momo_check_out(Request $re){
@@ -185,14 +180,12 @@ class CheckOutController extends Controller
         //Seo
         $meta_desc="Thanh Toán Đơn Hàng";
         $meta_keywords="CheckOut";
-        $meta_tittle="BACHHOA.COM";
         $url=$re->url();
         // end seo
 
         return view('User.CheckOut.momo_checkout')
         ->with('category',$all_category)->with('list',$loaihang)
         ->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)
-        ->with('meta_tittle',$meta_tittle)->with('url',$url)
-        ->with('all_address_by_id',$all_address_by_id);
+        ->with('url',$url)->with('all_address_by_id',$all_address_by_id);
     }
 }

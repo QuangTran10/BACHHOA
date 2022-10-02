@@ -25,7 +25,6 @@
               <th>Ngày Sinh</th>
               <th>Email</th>
               <th style="text-align: center;">Tình Trạng</th>
-              <th>Chức Vụ</th>
               <th></th>
               <th></th>
             </thead>
@@ -55,7 +54,6 @@
                       echo '<i class="material-icons" style="color:red;">clear</i>';
                   ?>
                 </td>
-                <td>{{$value->ChucVu}}</td>
                 <td>
                   @if($value->TrangThai==0)
                   <a href="{{URL::to('/unblock_staff/'.$value->MSNV)}}" onclick="return confirm('Bạn có chắc chắn muốn mở khoá tài khoản')"><i class="material-icons">lock_open</i></a>

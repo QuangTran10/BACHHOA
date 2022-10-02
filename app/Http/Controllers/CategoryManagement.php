@@ -142,7 +142,6 @@ class CategoryManagement extends Controller
             //Seo
             $meta_desc=$value->TenDanhMuc;
             $meta_keywords="Category - ". $value->MaDM;
-            $meta_tittle="BACHHOA.COM";
             $url=$re->url();
             // end seo
         }
@@ -150,7 +149,6 @@ class CategoryManagement extends Controller
         return view('User.Product.show_product')
         ->with('category',$all_category)->with('list',$loaihang)
         ->with('product',$category_by_id)->with('url',$url)
-        ->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)
-        ->with('meta_tittle',$meta_tittle);
+        ->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords);
     }
 }

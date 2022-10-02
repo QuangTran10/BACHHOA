@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>BACHHOA.COM</title>
+    <title>BEE STORE</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
     <meta name="author" content="Louis Tran">
@@ -23,7 +23,7 @@
     <link rel="stylesheet" href="{{asset('public/frontend/assets/css/jquery.fancybox.min.css')}}">
     <link href="{{asset('public/frontend/assets/css/sweetalert.css')}}" rel="stylesheet">
     <script src="{{asset('public/frontend/assets/js/jquery-3.6.0.js')}}"></script>
-    <link rel="shortcut icon" href="{{asset('public/frontend/assets/images/shortcut_logo.png')}}">
+    <link rel="shortcut icon" href="{{asset('public/frontend/assets/images/bee-logo.png')}}">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
   </head>
   <body>
@@ -40,11 +40,10 @@
               </div>
               <div class="col-12 col-md-6">
                 <div class="header-right d-flex flex-column flex-md-row justify-content-md-end justify-content-center align-items-center">
-                  <div class="social-link d-flex"><a href=""><i class="fab fa-facebook-f"> </i></a><a href=""><i class="fab fa-twitter"></i></a><a href=""><i class="fab fa-invision"> </i></a><a href=""><i class="fab fa-pinterest-p"> </i></a></div>
                   <div class="language">
-                    <div class="selected-language"><img src="{{('public/frontend/assets/images/homepage01/vietnam.png')}}" alt="">Viet Nam<i class="arrow_carrot-down"></i>
+                    <div class="selected-language"><img src="{{asset('public/frontend/assets/images/homepage01/vietnam.png')}}" alt="">Viet Nam<i class="arrow_carrot-down"></i>
                       <ul class="list-language">
-                        <li><img src="{{('public/frontend/assets/images/homepage01/usa.png')}}" alt="">English</li>
+                        <li><img src="{{asset('public/frontend/assets/images/homepage01/usa.png')}}" alt="">English</li>
                       </ul>
                     </div>
                   </div>
@@ -86,7 +85,7 @@
         <nav class="navigation d-flex align-items-center">
           <div class="container">
             <div class="row">
-              <div class="col-2"><a class="logo" href="index.html"><img src="assets/images/logo.png" alt=""></a></div>
+              <div class="col-2"><a class="logo" href="{{URL::to('/home')}}"><img src="{{asset('public/frontend/assets/images/bee.png')}}" alt="" {{-- width="50%" --}}></a></div>
               <div class="col-8">
                 <div class="navgition-menu d-flex align-items-center justify-content-center">
                   <ul class="mb-0">
@@ -182,7 +181,7 @@
                     <ul>
                       @foreach($category as $key => $val_cate)
                       <li>
-                        <a href="{{URL::to('/category_home/'.$val_cate->MaDM)}}" style="text-decoration: none; color: black;">{{$val_cate->TenDanhMuc}}</a>
+                        <a href="{{URL::to('/category_home/'.$val_cate->MaDM)}}">{{$val_cate->TenDanhMuc}}</a>
                       </li>
                       @endforeach
                     </ul>
@@ -223,24 +222,7 @@
       
       @yield('contend')
 
-      <div class="partner partner_block-bgless">
-        <div class="ogami-container-fluid">
-          <div class="partner_block d-flex justify-content-between" data-slick="{&quot;slidesToShow&quot;: 8}">
-            <div class="partner--logo" href=""> <a href="#"><img src="{{asset('public/frontend/assets/images/logo/3-mien.jpg')}}" alt="partner logo"></a></div>
-            <div class="partner--logo" href=""> <a href="#"><img src="{{asset('public/frontend/assets/images/logo/cp.jpg')}}" alt="partner logo"></a></div>
-            <div class="partner--logo" href=""> <a href="#"><img src="{{asset('public/frontend/assets/images/logo/haohao.jpg')}}" alt="partner logo"></a></div>
-            <div class="partner--logo" href=""> <a href="#"><img src="{{asset('public/frontend/assets/images/logo/meat-master.jpeg')}}" alt="partner logo"></a></div>
-            <div class="partner--logo" href=""> <a href="#"><img src="{{asset('public/frontend/assets/images/logo/vissan.jpg')}}" alt="partner logo"></a></div>
-            <div class="partner--logo" href=""> <a href="#"><img src="{{asset('public/frontend/assets/images/logo/neptune.jpg')}}" alt="partner logo"></a></div>
-            <div class="partner--logo" href=""> <a href=""><img src="{{asset('public/frontend/assets/images/logo/ofood.png')}}" alt="partner logo"></a></div>
-            <div class="partner--logo" href=""> <a href="#"><img src="{{asset('public/frontend/assets/images/logo/yopokki.jpg')}}" alt="partner logo"></a></div>
-            <div class="partner--logo" href=""> <a href="#"><img src="{{asset('public/frontend/assets/images/logo/oishi.jpg')}}" alt="partner logo"></a></div>
-            <div class="partner--logo" href=""> <a href="#"><img src="{{asset('public/frontend/assets/images/logo/peke.jpg')}}" alt="partner logo"></a></div>
-            <div class="partner--logo" href=""> <a href="#"><img src="{{asset('public/frontend/assets/images/logo/tuong-an.jpg')}}" alt="partner logo"></a></div>
-            <div class="partner--logo" href=""> <a href="#"><img src="{{asset('public/frontend/assets/images/logo/kinh-do.jpg')}}" alt="partner logo"></a></div>
-          </div>
-        </div>
-      </div>
+     
       <!-- End partner-->
       <footer>
         <div class="container">
@@ -272,31 +254,6 @@
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
-        </div>
-        <div class="newletter">
-          <div class="container">
-            <div class="row justify-content-between align-items-center">
-              <div class="col-12 col-md-7">
-                <div class="newletter_text text-center text-md-left">
-                  <h5>Đăng ký nhận tin khuyến mãi</h5>
-                  <p>Nhận những thông tin khuyến mãi mới nhất</p>
-                </div>
-              </div>
-              <div class="col-12 col-md-5">
-                <div class="newletter_input">
-                  <input class="round-input" type="email" placeholder="Email">
-                  <button>Đăng Ký</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="footer-credit">
-          <div class="ogami-container-fluid">
-            <div class="footer-creadit_block d-flex flex-column flex-md-row justify-content-start justify-content-md-between align-items-baseline align-items-md-center">
-              <p class="author"></p><img class="payment-method" src="{{asset('public/frontend/assets/images/payment.png')}}" alt="">
             </div>
           </div>
         </div>
@@ -514,19 +471,7 @@
         }
       });
 
-      //Load các comment
-      function load_comment(){
-        var id_product = $('.cmt_pro_id').val();
-        var _token = $('input[name="_token"]').val();
-        $.ajax({
-          url: '{{url('/load_comment')}}',
-          method: "POST",
-          data:{id_product:id_product,_token:_token},
-          success:function(data){
-            $('#review').html(data);
-          }
-        });
-      }
+      
 
       //Thêm đánh giá
       $('.cmt_add').click(function(){

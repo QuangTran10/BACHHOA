@@ -71,13 +71,7 @@ class AdminController extends Controller
                 Session::put('admin_name',$result->Email);
                 Session::put('admin_id',$result->MSNV);
                 Session::put('full_name',$result->HoTenNV);
-                if($result->ChucVu=='Admin'){
-                    Session::put('Position',1);
-                }elseif ($result->ChucVu=='Kế Toán') {
-                    Session::put('Position',2);
-                }else{
-                    Session::put('Position',0);
-                }
+                Session::put('position',$result->ChucVu);
                 return view('admin.dashboard')->with('subscribers',$subscribers)->with('products',$products)->with('statistical',$statistic);
             }else{
                 return redirect('/admin')->with('notice','Tài khoản đã bị khoá');

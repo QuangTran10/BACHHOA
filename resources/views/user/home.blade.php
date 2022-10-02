@@ -84,7 +84,7 @@
                 <div class="col-12 col-md-6">
                   <div class="slider-img" data-animation="zoomIn" data-delay=".1s">
                     <img src="{{asset('public/frontend/assets/images/homepage01/slider_subbackground_1.png')}}" alt="">
-                    <img class="img" src="{{asset('public/frontend/assets/images/poster/merry-christmas.png')}}" alt=""></div>
+                    <img class="img" src="{{asset('public/frontend/assets/images/poster/christmas-gift.png')}}" alt=""></div>
                 </div>
               </div>
             </div>
@@ -557,7 +557,7 @@
                 <div class="row no-gutters">
                   <div class="col-12 col-lg-3">
                     <div class="banner-block_detail" style="background-image: url('{{('public/frontend/assets/images/poster/nen-2.jpg')}}')">
-                      <img src="{{('public/frontend/assets/images/poster/deal-2.png')}}" alt="">
+                      <img src="{{('public/frontend/assets/images/poster/deal-2.jpg')}}" alt="">
                       <a class="banner-btn normal-btn" href="">Mua Ngay</a></div>
                   </div>
                   <div class="col-12 col-lg-6">
@@ -567,7 +567,7 @@
                   </div>
                   <div class="col-12 col-lg-3">
                     <div class="banner-block_detail" style="background-image: url('{{('public/frontend/assets/images/poster/nen-2.jpg')}}')">
-                      <img src="{{('public/frontend/assets/images/poster/deal-3.png')}}" alt="">
+                      <img src="{{('public/frontend/assets/images/poster/deal-3.jpg')}}" alt="">
                       <a class="banner-btn normal-btn" href="">Mua Ngay</a></div>
                   </div>
                 </div>
@@ -575,11 +575,12 @@
             </div>
           </div>
           <!-- End banner -->
-          <div class="deal-of-week">
+
+          {{-- <div class="deal-of-week">
             <div class="container">
               <div class="row justify-content-center">
                 <div class="col-12 text-center order-1">
-                  <h1 class="title green-underline mx-auto">Deal Of The Week</h1>
+                  <h1 class="title green-underline mx-auto">Khuyến Mãi Trong Tuần</h1>
                 </div>
                 <div class="col-10 col-md-6 col-lg-4 order-3 order-md-2 order-lg-2">
                   <div class="row">
@@ -590,7 +591,7 @@
                           <p>Modi tempora incidunt ut labore dolore magnam aliquam</p>
                         </div>
                         <div class="featured-use_icon text-md-right order-1 order-md-2 featured-use_icon-left">
-                          <div class="icon-detail"><img src="assets/images/homepage01/dow_icon_1.png" alt=""></div>
+                          <div class="icon-detail"><img src="{{('public/frontend/assets/images/homepage01/dow_icon_1.png')}}" alt=""></div>
                         </div>
                       </div>
                     </div>
@@ -601,15 +602,14 @@
                           <p>Modi tempora incidunt ut labore dolore magnam aliquam</p>
                         </div>
                         <div class="featured-use_icon text-md-right order-1 order-md-2 featured-use_icon-left">
-                          <div class="icon-detail"><img src="assets/images/homepage01/dow_icon_2.png" alt=""></div>
+                          <div class="icon-detail"><img src="{{('public/frontend/assets/images/homepage01/dow_icon_2.png')}}" alt=""></div>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
                 <div class="col-12 col-md-12 col-lg-4 order-2 order-md-4 order-lg-3 text-center">
-                  <div class="week-product_img"><img class="img-fluid" src="assets/images/homepage01/deal-of-week.png" alt="">
-                    <p>Only<br><span>$19.00</span></p>
+                  <div class="week-product_img"><img class="img-fluid" src="{{('public/frontend/assets/images/poster/product1.jpg')}}" alt="">
                   </div>
                 </div>
                 <div class="col-10 col-md-6 col-lg-4 order-4 order-md-3 order-lg-4">
@@ -621,7 +621,7 @@
                           <p>Modi tempora incidunt ut labore dolore magnam aliquam</p>
                         </div>
                         <div class="featured-use_icon order-1 ml-0">
-                          <div class="icon-detail"><img src="assets/images/homepage01/dow_icon_3.png" alt=""></div>
+                          <div class="icon-detail"><img src="{{('public/frontend/assets/images/homepage01/dow_icon_3.png')}}" alt=""></div>
                         </div>
                       </div>
                     </div>
@@ -632,7 +632,7 @@
                           <p>Modi tempora incidunt ut labore dolore magnam aliquam</p>
                         </div>
                         <div class="featured-use_icon order-1 ml-0">
-                          <div class="icon-detail"><img src="assets/images/homepage01/dow_icon_4.png" alt=""></div>
+                          <div class="icon-detail"><img src="{{('public/frontend/assets/images/homepage01/dow_icon_4.png')}}" alt=""></div>
                         </div>
                       </div>
                     </div>
@@ -643,6 +643,7 @@
                 </div>
               </div>
             </div>
-          </div>
+          </div> --}}
+          
           <!-- End deak of the week-->
 @endsection       
