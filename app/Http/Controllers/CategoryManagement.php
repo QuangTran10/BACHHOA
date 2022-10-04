@@ -23,7 +23,7 @@ class CategoryManagement extends Controller
     public function category_management(){
         $this->AuthLogin();
         Session::put('page',4);
-    	$all_category = Category::simplePaginate(5);
+    	$all_category = Category::Paginate(5);
     	$manage_category = view('admin.Category.category_management')->with('all_category',$all_category);
     	return view('admin_layout')->with('admin.Category.category_management',$manage_category);
     }

@@ -265,3 +265,9 @@ Route::get('/show_statistic', 'App\Http\Controllers\RevenueController@show_stati
 Route::post('/load_statistic', 'App\Http\Controllers\RevenueController@load_statistic');
 
 Route::post('/search_statistic', 'App\Http\Controllers\RevenueController@search_statistic');
+
+//admin interface -> role
+
+Route::get('/role_management', 'App\Http\Controllers\RoleController@role_management');
+
+Route::post('/assign_role', 'App\Http\Controllers\RoleController@assign_role');

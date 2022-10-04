@@ -51,18 +51,7 @@
               @endforeach
             </tbody>
           </table>
-          {{$all_category->links()}}
-          {{-- <nav aria-label="Page navigation example">
-            <ul class="pagination justify-content-center">
-              <li class="page-item disabled">
-                <a class="page-link" href="javascript:;" tabindex="-1">Previous</a>
-              </li>
-              <li class="page-item"><a class="page-link" href="javascript:;"></a></li>
-              <li class="page-item">
-                <a class="page-link" href="javascript:;">Next</a>
-              </li>
-            </ul>
-          </nav> --}}
+          {{$all_category->links('partials.admin_paginate')}}
         </div>
       </div>
     </div>

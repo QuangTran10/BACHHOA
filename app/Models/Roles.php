@@ -18,6 +18,6 @@ class Roles extends Model
     protected $table='quyen';
 
     public function staff(){
-    	return $this->belongsToMany('App\Models\Staff');
+    	return $this->belongsToMany('App\Models\Staff', 'cap_quyen', 'id_quyen', 'MSNV');
     }
 }

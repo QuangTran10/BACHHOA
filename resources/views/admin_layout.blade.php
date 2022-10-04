@@ -136,6 +136,12 @@
               <p>Khuyến Mãi</p>
             </a>
           </li>
+          <li class="nav-item <?php $page = Session::get('page'); if($page==11){echo "active";} ?>">
+            <a class="nav-link" href="{{URL::to('/role_management')}}">
+              <i class="material-icons">group</i>
+              <p>Phân Quyền</p>
+            </a>
+          </li>
         </ul>
       </div>
     </div>
@@ -223,89 +229,7 @@
       </footer>
     </div>
   </div>
-  {{-- <div class="fixed-plugin">
-    <div class="dropdown show-dropdown">
-      <a href="#" data-toggle="dropdown">
-        <i class="fa fa-cog fa-2x"> </i>
-      </a>
-      <ul class="dropdown-menu">
-        <li class="header-title"> Sidebar Filters</li>
-        <li class="adjustments-line">
-          <a href="javascript:void(0)" class="switch-trigger active-color">
-            <div class="badge-colors ml-auto mr-auto">
-              <span class="badge filter badge-purple" data-color="purple"></span>
-              <span class="badge filter badge-azure" data-color="azure"></span>
-              <span class="badge filter badge-green" data-color="green"></span>
-              <span class="badge filter badge-warning" data-color="orange"></span>
-              <span class="badge filter badge-danger" data-color="danger"></span>
-              <span class="badge filter badge-rose active" data-color="rose"></span>
-            </div>
-            <div class="clearfix"></div>
-          </a>
-        </li>
-        <li class="header-title">Sidebar Background</li>
-        <li class="adjustments-line">
-          <a href="javascript:void(0)" class="switch-trigger background-color">
-            <div class="ml-auto mr-auto">
-              <span class="badge filter badge-black active" data-background-color="black"></span>
-              <span class="badge filter badge-white" data-background-color="white"></span>
-              <span class="badge filter badge-red" data-background-color="red"></span>
-            </div>
-            <div class="clearfix"></div>
-          </a>
-        </li>
-        <li class="adjustments-line">
-          <a href="javascript:void(0)" class="switch-trigger">
-            <p>Sidebar Mini</p>
-            <label class="ml-auto">
-              <div class="togglebutton switch-sidebar-mini">
-                <label>
-                  <input type="checkbox">
-                  <span class="toggle"></span>
-                </label>
-              </div>
-            </label>
-            <div class="clearfix"></div>
-          </a>
-        </li>
-        <li class="adjustments-line">
-          <a href="javascript:void(0)" class="switch-trigger">
-            <p>Sidebar Images</p>
-            <label class="switch-mini ml-auto">
-              <div class="togglebutton switch-sidebar-image">
-                <label>
-                  <input type="checkbox" checked="">
-                  <span class="toggle"></span>
-                </label>
-              </div>
-            </label>
-            <div class="clearfix"></div>
-          </a>
-        </li>
-        <li class="header-title">Images</li>
-        <li class="active">
-          <a class="img-holder switch-trigger" href="javascript:void(0)">
-            <img src="{{asset('public/backend/assets/img/sidebar-1.jpg')}}" alt="">
-          </a>
-        </li>
-        <li>
-          <a class="img-holder switch-trigger" href="javascript:void(0)">
-            <img src="{{asset('public/backend/assets/img/sidebar-2.jpg')}}" alt="">
-          </a>
-        </li>
-        <li>
-          <a class="img-holder switch-trigger" href="javascript:void(0)">
-            <img src="{{asset('public/backend/assets/img/sidebar-3.jpg')}}" alt="">
-          </a>
-        </li>
-        <li>
-          <a class="img-holder switch-trigger" href="javascript:void(0)">
-            <img src="{{asset('public/backend/assets/img/sidebar-4.jpg')}}" alt="">
-          </a>
-        </li>
-      </ul>
-    </div>
-  </div> --}}
+  
   <!--   Core JS Files   -->
   <script src="{{asset('public/backend/assets/js/plugins/perfect-scrollbar.jquery.min.js')}}" defer=""></script>
   <script src="{{asset('public/backend/assets/js/core/popper.min.js')}}"></script>
@@ -583,6 +507,35 @@
           }
         });
       });
+
+      $('.btn-save').click(function(event) {
+        var id = $(this).data('id'); //MSNV
+        var role_admin = $('#role_admin_'+id).is(":checked");
+        var role_staff = $('#role_staff_'+id).is(":checked");
+        var role_shipper = $('#role_shipper_'+id).is(":checked");
+        var _token = $('input[name="_token"]').val();
+
+        $.ajax({
+          url: '{{url('/assign_role')}}',
+          method: "POST",
+          data:{
+            MSNV: id,
+            role_admin: role_admin,
+            role_staff: role_staff,
+            role_shipper: role_shipper,
+            _token: _token },
+          success:function(data){
+            if(data!=0){
+              location.reload();
+            }else{
+              swal("Cảnh Báo", "Bạn không được thay đổi quyền của bản thân", "error").then(function(){
+              location.reload();
+              });
+            }
+          }
+        }); 
+      });
+
       
     });
   </script>

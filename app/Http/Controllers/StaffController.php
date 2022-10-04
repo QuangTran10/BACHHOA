@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\File; 
 use Session;
+use App\Models\Staff;
 
 function vn_to_str ($str){
 
@@ -77,26 +78,24 @@ class StaffController extends Controller
         $now = Carbon::now('Asia/Ho_Chi_Minh');
     	// $data=$re->all();
         $user_name = vn_to_str($re->HoTenNV);
-        $data= array();
-        $data['HoTenNV'] = $re->HoTenNV;
-        $data['GioiTinh'] = $re->GioiTinh;
-        $data['Email'] = $re->Email;
-        $data['SDT'] = $re->SDT;
-        $data['DiaChi']= $re->DiaChi;
-        $data['ChucVu']=$re->ChucVu;
-        $data['Ngay'] = $re->Ngay;
-        $data['Thang'] = $re->Thang;
-        $data['Nam'] = $re->Nam;
-        $data['MatKhau']=md5(123456);
-        $data['Avatar']='avatar_macdinh.jpeg';
-        $data['TrangThai']=1;
-        $data['created_at'] = $now;
-        $data['updated_at'] = $now;
 
-        $result = DB::table('nhanvien')->insert($data);
-        if($result){
-            return Redirect::to('staff_management');
-        }
+        $staff = new Staff();
+        $staff->HoTenNV = $re->HoTenNV;
+        $staff->GioiTinh = $re->GioiTinh;
+        $staff->Email = $re->Email;
+        $staff->SDT= $re->SDT;
+        $staff->DiaChi= $re->DiaChi;
+        $staff->ChucVu=$re->ChucVu;
+        $staff->Ngay= $re->Ngay;
+        $staff->Thang= $re->Thang;
+        $staff->Nam= $re->Nam;
+        $staff->MatKhau=md5(123456);
+        $staff->Avatar='avatar_macdinh.jpeg';
+        $staff->TrangThai=1;
+
+        $staff->save();
+
+        return Redirect::to('staff_management');
     }
 
     public function delete_staff($id){

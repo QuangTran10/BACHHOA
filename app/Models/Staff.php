@@ -20,10 +20,18 @@ class Staff extends Authenticatable
     protected $table='nhanvien';
 
     public function roles(){
-    	return $this->belongsToMany('App\Models\Roles');
+    	return $this->belongsToMany('App\Models\Roles', 'cap_quyen', 'MSNV', 'id_quyen');
     }
 
     public function getAuthPassword(){
     	return $this->MatKhau;
+    }
+
+    public function hasAnyRoles($roles){
+        return null !== $this->roles()->whereIn('quyen', $roles)->first();
+    }
+
+    public function hasRole($role){
+        return null !== $this->roles()->where('quyen', $role)->first();
     }
 }

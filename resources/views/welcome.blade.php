@@ -85,13 +85,13 @@
         <nav class="navigation d-flex align-items-center">
           <div class="container">
             <div class="row">
-              <div class="col-2"><a class="logo" href="{{URL::to('/home')}}"><img src="{{asset('public/frontend/assets/images/bee.png')}}" alt="" {{-- width="50%" --}}></a></div>
+              <div class="col-2"><a class="logo" href="{{URL::to('/home')}}"><img src="{{asset('public/frontend/assets/images/bee.png')}}" alt=""></a></div>
               <div class="col-8">
                 <div class="navgition-menu d-flex align-items-center justify-content-center">
                   <ul class="mb-0">
                     <li class="toggleable"> <a class="menu-item" href="{{URL::to('/home')}}">Trang Chủ</a>
                     </li>
-                    <li class="toggleable"> <a class="menu-item" href="shop_grid+list_3col.html">Sản Phẩm</a>
+                    <li class="toggleable"> <a class="menu-item" href="">Sản Phẩm</a>
                        <ul class="sub-menu shop d-flex">
                         <div class="nav-column">
                           <h2>Danh Mục</h2>

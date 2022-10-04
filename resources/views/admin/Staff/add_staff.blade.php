@@ -34,8 +34,8 @@
                 <div class="form-group">
                   <label class="bmd-label-floating">Chức Vụ</label><br>
                   <select class="selectpicker" data-style="select-with-transition" data-size="7" name="ChucVu">
-                    <option value="Nhân Viên">Nhân Viên</option>
-                    <option value="Kế Toán">Kế Toán</option>
+                    <option value="1">Nhân Viên</option>
+                    <option value="2">Nhân Viên Giao Hàng</option>
                   </select>
                 </div>
               </div>

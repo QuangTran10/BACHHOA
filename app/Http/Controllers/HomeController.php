@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\File; 
 use App\Models\Customer;
 use App\Models\Staff;
+use App\Models\Roles;
 use Auth;
 use Session;
 
@@ -161,18 +162,10 @@ class HomeController extends Controller
 
     public function example(){
 
-        $customer = Customer::all();
+        $staff = Staff::where('MSNV', 5)->first();
 
-        $staff = Staff::all();
-
-        $email = 'qtran8219@gmail.com';
-        $password = md5('123456');
-
-        foreach ($staff as $key => $value) {
-            echo $value->MSNV .'-'.$value->HoTenNV.'<br>';
-        }
-
-        //return view('user.example', compact('customer','staff'));
+        //$staff->roles()->detach();
+        //$staff->roles()->attach(Roles::where('quyen','shipper')->first());
     }
 
 }

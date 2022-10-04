@@ -567,7 +567,7 @@ window.onload = function () {
 		  	const current = event.resultIndex;
 		  	const transcript = event.results[current][0].transcript;
 
-		  	if(transcript.toLowerCase().trim()==="stop recording") {
+		  	if(transcript.toLowerCase().trim()==="stop.") {
 		  		recognition.stop();
 		  	}
 		  	else if(!searchFormInput.value) {
