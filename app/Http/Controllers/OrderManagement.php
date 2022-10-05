@@ -8,6 +8,7 @@ use DB;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\File; 
 use Session;
+use Auth;
 use PDF;
 session_start();
 

@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Redirect;
 use DB;
 use Carbon\Carbon;
 use Session;
+use Auth;
 session_start();
 
 class DeliveryController extends Controller

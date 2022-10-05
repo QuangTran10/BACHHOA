@@ -44,7 +44,7 @@ class CheckOutController extends Controller
         ->with('province', $province);
     }
 
-    public function save_check_out(Request $re){
+    public function add_check_out(Request $re){
     	$content = Session::get('cart');
     	$MSKH=Session::get('user_id');
         $total=0;
@@ -69,6 +69,8 @@ class CheckOutController extends Controller
         if($total<1000000){
             $total = $total +30000;
         }
+
+        //echo $total;
         //insert table thanhtoan
         $payment['TT_Ten'] = $re->PhuongThuc;
         $payment['TT_DienGiai']="Thanh toan don hang";
@@ -78,6 +80,7 @@ class CheckOutController extends Controller
         $payment['TT_ResponseCode']=null;
         $payment['TT_TaoMoi'] = $now;
         $payment['TT_CapNhat'] = $now;
+
         $MaThanhToan = DB::table('thanhtoan')->insertGetId($payment);
 
         //insert table dathang
@@ -94,34 +97,33 @@ class CheckOutController extends Controller
         $data['TrangThai']=0;   // 4 trạng thái: chờ xn, đang vận chuyển, đã nhận và đã huỷ
         $data['created_at'] = $now;
         $data['updated_at'] = $now;
-        
-        if($re->check==0){
-            $SoDonDH=DB::table('dathang')->insertGetId($data);
-            //insert table chitietdathang
-            foreach ($content as $v_content) {
-                $order['MSDH']=$SoDonDH;
-                $order['MSSP']=$v_content['product_id'];
-                $order['SoLuong']=$v_content['product_qty'];
-                $order['GiamGia']=$v_content['product_discount'];
-                $order['GiaDatHang']=$v_content['product_price'];
-                $order['ThanhTien']=($v_content['product_price']*$v_content['product_qty']*(1-$v_content['product_discount']));
-                $result=DB::table('chitietdathang')->insert($order);
-                //Kiểm tra sau khi thêm sản phẩm vào chitietdathang nếu soluong còn lại bằng 0 thì cập nhật tình trạng bằng 0
-                $kq = DB::table('sanpham')->where('MSSP',$v_content['product_id'])->select('SoLuong')->get();
-                foreach ($kq as $val) {
-                    $qty_ton=$val->SoLuong;
-                }
-                if($qty_ton==0){
-                    DB::table('sanpham')->where('MSSP',$v_content['product_id'])->update(['TrangThai'=>0]);
-                }
-            }
 
-            if ($result) {
-                Session::put('cart',null);
-                return Redirect::to('/complete_check_out');
-            }else{
-                return redirect('/check_out')->with('notice','Thanh Toán Thất Bại');
+
+        $SoDonDH=DB::table('dathang')->insertGetId($data);
+            //insert table chitietdathang
+        foreach ($content as $v_content) {
+            $order['MSDH']=$SoDonDH;
+            $order['MSSP']=$v_content['product_id'];
+            $order['SoLuong']=$v_content['product_qty'];
+            $order['GiamGia']=$v_content['product_discount'];
+            $order['GiaDatHang']=$v_content['product_price'];
+            $order['ThanhTien']=($v_content['product_price']*$v_content['product_qty']*(1-$v_content['product_discount']));
+            $result=DB::table('chitietdathang')->insert($order);
+                //Kiểm tra sau khi thêm sản phẩm vào chitietdathang nếu soluong còn lại bằng 0 thì cập nhật tình trạng bằng 0
+            $kq = DB::table('sanpham')->where('MSSP',$v_content['product_id'])->select('SoLuong')->get();
+            foreach ($kq as $val) {
+                $qty_ton=$val->SoLuong;
             }
+            if($qty_ton==0){
+                DB::table('sanpham')->where('MSSP',$v_content['product_id'])->update(['TrangThai'=>0]);
+            }
+        }
+
+        if ($result) {
+            Session::put('cart',null);
+            return Redirect::to('/complete_check_out');
+        }else{
+            return redirect('/check_out')->with('notice','Thanh Toán Thất Bại');
         }
     	
     }
@@ -143,7 +145,9 @@ class CheckOutController extends Controller
 
         //Seo
         $meta_desc="Thanh Toán Đơn Hàng";
+        $meta_keywords="Complete Check Out";
         $url=$re->url();
+
         // end seo
 
         return view('User.CheckOut.complete_check_out')

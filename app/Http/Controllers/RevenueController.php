@@ -9,6 +9,7 @@ use App\Models\Product;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\File; 
 use Session;
+use Auth;
 session_start();
 
 class RevenueController extends Controller

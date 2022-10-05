@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\File; 
 use Illuminate\Support\Collection;
 use Session;
+use Auth;
 session_start();
 
 class ReceiptController extends Controller

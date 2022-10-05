@@ -95,7 +95,7 @@
             <ul>
               <li>
                 <a href="{{URL::to('/home')}}">
-                  BACHHOA.COM
+                  BEE STORE
                 </a>
               </li>
               <li>

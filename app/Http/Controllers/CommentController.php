@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Carbon\Carbon;
 use DB;
 use App\Models\Category;
+use Auth;
 use Illuminate\Support\Facades\Redirect;
 use Session;
 session_start();

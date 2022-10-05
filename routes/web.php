@@ -1,6 +1,24 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+// use App\Http\Controllers\AdminController;
+// use App\Http\Controllers\CartController;
+// use App\Http\Controllers\CateChildController;
+// use App\Http\Controllers\CategoryManagement;
+// use App\Http\Controllers\HomeController;
+// use App\Http\Controllers\CheckOutController;
+// use App\Http\Controllers\CommentController;
+// use App\Http\Controllers\DeliveryController;
+// use App\Http\Controllers\DiscountController;
+// use App\Http\Controllers\OrderManagement;
+// use App\Http\Controllers\PaymentController;
+// use App\Http\Controllers\ProductController;
+// use App\Http\Controllers\ReceiptController;
+// use App\Http\Controllers\RevenueController;
+// use App\Http\Controllers\RoleController;
+// use App\Http\Controllers\StaffController;
+// use App\Http\Controllers\UserManagement;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -50,7 +68,7 @@ Route::get('/check_out', 'App\Http\Controllers\CheckOutController@check_out');
 
 Route::post('/shipping_add', 'App\Http\Controllers\CheckOutController@shipping_add');
 
-Route::post('/save_check_out', 'App\Http\Controllers\CheckOutController@save_check_out');
+Route::post('/save_check_out', 'App\Http\Controllers\CheckOutController@add_check_out');
 
 Route::get('/complete_check_out', 'App\Http\Controllers\CheckOutController@complete_check_out');
 
@@ -155,6 +173,12 @@ Route::get('/logout', 'App\Http\Controllers\AdminController@Logout');
 
 Route::get('/404', 'App\Http\Controllers\AdminController@error_page');
 
+//Đếm số order
+Route::get('/count_order', 'App\Http\Controllers\OrderManagement@count_order');
+
+//Thống kê sản phẩm bán chạy
+Route::post('/product_bestsell', 'App\Http\Controllers\ProductController@best_sell');
+
 //admin interface -> user management
 
 Route::get('/user', 'App\Http\Controllers\UserManagement@user');
@@ -164,57 +188,6 @@ Route::get('/password', 'App\Http\Controllers\UserManagement@password');
 Route::post('/change_pass', 'App\Http\Controllers\UserManagement@change_pass');
 
 Route::post('/update_user', 'App\Http\Controllers\UserManagement@update_user');
-
-//admin interface -> category management
-
-Route::get('/category_management', 'App\Http\Controllers\CategoryManagement@category_management');
-
-Route::get('/add_category', 'App\Http\Controllers\CategoryManagement@add');
-
-Route::get('/update_category/{category_product_id}','App\Http\Controllers\CategoryManagement@update_category');
-
-Route::get('/delete_category/{category_product_id}', 'App\Http\Controllers\CategoryManagement@delete');
-
-Route::post('/save_category','App\Http\Controllers\CategoryManagement@save_category');
-
-Route::post('/edit_category/{category_product_id}','App\Http\Controllers\CategoryManagement@edit_category');
-
-//admin interface -> category child management
-
-Route::get('/catechild_management', 'App\Http\Controllers\CateChildController@catechild_management');
-
-Route::get('/add_catechild', 'App\Http\Controllers\CateChildController@add');
-
-Route::get('/update_catechild/{id}','App\Http\Controllers\CateChildController@update_catechild');
-
-Route::get('/delete_catechild/{id}', 'App\Http\Controllers\CateChildController@delete');
-
-Route::post('/save_catechild','App\Http\Controllers\CateChildController@save_catechild');
-
-Route::post('/edit_catechild/{id}','App\Http\Controllers\CateChildController@edit_catechild');
-
-
-//admin interface -> product management
-
-Route::get('/add_product', 'App\Http\Controllers\ProductController@add');
-
-Route::get('/product_management', 'App\Http\Controllers\ProductController@product_management');
-
-Route::get('/update_product/{id}','App\Http\Controllers\ProductController@update_product');
-
-Route::get('/delete_product/{id}/{hinhanh}', 'App\Http\Controllers\ProductController@delete');
-
-Route::post('/save_product', 'App\Http\Controllers\ProductController@save_product');
-
-Route::post('/edit_product/{id}', 'App\Http\Controllers\ProductController@edit_product');
-
-Route::post('/product_bestsell', 'App\Http\Controllers\ProductController@best_sell');
-
-//admin interface -> images product
-
-Route::get('/images_product', 'App\Http\Controllers\ProductController@images_product');
-
-Route::get('/delete_images/{id}', 'App\Http\Controllers\ProductController@delete_images');
 
 //admin interface -> order management
 
@@ -226,48 +199,113 @@ Route::post('/update_status', 'App\Http\Controllers\OrderManagement@update_statu
 
 Route::get('/print_order/{checkout_code}', 'App\Http\Controllers\OrderManagement@print_order');
 
-Route::get('/count_order', 'App\Http\Controllers\OrderManagement@count_order');
-
 Route::post('/find-order', 'App\Http\Controllers\OrderManagement@find_order');
 
-//admin interface -> receipt
 
-Route::get('/add_receipt', 'App\Http\Controllers\ReceiptController@show_add');
+//Chỉ Staff và Admin mới truy cập
+Route::group(['middleware' => 'roles'], function(){
 
-Route::post('/save_receipt', 'App\Http\Controllers\ReceiptController@add');
+	//admin interface -> category management
 
-Route::get('/show_receipt', 'App\Http\Controllers\ReceiptController@show_all');
+	Route::get('/category_management', 'App\Http\Controllers\CategoryManagement@category_management');
 
-//admin interface -> Staff
+	Route::get('/add_category', 'App\Http\Controllers\CategoryManagement@add');
 
-Route::get('/staff_management', 'App\Http\Controllers\StaffController@show_staff');
+	Route::get('/update_category/{category_product_id}','App\Http\Controllers\CategoryManagement@update_category');
 
-Route::get('/add_staff', 'App\Http\Controllers\StaffController@add_staff');
+	Route::get('/delete_category/{category_product_id}', 'App\Http\Controllers\CategoryManagement@delete');
 
-Route::post('/save_staff', 'App\Http\Controllers\StaffController@save_staff');
+	Route::post('/save_category','App\Http\Controllers\CategoryManagement@save_category');
 
-Route::get('/delete_staff/{id}', 'App\Http\Controllers\StaffController@delete_staff');
+	Route::post('/edit_category/{category_product_id}','App\Http\Controllers\CategoryManagement@edit_category');
 
-Route::get('/unblock_staff/{id}', 'App\Http\Controllers\StaffController@unblock_staff');
+	//admin interface -> category child management
 
-//admin interface -> Discount
+	Route::get('/catechild_management', 'App\Http\Controllers\CateChildController@catechild_management');
 
-Route::get('/discount_management', 'App\Http\Controllers\DiscountController@show_discount');
+	Route::get('/add_catechild', 'App\Http\Controllers\CateChildController@add');
 
-//admin interface -> comment
+	Route::get('/update_catechild/{id}','App\Http\Controllers\CateChildController@update_catechild');
 
-Route::get('/show_comment', 'App\Http\Controllers\CommentController@show_comment');
+	Route::get('/delete_catechild/{id}', 'App\Http\Controllers\CateChildController@delete');
 
-//admin interface -> statistic
+	Route::post('/save_catechild','App\Http\Controllers\CateChildController@save_catechild');
 
-Route::get('/show_statistic', 'App\Http\Controllers\RevenueController@show_statistical');
+	Route::post('/edit_catechild/{id}','App\Http\Controllers\CateChildController@edit_catechild');
 
-Route::post('/load_statistic', 'App\Http\Controllers\RevenueController@load_statistic');
 
-Route::post('/search_statistic', 'App\Http\Controllers\RevenueController@search_statistic');
+	//admin interface -> product management
 
-//admin interface -> role
+	Route::get('/add_product', 'App\Http\Controllers\ProductController@add');
 
-Route::get('/role_management', 'App\Http\Controllers\RoleController@role_management');
+	Route::get('/product_management', 'App\Http\Controllers\ProductController@product_management');
 
-Route::post('/assign_role', 'App\Http\Controllers\RoleController@assign_role');
+	Route::get('/update_product/{id}','App\Http\Controllers\ProductController@update_product');
+
+	Route::get('/delete_product/{id}/{hinhanh}', 'App\Http\Controllers\ProductController@delete');
+
+	Route::post('/save_product', 'App\Http\Controllers\ProductController@save_product');
+
+	Route::post('/edit_product/{id}', 'App\Http\Controllers\ProductController@edit_product');
+
+	//admin interface -> images product
+
+	Route::get('/images_product', 'App\Http\Controllers\ProductController@images_product');
+
+	Route::get('/delete_images/{id}', 'App\Http\Controllers\ProductController@delete_images');
+
+
+	//admin interface -> receipt
+
+	Route::get('/add_receipt', 'App\Http\Controllers\ReceiptController@show_add');
+
+	Route::post('/save_receipt', 'App\Http\Controllers\ReceiptController@add');
+
+	Route::get('/show_receipt', 'App\Http\Controllers\ReceiptController@show_all');
+
+	//admin interface -> Discount
+
+	Route::get('/discount_management', 'App\Http\Controllers\DiscountController@show_discount');
+
+	//admin interface -> comment
+
+	Route::get('/show_comment', 'App\Http\Controllers\CommentController@show_comment');
+
+	//admin interface -> statistic
+
+	Route::get('/show_statistic', 'App\Http\Controllers\RevenueController@show_statistical');
+
+	Route::post('/load_statistic', 'App\Http\Controllers\RevenueController@load_statistic');
+
+	Route::post('/search_statistic', 'App\Http\Controllers\RevenueController@search_statistic');
+
+});
+
+
+//Quyền của admin
+Route::group(['middleware' => 'admin_role'], function(){
+
+	//admin interface -> Staff
+
+	Route::get('/staff_management', 'App\Http\Controllers\StaffController@show_staff');
+
+	Route::get('/add_staff', 'App\Http\Controllers\StaffController@add_staff');
+
+	Route::post('/save_staff', 'App\Http\Controllers\StaffController@save_staff');
+
+	Route::get('/delete_staff/{id}', 'App\Http\Controllers\StaffController@delete_staff');
+
+	Route::get('/unblock_staff/{id}', 'App\Http\Controllers\StaffController@unblock_staff');
+
+	//admin interface -> role
+
+	Route::get('/role_management', 'App\Http\Controllers\RoleController@role_management');
+
+	Route::post('/assign_role', 'App\Http\Controllers\RoleController@assign_role');
+
+});
+
+
+
+
+

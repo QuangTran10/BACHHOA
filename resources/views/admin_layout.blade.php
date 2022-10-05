@@ -30,7 +30,7 @@
       <div class="logo"><a href="" class="simple-text logo-mini">
         </a>
         <a href="" class="simple-text logo-normal">
-          BACH HOA
+          BEE STORE
         </a></div>
       <div class="sidebar-wrapper">
         <div class="user">
@@ -42,7 +42,6 @@
               <span>
                 <?php
                   $name = Session::get('admin_name');
-                  $id = Session::get('admin_id');
                   if($name){
                     echo $name;
                   }
@@ -75,37 +74,37 @@
               <p> Tổng Quan </p>
             </a>
           </li>
+          @hasrole(['admin', 'staff'])
           <li class="nav-item <?php $page = Session::get('page'); if($page==2){echo "active";} ?>">
             <a class="nav-link" href="{{URL::to('/product_management')}}">
               <i class="material-icons">content_paste</i>
               <p>Quản Lý Hàng Hoá</p>
             </a>
           </li>
-          <?php 
-            $type_id = Session::get('position');
-            if($type_id==0){
-          ?>
+          @endhasrole
+          @hasrole(['admin'])
           <li class="nav-item <?php $page = Session::get('page'); if($page==3){echo "active";} ?>">
             <a class="nav-link" href="{{URL::to('/staff_management')}}">
               <i class="material-icons">people</i>
               <p>Quản Lý Nhân Viên</p>
             </a>
           </li>
-          <?php 
-            }
-          ?>
+          @endhasrole
+          @hasrole(['admin', 'staff'])
           <li class="nav-item <?php $page = Session::get('page'); if($page==4){echo "active";} ?>">
             <a class="nav-link" href="{{URL::to('/category_management')}}">
               <i class="material-icons">category</i>
               <p>Quản Lý Danh Mục</p>
             </a>
           </li>
+          @endhasrole
           <li class="nav-item <?php $page = Session::get('page'); if($page==5){echo "active";} ?>">
             <a class="nav-link" href="{{URL::to('/order_management')}}">
               <i class="material-icons">store</i>
               <p>Quản Lý Đơn Hàng</p>
             </a>
           </li>
+          @hasrole(['admin', 'staff'])
           <li class="nav-item <?php $page = Session::get('page'); if($page==6){echo "active";} ?>">
             <a class="nav-link" href="{{URL::to('/catechild_management')}}">
               <i class="material-icons">inventory_2</i>
@@ -136,12 +135,15 @@
               <p>Khuyến Mãi</p>
             </a>
           </li>
+          @endhasrole
+          @hasrole(['admin'])
           <li class="nav-item <?php $page = Session::get('page'); if($page==11){echo "active";} ?>">
             <a class="nav-link" href="{{URL::to('/role_management')}}">
               <i class="material-icons">group</i>
               <p>Phân Quyền</p>
             </a>
           </li>
+          @endhasrole
         </ul>
       </div>
     </div>
@@ -175,20 +177,12 @@
               </div>
             </form>
             <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link" href="javascript:;">
-                  <i class="material-icons">dashboard</i>
-                  <p class="d-lg-none d-md-block">
-                    Stats
-                  </p>
-                </a>
-              </li>
               <li class="nav-item dropdown">
                 <a class="nav-link" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <i class="material-icons">notifications</i>
                   <span class="notification" id="count_noti"></span>
                   <p class="d-lg-none d-md-block">
-                    Some Actions
+                    Thông Báo
                   </p>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink" id="dropdown_nofi">
@@ -199,7 +193,7 @@
                 <a class="nav-link" href="javascript:;" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <i class="material-icons">person</i>
                   <p class="d-lg-none d-md-block">
-                    Account
+                    Tài Khoản
                   </p>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">

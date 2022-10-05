@@ -9,6 +9,7 @@ use App\Models\Category;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\File; 
 use Session;
+use Auth;
 session_start();
 
 class CateChildController extends Controller

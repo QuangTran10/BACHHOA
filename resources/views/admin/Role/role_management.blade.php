@@ -12,11 +12,10 @@
           <table class="table table-hover">
             <thead class="text-dark">
               <th width="20%">Mã nhân viên</th>
-              <th width="20%">Họ tên</th>
+              <th width="30%">Họ tên</th>
               <th width="20%">Email</th>
               <th width="10%" style="text-align: center;">Admin</th>
               <th width="10%" style="text-align: center;">Staff</th>
-              <th width="10%" style="text-align: center;">Shipper</th>
               <th style="text-align: center;" width="10%"></th>
             </thead>
             <tbody>
@@ -47,16 +46,6 @@
                 		</label>
                 	</div>
                 </td>
-                <td class="text-center">
-                	<div class="form-check">
-                		<label class="form-check-label">
-                			<input class="form-check-input" id="role_shipper_{{$value->MSNV}}" type="checkbox" value="" {{$value->hasRole('shipper') ? 'checked' : ''}}>
-                			<span class="form-check-sign">
-                				<span class="check"></span>
-                			</span>
-                		</label>
-                	</div>
-                </td>  
                 <td class="td-actions text-center">
                   <button type="button" rel="tooltip" class="btn btn-info btn-save" data-id="{{$value->MSNV}}">
                     <i class="material-icons">save</i>

@@ -8,6 +8,7 @@ use DB;
 use App\Models\Category;
 use Illuminate\Support\Facades\Redirect;
 use Session;
+use Auth;
 session_start();
 
 class CategoryManagement extends Controller
