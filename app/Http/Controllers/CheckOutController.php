@@ -56,6 +56,7 @@ class CheckOutController extends Controller
             $HoTen = $value->HoTen;
             $SDT   = $value->SDT;;
     		$DiaChi= $value->DiaChi;
+            $MaTP  = $value->matp;
     	}
 
     	$now = Carbon::now('Asia/Ho_Chi_Minh');
@@ -86,18 +87,17 @@ class CheckOutController extends Controller
         //insert table dathang
     	$data['MSKH']=$MSKH;
     	$data['MSNV']=NULL;
+        $data['MSGH']=NULL;
     	$data['ThanhTien']=$total;
     	$data['HoTen']=$HoTen;
     	$data['SDT']=$SDT;
     	$data['DiaChi']=$DiaChi;
+        $data['MaTP'] = $MaTP;
     	$data['NgayDat']=$now;
     	$data['NgayGiao']=NULL;
         $data['MaThanhToan']=$MaThanhToan;
         $data['GhiChu']=$re->GhiChu;
         $data['TrangThai']=0;   // 4 trạng thái: chờ xn, đang vận chuyển, đã nhận và đã huỷ
-        $data['created_at'] = $now;
-        $data['updated_at'] = $now;
-
 
         $SoDonDH=DB::table('dathang')->insertGetId($data);
             //insert table chitietdathang

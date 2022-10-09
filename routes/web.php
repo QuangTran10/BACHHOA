@@ -159,7 +159,6 @@ Route::post('/select_update_delivery', 'App\Http\Controllers\DeliveryController@
 Route::post('/get_delivery', 'App\Http\Controllers\DeliveryController@get_delivery');
 
 
-
 //ADMIN INTERFACE
 
 //Home
@@ -308,4 +307,22 @@ Route::group(['middleware' => 'admin_role'], function(){
 
 
 
+//Shipper -> home
 
+Route::get('/dashboard_shipper', 'App\Http\Controllers\ShipperController@dashboard');
+
+Route::get('/register_shipper', 'App\Http\Controllers\ShipperController@register');
+
+Route::get('/shipper', 'App\Http\Controllers\ShipperController@index');
+
+Route::post('/login_shipper', 'App\Http\Controllers\ShipperController@login');
+
+Route::post('/add_shipper', 'App\Http\Controllers\ShipperController@add');
+
+Route::get('/logout_shipper', 'App\Http\Controllers\ShipperController@logout');
+
+Route::get('/shipper_order', 'App\Http\Controllers\ShipperController@order_process');
+
+Route::get('/shipper_infor', 'App\Http\Controllers\ShipperController@infor');
+
+Route::get('/shipper_noti', 'App\Http\Controllers\ShipperController@notification');

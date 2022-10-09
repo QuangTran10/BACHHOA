@@ -5,8 +5,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <meta charset="utf-8" />
   {{-- <-Seo meta-> --}}
-  <link rel="apple-touch-icon" sizes="76x76" href="{{asset('public/backend/assets/img/apple-icon.png')}}">
-  <link rel="icon" type="image/png" href="{{asset('public/backend/assets/img/favicon.png')}}">
+  <link rel="apple-touch-icon" sizes="76x76" href="{{asset('public/backend/assets/img/bee-logo.png')}}">
+  <link rel="icon" type="image/png" href="{{asset('public/backend/assets/img/bee-logo.png')}}">
   <title>Admin</title>
   <meta name="description" content="">
   <meta name="keywords" content=""/>

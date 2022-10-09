@@ -20461,4 +20461,10 @@ select.selectpicker {
   .sidebar .navbar-form {
     display: none !important; } }
 
+
+.logo {
+  filter: brightness(0) invert(1);
+  -webkit-filter: brightness(0) invert(1);
+}    
+
 /*# sourceMappingURL=material-dashboard.css.map */
