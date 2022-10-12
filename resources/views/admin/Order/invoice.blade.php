@@ -22,7 +22,7 @@
       width: 100%;
     }
     .tbl_details td{
-      padding:10px 15px;
+      padding: 10px 15px;
     }
     .tbl2 td{
       padding: 0 15px;

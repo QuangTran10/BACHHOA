@@ -46,7 +46,7 @@ class ShipperController extends Controller
     	$order = DB::table('dathang')->get();
 
     	$order_details=DB::table('chitietdathang')
-    		->join('sanpham', 'chitietdathang.MSSP', '=', 'sanpham.MSSP')->select('chitietdathang.*', 'TenSP')->get();
+    		->join('sanpham', 'chitietdathang.MSSP', '=', 'sanpham.MSSP')->select('chitietdathang.*', 'TenSP','Image','Gia')->get();
 
     	return view('shipper.order_process', compact('order', 'order_details'));
     }

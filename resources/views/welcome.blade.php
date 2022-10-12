@@ -230,7 +230,7 @@
             <div class="col-12 col-sm-12 col-md-4 text-sm-center text-md-left">
               <div class="footer-logo"><img src="{{asset('public/frontend/assets/images/logo.png')}}" alt=""></div>
               <div class="footer-contact">
-                <p><b>Địa Chỉ:</b> 27 Hai Bà Trưng, Phường 3, Thành phố Sóc Trăng</p>
+                <p><b>Địa Chỉ:</b> 27 Hai Bà Trưng, Phường 3, Thành phố Sóc Trăng, tỉnh Sóc Trăng</p>
                 <p><b>Số Điện Thoại:</b> 0859083181</p>
                 <p><b>Email:</b> qtran8219@gmail.com</p>
               </div>

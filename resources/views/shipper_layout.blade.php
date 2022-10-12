@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <link rel="apple-touch-icon" sizes="76x76" href="{{asset('public/backend/shipper/images/shipping_icon.png')}}">
   <link rel="icon" href="{{asset('public/backend/shipper/images/shipping_icon.png')}}">
   <title>Express</title>
 

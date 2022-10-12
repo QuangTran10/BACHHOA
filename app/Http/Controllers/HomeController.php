@@ -119,7 +119,7 @@ class HomeController extends Controller
 
         $loaihang = DB::table('loaihang')->get();
 
-        return view('User.Contact.contact')
+        return view('user.Contact.contact')
         ->with('category',$all_category)->with('list',$loaihang)
         ->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)
         ->with('url',$url)->with('contact_list',$contact_list);
@@ -137,7 +137,7 @@ class HomeController extends Controller
 
         $products = DB::table('sanpham')->get()->count();
 
-        return view('User.Contact.about_us')
+        return view('user.Contact.about_us')
         ->with('category',$all_category)->with('list',$loaihang)
         ->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)
         ->with('url',$url)->with('subscribers', $subscribers)->with('products',$products);
@@ -161,11 +161,13 @@ class HomeController extends Controller
     }
 
     public function example(){
+        $order=DB::table('dathang')->where('MSDH',3)->get();
 
-        $staff = Staff::where('MSNV', 5)->first();
+        $order_details=DB::table('chitietdathang')
+        ->join('sanpham', 'chitietdathang.MSSP', '=', 'sanpham.MSSP')
+        ->where('MSDH',3)->select('chitietdathang.*', 'TenSP','Image')->get();
 
-        //$staff->roles()->detach();
-        //$staff->roles()->attach(Roles::where('quyen','shipper')->first());
+        return view('email.email', compact('order_details','order'));
     }
 
 }

@@ -2,15 +2,9 @@
 <html>
 <head>
 	<title></title>
+	<link rel="stylesheet" href="{{asset('public/frontend/assets/css/email.css')}}">
 </head>
 <body>
-	<h2>Hello</h2>
-	@foreach($customer as $key => $value)
-		<p>{{$value->MSKH}} {{$value->HoTenKH}}</p>
-	@endforeach
-	<br>
-	@foreach($staff as $key => $value1)
-		<p>{{$value1->MSNV}} {{$value1->HoTenNV}}</p>
-	@endforeach
+	<h2>Email</h2>
 </body>
 </html>
