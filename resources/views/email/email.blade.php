@@ -6,11 +6,11 @@
   <meta name="x-apple-disable-message-reformatting">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta content="telephone=no" name="format-detection">
-  <title>Trigger newsletter</title>
+  <title></title>
 
  </head>
  <body style="width:100%;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;font-family:arial, 'helvetica neue', helvetica, sans-serif;padding:0;Margin:0">
-  @foreach($order as $val)
+  @foreach($data['order'] as $val)
   <div class="es-wrapper-color" style="background-color:#EFEFEF">
    <table class="es-wrapper" width="100%" cellspacing="0" cellpadding="0" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;padding:0;Margin:0;width:100%;height:100%;background-repeat:repeat;background-position:center top">
      <tr style="border-collapse:collapse">
@@ -26,7 +26,7 @@
                   <td class="es-m-p0r" valign="top" align="center" style="padding:0;Margin:0;width:180px">
                    <table width="100%" cellspacing="0" cellpadding="0" role="presentation" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
                      <tr style="border-collapse:collapse">
-                      <td class="es-m-p0l es-m-txt-c" align="left" style="padding:0;Margin:0;padding-left:15px;font-size:0"><a href="{{URL::to('/home')}}" target="_blank" style="-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;text-decoration:underline;color:#999999;font-size:14px"><img src="{{('public/frontend/assets/images/bee.png')}}" alt="Petshop logo" title="Petshop logo" width="118" style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic"></a></td>
+                      <td class="es-m-p0l es-m-txt-c" align="left" style="padding:0;Margin:0;padding-left:15px;font-size:0"><a href="{{URL::to('/home')}}" target="_blank" style="-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;text-decoration:underline;color:#999999;font-size:14px"><img src="{{ $message->embed('public/frontend/assets/images/bee.png') }}" alt="Bee logo" title="Petshop logo" width="118" style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic"></a></td>
                      </tr>
                    </table></td>
                  </tr>
@@ -50,11 +50,11 @@
                       <td align="center" style="padding:0;Margin:0;padding-top:10px;padding-bottom:15px"><h1 style="Margin:0;line-height:36px;mso-line-height-rule:exactly;font-family:'trebuchet ms', helvetica, sans-serif;font-size:30px;font-style:normal;font-weight:normal;color:#333333">Cám ơn bạn đã đặt hàng tại Bee Store!<br></h1></td>
                      </tr>
                      <tr style="border-collapse:collapse">
-                      <td align="center" style="Margin:0;padding-top:5px;padding-bottom:5px;padding-left:40px;padding-right:40px"><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:21px;color:#333333;font-size:14px">Xin chào Quang Tran ,<br>
+                      <td align="center" style="Margin:0;padding-top:5px;padding-bottom:5px;padding-left:40px;padding-right:40px"><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:21px;color:#333333;font-size:14px">Xin chào {{$data['user']}} ,<br>
                       Bee Store đã nhận được yêu cầu đặt hàng của bạn và đang xử lý nhé. Bạn sẽ nhận được thông báo tiếp theo khi đơn hàng đã sẵn sàng được giao.</p></td>
                      </tr>
                      <tr style="border-collapse:collapse">
-                      <td align="center" style="padding:0;Margin:0;padding-bottom:10px;padding-top:15px"><span class="es-button-border" style="border-style:solid;border-color:#2cb543;background:#d48344;border-width:0px;display:inline-block;border-radius:5px;width:auto;border-top:0px solid #2cb543;border-bottom:0px solid #2cb543"><a href="https://viewstripo.email/" class="es-button" target="_blank" style="mso-style-priority:100 !important;text-decoration:underline;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;color:#FFFFFF;font-size:16px;border-style:solid;border-color:#d48344;border-width:10px 20px 10px 20px;display:inline-block;background:#d48344;border-radius:5px;font-family:arial, 'helvetica neue', helvetica, sans-serif;font-weight:normal;font-style:normal;line-height:19px;width:auto;text-align:center;border-top-width:10px;border-bottom-width:10px">Tình Trạng Đơn Hàng</a></span></td>
+                      <td align="center" style="padding:0;Margin:0;padding-bottom:10px;padding-top:15px"><span class="es-button-border" style="border-style:solid;border-color:#2cb543;background:#d48344;border-width:0px;display:inline-block;border-radius:5px;width:auto;border-top:0px solid #2cb543;border-bottom:0px solid #2cb543"><a href="{{URL::to('/order_detail/'.$val->MSDH)}}" class="es-button" target="_blank" style="mso-style-priority:100 !important;text-decoration:underline;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;color:#FFFFFF;font-size:16px;border-style:solid;border-color:#d48344;border-width:10px 20px 10px 20px;display:inline-block;background:#d48344;border-radius:5px;font-family:arial, 'helvetica neue', helvetica, sans-serif;font-weight:normal;font-style:normal;line-height:19px;width:auto;text-align:center;border-top-width:10px;border-bottom-width:10px">Tình Trạng Đơn Hàng</a></span></td>
                      </tr>
                    </table></td>
                  </tr>
@@ -78,9 +78,9 @@
                      </tr>
                      <tr style="border-collapse:collapse" class="information">
                       <td align="left" style="padding:0;margin:0;padding-bottom:20px;padding-left:20px;padding-right:20px">
-                        <p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:21px;color:#333333;font-size:14px">Nguyễn Ngọc Bảo Trân</p>
-                        <p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:21px;color:#333333;font-size:14px">0123445670</p>
-                        <p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:21px;color:#333333;font-size:14px">383/104A Đường 30/4, phường 9, thành phố Sóc Trăng, tỉnh Sóc Trăng</p>
+                        <p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:21px;color:#333333;font-size:14px">{{$data['name']}}</p>
+                        <p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:21px;color:#333333;font-size:14px">{{$data['phone']}}</p>
+                        <p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:21px;color:#333333;font-size:14px">{{$data['address']}}</p>
                       </td>
                      </tr>
                    </table></td>
@@ -126,16 +126,18 @@
              </tr>
              @php
              $total = 0;
+             $total_dis = 0;
              $ship = 0;
              if($total<1000000){
               $ship=30000;
              }
              @endphp
 
-             @foreach($order_details as $key => $value)
+             @foreach($data['order_details'] as $key => $value)
 
                @php
                $total += $value->GiaDatHang*$value->SoLuong;
+               $total_dis += $value->GiaDatHang*$value->SoLuong*$value->GiamGia;
                @endphp
              <tr style="border-collapse:collapse">
               <td align="left" style="Margin:0;padding-top:5px;padding-bottom:10px;padding-left:20px;padding-right:20px">
@@ -144,7 +146,11 @@
                   <td class="es-m-p0r es-m-p20b" valign="top" align="center" style="padding:0;Margin:0;width:178px">
                    <table width="100%" cellspacing="0" cellpadding="0" role="presentation" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
                      <tr style="border-collapse:collapse">
-                      <td align="center" style="padding:0;Margin:0;font-size:0"><a href="https://viewstripo.email" target="_blank" style="-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;text-decoration:underline;color:#D48344;font-size:14px"><img src="{{('public/upload/'.$value->Image)}}" alt="Dog Treats" class="adapt-img" title="Dog Treats" width="125" style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic"></a></td>
+                      <td align="center" style="padding:0;Margin:0;font-size:0">
+                        <a href="{{URL::to('/product_details/'.$value->MSSP)}}" target="_blank" style="-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;text-decoration:underline;color:#D48344;font-size:14px">
+                        <img src="{{$message->embed('public/upload/'.$value->Image)}}" alt="Dog Treats" class="adapt-img" title="Dog Treats" width="125" style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic">
+                        </a>
+                      </td>
                      </tr>
                    </table></td>
                  </tr>
@@ -216,13 +222,13 @@
                           <td style="padding:0;Margin:0;text-align:right;font-size:18px;line-height:27px">Giảm giá:</td>
                           <td style="padding:0;Margin:0;text-align:right;font-size:18px;line-height:27px">VND</td>
                           <td style="padding:0;Margin:0;text-align:right;font-size:18px;line-height:27px">
-                            {{ number_format($total-$value->ThanhTien-$ship, 0, ',', ' ') }}
+                            {{ number_format($total_dis, 0, ',', ' ') }}
                           </td>
                          </tr>
                          <tr style="border-collapse:collapse">
                           <td style="padding:0;Margin:0;text-align:right;font-size:18px;line-height:27px"><strong>Tổng cộng:</strong></td>
                           <td style="padding:0;Margin:0;text-align:right;font-size:18px;line-height:27px">VND</td>
-                          <td style="padding:0;Margin:0;text-align:right;font-size:18px;line-height:27px;color:#d48344"><strong>{{ number_format($value->ThanhTien, 0, ',', ' ') }}</strong></td>
+                          <td style="padding:0;Margin:0;text-align:right;font-size:18px;line-height:27px;color:#d48344"><strong>{{ number_format($val->ThanhTien, 0, ',', ' ') }}</strong></td>
                          </tr>
                        </table><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:21px;color:#333333;font-size:14px"><br></p></td>
                      </tr>
@@ -244,7 +250,7 @@
                   <td class="es-m-p0r es-m-p20b" valign="top" align="center" style="padding:0;Margin:0;width:178px">
                    <table width="100%" cellspacing="0" cellpadding="0" role="presentation" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
                      <tr style="border-collapse:collapse">
-                      <td class="es-m-p0l es-m-txt-c" align="left" style="padding:0;margin:0;font-size:0"><img src="{{('public/frontend/assets/images/beeeee.png')}}" alt="Petshop logo" title="Petshop logo" width="100%" style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic"></td>
+                      <td class="es-m-p0l es-m-txt-c" align="left" style="padding:0;margin:0;font-size:0"><img src="{{$message->embed('public/frontend/assets/images/beeeee.png')}}" alt="Bee Store logo" title="Bee Store logo" width="100%" style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic"></td>
                      </tr>
                    </table></td>
                  </tr>

@@ -21,9 +21,10 @@
 					<ul class="tab-control">
 						<li><a class="active" href="#tab-1">Tất cả</a></li>
 						<li><a href="#tab-2">Chờ Xác Nhận</a></li>
-						<li><a href="#tab-3">Đang Giao</a></li>
-						<li> <a href="#tab-4">Đã Giao</a></li>
-						<li><a href="#tab-5">Đã Huỷ</a></li>
+						<li><a href="#tab-3">Chờ Lấy Hàng</a></li>
+						<li> <a href="#tab-4">Đang Giao</a></li>
+						<li> <a href="#tab-5">Đã Giao</a></li>
+						<li><a href="#tab-6">Đã Huỷ</a></li>
 					</ul>
 
 					<div id="tab-1">
@@ -153,7 +154,7 @@
 							</div>
 						</div>
 					</div>
-					<div id="tab-4"> 
+					<div id="tab-5"> 
 						<div class="no-gutters-sm">
 							<div class="shop-compare">
 								<div class="container">
@@ -195,7 +196,7 @@
 							</div>
 						</div>
 					</div>
-					<div id="tab-5">
+					<div id="tab-6">
 						<div class="no-gutters-sm">
 							<div class="shop-compare">
 								<div class="container">

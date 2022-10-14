@@ -1,23 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-// use App\Http\Controllers\AdminController;
-// use App\Http\Controllers\CartController;
-// use App\Http\Controllers\CateChildController;
-// use App\Http\Controllers\CategoryManagement;
-// use App\Http\Controllers\HomeController;
-// use App\Http\Controllers\CheckOutController;
-// use App\Http\Controllers\CommentController;
-// use App\Http\Controllers\DeliveryController;
-// use App\Http\Controllers\DiscountController;
-// use App\Http\Controllers\OrderManagement;
-// use App\Http\Controllers\PaymentController;
-// use App\Http\Controllers\ProductController;
-// use App\Http\Controllers\ReceiptController;
-// use App\Http\Controllers\RevenueController;
-// use App\Http\Controllers\RoleController;
-// use App\Http\Controllers\StaffController;
-// use App\Http\Controllers\UserManagement;
 
 
 /*

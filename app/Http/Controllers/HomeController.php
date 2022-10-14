@@ -12,6 +12,7 @@ use App\Models\Customer;
 use App\Models\Staff;
 use App\Models\Roles;
 use Auth;
+use App\Jobs\SendEmail;
 use Session;
 
 class HomeController extends Controller
@@ -161,13 +162,7 @@ class HomeController extends Controller
     }
 
     public function example(){
-        $order=DB::table('dathang')->where('MSDH',3)->get();
-
-        $order_details=DB::table('chitietdathang')
-        ->join('sanpham', 'chitietdathang.MSSP', '=', 'sanpham.MSSP')
-        ->where('MSDH',3)->select('chitietdathang.*', 'TenSP','Image')->get();
-
-        return view('email.email', compact('order_details','order'));
+        $ship = DB::table('khachhang')->where('MSKH',3)->first();
     }
 
 }

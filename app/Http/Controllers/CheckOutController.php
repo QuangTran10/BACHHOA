@@ -8,6 +8,7 @@ use DB;
 use Cart;
 use Carbon\Carbon;
 use Session;
+use App\Jobs\SendEmail;
 session_start();
 
 class CheckOutController extends Controller
@@ -19,6 +20,34 @@ class CheckOutController extends Controller
         }else{
             return Redirect::to('login_home')->send();
         }
+    }
+
+    public function sendEmail($MSDH, $MaDC, $MSKH){
+        $order=DB::table('dathang')->where('MSDH',$MSDH)->get();
+
+        $order_details=DB::table('chitietdathang')
+        ->join('sanpham', 'chitietdathang.MSSP', '=', 'sanpham.MSSP')
+        ->where('MSDH',$MSDH)->select('chitietdathang.*', 'TenSP','Image')->get();
+
+        $address_info=DB::table('diachikh')->where('MaDC',$MaDC)->get();
+        foreach ($address_info as $key => $value) {
+            $HoTen = $value->HoTen;
+            $SDT   = $value->SDT;;
+            $DiaChi= $value->DiaChi;
+        }
+
+        $customer = DB::table('khachhang')->where('MSKH',$MSKH)->first();
+
+        $users = $customer->Email;
+        $message = [
+           'user'   => $customer->HoTenKH,
+           'order' => $order,
+           'order_details' => $order_details,
+           'name' => $HoTen,
+           'address'=> $DiaChi,
+           'phone' => $SDT,
+        ];
+        SendEmail::dispatch($message, $users)->delay(20);
     }
 
     public function check_out(Request $re){
@@ -121,6 +150,7 @@ class CheckOutController extends Controller
 
         if ($result) {
             Session::put('cart',null);
+            $this->sendEmail($SoDonDH, $MaDC, $MSKH);
             return Redirect::to('/complete_check_out');
         }else{
             return redirect('/check_out')->with('notice','Thanh Toán Thất Bại');
