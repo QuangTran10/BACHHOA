@@ -103,6 +103,7 @@
   <script src="{{asset('public/backend/shipper/js/lightbox.js')}}"></script>
   <script src="{{asset('public/backend/shipper/js/owl.carousel.min.js')}}"></script>
   <script src="{{asset('public/backend/shipper/js/main.js')}}"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
   <script type="text/javascript">
@@ -114,6 +115,137 @@
 
     //  $('#ThanhPho').val(city);
     // });
+
+
+
+    //Đồng ý đơn hàng
+    $('.order-accept').click(function(event) {
+      var order_id = $(this).data('id');
+      var status = 2;
+      var _token = $('input[name="_token"]').val();
+
+       $.ajax({
+          url: '{{url('/update_status_order')}}',
+          method: "POST",
+          data:{
+            MSDH: order_id,
+            status: status,
+            _token: _token },
+          success:function(data){
+             if(data==1){
+              swal("Nhận đơn thành công", "", "success").then(function(){
+                location.reload();
+              });
+            }else{
+              swal("Không nhận đơn", "", "error").then(function(){
+              location.reload();
+              });
+            }
+          }
+        });
+    });
+
+    //Không đồng ý nhận đơn hàng
+    $('.order-reject').click(function(event) {
+      var order_id = $(this).data('id');
+      var status = 1;
+      var _token = $('input[name="_token"]').val();
+
+       $.ajax({
+          url: '{{url('/update_status_order')}}',
+          method: "POST",
+          data:{
+            MSDH: order_id,
+            status: status,
+            _token: _token },
+          success:function(data){
+            if(data==1){
+              swal("Nhận đơn thành công", "", "success").then(function(){
+                location.reload();
+              });
+            }else{
+              swal("Không nhận đơn", "", "error").then(function(){
+              location.reload();
+              });
+            }
+          }
+        });
+    });
+
+    //Lấy hàng và đang giao hàng
+    $('.order-shipping').click(function(event) {
+      var order_id = $(this).data('id');
+      var status = 3;
+      var _token = $('input[name="_token"]').val();
+
+       $.ajax({
+          url: '{{url('/update_status_order')}}',
+          method: "POST",
+          data:{
+            MSDH: order_id,
+            status: status,
+            _token: _token },
+          success:function(data){
+            if(data==1){
+              swal("Xác nhận thành công", "", "success").then(function(){
+                location.reload();
+              });
+            }else{
+              swal("Xác nhận không thành công", "", "error").then(function(){
+                location.reload();
+              });
+            }
+          }
+        });
+    });
+
+    //Xác nhận đã giao hàng
+    $('.order-delivered').click(function(event) {
+      var order_id = $(this).data('id');
+      var status = 4;
+      var _token = $('input[name="_token"]').val();
+
+      event.preventDefault();
+      swal("Bạn chắc là đã giao hàng?","","info",{
+        buttons: {
+          yes: {
+            text: "Yes",
+            value: "yes"
+          },
+          no: {
+            text: "No",
+            value: "no"
+          }
+        }
+      }).then((value) => {
+        if (value === "yes") {
+           $.ajax({
+          url: '{{url('/update_status_order')}}',
+          method: "POST",
+          data:{
+            MSDH: order_id,
+            status: status,
+            _token: _token },
+            success:function(data){
+              if(data==1){
+                swal("Xác nhận thành công", "", "success").then(function(){
+                  location.reload();
+                });
+              }else{
+                swal("Xác nhận không thành công", "", "error").then(function(){
+                  location.reload();
+                });
+              }
+            }
+          });
+        }else{
+          swal("Warning!", "No!", "error");
+        }
+        
+      });
+
+      
+    });
 
   });
 </script>

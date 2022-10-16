@@ -7284,7 +7284,9 @@ footer.coffee .newletter {
   .error-404 .normal-btn {
     margin-bottom: 60px; } }
 
-
+/************************************
+  My account
+*************************************/
     .logoimg{
       text-align: center;
     }
@@ -7386,6 +7388,14 @@ footer.coffee .newletter {
     .avatar-tab li i {
       margin-bottom: 0px !important;
     }
+    
+@media only screen and (device-width : 414px) and (device-height : 736px) and (-webkit-device-pixel-ratio : 3) { 
+    .avatar-wrapper {
+      height: 100px;
+      width: 100px;
+    }
+}    
+
 
 /************************************
   Address

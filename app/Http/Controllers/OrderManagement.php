@@ -38,13 +38,14 @@ class OrderManagement extends Controller
         ->join('thanhtoan', 'thanhtoan.MaThanhToan', '=', 'dathang.MaThanhToan')
         ->orderBy('dathang.MSDH','desc')->select('dathang.*', 'thanhtoan.TT_TrangThai')->get();
 
-        $count = DB::table('dathang')
-        ->join('thanhtoan', 'thanhtoan.MaThanhToan', '=', 'dathang.MaThanhToan')
-        ->where('dathang.TrangThai',0)
-        ->get()->count();
+        //đếm các order cần xác nhận
+        $count_order_process = DB::table('dathang')->where('dathang.TrangThai',0)->get()->count();
+
+        //đếm các order cần chọn nhân viên vận chuyển
+        $count_order_ship = DB::table('dathang')->where('TrangThai',1)->where('MSGH', null)->get()->count();
 
     	Session::put('page',5);
-    	return view('admin.Order.order_management')->with('all_order',$all_order)->with('count_order_process',$count);
+    	return view('admin.Order.order_management',compact('all_order', 'count_order_process','count_order_ship'));
     }
 
     public function count_order(){
@@ -73,17 +74,21 @@ class OrderManagement extends Controller
 
     public function view_order($SoDonDH){
         $this->AuthLogin();
+
     	$order_by_id=DB::table('dathang')
     	->join('khachhang', 'dathang.MSKH', '=', 'khachhang.MSKH')
         ->join('thanhtoan', 'thanhtoan.MaThanhToan', '=', 'dathang.MaThanhToan')
         ->where('dathang.MSDH',$SoDonDH)
-        ->select('khachhang.MSKH', 'HoTenKH','GioiTinh','NgaySinh','khachhang.SDT','Email', 'dathang.*', 'thanhtoan.TT_TrangThai', 'thanhtoan.TT_Ten')->get();
+        ->select('khachhang.MSKH', 'HoTenKH','GioiTinh','NgaySinh','khachhang.SDT','Email', 'dathang.*', 'thanhtoan.TT_TrangThai', 'thanhtoan.TT_Ten','MaTP')->first();
 
     	$order_details=DB::table('chitietdathang')->join('sanpham', 'chitietdathang.MSSP', '=', 'sanpham.MSSP')->where('MSDH',$SoDonDH)->select('chitietdathang.*', 'TenSP')->get();
 
         $staff = DB::table('dathang')
         ->join('nhanvien', 'dathang.MSNV', '=', 'nhanvien.MSNV')
         ->where('dathang.MSDH',$SoDonDH)->first();
+
+        $shipper = DB::table('giaohang')->where('ThanhPho',$order_by_id->MaTP)->get();
+
         $name_staff;
         if ($staff!=NULL) {
             $name_staff=$staff->HoTenNV;
@@ -93,7 +98,20 @@ class OrderManagement extends Controller
 
     	return view('admin.Order.view_order')
         ->with('order_by_id',$order_by_id)->with('order_details',$order_details)
-        ->with('MSDH',$SoDonDH)->with("NameStaff", $name_staff);
+        ->with('MSDH',$SoDonDH)->with("NameStaff", $name_staff)->with('shipper',$shipper);
+    }
+
+    public function choose_shipper(Request $request){
+        $MSDH=$request->MSDH;
+        $MSGH=$request->MSGH;
+
+        $result = DB::table('dathang')->where('MSDH',$MSDH)->update(['TrangThai'=> 1, 'MSGH'=>$MSGH]);
+
+        if($result){
+           echo 1; //Chọn shipper thành công
+        }else{
+           echo 0; //Chọn không thành công
+        }
     }
 
     //Xác nhận đơn hàng. Ko cập nhật TT_TinhTrang
@@ -171,15 +189,21 @@ class OrderManagement extends Controller
                 <td>'.$value->NgayDat.'</td>
                 <td>';
 
-                if($value->TrangThai ==0)
-                    $output.= 'Đang Xử Lý</td> ';
-                elseif($value->TrangThai ==1){
-                    $output.='Đang Giao Hàng</td> ';
-                }elseif($value->TrangThai ==2){
-                    $output.= 'Đã Giao Hàng</td> ';
-                }else{
-                    $output.= 'Đã Huỷ</td>';
-                } 
+                if($value->TrangThai ==0){
+                      $output.= 'Đang Xử Lý</td>';
+                    }elseif($value->TrangThai == 1){
+                      $output.='Chờ Lấy Hàng</td>';
+                    }elseif($value->TrangThai ==2){
+                      $output.= 'Nhận Đơn</td>';
+                    }elseif($value->TrangThai ==3){
+                      $output.= 'Đang Giao Hàng</td>';
+                    }elseif($value->TrangThai ==4){
+                      $output.= 'Chờ Xác Nhận</td>';
+                    }elseif($value->TrangThai ==5){
+                      $output.= 'Giao Hàng Thành Công</td>';
+                    }elseif($value->TrangThai ==6){
+                      $output.= 'Đã Huỷ</td>';
+                    } 
 
                 $output.='<td style="text-align: center;">';
 
@@ -208,31 +232,28 @@ class OrderManagement extends Controller
 
     public function show_order(Request $re){
         $this->LoginCheck();
-        $all_category = DB::table('danhmuc')->get();
-        $loaihang = DB::table('loaihang')->get();
+        $category = DB::table('danhmuc')->get();
+        $list = DB::table('loaihang')->get();
 
         $MSKH=Session::get('user_id');
         //Các đơn hàng chưa xử lý
-        $orders_process = DB::table('dathang')->where('MSKH',$MSKH)->where('TrangThai',0)
+        $orders_unprocess = DB::table('dathang')->where('MSKH',$MSKH)->where('TrangThai',0)
         ->orderBy('MSDH','desc')->get();
-        //Các đơn hàng đang giao hàng
-        $orders_shipping = DB::table('dathang')->where('MSKH',$MSKH)->where('TrangThai',1)->get();
-        //Các đơn hàng đã nhận hàng
-        $orders_delivered = DB::table('dathang')->where('MSKH',$MSKH)->where('TrangThai',2)->get();
+        //Các đơn hàng chờ lấy hàng
+        $orders_waitting = DB::table('dathang')->where('MSKH',$MSKH)->whereIn('TrangThai',[1,2])->get();
+        //Các đơn hàng đang giao
+        $orders_shipping = DB::table('dathang')->where('MSKH',$MSKH)->whereIn('TrangThai',[3,4])->get();
+        //Các đơn hàng thành công
+        $orders_delivered = DB::table('dathang')->where('MSKH',$MSKH)->where('TrangThai',5)->get();
         //Các đơn hàng đã huỷ
-        $orders_cancel = DB::table('dathang')->where('MSKH',$MSKH)->where('TrangThai',3)->get();
+        $orders_cancel = DB::table('dathang')->where('MSKH',$MSKH)->where('TrangThai',6)->get();
 
         $meta_desc="Thông Tin Đơn Hàng";
         $meta_keywords="Show Order";
         $meta_tittle="QPharmacy";
         $url=$re->url();
 
-        return view('User.Order.order')
-        ->with('category',$all_category)->with('list',$loaihang)
-        ->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)
-        ->with('meta_tittle',$meta_tittle)->with('url',$url)
-        ->with('orders_process',$orders_process)->with('orders_shipping',$orders_shipping)
-        ->with('orders_delivered',$orders_delivered)->with('orders_cancel',$orders_cancel);
+        return view('User.Order.order', compact('category','list','meta_desc','meta_keywords','url','orders_unprocess','orders_waitting','orders_shipping','orders_delivered','orders_cancel'));
     }
     public function order_detail($id_order, Request $re){
         $this->LoginCheck();
@@ -261,13 +282,11 @@ class OrderManagement extends Controller
     }
     public function update_order(Request $re){
         $status = $re->TinhTrang;
-        $TT_status = $re->TT_TrangThai;
         $MSDH= $re->MSDH;
         $result = DB::table('dathang')
-        ->join('thanhtoan', 'thanhtoan.MaThanhToan', '=', 'dathang.MaThanhToan')
-        ->where('MSDH',$MSDH)->update(['TT_TrangThai' => $TT_status, 'TrangThai' => $status]);
+        ->where('MSDH',$MSDH)->update(['TrangThai' => $status]);
 
-        if ($status==3) {
+        if ($status==6) {
             DB::table("chitietdathang")->where('MSDH',$MSDH)->delete();
         }
         if($result){

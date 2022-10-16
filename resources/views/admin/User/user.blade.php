@@ -81,7 +81,7 @@
               <div class="col-md-4">
                 <div class="form-group">
                   <label class="bmd-label-floating">Ngày</label>
-                  <select class="selectpicker" data-style="select-with-transition" multiple title="Chọn" data-size="7" name="Ngay">
+                  <select class="selectpicker" data-style="select-with-transition" title="Chọn" data-size="7" name="Ngay">
                    @for($i = 1; $i < 31; $i++)
                    <option value="{{$i}}" {{ ($value->Ngay==$i)? "selected" : "" }}>
                     {{$i}}
@@ -93,7 +93,7 @@
             <div class="col-md-4">
               <div class="form-group">
                 <label class="bmd-label-floating">Tháng</label>
-                <select class="selectpicker" data-style="select-with-transition" multiple title="Chọn" data-size="7" name="Thang">
+                <select class="selectpicker" data-style="select-with-transition" title="Chọn" data-size="7" name="Thang">
                   @for($i = 1; $i < 12; $i++)
                   <option value="{{$i}}" {{ ($value->Thang==$i)? "selected" : "" }}>
                     {{$i}}
@@ -105,7 +105,7 @@
             <div class="col-md-4">
               <div class="form-group">
                 <label class="bmd-label-floating">Năm</label>
-                <select class="selectpicker" data-style="select-with-transition" multiple title="Chọn" data-size="7" name="Nam">
+                <select class="selectpicker" data-style="select-with-transition" title="Chọn" data-size="7" name="Nam">
                   @for($i = 1990; $i < 2021; $i++)
                   <option value="{{$i}}" {{ ($value->Nam==$i)? "selected" : "" }}>
                     {{$i}}

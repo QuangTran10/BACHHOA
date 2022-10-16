@@ -530,6 +530,33 @@
         }); 
       });
 
+      $('.btn-choose-shipper').click(function(event) {
+        var id_shipper = $('#id_shipper').val() //MSGH
+        var id_order = $('#id_order').val();
+        var _token = $('input[name="_token"]').val();
+
+        $.ajax({
+          url: '{{url('/choose_shipper')}}',
+          method: "POST",
+          data:{
+            MSGH: id_shipper,
+            MSDH: id_order,
+            _token: _token },
+          success:function(data){
+            if(data==1){
+              swal("", "Chọn nhân viên giao hàng thành công", "success").then(function(){
+                location.reload();
+              });
+            }else{
+              swal("Cảnh Báo", "Không thêm thành công", "error").then(function(){
+              location.reload();
+              });
+            }
+          }
+        }); 
+
+      });
+
       
     });
   </script>

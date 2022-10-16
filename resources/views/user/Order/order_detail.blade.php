@@ -69,7 +69,7 @@
 				<form action="{{URL::to('/update_order')}}" method="post">
 					{{csrf_field() }}
 					{{-- Trạng thái Đang Xử Lý có thể huỷ đơn --}}
-					<input type="hidden" name="TinhTrang" value="3">
+					<input type="hidden" name="TinhTrang" value="6">
 					<input type="hidden" name="TT_TrangThai" value="0">
 					<input type="hidden" name="MSDH" value="{{$order->MSDH}}">
 					<button class="no-round-btn cart-update">Huỷ Đơn Hàng</button>
@@ -115,14 +115,21 @@
 								<th>TRẠNG THÁI</th>
 								<td>
 									<?php
-									if($order->TrangThai ==0)
-										echo '<p style="color:red">Đang Xử Lý...</p>';
-									elseif($order->TrangThai ==1){
-										echo '<p style="color:red">Đang Giao Hàng</p>';
+
+									if($order->TrangThai ==0){
+										echo '<p style="color:red">Đang Xử Lý</p>';
+									}elseif($order->TrangThai == 1){
+										echo 'Chờ Lấy Hàng';
 									}elseif($order->TrangThai ==2){
-										echo '<p style="color:green">Đã Giao Hàng</p>';
-									}else{
-										echo '<p>Đã Huỷ</p>';
+										echo 'Nhận Đơn';
+									}elseif($order->TrangThai ==3){
+										echo 'Đang Giao Hàng';
+									}elseif($order->TrangThai ==4){
+										echo 'Chờ Xác Nhận';
+									}elseif($order->TrangThai ==5){
+										echo '<p style="color:green">Giao Hàng Thành Công</p>';
+									}elseif($order->TrangThai ==6){
+										echo 'Đã Huỷ';
 									} 
 									?>
 								</td>
@@ -145,11 +152,10 @@
 					</table>
 					<div class="row">
 						<div class="col-12 justify-content-center align-items-center text-center">
-							@if($order->TrangThai==1)
+							@if($order->TrangThai==4)
 							<form action="{{URL::to('/update_order')}}" method="post">
 								{{csrf_field() }}
-								<input type="hidden" name="TinhTrang" value="2">
-								<input type="hidden" name="TT_TrangThai" value="1">
+								<input type="hidden" name="TinhTrang" value="5">
 								<input type="hidden" name="MSDH" value="{{$order->MSDH}}">
 								<button class="normal-btn cart-update">Đã Nhận Hàng</button>
 							</form>

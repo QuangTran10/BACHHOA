@@ -32,9 +32,24 @@
 				<ul class="collapsible" data-collapsible="accordion">
 					@foreach($order as $key => $value)
 					<li>
-						<div class="collapsible-header text-bold active">
-							<i class="fas fa-shopping-bag"></i>#{{$value->MSDH}}
-						</div>
+						@if($value->TrangThai==1 && $value->MSGH != null)
+							<div class="collapsible-header text-bold active" style="color: red;">
+								<i class="fas fa-shopping-bag"></i>#{{$value->MSDH}}...Chờ Nhận Đơn
+							</div>
+						@elseif($value->TrangThai==2 && $value->MSGH != null)
+							<div class="collapsible-header text-bold active" style="color: #ff9800;">
+								<i class="fas fa-shopping-bag"></i>#{{$value->MSDH}}...Đã Nhận Đơn
+							</div>
+						@elseif($value->TrangThai==5 && $value->MSGH != null)	
+							<div class="collapsible-header text-bold active" style="color: green;">
+								<i class="fas fa-shopping-bag"></i>#{{$value->MSDH}}...Giao Hàng Thành Công
+							</div>
+						@else
+							<div class="collapsible-header text-bold active" style="color: #0091ea ;">
+								<i class="fas fa-shopping-bag"></i>#{{$value->MSDH}}...Đang Giao Hàng
+							</div>
+						@endif
+
 						<div class="collapsible-body">
 							@foreach($order_details as $k => $val)
 							@if($val->MSDH == $value->MSDH)
@@ -130,7 +145,22 @@
 										</div>
 									</div>
 								</div>
-								<button class="button"><i class="fa fa-send"></i>Xác Nhận</button>
+								<form>
+									{{csrf_field()}}
+								</form>
+								@if($value->TrangThai==1)
+								<button class="button green order-accept" data-id="{{$value->MSDH}}"> Nhận Đơn</button>
+								<button class="button red accent-4 order-reject" data-id="{{$value->MSDH}}">Từ Chối</button>
+								@endif
+
+								@if($value->TrangThai==2)
+								<button class="button yellow accent-2 black-text order-shipping" data-id="{{$value->MSDH}}">Đã Lấy Hàng</button>
+								@endif
+
+								@if($value->TrangThai==3)
+								<button class="button blue darken-4 order-delivered" data-id="{{$value->MSDH}}">Đã Giao Hàng</button>
+								@endif
+								
 							</div>
 						</div>
 					</li>

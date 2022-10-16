@@ -10,7 +10,6 @@
     <meta name="robots" content="INDEX,FOLLOW"/>
     <link  rel="canonical" href="{{$url}}" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
-    {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> --}}
     <link rel="stylesheet" href="{{asset('public/frontend/assets/css/style.css')}}">
     <link rel="stylesheet" href="{{asset('public/frontend/assets/css/custom_bootstrap.css')}}">
     <link rel="stylesheet" href="{{asset('public/frontend/assets/css/normalize.css')}}">
@@ -150,6 +149,7 @@
                         if($name_user){
                       ?>
                         <a href="{{URL::to('/my_account')}}">Tài Khoản</a><a href="{{URL::to('/show_order')}}">Quản Lý Đơn Hàng</a>
+                         <a href="{{URL::to('/logout_user')}}">Đăng Xuất</i></a>
                       <?php
                         }else{
                       ?>  

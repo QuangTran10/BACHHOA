@@ -39,8 +39,13 @@ class CheckOutController extends Controller
         $customer = DB::table('khachhang')->where('MSKH',$MSKH)->first();
 
         $users = $customer->Email;
+        $greeting = 'Xin chào '.$customer->HoTenKH.',';
+
+        $title = 'Bee Store đã nhận được yêu cầu đặt hàng của bạn và đang xử lý nhé. Bạn sẽ nhận được thông báo tiếp theo khi đơn hàng đã sẵn sàng được giao.';
+
         $message = [
-           'user'   => $customer->HoTenKH,
+           'greeting'=> $greeting,
+           'title'   => $title,
            'order' => $order,
            'order_details' => $order_details,
            'name' => $HoTen,

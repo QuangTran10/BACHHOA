@@ -3,10 +3,17 @@
 
 <div class="container-fluid">
   <div class="row">
-    <div class="col-lg-4 col-md-4">
+    <div class="col-lg-3 col-md-6">
       @if($count_order_process!=0)
       <div class="alert alert-warning">
         <span>Có {{$count_order_process}} đơn hàng cần xử lý</span>
+      </div>
+      @endif
+    </div>
+    <div class="col-lg-5 col-md-6">
+      @if($count_order_ship != 0)
+      <div class="alert alert-warning">
+        <span>Có {{$count_order_ship}} đơn hàng cần chọn nhân viên giao hàng</span>
       </div>
       @endif
     </div>
@@ -54,14 +61,21 @@
                 <td>{{$value->NgayDat}}</td>
                 <td>
                   <?php
-                    if($value->TrangThai ==0)
-                        echo 'Đang Xử Lý';
-                    elseif($value->TrangThai ==1){
-                        echo 'Đang Giao Hàng';
+
+                    if($value->TrangThai ==0){
+                      echo 'Đang Xử Lý';
+                    }elseif($value->TrangThai == 1){
+                      echo 'Chờ Lấy Hàng';
                     }elseif($value->TrangThai ==2){
-                        echo 'Đã Giao Hàng';
-                    }else{
-                        echo 'Đã Huỷ';
+                      echo 'Nhận Đơn';
+                    }elseif($value->TrangThai ==3){
+                      echo 'Đang Giao Hàng';
+                    }elseif($value->TrangThai ==4){
+                      echo 'Chờ Xác Nhận';
+                    }elseif($value->TrangThai ==5){
+                      echo 'Giao Hàng Thành Công';
+                    }elseif($value->TrangThai ==6){
+                      echo 'Đã Huỷ';
                     } 
                   ?>
                 </td>  

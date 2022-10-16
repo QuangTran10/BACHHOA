@@ -183,6 +183,8 @@ Route::get('/print_order/{checkout_code}', 'App\Http\Controllers\OrderManagement
 
 Route::post('/find-order', 'App\Http\Controllers\OrderManagement@find_order');
 
+Route::post('/choose_shipper', 'App\Http\Controllers\OrderManagement@choose_shipper');
+
 
 //Chỉ Staff và Admin mới truy cập
 Route::group(['middleware' => 'roles'], function(){
@@ -309,3 +311,6 @@ Route::get('/shipper_order', 'App\Http\Controllers\ShipperController@order_proce
 Route::get('/shipper_infor', 'App\Http\Controllers\ShipperController@infor');
 
 Route::get('/shipper_noti', 'App\Http\Controllers\ShipperController@notification');
+
+Route::post('/update_status_order', 'App\Http\Controllers\ShipperController@update');
+
