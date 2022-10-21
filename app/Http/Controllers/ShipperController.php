@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\File; 
 use Session;
 use App\Models\Shipper;
+use App\Jobs\SendEmailNoti;
 session_start();
 
 class ShipperController extends Controller
@@ -32,6 +33,27 @@ class ShipperController extends Controller
 
 		return view('shipper.shipper_register', compact('city'));
 	}
+
+    public function sendEmail($MSDH){
+        $order=DB::table('dathang')
+        ->join('giaohang', 'dathang.MSGH', '=', 'giaohang.MSGH')
+        ->where('dathang.MSDH',$MSDH)->select('dathang.*', 'HoTenGH')->first();
+
+        $customer = DB::table('khachhang')->where('MSKH',$order->MSKH)->first();
+
+        $users = $customer->Email;
+
+        $message = [
+           'name_shipper' => $order->HoTenGH,
+           'name'         => $order->HoTen,
+           'address'      => $order->DiaChi,
+           'phone'        => $order->SDT,
+           'total'        => $order->ThanhTien,
+           'MSDH'         => $order->MSDH,
+        ];
+        //Email cho khách hàng là đã giao hàng thành công
+        SendEmailNoti::dispatch($message, $users)->delay(5);
+    }
 
 	//Trang Chủ
     public function dashboard(){
@@ -77,6 +99,8 @@ class ShipperController extends Controller
             $result = DB::table('dathang')
             ->join('thanhtoan', 'thanhtoan.MaThanhToan', '=', 'dathang.MaThanhToan')
             ->where('dathang.MSDH', $MSDH)->update(['TrangThai'=> 4,'TT_TrangThai'=>1]);
+
+            $this->sendEmail($MSDH);
         }
         
         if($result){
@@ -84,12 +108,6 @@ class ShipperController extends Controller
         }else{
             echo 0;
         }
-
-        // if($status=4){
-        //     echo 1;
-        // }else{
-        //     echo 0;
-        // }
 
     }
 
@@ -103,6 +121,25 @@ class ShipperController extends Controller
     	$shipper = Shipper::find($id);
 
     	return view('shipper.shipper_infor', compact('shipper','city'));
+    }
+
+    public function update_shipper(Request $request){
+        $this->AuthLogin();
+        $data = $request->all();
+
+        $shipper = Shipper::find($data['MSGH']);
+
+        $shipper->HoTenGH = $data['HoTenGH'];
+        $shipper->GioiTinh = $data['GioiTinh'];
+        $shipper->SDT = $data['SDT'];
+        $shipper->DiaChi = $data['DiaChi'];
+        $shipper->ThanhPho = $data['ThanhPho'];
+        $shipper->Email = $data['Email'];
+
+        $shipper->save();
+
+        return Redirect::to('/shipper_infor');
+
     }
 
     public function notification(){

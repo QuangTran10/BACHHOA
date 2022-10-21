@@ -158,7 +158,8 @@
 								@endif
 
 								@if($value->TrangThai==3)
-								<button class="button blue darken-4 order-delivered" data-id="{{$value->MSDH}}">Đã Giao Hàng</button>
+								<button data-target="modal1" class="delivered button blue darken-4  modal-trigger" data-id="{{$value->MSDH}}">Giao Hàng Thành Công</button>
+								<button class="button red darken-4 order-boom" data-id="{{$value->MSDH}}">Giao Hàng Không Thành Công</button>
 								@endif
 								
 							</div>
@@ -167,6 +168,25 @@
 					@endforeach
 				</ul>
 			</div>
+		</div>
+	</div>
+
+
+	<div id="modal1" class="modal">
+		<div class="modal-content">
+			<form>
+				{{csrf_field()}}
+				<div class="profile-photo">
+					<span>Cập nhật ảnh </span>
+					<div class="contents">
+						<input type="file" name="image_check_out">
+					</div>
+					<input type="hidden" name="MSDH" id="MSDH">
+				</div>
+			</form>
+		</div>
+		<div class="modal-footer">
+			<a class="order-delivered modal-close waves-effect waves-green btn-flat">Xác Nhận</a>
 		</div>
 	</div>
 @endsection	

@@ -95,7 +95,7 @@ if($total<1000000){
 						<label>Tôi đồng ý với các điều khoản.</label>
 					</div>
 					<h2 class="form-title">Phương thức thanh toán</h2>
-					<input type="submit" class="normal-btn" name="redirect" value="THANH TOÁN VNPAY" <?php if($user_id==null) echo "disabled" ?>>
+					<input type="submit" class="normal-btn" name="redirect" id="redirect" value="THANH TOÁN VNPAY" <?php if($user_id==null) echo "disabled" ?>>
 				</form>
 			</div>
 			<div class="col-12 col-md-6 col-lg-4">

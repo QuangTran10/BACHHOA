@@ -109,12 +109,14 @@
   <script type="text/javascript">
   $(document).ready(function(){
     $('select').formSelect();
+    $('.modal').modal();
 
-    // $('.City').change(function(event) {
-    //  var city = $('.City').val();
+    $('.City').change(function(event) {
+     var city = $('.City').val();
 
-    //  $('#ThanhPho').val(city);
-    // });
+     $('#ThanhPho').val(city);
+    });
+
 
 
 
@@ -160,11 +162,11 @@
             _token: _token },
           success:function(data){
             if(data==1){
-              swal("Nhận đơn thành công", "", "success").then(function(){
+              swal("Từ chối đơn thành công", "", "success").then(function(){
                 location.reload();
               });
             }else{
-              swal("Không nhận đơn", "", "error").then(function(){
+              swal("Xác nhận thất bại", "", "error").then(function(){
               location.reload();
               });
             }
@@ -199,53 +201,66 @@
         });
     });
 
-    //Xác nhận đã giao hàng
-    $('.order-delivered').click(function(event) {
+    $('.delivered').click(function(event) {
       var order_id = $(this).data('id');
+      $('#MSDH').val(order_id);
+    });
+
+    $('.order-delivered').click(function(event) {
+      // var order_id = $(this).data('id');
       var status = 4;
       var _token = $('input[name="_token"]').val();
 
-      event.preventDefault();
-      swal("Bạn chắc là đã giao hàng?","","info",{
-        buttons: {
-          yes: {
-            text: "Yes",
-            value: "yes"
-          },
-          no: {
-            text: "No",
-            value: "no"
-          }
-        }
-      }).then((value) => {
-        if (value === "yes") {
-           $.ajax({
-          url: '{{url('/update_status_order')}}',
-          method: "POST",
-          data:{
-            MSDH: order_id,
-            status: status,
-            _token: _token },
-            success:function(data){
-              if(data==1){
-                swal("Xác nhận thành công", "", "success").then(function(){
-                  location.reload();
-                });
-              }else{
-                swal("Xác nhận không thành công", "", "error").then(function(){
-                  location.reload();
-                });
-              }
-            }
-          });
-        }else{
-          swal("Warning!", "No!", "error");
-        }
+      alert(order_id);
+    });
+
+    // //Xác nhận đã giao hàng
+    // $('.order-delivered').click(function(event) {
+    //   var order_id = $(this).data('id');
+    //   var status = 4;
+    //   var _token = $('input[name="_token"]').val();
+
+    //   event.preventDefault();
+    //   swal("Bạn chắc là đã giao hàng?","","info",{
+    //     buttons: {
+    //       yes: {
+    //         text: "Yes",
+    //         value: "yes"
+    //       },
+    //       no: {
+    //         text: "No",
+    //         value: "no"
+    //       }
+    //     }
+    //   }).then((value) => {
+    //     if (value === "yes") {
+    //       $.ajax({
+    //         url: '{{url('/update_status_order')}}',
+    //         method: "POST",
+    //         data:{
+    //           MSDH: order_id,
+    //           status: status,
+    //           _token: _token },
+    //           success:function(data){
+    //             if(data==1){
+    //               swal("Xác nhận thành công", "", "success").then(function(){
+    //                 location.reload();
+    //               });
+    //             }else{
+    //               swal("Xác nhận không thành công", "", "error").then(function(){
+    //                 location.reload();
+    //               });
+    //             }
+    //           }
+    //       });
+    //     }else{
+    //       swal("Warning!", "No!", "error");
+    //     }
         
-      });
+    //   });
 
       
-    });
+    // });
 
   });
 </script>

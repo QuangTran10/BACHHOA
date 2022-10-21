@@ -30,7 +30,8 @@
 				<h3>Thông Tin Cá Nhân</h3>
 				<div class="line"></div>
 			</div>
-			<form>
+			<form action="{{URL::to('/save_shipper_infor')}}" method="post">
+				{{csrf_field()}}
 				<input type="text" name="HoTenGH" placeholder="Họ và Tên" value="{{$shipper->HoTenGH}}">
 				<div class="row" style="margin-left: 0px;">
 					<div class="input-field col s7">
@@ -70,7 +71,9 @@
 					</div>
 				</div>
 				<input type="text" name="DiaChi" placeholder="Địa chỉ cụ thể" value="{{$shipper->DiaChi}}">
-				<button class="button">Lưu Thay Đổi</button>
+				<input type="hidden" name="ThanhPho" id="ThanhPho" value="{{$shipper->ThanhPho}}">
+				<input type="hidden" name="MSGH" value="{{$shipper->MSGH}}">
+				<input class="button" type="submit" name="save" value="Lưu Thay Đổi">
 			</form>
 		</div>
 	</div>

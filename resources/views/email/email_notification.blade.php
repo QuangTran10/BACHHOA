@@ -51,17 +51,17 @@
                      <tr style="border-collapse:collapse">
                       <td align="left" style="Margin:0;padding-top:5px;padding-bottom:5px;padding-left:40px;padding-right:40px">
                         <p style="margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:21px;color:#333333;font-size:16px">
-                          Nguyễn Văn A ơi,
+                          {{$data['name']}} ơi,
                         </p>
                         <p style="margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:21px;color:#333333;font-size:14px">
                           <br>
                           Một kiện hàng đã được giao bởi Express<br>
-                          Nhân viên giao hàng: Lê Văn B<br>
+                          Nhân viên giao hàng: {{$data['name_shipper']}}<br>
                         </p>
                       </td>
                      </tr>
                      <tr style="border-collapse:collapse">
-                      <td align="center" style="padding:0;Margin:0;padding-bottom:10px;padding-top:15px"><span class="es-button-border" style="border-style:solid;border-color:#2cb543;background:#d48344;border-width:0px;display:inline-block;border-radius:5px;width:auto;border-top:0px solid #2cb543;border-bottom:0px solid #2cb543"><a href="{{-- {{URL::to('/order_detail/'.$val->MSDH)}} --}}" class="es-button" target="_blank" style="mso-style-priority:100 !important;text-decoration:none;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;color:#FFFFFF;font-size:16px;border-style:solid;border-color:#d48344;border-width:10px 20px 10px 20px;display:inline-block;background:#d48344;border-radius:5px;font-family:arial, 'helvetica neue', helvetica, sans-serif;font-weight:normal;font-style:normal;line-height:19px;width:auto;text-align:center;border-top-width:10px;border-bottom-width:10px">Tình Trạng Đơn Hàng</a></span></td>
+                      <td align="center" style="padding:0;Margin:0;padding-bottom:10px;padding-top:15px"><span class="es-button-border" style="border-style:solid;border-color:#2cb543;background:#d48344;border-width:0px;display:inline-block;border-radius:5px;width:auto;border-top:0px solid #2cb543;border-bottom:0px solid #2cb543"><a href="{{URL::to('/order_detail/'.$data['MSDH'])}}" class="es-button" target="_blank" style="mso-style-priority:100 !important;text-decoration:none;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;color:#FFFFFF;font-size:16px;border-style:solid;border-color:#d48344;border-width:10px 20px 10px 20px;display:inline-block;background:#d48344;border-radius:5px;font-family:arial, 'helvetica neue', helvetica, sans-serif;font-weight:normal;font-style:normal;line-height:19px;width:auto;text-align:center;border-top-width:10px;border-bottom-width:10px">Tình Trạng Đơn Hàng</a></span></td>
                      </tr>
                    </table></td>
                  </tr>
@@ -99,10 +99,10 @@
                       </td>
                       <td align="left" style="padding:0;margin:0;padding-bottom:20px;padding-left:0px;padding-right:0px">
                         <p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:21px;color:#333333;font-size:14px">
-                        {{-- {{$data['name']}} --}}Nguyễn Văn A</p>
-                        <p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:21px;color:#333333;font-size:14px">{{-- {{$data['phone']}} --}}0123456789</p>
-                        <p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:21px;color:#333333;font-size:14px">{{-- {{$data['address']}} --}}383/104A Đường 30/4,</p>
-                        <p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:21px;color:#333333;font-size:14px">{{-- {{$data['total']}} --}}12000</p>
+                        {{$data['name']}}</p>
+                        <p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:21px;color:#333333;font-size:14px">{{$data['phone']}}</p>
+                        <p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:21px;color:#333333;font-size:14px">{{$data['address']}}</p>
+                        <p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;line-height:21px;color:#333333;font-size:14px">{{ number_format($data['total'], 0, ',', ' ') }} VND</p>
                       </td>
                      
                      </tr>

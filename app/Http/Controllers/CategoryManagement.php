@@ -35,7 +35,7 @@ class CategoryManagement extends Controller
     	return view('admin.Category.add_category');
     }
 
-    //Hàm thêm danh mục
+    //thêm danh mục
     public function save_category(Request $re){
         $this->AuthLogin();
     	$now = Carbon::now('Asia/Ho_Chi_Minh');
@@ -57,7 +57,7 @@ class CategoryManagement extends Controller
         return view('admin_layout')->with('admin.edit_category_product', $manager_category_product);
     }
 
-    //Hàm Cập nhật danh mục
+    //Cập nhật danh mục
     public function edit_category(Request $re, $category_product_id){
         $this->AuthLogin();
         $now = Carbon::now('Asia/Ho_Chi_Minh');

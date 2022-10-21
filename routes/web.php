@@ -314,3 +314,5 @@ Route::get('/shipper_noti', 'App\Http\Controllers\ShipperController@notification
 
 Route::post('/update_status_order', 'App\Http\Controllers\ShipperController@update');
 
+Route::post('/save_shipper_infor', 'App\Http\Controllers\ShipperController@update_shipper');
+

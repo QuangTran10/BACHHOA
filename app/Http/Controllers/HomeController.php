@@ -162,7 +162,7 @@ class HomeController extends Controller
     }
 
     public function example(){
-        $ship = DB::table('khachhang')->where('MSKH',3)->first();
+        return view('user.example');
     }
 
 }

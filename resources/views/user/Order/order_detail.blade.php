@@ -78,6 +78,35 @@
 			</div>
 			<div class="col-12 col-sm-8"></div>
 		</div>
+		<div class="row">
+			<div class="col-12 col-md-12">
+				<div class="progress-track">
+					<ul id="progressbar">
+						@if($order->TrangThai==0)
+							<li class="step0 active" id="step1">Chờ Xác Nhận</li>
+							<li class="step0 text-center" id="step2">Chờ Lấy Hàng</li>
+							<li class="step0 text-right" id="step3">Đang Giao Hàng</li>
+							<li class="step0 text-right" id="step4">Đã Giao Hàng</li>
+						@elseif($order->TrangThai==1 || $order->TrangThai==2)
+							<li class="step0  active" id="step1">Chờ Xác Nhận</li>
+							<li class="step0 text-center active" id="step2">Chờ Lấy Hàng</li>
+							<li class="step0 text-right" id="step3">Đang Giao Hàng</li>
+							<li class="step0 text-right" id="step4">Đã Giao Hàng</li>
+						@elseif($order->TrangThai==3 || $order->TrangThai==4)
+							<li class="step0  active" id="step1">Chờ Xác Nhận</li>
+							<li class="step0 text-center active" id="step2">Chờ Lấy Hàng</li>
+							<li class="step0 text-right active" id="step3">Đang Giao Hàng</li>
+							<li class="step0 text-right" id="step4">Đã Giao Hàng</li>
+						@elseif($order->TrangThai==5)
+							<li class="step0 active" id="step1">Chờ Xác Nhận</li>
+							<li class="step0 text-center active" id="step2">Chờ Lấy Hàng</li>
+							<li class="step0 text-right active" id="step3">Đang Giao Hàng</li>
+							<li class="step0 text-right active" id="step4">Đã Giao Hàng</li>
+						@endif
+					</ul>
+				</div>
+			</div>
+		</div>
 		<div class="row justify-content-end">
 			<div class="col-12 col-md-6 col-lg-4">
 				<div class="cart-total_block">
