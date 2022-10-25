@@ -203,64 +203,20 @@
 
     $('.delivered').click(function(event) {
       var order_id = $(this).data('id');
-      $('#MSDH').val(order_id);
     });
 
-    $('.order-delivered').click(function(event) {
-      // var order_id = $(this).data('id');
-      var status = 4;
-      var _token = $('input[name="_token"]').val();
+    $('.status_order').change(function(event) {
+      var status = $(this).val();
 
-      alert(order_id);
+      if(status==4){
+        $('#content_order').empty();
+        $('#content_order').append('<div class="contents"><input type="file" name="payment_image"></div>');
+      }else if(status==7){
+        $('#content_order').empty();
+        $('#content_order').append('<textarea required="true" name="payment_reason" cols="50" rows="10" placeholder="Lý do" style="resize: none;"></textarea>');
+      }
     });
 
-    // //Xác nhận đã giao hàng
-    // $('.order-delivered').click(function(event) {
-    //   var order_id = $(this).data('id');
-    //   var status = 4;
-    //   var _token = $('input[name="_token"]').val();
-
-    //   event.preventDefault();
-    //   swal("Bạn chắc là đã giao hàng?","","info",{
-    //     buttons: {
-    //       yes: {
-    //         text: "Yes",
-    //         value: "yes"
-    //       },
-    //       no: {
-    //         text: "No",
-    //         value: "no"
-    //       }
-    //     }
-    //   }).then((value) => {
-    //     if (value === "yes") {
-    //       $.ajax({
-    //         url: '{{url('/update_status_order')}}',
-    //         method: "POST",
-    //         data:{
-    //           MSDH: order_id,
-    //           status: status,
-    //           _token: _token },
-    //           success:function(data){
-    //             if(data==1){
-    //               swal("Xác nhận thành công", "", "success").then(function(){
-    //                 location.reload();
-    //               });
-    //             }else{
-    //               swal("Xác nhận không thành công", "", "error").then(function(){
-    //                 location.reload();
-    //               });
-    //             }
-    //           }
-    //       });
-    //     }else{
-    //       swal("Warning!", "No!", "error");
-    //     }
-        
-    //   });
-
-      
-    // });
 
   });
 </script>

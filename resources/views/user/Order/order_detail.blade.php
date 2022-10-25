@@ -14,6 +14,11 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-12">
+				@if(session('notice'))
+				<p style="color: red; text-align: center;font-size: 18px;">
+					{{session('notice')}}
+				</p>
+				@endif
 				<div class="product-table">
 					<table class="table table-responsive"> 
 						<colgroup>
@@ -159,10 +164,18 @@
 										echo '<p style="color:green">Giao Hàng Thành Công</p>';
 									}elseif($order->TrangThai ==6){
 										echo 'Đã Huỷ';
+									}elseif ($order->TrangThai ==7) {
+										echo 'Trả Hàng';
 									} 
 									?>
 								</td>
 							</tr>
+							@if($order->TrangThai ==7)
+							<tr>
+								<th>GHI CHÚ</th>
+								<td>{{$order->TT_DienGiai}}</td>
+							</tr>
+							@endif
 							<tr>
 								<th>THANH TOÁN</th>
 								<td>

@@ -121,7 +121,7 @@
     <table width="100%" class="tbl_details">
       <thead style="background-color: lightgray;">
         <tr>
-          <th>Tên sản phẩm</th>
+          <th width="40%">Tên sản phẩm</th>
           <th>Giá</th>
           <th>Số Lượng </th>
           <th>Giảm Giá</th>
@@ -147,8 +147,8 @@
       </tbody>
       <tfoot>
           <tr>
-              <td colspan="3"></td>
-              <td align="right"><b>Phí Vận Chuyển</b></td>
+              <td colspan="2"></td>
+              <td align="right" colspan="2"><b>Phí Vận Chuyển</b></td>
               <td align="right">
                 @if($tong >1000000)
                   Miễn phí giao hàng

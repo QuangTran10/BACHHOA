@@ -95,18 +95,62 @@ class ShipperController extends Controller
         }elseif($status==3){
             //NVGH đã lấy hàng và đang giao hàng
             $result= DB::table('dathang')->where('MSDH',$MSDH)->update(['TrangThai'=> 3]);
-        }elseif($status==4){
-            $result = DB::table('dathang')
-            ->join('thanhtoan', 'thanhtoan.MaThanhToan', '=', 'dathang.MaThanhToan')
-            ->where('dathang.MSDH', $MSDH)->update(['TrangThai'=> 4,'TT_TrangThai'=>1]);
-
-            $this->sendEmail($MSDH);
-        }
+        }    
         
         if($result){
             echo 1;
         }else{
             echo 0;
+        }
+
+    }
+
+    public function complete(Request $request){
+        $data = $request->all();
+        $MSDH = $data['MSDH'];
+        $status = $data['status'];
+        $result;
+
+        if($status==4){
+            $image = $request->file('payment_image');
+
+            //upload hình lên hệ thống
+            if($image){
+                $get_name = $image->getClientOriginalName();
+                $name = current(explode('.', $get_name));
+                $new_image = $name.time() .'.'.$image->getClientOriginalExtension();
+                
+                $image->move('public/upload/order',$new_image);
+
+                //NVGH đã giao thành công và yêu cầu khách hàng nhấn nút đã nhận
+                $result = DB::table('dathang')
+                ->join('thanhtoan', 'thanhtoan.MaThanhToan', '=', 'dathang.MaThanhToan')
+                ->where('dathang.MSDH', $MSDH)->update(['TrangThai'=> 4,'TT_TrangThai'=>1,'TT_Hinh' => $new_image]);
+            }
+
+            return redirect('shipper_order');
+
+        }elseif($status==7){
+            $note = $data['payment_reason'];
+            
+            $order_details = DB::table("chitietdathang")->where('MSDH',$MSDH)->get();
+
+            foreach ($order_details as $key => $value) {
+                $product = DB::table('sanpham')->where('MSSP', $value->MSSP)->first();
+
+                $quality = $value->SoLuong + $product->SoLuong;
+
+                DB::table('sanpham')->where('MSSP', $value->MSSP)->update(['SoLuong' => $quality]);
+            }
+
+            //NVGH giao ko thành công
+            $result = DB::table('dathang')
+            ->join('thanhtoan', 'thanhtoan.MaThanhToan', '=', 'dathang.MaThanhToan')
+            ->where('dathang.MSDH', $MSDH)->update(['TrangThai'=> 7,'TT_TrangThai'=>0,'TT_DienGiai'=> $note,'GhiChu'=>'Đơn hàng bị boom hàng']);
+
+            
+
+            return redirect('shipper_order');
         }
 
     }

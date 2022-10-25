@@ -161,8 +161,19 @@ class HomeController extends Controller
         ->with('message',$message)->with('contend',$contend);
     }
 
-    public function example(){
-        return view('user.example');
+    public function example(Request $re){
+        $MSKH=Session::get('user_id');
+        $category = DB::table('danhmuc')->get();
+        $list = DB::table('loaihang')->get();
+        //Các đơn hàng gh không thành công
+        $orders_undelivered = DB::table('dathang')->where('MSKH',$MSKH)->where('TrangThai',7)->get();
+
+        $meta_desc="Thông Tin Đơn Hàng";
+        $meta_keywords="Show Order";
+        $meta_tittle="QPharmacy";
+        $url=$re->url();
+
+        return view('user.example',compact('category','list','meta_desc','meta_keywords','url','orders_undelivered'));
     }
 
 }

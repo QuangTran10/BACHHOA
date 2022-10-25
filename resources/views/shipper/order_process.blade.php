@@ -44,6 +44,10 @@
 							<div class="collapsible-header text-bold active" style="color: green;">
 								<i class="fas fa-shopping-bag"></i>#{{$value->MSDH}}...Giao Hàng Thành Công
 							</div>
+						@elseif($value->TrangThai==7 && $value->MSGH != null)
+							<div class="collapsible-header text-bold active" style="color: red;">
+								<i class="fas fa-shopping-bag"></i>#{{$value->MSDH}}...Giao Hàng Không Thành Công
+							</div>
 						@else
 							<div class="collapsible-header text-bold active" style="color: #0091ea ;">
 								<i class="fas fa-shopping-bag"></i>#{{$value->MSDH}}...Đang Giao Hàng
@@ -156,37 +160,43 @@
 								@if($value->TrangThai==2)
 								<button class="button yellow accent-2 black-text order-shipping" data-id="{{$value->MSDH}}">Đã Lấy Hàng</button>
 								@endif
-
-								@if($value->TrangThai==3)
-								<button data-target="modal1" class="delivered button blue darken-4  modal-trigger" data-id="{{$value->MSDH}}">Giao Hàng Thành Công</button>
-								<button class="button red darken-4 order-boom" data-id="{{$value->MSDH}}">Giao Hàng Không Thành Công</button>
-								@endif
 								
 							</div>
+							@if($value->TrangThai==3)
+							<div class="total-pay">
+								<form action="{{URL::to('/complete_status_order')}}" method="post" enctype="multipart/form-data">
+									{{csrf_field()}}
+									<div class="row">
+										<div class="col s5">
+											<p>
+												<label>
+													<input value="4" name="status" class="status_order" id="success" type="radio"/>
+													<span style="color: black">Giao hàng thành công</span>
+												</label>
+											</p>
+											<p>
+												<label>
+													<input value="7" name="status" class="status_order" id="fail" type="radio"/>
+													<span style="color: black">Giao hàng không thành công</span>
+												</label>
+											</p>
+										</div>
+									</div>
+									<input type="hidden" name="MSDH" value="{{$value->MSDH}}">
+									<div id="content_order">
+
+									</div>
+									<input class="button blue darken-4" type="submit" name="XacNhan" value="Xác Nhận">
+								</form>
+								
+							</div>	
+							@endif
+
 						</div>
 					</li>
 					@endforeach
 				</ul>
 			</div>
-		</div>
-	</div>
-
-
-	<div id="modal1" class="modal">
-		<div class="modal-content">
-			<form>
-				{{csrf_field()}}
-				<div class="profile-photo">
-					<span>Cập nhật ảnh </span>
-					<div class="contents">
-						<input type="file" name="image_check_out">
-					</div>
-					<input type="hidden" name="MSDH" id="MSDH">
-				</div>
-			</form>
-		</div>
-		<div class="modal-footer">
-			<a class="order-delivered modal-close waves-effect waves-green btn-flat">Xác Nhận</a>
 		</div>
 	</div>
 @endsection	

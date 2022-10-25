@@ -111,10 +111,18 @@
 											echo 'Giao Hàng Thành Công';
 										}elseif($order_by_id->TrangThai ==6){
 											echo 'Đã Huỷ';
+										}elseif ($order_by_id->TrangThai ==7) {
+											echo 'Trả Hàng';
 										} 
 										?>
 									</td>
 								</tr>
+								@if($order_by_id->TrangThai==7)
+								<tr style="font-weight: bold;">
+									<td>Ghi Chú</td>
+									<td>{{$order_by_id->TT_DienGiai}}</td>
+								</tr>
+								@endif
 								<tr>
 									<td>Thanh Toán</td>
 									<td>

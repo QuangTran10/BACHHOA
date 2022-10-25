@@ -76,6 +76,8 @@
                       echo 'Giao Hàng Thành Công';
                     }elseif($value->TrangThai ==6){
                       echo 'Đã Huỷ';
+                    }elseif ($value->TrangThai == 7) {
+                      echo 'Trả Hàng';
                     } 
                   ?>
                 </td>  
