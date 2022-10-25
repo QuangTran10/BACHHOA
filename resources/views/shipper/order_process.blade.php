@@ -40,7 +40,7 @@
 							<div class="collapsible-header text-bold active" style="color: #ff9800;">
 								<i class="fas fa-shopping-bag"></i>#{{$value->MSDH}}...Đã Nhận Đơn
 							</div>
-						@elseif($value->TrangThai==5 && $value->MSGH != null)	
+						@elseif($value->TrangThai==5 || $value->TrangThai==4)	
 							<div class="collapsible-header text-bold active" style="color: green;">
 								<i class="fas fa-shopping-bag"></i>#{{$value->MSDH}}...Giao Hàng Thành Công
 							</div>

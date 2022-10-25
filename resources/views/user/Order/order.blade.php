@@ -29,264 +29,323 @@
 
 					<div id="tab-2">
 						<div class="no-gutters-sm">
-							<div class="shop-compare">
-								<div class="container">
-									<div class="row">
-										<div class="col-12">
-											<div class="compre-table">
-												<table class="table table-responsive"> 
-													<colgroup>
-														<col span="1" style="width: 25%">
-														<col span="1" style="width: 25%">
-														<col span="1" style="width: 25%">
-														<col span="1" style="width: 25%">
-													</colgroup>
-													<tbody>
-														<tr>
-															<th scope="row">Mã Đơn Hàng</th>
-															<th>Thời Gian Đặt Hàng</th>
-															<th>Thành Tiền</th>
-															<th></th>
-														</tr>
-														@foreach($orders_unprocess as $value1)
-														<tr>
-															<th scope="row">{{$value1->MSDH}}</th>
-															<td class="product-price">{{$value1->NgayDat}}</td>
-															<td class="product-price">
-																{{number_format($value1->ThanhTien , 0, ',', ' ').'đ';}}</td>
-															</td>
-															<td class="product-price">
-																<a class="no-round-btn" href="{{URL::to('/order_detail/'.$value1->MSDH)}}"><i class="far fa-eye"></i></a>
-															</td>
-														</tr>
-														@endforeach
-													</tbody>
-												</table>
-											</div>
-										</div>
-									</div>
-								</div>	
+							@foreach($orders as $key => $value)
+							@if($value->TrangThai == 0)
+							<div class="order-history container">
+								<div class="order-table">
+									<table class="table"> 
+										<colgroup>
+											<col span="1" style="width: 20%">
+											<col span="1" style="width: 30%">
+											<col span="1" style="width: 15%">
+											<col span="1" style="width: 15%">
+											<col span="1" style="width: 20%">
+										</colgroup>
+										<tr>
+											<th colspan="2" style="text-align: left;">Đơn hàng #{{$value->MSDH}}</th>
+											<th colspan="3" style="text-align: right; color: green;">Chờ Xác Nhận</th>
+										</tr>
+										<tbody>
+											@foreach($order_details as $k => $val)
+											@if($val->MSDH == $value->MSDH)
+											<tr>
+												<td class="order-image"> 
+													<div class="img-order"><img src="{{asset('public/upload/'.$val->Image)}}" alt="product image"></div>
+												</td>
+												<td class="order-name">{{$val->TenSP}}</td>
+												<td class="order-price">
+													{{number_format($val->GiaDatHang , 0, ',', ' ')}} đ
+												</td>
+												<td class="order-quantity"> 
+													x {{$val->SoLuong}}
+												</td>
+												<td class="order-total">
+													{{number_format($val->ThanhTien , 0, ',', ' ')}} đ
+												</td>
+											</tr>
+											@endif
+											@endforeach
+										</tbody>
+										<tr>
+											<td class="order-clear" colspan="2">
+												<a class="no-round-btn" href="{{URL::to('/order_detail/'.$value->MSDH)}}">Chi tiết đơn hàng</a>
+											</td>
+											<td class="order-header" colspan="3">Tổng số tiền: {{number_format($value->ThanhTien , 0, ',', ' ')}} đ</td>
+										</tr>
+									</table>
+								</div>
 							</div>
+							@endif
+							@endforeach
 						</div>
 					</div>
 					<div id="tab-3">
 						<div class="no-gutters-sm">
-							<div class="shop-compare">
-								<div class="container">
-									<div class="row">
-										<div class="col-12">
-											<div class="compre-table">
-												<table class="table table-responsive"> 
-													<colgroup>
-														<col span="1" style="width: 25%">
-														<col span="1" style="width: 25%">
-														<col span="1" style="width: 25%">
-														<col span="1" style="width: 25%">
-													</colgroup>
-													<tbody>
-														<tr>
-															<th scope="row">Mã Đơn Hàng</th>
-															<th>Thời Gian Đặt Hàng</th>
-															<th>Thành Tiền</th>
-															<th></th>
-														</tr>
-														@foreach($orders_waitting as $value1)
-														<tr>
-															<th scope="row">{{$value1->MSDH}}</th>
-															<td class="product-price">{{$value1->NgayDat}}</td>
-															<td class="product-price">
-																{{number_format($value1->ThanhTien , 0, ',', ' ').'đ';}}</td>
-															</td>
-															<td class="product-price">
-																<a class="no-round-btn" href="{{URL::to('/order_detail/'.$value1->MSDH)}}"><i class="far fa-eye"></i></a>
-															</td>
-														</tr>
-														@endforeach
-													</tbody>
-												</table>
-											</div>
-										</div>
-									</div>
-								</div>	
+							@foreach($orders as $key => $value)
+							@if($value->TrangThai == 1 || $value->TrangThai==2)
+							<div class="order-history container">
+								<div class="order-table">
+									<table class="table"> 
+										<colgroup>
+											<col span="1" style="width: 25%">
+											<col span="1" style="width: 35%">
+											<col span="1" style="width: 15%">
+											<col span="1" style="width: 15%">
+											<col span="1" style="width: 20%">
+										</colgroup>
+										<tr>
+											<th colspan="2" style="text-align: left;">Đơn hàng #{{$value->MSDH}}</th>
+											<th colspan="3" style="text-align: right; color: green;">Chờ Lấy Hàng</th>
+										</tr>
+										<tbody>
+											@foreach($order_details as $k => $val)
+											@if($val->MSDH == $value->MSDH)
+											<tr>
+												<td class="order-image"> 
+													<div class="img-order"><img src="{{asset('public/upload/'.$val->Image)}}" alt="product image"></div>
+												</td>
+												<td class="order-name">{{$val->TenSP}}</td>
+												<td class="order-price">
+													{{number_format($val->GiaDatHang , 0, ',', ' ')}} đ
+												</td>
+												<td class="order-quantity"> 
+													x {{$val->SoLuong}}
+												</td>
+												<td class="order-total">
+													{{number_format($val->ThanhTien , 0, ',', ' ')}} đ
+												</td>
+											</tr>
+											@endif
+											@endforeach
+										</tbody>
+										<tr>
+											<td class="order-clear" colspan="2">
+												<a class="no-round-btn" href="{{URL::to('/order_detail/'.$value->MSDH)}}">Chi tiết đơn hàng</a>
+											</td>
+											<td class="order-header" colspan="3">Tổng số tiền: {{number_format($value->ThanhTien , 0, ',', ' ')}} đ</td>
+										</tr>
+									</table>
+								</div>
 							</div>
+							@endif
+							@endforeach
 						</div>
 					</div>
 					<div id="tab-4"> 
 						<div class="no-gutters-sm">
-							<div class="shop-compare">
-								<div class="container">
-									<div class="row">
-										<div class="col-12">
-											<div class="compre-table">
-												<table class="table table-responsive"> 
-													<colgroup>
-														<col span="1" style="width: 25%">
-														<col span="1" style="width: 25%">
-														<col span="1" style="width: 25%">
-														<col span="1" style="width: 25%">
-													</colgroup>
-													<tbody>
-														<tr>
-															<th scope="row">Mã Đơn Hàng</th>
-															<th>Thời Gian Đặt Hàng</th>
-															<th>Thành Tiền</th>
-															<th></th>
-														</tr>
-														@foreach($orders_shipping as $value1)
-														<tr>
-															<th scope="row">{{$value1->MSDH}}</th>
-															<td class="product-price">{{$value1->NgayDat}}</td>
-															<td class="product-price">
-																{{number_format($value1->ThanhTien , 0, ',', ' ').'đ';}}</td>
-															</td>
-															<td class="product-price">
-																<a class="no-round-btn" href="{{URL::to('/order_detail/'.$value1->MSDH)}}"><i class="far fa-eye"></i></a>
-															</td>
-														</tr>
-														@endforeach
-													</tbody>
-												</table>
-											</div>
-										</div>
-									</div>
-								</div>	
+							@foreach($orders as $key => $value)
+							@if($value->TrangThai == 3)
+							<div class="order-history container">
+								<div class="order-table">
+									<table class="table"> 
+										<colgroup>
+											<col span="1" style="width: 25%">
+											<col span="1" style="width: 35%">
+											<col span="1" style="width: 15%">
+											<col span="1" style="width: 15%">
+											<col span="1" style="width: 20%">
+										</colgroup>
+										<tr>
+											<th colspan="2" style="text-align: left;">Đơn hàng #{{$value->MSDH}}</th>
+											<th colspan="3" style="text-align: right; color: green;">
+												<i class="fas fa-shipping-fast"></i> Đang Giao
+											</th>
+										</tr>
+										<tbody>
+											@foreach($order_details as $k => $val)
+											@if($val->MSDH == $value->MSDH)
+											<tr>
+												<td class="order-image"> 
+													<div class="img-order"><img src="{{asset('public/upload/'.$val->Image)}}" alt="product image"></div>
+												</td>
+												<td class="order-name">{{$val->TenSP}}</td>
+												<td class="order-price">
+													{{number_format($val->GiaDatHang , 0, ',', ' ')}} đ
+												</td>
+												<td class="order-quantity"> 
+													x {{$val->SoLuong}}
+												</td>
+												<td class="order-total">
+													{{number_format($val->ThanhTien , 0, ',', ' ')}} đ
+												</td>
+											</tr>
+											@endif
+											@endforeach
+										</tbody>
+										<tr>
+											<td class="order-clear" colspan="2">
+												<a class="no-round-btn" href="{{URL::to('/order_detail/'.$value->MSDH)}}">Chi tiết đơn hàng</a>
+											</td>
+											<td class="order-header" colspan="3">Tổng số tiền: {{number_format($value->ThanhTien , 0, ',', ' ')}} đ</td>
+										</tr>
+									</table>
+								</div>
 							</div>
+							@endif
+							@endforeach
 						</div>
 					</div>
 					<div id="tab-5"> 
 						<div class="no-gutters-sm">
-							<div class="shop-compare">
-								<div class="container">
-									<div class="row">
-										<div class="col-12">
-											<div class="compre-table">
-												<table class="table table-responsive"> 
-													<colgroup>
-														<col span="1" style="width: 25%">
-														<col span="1" style="width: 25%">
-														<col span="1" style="width: 25%">
-														<col span="1" style="width: 25%">
-													</colgroup>
-													<tbody>
-														<tr>
-															<th scope="row">Mã Đơn Hàng</th>
-															<th>Thời Gian Đặt Hàng</th>
-															<th>Thành Tiền</th>
-															<th></th>
-														</tr>
-														@foreach($orders_delivered as $value1)
-														<tr>
-															<th scope="row">{{$value1->MSDH}}</th>
-															<td class="product-price">{{$value1->NgayDat}}</td>
-															<td class="product-price">
-																{{number_format($value1->ThanhTien , 0, ',', ' ').'đ';}}</td>
-															</td>
-															<td class="product-price">
-																<a class="no-round-btn" href="{{URL::to('/order_detail/'.$value1->MSDH)}}"><i class="far fa-eye"></i></a>
-															</td>
-														</tr>
-														@endforeach
-													</tbody>
-												</table>
-											</div>
-										</div>
-									</div>
-								</div>	
+							@foreach($orders as $key => $value)
+							@if($value->TrangThai == 4 || $value->TrangThai==5)
+							<div class="order-history container">
+								<div class="order-table">
+									<table class="table"> 
+										<colgroup>
+											<col span="1" style="width: 25%">
+											<col span="1" style="width: 35%">
+											<col span="1" style="width: 15%">
+											<col span="1" style="width: 15%">
+											<col span="1" style="width: 20%">
+										</colgroup>
+										<tr>
+											<th colspan="2" style="text-align: left;">Đơn hàng #{{$value->MSDH}}</th>
+											<th colspan="3" style="text-align: right; color: green;">
+												<i class="fas fa-shipping-fast"></i> Giao hàng thành công
+											</th>
+										</tr>
+										<tbody>
+											@foreach($order_details as $k => $val)
+											@if($val->MSDH == $value->MSDH)
+											<tr>
+												<td class="order-image"> 
+													<div class="img-order"><img src="{{asset('public/upload/'.$val->Image)}}" alt="product image"></div>
+												</td>
+												<td class="order-name">{{$val->TenSP}}</td>
+												<td class="order-price">
+													{{number_format($val->GiaDatHang , 0, ',', ' ')}} đ
+												</td>
+												<td class="order-quantity"> 
+													x {{$val->SoLuong}}
+												</td>
+												<td class="order-total">
+													{{number_format($val->ThanhTien , 0, ',', ' ')}} đ
+												</td>
+											</tr>
+											@endif
+											@endforeach
+										</tbody>
+										<tr>
+											<td class="order-clear" colspan="2">
+												<a class="no-round-btn" href="{{URL::to('/order_detail/'.$value->MSDH)}}">Chi tiết đơn hàng</a>
+											</td>
+											<td class="order-header" colspan="3">Tổng số tiền: {{number_format($value->ThanhTien , 0, ',', ' ')}} đ</td>
+										</tr>
+									</table>
+								</div>
 							</div>
+							@endif
+							@endforeach
 						</div>
 					</div>
-					<div class="active" id="tab-6">
+					<div id="tab-6">
 						<div class="no-gutters-sm">
-							<div class="shop-compare">
-								<div class="container">
-									{{-- <div class="card" >
-										<div class="card-body">
-											<h5 class="card-title">Card title</h5>
-											<h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-											<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-											<a href="#" class="card-link">Card link</a>
-											<a href="#" class="card-link">Another link</a>
-										</div>
-									</div> --}}
-									<div class="row">
-										<div class="col-12">
-											<div class="compre-table">
-												<table class="table table-responsive"> 
-													<colgroup>
-														<col span="1" style="width: 25%">
-														<col span="1" style="width: 25%">
-														<col span="1" style="width: 25%">
-														<col span="1" style="width: 25%">
-													</colgroup>
-													<tbody>
-														<tr>
-															<th scope="row">Mã Đơn Hàng</th>
-															<th>Thời Gian Đặt Hàng</th>
-															<th>Thành Tiền</th>
-															<th></th>
-														</tr>
-														@foreach($orders_cancel as $value1)
-														<tr>
-															<th scope="row">{{$value1->MSDH}}</th>
-															<td class="product-price">{{$value1->NgayDat}}</td>
-															<td class="product-price">
-																{{number_format($value1->ThanhTien , 0, ',', ' ').'đ';}}</td>
-															</td>
-															<td class="product-price">
-																<a class="no-round-btn" href="{{URL::to('/order_detail/'.$value1->MSDH)}}"><i class="far fa-eye"></i></a>
-															</td>
-														</tr>
-														@endforeach
-													</tbody>
-												</table>
-											</div>
-										</div>
-									</div>
-								</div>	
+							@foreach($orders as $key => $value)
+							@if($value->TrangThai == 6)
+							<div class="order-history container">
+								<div class="order-table">
+									<table class="table"> 
+										<colgroup>
+											<col span="1" style="width: 25%">
+											<col span="1" style="width: 35%">
+											<col span="1" style="width: 15%">
+											<col span="1" style="width: 15%">
+											<col span="1" style="width: 20%">
+										</colgroup>
+										<tr>
+											<th colspan="2" style="text-align: left;">Đơn hàng #{{$value->MSDH}}</th>
+											<th colspan="3" style="text-align: right; color: red;">
+												ĐÃ HUỶ
+											</th>
+										</tr>
+										<tbody>
+											@foreach($order_details as $k => $val)
+											@if($val->MSDH == $value->MSDH)
+											<tr>
+												<td class="order-image"> 
+													<div class="img-order"><img src="{{asset('public/upload/'.$val->Image)}}" alt="product image"></div>
+												</td>
+												<td class="order-name">{{$val->TenSP}}</td>
+												<td class="order-price">
+													{{number_format($val->GiaDatHang , 0, ',', ' ')}} đ
+												</td>
+												<td class="order-quantity"> 
+													x {{$val->SoLuong}}
+												</td>
+												<td class="order-total">
+													{{number_format($val->ThanhTien , 0, ',', ' ')}} đ
+												</td>
+											</tr>
+											@endif
+											@endforeach
+										</tbody>
+										<tr>
+											<td class="order-clear" colspan="2">
+												<a class="no-round-btn" href="{{URL::to('/order_detail/'.$value->MSDH)}}">Chi tiết đơn hàng</a>
+											</td>
+											<td class="order-header" colspan="3">Tổng số tiền: {{number_format($value->ThanhTien , 0, ',', ' ')}} đ</td>
+										</tr>
+									</table>
+								</div>
 							</div>
+							@endif
+							@endforeach
 						</div>
 					</div>
 
 					<div id="tab-7">
 						<div class="no-gutters-sm">
-							<div class="shop-compare">
-								<div class="container">
-									<div class="row">
-										<div class="col-12">
-											<div class="compre-table">
-												<table class="table table-responsive"> 
-													<colgroup>
-														<col span="1" style="width: 25%">
-														<col span="1" style="width: 25%">
-														<col span="1" style="width: 25%">
-														<col span="1" style="width: 25%">
-													</colgroup>
-													<tbody>
-														<tr>
-															<th scope="row">Mã Đơn Hàng</th>
-															<th>Thời Gian Đặt Hàng</th>
-															<th>Thành Tiền</th>
-															<th></th>
-														</tr>
-														@foreach($orders_undelivered as $value1)
-														<tr>
-															<th scope="row">{{$value1->MSDH}}</th>
-															<td class="product-price">{{$value1->NgayDat}}</td>
-															<td class="product-price">
-																{{number_format($value1->ThanhTien , 0, ',', ' ').'đ';}}</td>
-															</td>
-															<td class="product-price">
-																<a class="no-round-btn" href="{{URL::to('/order_detail/'.$value1->MSDH)}}"><i class="far fa-eye"></i></a>
-															</td>
-														</tr>
-														@endforeach
-													</tbody>
-												</table>
-											</div>
-										</div>
-									</div>
-								</div>	
+							@foreach($orders as $key => $value)
+							@if($value->TrangThai == 7)
+							<div class="order-history container">
+								<div class="order-table">
+									<table class="table"> 
+										<colgroup>
+											<col span="1" style="width: 25%">
+											<col span="1" style="width: 35%">
+											<col span="1" style="width: 15%">
+											<col span="1" style="width: 15%">
+											<col span="1" style="width: 20%">
+										</colgroup>
+										<tr>
+											<th colspan="2" style="text-align: left;">Đơn hàng #{{$value->MSDH}}</th>
+											<th colspan="3" style="text-align: right; color: red;">
+												TRẢ HÀNG
+											</th>
+										</tr>
+										<tbody>
+											@foreach($order_details as $k => $val)
+											@if($val->MSDH == $value->MSDH)
+											<tr>
+												<td class="order-image"> 
+													<div class="img-order"><img src="{{asset('public/upload/'.$val->Image)}}" alt="product image"></div>
+												</td>
+												<td class="order-name">{{$val->TenSP}}</td>
+												<td class="order-price">
+													{{number_format($val->GiaDatHang , 0, ',', ' ')}} đ
+												</td>
+												<td class="order-quantity"> 
+													x {{$val->SoLuong}}
+												</td>
+												<td class="order-total">
+													{{number_format($val->ThanhTien , 0, ',', ' ')}} đ
+												</td>
+											</tr>
+											@endif
+											@endforeach
+										</tbody>
+										<tr>
+											<td class="order-clear" colspan="2">
+												<a class="no-round-btn" href="{{URL::to('/order_detail/'.$value->MSDH)}}">Chi tiết đơn hàng</a>
+											</td>
+											<td class="order-header" colspan="3">Tổng số tiền: {{number_format($value->ThanhTien , 0, ',', ' ')}} đ</td>
+										</tr>
+									</table>
+								</div>
 							</div>
+							@endif
+							@endforeach
 						</div>
 					</div>
 

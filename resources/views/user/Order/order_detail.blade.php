@@ -58,7 +58,7 @@
 								{{$value->GiamGia*100}}%
 							</td>
 							<td class="product-quantity"> 
-								<input class="quantity no-round-input" type="number" min="1" value="{{$value->SoLuong}}">
+								x {{$value->SoLuong}}
 							</td>
 							<td class="product-total">
 								{{number_format($value->SoLuong*$value->GiaDatHang*(1-$value->GiamGia) , 0, ',', ' ').'đ';}}
@@ -97,12 +97,12 @@
 							<li class="step0 text-center active" id="step2">Chờ Lấy Hàng</li>
 							<li class="step0 text-right" id="step3">Đang Giao Hàng</li>
 							<li class="step0 text-right" id="step4">Đã Giao Hàng</li>
-						@elseif($order->TrangThai==3 || $order->TrangThai==4)
+						@elseif($order->TrangThai==3 )
 							<li class="step0  active" id="step1">Chờ Xác Nhận</li>
 							<li class="step0 text-center active" id="step2">Chờ Lấy Hàng</li>
 							<li class="step0 text-right active" id="step3">Đang Giao Hàng</li>
 							<li class="step0 text-right" id="step4">Đã Giao Hàng</li>
-						@elseif($order->TrangThai==5)
+						@elseif($order->TrangThai==5 || $order->TrangThai==4)
 							<li class="step0 active" id="step1">Chờ Xác Nhận</li>
 							<li class="step0 text-center active" id="step2">Chờ Lấy Hàng</li>
 							<li class="step0 text-right active" id="step3">Đang Giao Hàng</li>
@@ -158,9 +158,7 @@
 										echo 'Nhận Đơn';
 									}elseif($order->TrangThai ==3){
 										echo 'Đang Giao Hàng';
-									}elseif($order->TrangThai ==4){
-										echo 'Chờ Xác Nhận';
-									}elseif($order->TrangThai ==5){
+									}elseif($order->TrangThai ==5 || $order->TrangThai ==4){
 										echo '<p style="color:green">Giao Hàng Thành Công</p>';
 									}elseif($order->TrangThai ==6){
 										echo 'Đã Huỷ';

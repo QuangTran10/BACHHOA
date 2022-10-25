@@ -105,9 +105,7 @@
 											echo 'Nhận Đơn';
 										}elseif($order_by_id->TrangThai ==3){
 											echo 'Đang Giao Hàng';
-										}elseif($order_by_id->TrangThai ==4){
-											echo 'Chờ Xác Nhận';
-										}elseif($order_by_id->TrangThai ==5){
+										}elseif($order_by_id->TrangThai ==5||$order_by_id->TrangThai ==4){
 											echo 'Giao Hàng Thành Công';
 										}elseif($order_by_id->TrangThai ==6){
 											echo 'Đã Huỷ';

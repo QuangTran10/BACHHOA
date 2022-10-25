@@ -197,9 +197,7 @@ class OrderManagement extends Controller
                       $output.= 'Nhận Đơn</td>';
                     }elseif($value->TrangThai ==3){
                       $output.= 'Đang Giao Hàng</td>';
-                    }elseif($value->TrangThai ==4){
-                      $output.= 'Chờ Xác Nhận</td>';
-                    }elseif($value->TrangThai ==5){
+                    }elseif($value->TrangThai ==5 || $value->TrangThai ==4){
                       $output.= 'Giao Hàng Thành Công</td>';
                     }elseif($value->TrangThai ==6){
                       $output.= 'Đã Huỷ</td>';
@@ -236,16 +234,16 @@ class OrderManagement extends Controller
         $category = DB::table('danhmuc')->get();
         $list = DB::table('loaihang')->get();
 
-        // $orders = DB::table('dathang')->where('MSKH',$MSKH)->orderBy('MSDH','desc')->get();
+        $orders = DB::table('dathang')->where('MSKH',$MSKH)->orderBy('MSDH','desc')->get();
 
-        // $order_id = array();
-        // foreach ($orders as $key => $value) {
-        //     $order_id[] = $value->MSDH;
-        // }
+        $order_id = array();
+        foreach ($orders as $key => $value) {
+            $order_id[] = $value->MSDH;
+        }
 
-        // $order_details =DB::table('chitietdathang')
-        // ->join('sanpham', 'chitietdathang.MSSP', '=', 'sanpham.MSSP')
-        // ->select('chitietdathang.*', 'TenSP','Image','Gia')->whereIn('MSDH',$order_id)->get();
+        $order_details =DB::table('chitietdathang')
+        ->join('sanpham', 'chitietdathang.MSSP', '=', 'sanpham.MSSP')
+        ->select('chitietdathang.*', 'TenSP','Image')->whereIn('MSDH',$order_id)->get();
 
         //Các đơn hàng chưa xử lý
         $orders_unprocess = DB::table('dathang')->where('MSKH',$MSKH)->where('TrangThai',0)
@@ -266,7 +264,7 @@ class OrderManagement extends Controller
         $meta_tittle="QPharmacy";
         $url=$re->url();
 
-        return view('User.Order.order', compact('category','list','meta_desc','meta_keywords','url','orders_unprocess','orders_waitting','orders_shipping','orders_delivered','orders_cancel','orders_undelivered'));
+        return view('User.Order.order', compact('category','list','meta_desc','meta_keywords','url','orders_unprocess','orders_waitting','orders_shipping','orders_delivered','orders_cancel','orders_undelivered','orders','order_details'));
     }
     public function order_detail($id_order, Request $re){
         $this->LoginCheck();

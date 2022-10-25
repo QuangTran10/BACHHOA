@@ -7583,11 +7583,13 @@ footer.coffee .newletter {
 .order-history {
   margin-bottom: 60px; }
   .order-history .order-table .table {
-    margin-left: 50px;
-    width: 90%;
+    margin-left: 100px;
+    width: 80%;
     border: 1px solid #ebebeb; }
-    .order-history .order-table .table .order-clear button {
+    .order-history .order-table .table .order-clear a {
       background-color: #fff;
+      vertical-align: middle;
+      text-align: center;
       color: #252525;
       font-size: 13px;
       border-radius: 0;
@@ -7595,7 +7597,6 @@ footer.coffee .newletter {
       -moz-border-radius: 0;
       -ms-border-radius: 0;
       -o-border-radius: 0;
-      padding: 0;
       text-transform: uppercase;
       font-family: 'Roboto Bold';
       border: 1px solid #ebebeb;
@@ -7605,21 +7606,22 @@ footer.coffee .newletter {
       -o-transition: 0.3s ease;
       transition: 0.3s ease;
       display: inline-block;
-      height: 30px;
-      width: 30px; }
-      .order-history .order-table .table .order-clear button:hover {
+      height: 50px;
+      
+    }
+      .order-history .order-table .table .order-clear a:hover {
         background-color: #88c74a;
         color: #fff;
         border: 1px solid #88c74a;
         text-decoration: none; }
-      .order-history .order-table .table .order-clear button:focus {
+      .order-history .order-table .table .order-clear a:focus {
         outline: 0;
         box-shadow: 0; }
     .order-history .order-table .table th {
       font-family: "Roboto Bold";
-      font-size: 16px;
+      font-size: 15px;
       color: #252525;
-      line-height: 1;
+      line-height: 3;
       display: block;
       text-transform: uppercase;
       display: table-cell;
@@ -7628,20 +7630,19 @@ footer.coffee .newletter {
       vertical-align: middle;
       border-top: 0; }  
     .order-history .order-table .table tbody td {
-      text-align: center;
       vertical-align: middle;
       border-top: 0; }
+    
     .order-history .order-table .table tbody .order-image .img-order{
-      height: 150px;
-      width: 150px;
+      height: 100px;
+      width: 120px;
       background-color: #f8f8f8;
-      padding: 10px;
       display: flex;
       align-items: center;
       justify-content: center;
     }  
       .order-history .order-table .table tbody .order-image .img-order img {
-        max-height: 100%;
+        max-height: 80%;
         max-width: 100%; }
     .order-history .order-table .table tbody .order-name, .order-history .order-table .table tbody .order-price, .order-history .order-table .table tbody .order-total{
       font-family: "Roboto Bold";
@@ -7657,3 +7658,11 @@ footer.coffee .newletter {
       width: 60px;
       border-radius: 5px;
       padding: 0 10px; }
+    .order-history .order-table .table .order-header{
+      font-family: "Roboto Bold";
+      font-size: 16px;
+      color: red;
+      font-weight: bold;
+      text-align: right;
+      line-height: 2;
+    }  
