@@ -308,7 +308,7 @@ class OrderManagement extends Controller
             DB::table('dathang')->where('MSDH',$MSDH)->update(['TrangThai' => $status]);
 
             if ($status==6) {
-            //Lấy các sản phẩm của đơn hàng
+                //Lấy các sản phẩm của đơn hàng
                 $order_details = DB::table("chitietdathang")->where('MSDH',$MSDH)->get();
 
                 foreach ($order_details as $key => $value) {

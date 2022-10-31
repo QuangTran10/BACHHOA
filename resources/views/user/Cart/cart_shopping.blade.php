@@ -45,8 +45,7 @@
 <!-- End order step-->
 <div class="shopping-cart">
 	<div class="container">
-		<form action="{{URL::to('/update_cart')}}" method="post">
-			{{csrf_field() }}
+		
 		<div class="row">
 			<div class="col-12">
 				<div class="product-table">
@@ -83,6 +82,8 @@
 							@php
 							$total=$total+ $value['product_price']*$value['product_qty']*(1-$value['product_discount']);
 							@endphp
+							<form>
+								{{csrf_field() }}
 							<tr>
 								<td class="product-iamge"> 
 									<div class="img-wrapper"><img src="{{URL::to('public/upload/'.$value['product_image'])}}" alt="product image"></div>
@@ -90,7 +91,7 @@
 								<td class="product-name">{{$value['product_name']}}</td>
 								<td class="product-price">{{number_format($value['product_price'] , 0, ',', ' ').'đ';}}</td>
 								<td class="product-quantity"> 
-									<input class="quantity no-round-input" type="number" min="1" value="{{$value['product_qty']}}" name="quantity[{{$value['session_id']}}]">
+									<input class="cart-quantity quantity no-round-input" type="number" min="1" value="{{$value['product_qty']}}" data-id="{{$value['session_id']}}" name="quantity[{{$value['session_id']}}]" id="quantity_{{$value['session_id']}}">
 								</td>
 								<td class="product-total">
 									{{number_format($value['product_price']*$value['product_qty']*(1-$value['product_discount']) , 0, ',', ' ').'đ';}}
@@ -99,6 +100,7 @@
 									<a href="{{URL::to('/delete_cart/'.$value['session_id'])}}" class="normal-btn"><i class="icon_close"></i></a>
 								</td>
 							</tr>
+						</form>
 							@endforeach  
 						@else
 							<tr>
@@ -110,11 +112,11 @@
 				</div>
 			</div>
 			<div class="col-12 col-sm-4 text-left">
-				<button class="no-round-btn black cart-update">Cập Nhật</button>
+				{{-- <button class="no-round-btn black cart-update">Cập Nhật</button> --}}
 			</div>
 			<div class="col-12 col-sm-8"></div>
 		</div>
-		</form>
+		
 		<div class="row justify-content-end">
 			<div class="col-12 col-md-6 col-lg-6">
 				<div class="cart-total_block">

@@ -43,29 +43,27 @@ class CartController extends Controller
         $qty_stk=0;
         
         $cart= Session::get('cart');
-        if ($cart==true) {
-            foreach ($data['quantity'] as $key => $qty) {
-                foreach ($cart as $session => $val) {
-                    if($val['session_id']== $key){
-                        //Lấy mã số của sp
-                        $MSHH=$cart[$session]['product_id'];
-                        //Lấy số lượng tồn
-                        $kq=DB::table('sanpham')->where('MSSP',$MSHH)->select('SoLuong')->get();
-                        foreach ($kq as $k => $val) {
-                            $qty_stk=$val->SoLuong;
-                        }
+        
+        foreach ($cart as $key => $val) {
+            //Nếu session_id được gửi bằng với cart thì cập nhật số lượng
+            if( $data['session_id'] == $val['session_id']){
+                //Lấy mssp
+                $MSHH=$cart[$key]['product_id'];
+                //kiểm tra số lượng tồn
+                $kq=DB::table('sanpham')->where('MSSP',$MSHH)->select('SoLuong')->first();
 
-                        if ($qty <= $qty_stk) {
-                            $cart[$session]['product_qty'] = $qty;
-                        }else{
-                            return Redirect::to('/cart_shopping')->with('notice','Số lượng tồn không đủ');
-                        }
-                    }
+                $qty_stk = $kq->SoLuong;
+
+                if ($data['quantity'] <= $qty_stk) {
+                    $cart[$key]['product_qty'] = $data['quantity'];
+                    echo 1; //cập nhật thành công
+                }else{
+                    echo 2; // số lượng ko đủ
                 }
             }
-        Session::put('cart',$cart);
-        return Redirect::to('/cart_shopping');
         }
+
+        Session::put('cart',$cart);
     }
 
     //AJAX

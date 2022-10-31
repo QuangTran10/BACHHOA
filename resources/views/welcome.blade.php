@@ -596,6 +596,28 @@
       });
 
 
+      $('.cart-quantity').change(function(event) {
+        var id = $(this).data('id');
+        var quantity = $('#quantity_'+ id).val();
+        var _token = $('input[name="_token"]').val();
+        
+        if(quantity!=''){
+          $.ajax({
+            url: '{{url('/update_cart')}}',
+            method: "POST",
+            data:{
+              session_id: id,
+              quantity: quantity,
+              _token: _token,
+            },
+            success:function(data){
+              location.reload();
+            }
+          });
+        }
+      });
+
+
   });
     </script>
   </body>
