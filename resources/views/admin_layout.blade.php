@@ -130,7 +130,7 @@
             </a>
           </li>
           <li class="nav-item <?php $page = Session::get('page'); if($page==10){echo "active";} ?>">
-            <a class="nav-link" href="{{URL::to('/discount_management')}}">
+            <a class="nav-link" href="{{route('coupon.index')}}">
               <i class="material-icons">discount</i>
               <p>Khuyến Mãi</p>
             </a>

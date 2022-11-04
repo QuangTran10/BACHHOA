@@ -1,11 +1,3 @@
-/*
-	*****************************************************************
-	*	Theme Name: Ogami											
-	*	Author: DeerCreative 										
-	*	Author URL: https://themeforest.net/user/deercreative 		
-	*	Version: 1.0.0												
-	*****************************************************************
-*/
 /************************************
 	-------------------------[Table of contents]----------------------
 	This files contains the styling for the actual templates, this is the file you need to edit to change the look of the template.
@@ -84,6 +76,8 @@
     		2.15. Typography template
         2.16. Address
         2.17. Menu vertical navigation
+        2.18. Order
+        2.19. Coupon
 *************************************/
 
 @font-face {
@@ -7665,4 +7659,76 @@ footer.coffee .newletter {
       font-weight: bold;
       text-align: right;
       line-height: 2;
-    }  
+    }
+/* Coupon */  
+
+.coupon-card{
+  background: #88c74a;
+  color: black;
+  text-align: center;
+  padding: 20px 20px;
+  border-radius: 15px;
+  border: 1px solid #d0faa3;
+  box-shadow: 0 10px 10px 0 rgba(0,0,0,0.15);
+  position: relative;
+
+}
+.coupon-card .coupon-titile{
+  height: 50px;
+  font-size: 18px;
+  line-height: 20px;
+  color: white;
+
+}
+.coupon-card p{
+  color: white;
+  font-size: 15px;
+}
+.coupon-row{
+  display: flex;
+  align-items: center;
+  margin: 10px auto;
+  width: fit-content;
+
+}
+.coupon-card .cpnCode{
+  border: 2px dashed #d0faa3;
+  padding: 10px 15px;
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+
+}
+.coupon-card .cpnBtn{
+  border: 1px solid #5E923C;
+  background: #5E923C;
+  padding: 11px 20px;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5%;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+.coupon-card .cpnBtn:hover, .coupon-card .cpnBtn:active{
+  border: 1px solid #88c74a;
+  background: white;
+  color: black;
+}
+
+.circle1, .circle2{
+  background: white;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+
+}
+.circle1{
+  left: -25px;
+}
+.circle2{
+  right: -25px;
+}

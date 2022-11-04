@@ -28,7 +28,9 @@ class HomeController extends Controller
 
         $loaihang = DB::table('loaihang')->get();
 
-        $province = DB::table('tinhthanhpho')->get();
+        //Mã khuyến mãi
+        $coupon = DB::table('magiamgia')->where('TrangThai',1)->limit(4)->get();
+
 
         //Sản phẩm bán chạy
         $bestsell = DB::table('chitietdathang')
@@ -81,7 +83,8 @@ class HomeController extends Controller
         ->with('pro_best_seller',$pro_best_seller)->with('meat', $meat)
         ->with('new_product',$new_product)->with('seafood', $seafood)
         ->with('vegetables', $vegetables)->with('drinks',$drinks)
-        ->with('sale_product', $sale_product)->with('product_rate',$pro_best_rate);
+        ->with('sale_product', $sale_product)->with('product_rate',$pro_best_rate)
+        ->with('coupon', $coupon);
     }
 
     public function search(Request $re){

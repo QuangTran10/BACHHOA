@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CouponController;
 
 
 /*
@@ -262,6 +263,9 @@ Route::group(['middleware' => 'roles'], function(){
 	Route::post('/load_statistic', 'App\Http\Controllers\RevenueController@load_statistic');
 
 	Route::post('/search_statistic', 'App\Http\Controllers\RevenueController@search_statistic');
+
+	//admin interface -> coupon
+	Route::resource('coupon', CouponController::class );
 
 });
 

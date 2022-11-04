@@ -617,6 +617,31 @@
         }
       });
 
+      $('.cpnBtn').click(function(event) {
+        var id_checked = $('.checked').data('id');
+        var id = $(this).data('id');
+        if(id_checked==null){
+
+          var cpn_code = $('#coupon_code_'+ id).text();
+          navigator.clipboard.writeText(cpn_code);
+          $('#coupon_btn_'+ id).text('Đã Lưu');
+          $('#coupon_btn_'+ id).addClass('checked');
+
+        }else{
+          if(id_checked != id){
+
+            var cpn_code = $('#coupon_code_'+ id).text();
+            navigator.clipboard.writeText(cpn_code);
+            $('#coupon_btn_'+ id).text('Đã Lưu');
+            $('#coupon_btn_'+ id).addClass('checked');
+            $('#coupon_btn_'+ id_checked).text('Lưu');
+            $('#coupon_btn_'+ id_checked).removeClass('checked');
+          }
+        }
+        
+      });
+
+
 
   });
     </script>

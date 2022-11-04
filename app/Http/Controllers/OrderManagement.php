@@ -245,26 +245,12 @@ class OrderManagement extends Controller
         ->join('sanpham', 'chitietdathang.MSSP', '=', 'sanpham.MSSP')
         ->select('chitietdathang.*', 'TenSP','Image')->whereIn('MSDH',$order_id)->get();
 
-        //Các đơn hàng chưa xử lý
-        $orders_unprocess = DB::table('dathang')->where('MSKH',$MSKH)->where('TrangThai',0)
-        ->orderBy('MSDH','desc')->get();
-        //Các đơn hàng chờ lấy hàng
-        $orders_waitting = DB::table('dathang')->where('MSKH',$MSKH)->whereIn('TrangThai',[1,2])->get();
-        //Các đơn hàng đang giao
-        $orders_shipping = DB::table('dathang')->where('MSKH',$MSKH)->whereIn('TrangThai',[3,4])->get();
-        //Các đơn hàng thành công
-        $orders_delivered = DB::table('dathang')->where('MSKH',$MSKH)->where('TrangThai',5)->get();
-        //Các đơn hàng đã huỷ
-        $orders_cancel = DB::table('dathang')->where('MSKH',$MSKH)->where('TrangThai',6)->get();
-        //Các đơn hàng gh không thành công
-        $orders_undelivered = DB::table('dathang')->where('MSKH',$MSKH)->where('TrangThai',7)->get();
-
         $meta_desc="Thông Tin Đơn Hàng";
         $meta_keywords="Show Order";
         $meta_tittle="QPharmacy";
         $url=$re->url();
 
-        return view('User.Order.order', compact('category','list','meta_desc','meta_keywords','url','orders_unprocess','orders_waitting','orders_shipping','orders_delivered','orders_cancel','orders_undelivered','orders','order_details'));
+        return view('User.Order.order', compact('category','list','meta_desc','meta_keywords','url','orders','order_details'));
     }
     public function order_detail($id_order, Request $re){
         $this->LoginCheck();

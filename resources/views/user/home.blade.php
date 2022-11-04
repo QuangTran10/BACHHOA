@@ -35,7 +35,6 @@
                   <div class="slider-text d-flex flex-column align-items-center align-items-md-start">
                     <h5 data-animation="fadeInUp" data-delay=".2s" style="color: white;">Lunar New Year</h5>
                     <h1 data-animation="fadeInUp" data-delay=".3s" style="color: yellow;">CHÚC MỪNG NĂM MỚI</h1>
-                    {{-- <h3 data-animation="fadeInUp" data-delay=".4s">$14.00<span>/ pakage</span></h3> --}}
                     <a class="normal-btn" href="" data-animation="fadeInUp" data-delay=".4s">Mua Ngay</a>
                   </div>
                 </div>
@@ -56,7 +55,6 @@
                   <div class="slider-text d-flex flex-column align-items-center align-items-md-start">
                     <h5 data-animation="fadeInUp" data-delay=".2s" style="color: white;">Big Sale</h5>
                     <h1 data-animation="fadeInUp" data-delay=".3s" style="color: #ffff66;">Siêu Sale 12-12</h1>
-                    {{-- <h3 data-animation="fadeInUp" data-delay=".4s">$14.00<span>/ pakage</span></h3> --}}
                     <a class="normal-btn" href="" data-animation="fadeInUp" data-delay=".4s">Mua Ngay</a>
                   </div>
                 </div>
@@ -77,7 +75,6 @@
                   <div class="slider-text d-flex flex-column align-items-center align-items-md-start">
                     <h5 data-animation="fadeInUp" data-delay=".2s" style="color: white;" >Merry Christmas</h5>
                     <h1 data-animation="fadeInUp" data-delay=".3s" style="color: #FFD700;">Mừng Giáng Sinh</h1>
-                    {{-- <h3 data-animation="fadeInUp" data-delay=".4s">$14.00<span>/ pakage</span></h3> --}}
                     <a class="normal-btn" href="" data-animation="fadeInUp" data-delay=".4s">Mua Ngay</a>
                   </div>
                 </div>
@@ -128,30 +125,27 @@
   <div class="items-category">
     <div class="container">
       <div class="row">
-        <div class="col-12 col-sm-6 col-md-3"><a class="product-item d-flex flex-column align-items-center justify-content-center" href="shop_grid+list_3col.html">
-          <div class="categories-img">
-            <img src="{{('public/frontend/assets/images/product/item-1.png')}}" alt=""></div>
-          <h2>Nước khoáng Vivant</h2>
-          <p>96 000đ</p></a>
+        @foreach($coupon as $val_coupon)
+        <div class="col-12 col-sm-6 col-md-3">
+          <div class="coupon-card" >
+            <div class="coupon-titile">{{$val_coupon->TieuDe}}</div>
+            <div class="coupon-row">
+              <span class="cpnCode" id="coupon_code_{{$val_coupon->MaGG}}">{{$val_coupon->Ma}}</span>
+            </div>
+            <div class="coupon-row">
+              <span class="cpnBtn" data-id="{{$val_coupon->MaGG}}" id="coupon_btn_{{$val_coupon->MaGG}}">Lưu</span>
+            </div>
+            <p>
+              <?php
+              $expire_date = Carbon\Carbon::parse($val_coupon->NgayKetThuc)->toFormattedDateString();
+              echo $expire_date;
+              ?>
+            </p>
+            <div class="circle1"></div>
+            <div class="circle2"></div>
+          </div>
         </div>
-        <div class="col-12 col-sm-6 col-md-3"><a class="product-item d-flex flex-column align-items-center justify-content-center" href="shop_grid+list_3col.html" >
-          <div class="categories-img">
-            <img src="{{('public/frontend/assets/images/product/item-2.png')}}" alt=""></div>
-          <h2>Nấm mỡ nâu</h2>
-          <p>62 100đ</p></a>
-        </div>
-        <div class="col-12 col-sm-6 col-md-3"><a class="product-item d-flex flex-column align-items-center justify-content-center" href="shop_grid+list_3col.html">
-          <div class="categories-img">
-            <img src="{{('public/frontend/assets/images/product/item-3.png')}}" alt=""></div>
-          <h2>Dưa Lưới</h2>
-          <p>49 000đ</p></a>
-        </div>
-        <div class="col-12 col-sm-6 col-md-3"><a class="product-item d-flex flex-column align-items-center justify-content-center" href="shop_grid+list_3col.html" >
-          <div class="categories-img">
-            <img src="{{('public/frontend/assets/images/product/item-4.png')}}" alt=""></div>
-          <h2>Táo Gala New Zealand</h2>
-          <p>49 000đ</p></a>
-        </div>
+        @endforeach
       </div>
     </div>
   </div>
