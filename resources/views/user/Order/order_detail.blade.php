@@ -125,6 +125,24 @@
 								<th>TỔNG TIỀN HÀNG</th>
 								<td>{{number_format($total , 0, ',', ' ').'đ';}}</td>
 							</tr>
+							@if($coupon!=null)
+							<tr>
+								<th>MÃ GIẢM GIÁ</th>
+								<td>
+									<?php
+									if($coupon->LoaiGiam==1){
+										$total = $total - $total*($coupon->MucGiam/100);
+
+										echo number_format($total*($coupon->MucGiam/100) , 0, ',', ' ').'đ';
+									}elseif($coupon->LoaiGiam===2){
+										$total = $total - $coupon->MucGiam;
+											
+										echo number_format($coupon->MucGiam , 0, ',', ' ').'đ';
+									}
+									?>
+								</td>
+							</tr>
+							@endif
 							<tr>
 								<th>PHÍ VẬN CHUYỂN</th>
 								<td>

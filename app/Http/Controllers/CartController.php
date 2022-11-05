@@ -168,4 +168,23 @@ class CartController extends Controller
             echo '0đ';
         }   
     }
+
+    public function applyCoupon(Request $request){
+        $coupon_code = $request->coupon_code;
+        $MSKH=Session::get('user_id');
+
+        $coupon = DB::table('magiamgia')->where('Ma',$coupon_code)->first();
+
+        $use_coupon = DB::table('sudungma')->where('MaGG',$coupon->MaGG)->where('MSKH',$MSKH)->first();
+
+        if(!$use_coupon){
+            Session::put('coupon_id',$coupon->MaGG);
+            Session::put('coupon_type',$coupon->LoaiGiam);
+            Session::put('coupon_price',$coupon->MucGiam);
+            return redirect('/cart_shopping')->with('notice','Áp dụng mã thành công');
+        }else{
+            Session::forget(['coupon_id', 'coupon_type', 'coupon_price']);
+            return redirect('/cart_shopping')->with('notice','Mã đã được sử dụng. Vui lòng chọn mã khác');
+        }
+    }
 }

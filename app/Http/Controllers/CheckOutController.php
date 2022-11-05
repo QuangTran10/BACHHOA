@@ -52,7 +52,7 @@ class CheckOutController extends Controller
            'address'=> $DiaChi,
            'phone' => $SDT,
         ];
-        SendEmail::dispatch($message, $users)->delay(20);
+        SendEmail::dispatch($message, $users)->delay(5);
     }
 
     public function check_out(Request $re){
@@ -97,15 +97,8 @@ class CheckOutController extends Controller
     	$data=array();
         $order=array();
         $payment = array();
-        //Xử lý thành tiền
-        foreach ($content as $value) {
-            $total=$total+$value['product_price']*$value['product_qty']*(1-$value['product_discount']);
-        }
-        if($total<1000000){
-            $total = $total +30000;
-        }
-
-        //echo $total;
+        $coupon = array();
+        
         //insert table thanhtoan
         $payment['TT_Ten'] = $re->PhuongThuc;
         $payment['TT_DienGiai']="Thanh toan don hang";
@@ -122,7 +115,7 @@ class CheckOutController extends Controller
     	$data['MSKH']=$MSKH;
     	$data['MSNV']=NULL;
         $data['MSGH']=NULL;
-    	$data['ThanhTien']=$total;
+    	$data['ThanhTien']=$re->ThanhTien;
     	$data['HoTen']=$HoTen;
     	$data['SDT']=$SDT;
     	$data['DiaChi']=$DiaChi;
@@ -133,7 +126,7 @@ class CheckOutController extends Controller
         $data['GhiChu']=$re->GhiChu;
         $data['TrangThai']=0;   // 4 trạng thái: chờ xn, đang vận chuyển, đã nhận và đã huỷ
 
-        $SoDonDH=DB::table('dathang')->insertGetId($data);
+        $SoDonDH = DB::table('dathang')->insertGetId($data);
             //insert table chitietdathang
         foreach ($content as $v_content) {
             $order['MSDH']=$SoDonDH;
@@ -143,7 +136,7 @@ class CheckOutController extends Controller
             $order['GiaDatHang']=$v_content['product_price'];
             $order['ThanhTien']=($v_content['product_price']*$v_content['product_qty']*(1-$v_content['product_discount']));
             $result=DB::table('chitietdathang')->insert($order);
-                //Kiểm tra sau khi thêm sản phẩm vào chitietdathang nếu soluong còn lại bằng 0 thì cập nhật tình trạng bằng 0
+            //Kiểm tra sau khi thêm sản phẩm vào chitietdathang nếu soluong còn lại bằng 0 thì cập nhật tình trạng bằng 0
             $kq = DB::table('sanpham')->where('MSSP',$v_content['product_id'])->select('SoLuong')->get();
             foreach ($kq as $val) {
                 $qty_ton=$val->SoLuong;
@@ -151,6 +144,19 @@ class CheckOutController extends Controller
             if($qty_ton==0){
                 DB::table('sanpham')->where('MSSP',$v_content['product_id'])->update(['TrangThai'=>0]);
             }
+        }
+
+        //Nếu tồn tại mã giảm giá thì insert vào DB
+        if($re->session()->exists('coupon_id')){
+            $coupon_id = Session::get('coupon_id');
+
+            $coupon['MSKH']= $MSKH;
+            $coupon['MaGG']= $coupon_id;
+            $coupon['MSDH']= $SoDonDH;
+
+            DB::table('sudungma')->insert($coupon);
+            //Loại bỏ mã giảm giá ra khỏi session
+            Session::forget(['coupon_id', 'coupon_type', 'coupon_price']);
         }
 
         if ($result) {

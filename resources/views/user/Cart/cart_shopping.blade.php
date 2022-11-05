@@ -1,5 +1,5 @@
 @extends('welcome')
-@section('contend')  
+@section('contend') 
 
 <div class="ogami-breadcrumb">
 	<div class="container">
@@ -45,7 +45,6 @@
 <!-- End order step-->
 <div class="shopping-cart">
 	<div class="container">
-		
 		<div class="row">
 			<div class="col-12">
 				<div class="product-table">
@@ -111,10 +110,20 @@
 					</table>
 				</div>
 			</div>
-			<div class="col-12 col-sm-4 text-left">
-				{{-- <button class="no-round-btn black cart-update">Cập Nhật</button> --}}
+			<div class="col-12 col-sm-8">
+				<div class="coupon">
+					<form action="{{URL::to('/apply_coupon')}}" method="post">
+						{{csrf_field()}}
+						<input class="no-round-input" type="text" name="coupon_code" placeholder="Mã code giảm giá">
+						<button class="no-round-btn smooth btn-apply-coupon">Áp dụng mã giảm giá</button>
+					</form>
+				</div>
+				@if(session('notice'))
+				<p style="color: red; text-align: left; padding-top: 10px;">
+					{{session('notice')}}
+				</p>
+				@endif
 			</div>
-			<div class="col-12 col-sm-8"></div>
 		</div>
 		
 		<div class="row justify-content-end">
@@ -130,6 +139,26 @@
 								<th>TỔNG TIỀN HÀNG</th>
 								<td>{{number_format($total , 0, ',', ' ').'đ';}}</td>
 							</tr>
+							@if(session()->has('coupon_id'))
+							<tr>
+								<th>MÃ GIẢM GIÁ</th>
+								<td>
+									<?php
+										$type = Session::get('coupon_type');
+										$price= Session::get('coupon_price');
+										if($type==1){
+											$total = $total - $total*($price/100);
+
+											echo number_format($total*($price/100) , 0, ',', ' ').'đ';
+										}elseif($type==2){
+											$total = $total - $price;
+											
+											echo number_format($price , 0, ',', ' ').'đ';
+										}
+									?>
+								</td>
+							</tr>
+							@endif
 							<tr>
 								<th>PHÍ VẬN CHUYỂN</th>
 								<td>
@@ -160,9 +189,6 @@
 								<a href="{{URL::to('/vnpay_check_out')}}">
 								THANH TOÁN VNPAY
 								</a>
-								{{-- <a href="{{URL::to('/momo_check_out')}}">
-								<img src="{{asset('public/frontend/assets/images/MoMo-Logo.png')}}" alt="" style="width: 30%">
-								</a> --}}
 							</div>
 						</div>
 					</div>

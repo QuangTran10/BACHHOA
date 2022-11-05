@@ -4,15 +4,35 @@
 @php
 	$total=0;
 	$total_dis=0;
+	$total_org = 0;
 	$cart=Session::get('cart');
 @endphp
 @foreach($cart as $key => $value)  
 	@php
 	$total=$total+ $value['product_price']*$value['product_qty']*(1-$value['product_discount']);
-	$total_dis=$total_dis+ $value['product_price']*$value['product_qty']*($value['product_discount']);
+	$total_dis=$total_dis+ $value['product_price']*$value['product_qty']*$value['product_discount'];
 	@endphp	
 @endforeach
 @php
+	$total_org = $total;
+@endphp
+
+@if(session()->has('coupon_id'))
+	@php
+		$type = Session::get('coupon_type');
+		$price= Session::get('coupon_price');
+		if($type==1){
+			$total = $total - $total*($price/100);
+			$total_dis = $total_dis + $total*($price/100);
+		}elseif($type==2){
+			$total = $total - $price;
+			$total_dis = $total_dis + $price;
+		}
+	@endphp	
+@endif
+
+@php
+//Total chưa cộng phí vận chuyển
 if($total<1000000){
 	$total=$total+30000;
 }
@@ -118,7 +138,7 @@ if($total<1000000){
 								@endforeach  
 								<tr>
 									<th>TỔNG TIỀN</th>
-									<td class="price">{{number_format($total , 0, ',', ' ').'đ';}}</td>
+									<td class="price">{{number_format($total_org , 0, ',', ' ').'đ';}}</td>
 								</tr>
 								<tr>
 									<th>SỐ TIỀN ĐÃ GIẢM</th>
@@ -131,7 +151,6 @@ if($total<1000000){
 										if($total>=1000000){
 											echo '<p>Miễn Phí Giao Hàng</p>';
 										}else{
-											$total=$total+30000;
 											echo number_format(30000 , 0, ',', ' ').'đ';
 										}
 										@endphp

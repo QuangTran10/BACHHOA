@@ -227,8 +227,8 @@
       <footer>
         <div class="container">
           <div class="row">
-            <div class="col-12 col-sm-12 col-md-4 text-sm-center text-md-left">
-              <div class="footer-logo"><img src="{{asset('public/frontend/assets/images/logo.png')}}" alt=""></div>
+            <div class="col-12 col-sm-12 col-md-6 text-sm-center text-md-left">
+              <div class="footer-logo"><img src="{{asset('public/frontend/assets/images/bee.png')}}" alt=""></div>
               <div class="footer-contact">
                 <p><b>Địa Chỉ:</b> 27 Hai Bà Trưng, Phường 3, Thành phố Sóc Trăng, tỉnh Sóc Trăng</p>
                 <p><b>Số Điện Thoại:</b> 0859083181</p>
@@ -236,14 +236,14 @@
               </div>
               <div class="footer-social"><a class="round-icon-btn" href=""><i class="fab fa-facebook-f"> </i></a><a class="round-icon-btn" href=""><i class="fab fa-twitter"></i></a><a class="round-icon-btn" href=""><i class="fab fa-invision"> </i></a><a class="round-icon-btn" href=""><i class="fab fa-pinterest-p"></i></a></div>
             </div>
-            <div class="col-md-8">
+            <div class="col-md-6">
               <div class="row">
-                <div class="col-12 col-sm-4 text-sm-center text-md-left">
+                <div class="col-12 col-sm-12 text-sm-center text-md-left">
                   <div class="footer-quicklink">
                     <h5>Thông Tin</h5><a href="">Chính Sách Đổi Trả</a><a href="">Chính Sách Giao Hàng</a><a href="{{URL::to('/contact_us')}}">Liên Hệ</a><a href="">Giới Thiệu</a>
                   </div>
                 </div>
-                <div class="col-12 col-sm-4 text-sm-center text-md-left">
+                {{-- <div class="col-12 col-sm-4 text-sm-center text-md-left">
                   <div class="footer-quicklink">
                     <h5>My Account</h5><a href="login.html">My Account</a><a href="contact.html">Contact</a><a href="shop_cart.html">Shopping cart</a><a href="shop_grid+list_3col.html">Shop</a>
                   </div>
@@ -251,7 +251,7 @@
                 <div class="col-12 col-sm-4 text-sm-center text-md-left">
                   <div class="footer-quicklink">
                     <h5>Quick Shop</h5><a href="about_us.html">About us</a><a href="checkout.html">Check out</a><a href="contact.html">Contact</a><a href="about_us.html">Service</a>
-                  </div>
+                  </div> --}}
                 </div>
               </div>
             </div>

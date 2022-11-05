@@ -5458,8 +5458,8 @@ footer.coffee .newletter {
       font-size: 13px; }
     .shop-detail .shop-detail_info .price-rate .product-rated span, #quickview .quickview-box .shop-detail_info .price-rate .product-rated span {
       font-family: "Roboto Regular";
-      font-size: 13px;
-      color: #b2b2b2;
+      font-size: 15px;
+      color: black;
       line-height: 1;
       display: block;
       display: inline-block; }

@@ -156,9 +156,7 @@ class UserManagement extends Controller
     }
 
     public function user_logout(){
-        Session::put('user_name',null);
-        Session::put('user_id',null);
-        Session::put('cart',null);
+        Session::forget(['coupon_id', 'coupon_type', 'coupon_price', 'cart', 'user_id','user_name']);
         return redirect('/home');
     }
 

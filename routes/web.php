@@ -46,6 +46,8 @@ Route::post('/update_cart', 'App\Http\Controllers\CartController@update_cart');
 
 Route::get('/cart_shopping', 'App\Http\Controllers\CartController@cart_shopping');
 
+Route::post('/apply_coupon', 'App\Http\Controllers\CartController@applyCoupon');
+
 //user interface -> check out
 
 Route::get('/check_out', 'App\Http\Controllers\CheckOutController@check_out');
@@ -58,17 +60,11 @@ Route::get('/complete_check_out', 'App\Http\Controllers\CheckOutController@compl
 
 Route::get('/vnpay_check_out', 'App\Http\Controllers\CheckOutController@vnpay_check_out');
 
-Route::get('/momo_check_out', 'App\Http\Controllers\CheckOutController@momo_check_out');
-
 //user interface -> payment
 
 Route::post('/vnpay_payment', 'App\Http\Controllers\PaymentController@vnpay_payment');
 
 Route::get('/vnpay_return', 'App\Http\Controllers\PaymentController@vnpay_return');
-
-Route::post('/momo_payment', 'App\Http\Controllers\PaymentController@momo_payment');
-
-Route::get('/momo_return', 'App\Http\Controllers\PaymentController@momo_return');
 
 //user interface -> login/register/logout
 
@@ -316,9 +312,13 @@ Route::get('/shipper_infor', 'App\Http\Controllers\ShipperController@infor');
 
 Route::get('/shipper_noti', 'App\Http\Controllers\ShipperController@notification');
 
+Route::get('/shipper_success', 'App\Http\Controllers\ShipperController@order_success');
+
 Route::post('/update_status_order', 'App\Http\Controllers\ShipperController@update');
 
 Route::post('/complete_status_order', 'App\Http\Controllers\ShipperController@complete');
 
 Route::post('/save_shipper_infor', 'App\Http\Controllers\ShipperController@update_shipper');
+
+
 

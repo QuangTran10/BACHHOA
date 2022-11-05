@@ -89,6 +89,9 @@ class OrderManagement extends Controller
 
         $shipper = DB::table('giaohang')->where('ThanhPho',$order_by_id->MaTP)->get();
 
+        $coupon = DB::table('sudungma')->join('magiamgia', 'magiamgia.MaGG' ,'=' ,'sudungma.MaGG')
+        ->where('MSDH',$SoDonDH)->first();
+
         $name_staff;
         if ($staff!=NULL) {
             $name_staff=$staff->HoTenNV;
@@ -98,7 +101,8 @@ class OrderManagement extends Controller
 
     	return view('admin.Order.view_order')
         ->with('order_by_id',$order_by_id)->with('order_details',$order_details)
-        ->with('MSDH',$SoDonDH)->with("NameStaff", $name_staff)->with('shipper',$shipper);
+        ->with('MSDH',$SoDonDH)->with("NameStaff", $name_staff)->with('shipper',$shipper)
+        ->with('coupon',$coupon);
     }
 
     public function choose_shipper(Request $request){
@@ -266,6 +270,9 @@ class OrderManagement extends Controller
         ->join('thanhtoan', 'thanhtoan.MaThanhToan', '=', 'dathang.MaThanhToan')
         ->where('dathang.MSDH',$id_order)->first();
 
+        $coupon = DB::table('sudungma')->join('magiamgia', 'magiamgia.MaGG' ,'=' ,'sudungma.MaGG')
+        ->where('MSDH',$id_order)->first();
+
         $meta_desc="Chi Tiết Đơn Hàng";
         $meta_keywords="Show Order Details - ".$id_order;
         $meta_tittle="QPharmacy";
@@ -275,7 +282,7 @@ class OrderManagement extends Controller
         ->with('category',$all_category)->with('list',$loaihang)
         ->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)
         ->with('meta_tittle',$meta_tittle)->with('url',$url)
-        ->with('order_details',$order_de)->with('order',$order);
+        ->with('order_details',$order_de)->with('order',$order)->with('coupon', $coupon);
     }
     public function update_order(Request $re){
         $status = $re->TinhTrang;

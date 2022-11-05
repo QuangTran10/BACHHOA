@@ -202,7 +202,21 @@ class PaymentController extends Controller
                 if($qty_ton==0){
                     DB::table('sanpham')->where('MSSP',$v_content['product_id'])->update(['TrangThai'=>0]);
                 }
+            }
+
+            //Nếu tồn tại mã giảm giá thì insert vào DB
+            if($re->session()->exists('coupon_id')){
+                $coupon_id = Session::get('coupon_id');
+
+                $coupon['MSKH']= $MSKH;
+                $coupon['MaGG']= $coupon_id;
+                $coupon['MSDH']= $SoDonDH;
+
+                DB::table('sudungma')->insert($coupon);
+                //Loại bỏ mã giảm giá ra khỏi session
+                Session::forget(['coupon_id', 'coupon_type', 'coupon_price']);
             }   
+
             if ($result) {
                 Session::put('cart',null);
                 Session::put('Addr', null);

@@ -61,6 +61,24 @@ class ShipperController extends Controller
     	return view('shipper.home');
     }
 
+    //Trang đơn hàng success
+    public function order_success(){
+        $this->AuthLogin();
+        $shipper_id = Session::get('shipper_id');
+
+        $order = DB::table('dathang')->where('MSGH',$shipper_id)->where('TrangThai',5)->get();
+
+        $order_id = array();
+        foreach ($order as $key => $value) {
+            $order_id[] = $value->MSDH;
+        }
+
+        $order_details=DB::table('chitietdathang')
+            ->join('sanpham', 'chitietdathang.MSSP', '=', 'sanpham.MSSP')->select('chitietdathang.*', 'TenSP','Image','Gia')->whereIn('MSDH',$order_id)->get();
+
+        return view('shipper.order_process', compact('order', 'order_details'));
+    }
+
     //Trang Đơn hàng 
     public function order_process(){
     	$this->AuthLogin();

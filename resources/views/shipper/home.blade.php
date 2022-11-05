@@ -22,7 +22,7 @@
           </a>
         </div>
         <div class="col s4">
-          <a href="">
+          <a href="{{URL::to('/shipper_success')}}">
             <div class="icon">
               <i class="fas fa-shipping-fast emerald"></i>
             </div>
@@ -31,7 +31,7 @@
         </div>
       </div>
       <div class="row">
-        <div class="col s4">
+        {{-- <div class="col s4">
           <a href="{{URL::to('/shipper_noti')}}" class="notification">
             <i class="fas fa-bell"></i>
             <div class="badge">
@@ -39,7 +39,7 @@
             </div>
           </a>
           <p class="tittle">Thông Báo</p>
-        </div>
+        </div> --}}
         <div class="col s4">
           <a href="{{URL::to('/shipper_infor')}}">
             <div class="icon">

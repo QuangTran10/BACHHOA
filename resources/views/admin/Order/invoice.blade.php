@@ -159,11 +159,6 @@
           </tr>
           <tr>
               <td colspan="3"></td>
-              <td align="right"><b>Tổng Giảm</b></td>
-              <td align="right">{{number_format($dis_total , 0, ',', ' ').'đ';}}</td>
-          </tr>
-          <tr>
-              <td colspan="3"></td>
               <td align="right"><b>Thành Tiền</b></td>
               <td align="right">{{number_format($tong , 0, ',', ' ').'đ';}}</td>
           </tr>

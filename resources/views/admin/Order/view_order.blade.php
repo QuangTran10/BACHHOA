@@ -178,7 +178,7 @@
 							@endforeach
 						</tbody>
 					</table>
-				</div>  {{-- end card body --}}
+				</div>  
 			</div>
 		</div>
 	</div>
@@ -189,6 +189,19 @@
 					<table>
 						<tbody style="font-size: 18px">
 							<tr>
+								<td><b>Số tiền đã giảm:</b></td>
+								<?php
+									if($coupon!=null){
+										if($coupon->LoaiGiam==1){
+											$dis_total = $dis_total + $tong*($coupon->MucGiam/100);
+										}elseif($coupon->LoaiGiam===2){
+											$dis_total = $dis_total + $coupon->MucGiam;
+										}
+									}
+								?>
+								<td><?php echo number_format($dis_total , 0, ',', ' ').'đ'; ?></td>
+							</tr>
+							<tr>
 								<td><b>Phí vận chuyển:</b></td>
 								<td>
 									@if($tong >1000000)
@@ -198,10 +211,7 @@
 									@endif
 								</td>
 							</tr>
-							<tr>
-								<td><b>Số tiền đã giảm:</b></td>
-								<td><?php echo number_format($dis_total , 0, ',', ' ').'đ'; ?></td>
-							</tr>
+							
 							<tr>
 								<td><b>Thành Tiền:</b></td>
 								<td><?php echo number_format($tong , 0, ',', ' ').'đ'; ?></td>
@@ -217,6 +227,12 @@
 		{{session('notice')}}
 	</p>
 	@endif
+
+	{{-- <?php
+		echo '<pre>';
+		print_r($coupon);
+		echo '</pre>';
+	?> --}}
 	
 	<div class="row">
 		<div class="col-lg-12 col-md-12">
