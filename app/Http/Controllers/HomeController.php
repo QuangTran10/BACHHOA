@@ -29,7 +29,7 @@ class HomeController extends Controller
         $loaihang = DB::table('loaihang')->get();
 
         //Mã khuyến mãi
-        $coupon = DB::table('magiamgia')->where('TrangThai',1)->limit(4)->get();
+        $coupon = DB::table('magiamgia')->where('TrangThai',1)->inRandomOrder()->limit(4)->get();
 
 
         //Sản phẩm bán chạy
