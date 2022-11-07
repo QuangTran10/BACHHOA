@@ -102,7 +102,7 @@
 							<li class="step0 text-center active" id="step2">Chờ Lấy Hàng</li>
 							<li class="step0 text-right active" id="step3">Đang Giao Hàng</li>
 							<li class="step0 text-right" id="step4">Đã Giao Hàng</li>
-						@elseif($order->TrangThai==5 || $order->TrangThai==4)
+						@elseif($order->TrangThai==4)
 							<li class="step0 active" id="step1">Chờ Xác Nhận</li>
 							<li class="step0 text-center active" id="step2">Chờ Lấy Hàng</li>
 							<li class="step0 text-right active" id="step3">Đang Giao Hàng</li>
@@ -208,19 +208,6 @@
 							</tr>
 						</tbody>
 					</table>
-					<div class="row">
-						<div class="col-12 justify-content-center align-items-center text-center">
-							@if($order->TrangThai==4)
-							<form action="{{URL::to('/update_order')}}" method="post">
-								{{csrf_field() }}
-								<input type="hidden" name="TinhTrang" value="5">
-								<input type="hidden" name="MSDH" value="{{$order->MSDH}}">
-								<button class="normal-btn cart-update">Đã Nhận Hàng</button>
-							</form>
-							@endif
-							
-						</div>
-					</div>
 				</div>
 			</div>
 		</div>

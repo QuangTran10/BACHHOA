@@ -71,8 +71,6 @@
                     }elseif($value->TrangThai ==3){
                       echo 'Đang Giao Hàng';
                     }elseif($value->TrangThai ==4){
-                      echo 'Chờ Xác Nhận';
-                    }elseif($value->TrangThai ==5){
                       echo 'Giao Hàng Thành Công';
                     }elseif($value->TrangThai ==6){
                       echo 'Đã Huỷ';

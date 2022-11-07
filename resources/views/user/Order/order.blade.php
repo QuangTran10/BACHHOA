@@ -188,7 +188,7 @@
 					<div id="tab-5"> 
 						<div class="no-gutters-sm">
 							@foreach($orders as $key => $value)
-							@if($value->TrangThai == 4 || $value->TrangThai==5)
+							@if($value->TrangThai == 4)
 							<div class="order-history container">
 								<div class="order-table">
 									<table class="table"> 

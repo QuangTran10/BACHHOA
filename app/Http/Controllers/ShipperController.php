@@ -66,7 +66,7 @@ class ShipperController extends Controller
         $this->AuthLogin();
         $shipper_id = Session::get('shipper_id');
 
-        $order = DB::table('dathang')->where('MSGH',$shipper_id)->where('TrangThai',5)->get();
+        $order = DB::table('dathang')->where('MSGH',$shipper_id)->where('TrangThai',4)->get();
 
         $order_id = array();
         foreach ($order as $key => $value) {
@@ -86,7 +86,8 @@ class ShipperController extends Controller
         $city = Session::get('shipper_city');
         $shipper_id = Session::get('shipper_id');
 
-    	$order = DB::table('dathang')->where('MaTP',$city)->where('MSGH',$shipper_id)->get();
+    	$order = DB::table('dathang')->where('MSGH',$shipper_id)->where('MaTP',$city)
+        ->whereIn('TrangThai',[2,3,7])->get();
 
         $order_id = array();
         foreach ($order as $key => $value) {
