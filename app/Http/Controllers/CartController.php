@@ -171,20 +171,28 @@ class CartController extends Controller
 
     public function applyCoupon(Request $request){
         $coupon_code = $request->coupon_code;
+        $now = Carbon::now('Asia/Ho_Chi_Minh')->toDateString();
         $MSKH=Session::get('user_id');
 
-        $coupon = DB::table('magiamgia')->where('Ma',$coupon_code)->first();
+        $coupon = DB::table('magiamgia')->where('Ma',$coupon_code)->where('NgayKetThuc', '>=', $now)->first();
 
-        $use_coupon = DB::table('sudungma')->where('MaGG',$coupon->MaGG)->where('MSKH',$MSKH)->first();
+        if($coupon){ //Kiểm tra HSD của mã giảm giá
+            $use_coupon = DB::table('sudungma')->where('MaGG',$coupon->MaGG)->where('MSKH',$MSKH)->first();
 
-        if(!$use_coupon){
-            Session::put('coupon_id',$coupon->MaGG);
-            Session::put('coupon_type',$coupon->LoaiGiam);
-            Session::put('coupon_price',$coupon->MucGiam);
-            return redirect('/cart_shopping')->with('notice','Áp dụng mã thành công');
+            if(!$use_coupon){
+                Session::put('coupon_id',$coupon->MaGG);
+                Session::put('coupon_type',$coupon->LoaiGiam);
+                Session::put('coupon_price',$coupon->MucGiam);
+                Session::put('coupon_code', $coupon->Ma);
+                return redirect('/cart_shopping')->with('notice','Áp dụng mã thành công')->withInput();;
+            }else{
+                Session::forget(['coupon_id', 'coupon_type', 'coupon_price', 'coupon_code']);
+                return redirect('/cart_shopping')->with('notice','Mã đã được sử dụng. Vui lòng chọn mã khác')->withInput();;
+            }
         }else{
-            Session::forget(['coupon_id', 'coupon_type', 'coupon_price']);
-            return redirect('/cart_shopping')->with('notice','Mã đã được sử dụng. Vui lòng chọn mã khác');
+            Session::forget(['coupon_id', 'coupon_type', 'coupon_price', 'coupon_code']);
+            return redirect('/cart_shopping')->with('notice','Mã đã hết hạn sử dụng. Vui lòng chọn mã khác')->withInput();;
         }
+        
     }
 }

@@ -156,7 +156,7 @@ class CheckOutController extends Controller
 
             DB::table('sudungma')->insert($coupon);
             //Loại bỏ mã giảm giá ra khỏi session
-            Session::forget(['coupon_id', 'coupon_type', 'coupon_price']);
+            Session::forget(['coupon_id', 'coupon_type', 'coupon_price', 'coupon_code']);
         }
 
         if ($result) {

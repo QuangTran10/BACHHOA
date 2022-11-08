@@ -114,7 +114,7 @@
 				<div class="coupon">
 					<form action="{{URL::to('/apply_coupon')}}" method="post">
 						{{csrf_field()}}
-						<input class="no-round-input" type="text" name="coupon_code" placeholder="Mã code giảm giá">
+						<input class="no-round-input" type="text" name="coupon_code" placeholder="Mã code giảm giá" value="{{ old('coupon_code') }}">
 						<button class="no-round-btn smooth btn-apply-coupon">Áp dụng mã giảm giá</button>
 					</form>
 				</div>
