@@ -47,7 +47,11 @@
               <label class="col-sm-2 col-form-label">Mức giảm</label>
               <div class="col-sm-10">
                 <div class="form-group">
-                  <input type="number" min="0" class="form-control" name="MucGiam" value="{{$coupon->MucGiam}}">
+                  @if($coupon->LoaiGiam==1)
+                  <input type="number" class="form-control" min="1" max="100" name="MucGiam" value="{{$coupon->MucGiam}}">
+                  @elseif($coupon->LoaiGiam==2)
+                  <input type="number" class="form-control" min="1000" name="MucGiam" value="{{$coupon->MucGiam}}">
+                  @endif
                 </div>
               </div>
             </div>
@@ -84,6 +88,19 @@
       $('.datepicker').datetimepicker({
         format:'YYYY-MM-DD'
       });
+    });
+
+
+    $('#LoaiGiam').change(function(event) {
+      var type = $(this).val();
+      if(type==1){
+        $('#content-price').empty();
+        $('#content-price').append('<input type="number" class="form-control" min="1" max="100" name="MucGiam" id="MucGiam" required><p class="help is-danger">{{ $errors->first('MucGiam') }}</p>');
+      }else if(type==2){
+        $('#content-price').empty();
+        $('#content-price').append('<input type="number" class="form-control" min="1000" name="MucGiam" id="MucGiam" required><p class="help is-danger">{{ $errors->first('MucGiam') }}</p>');
+      }
+      
     });
   });
 </script>

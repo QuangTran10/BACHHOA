@@ -19,6 +19,7 @@
               <div class="col-sm-10">
                 <div class="form-group">
                   <input type="text" class="form-control" name="TieuDe" id="TieuDe" required>
+                  <p class="help is-danger">{{ $errors->first('TieuDe') }}</p>
                 </div>
               </div>
             </div>
@@ -27,6 +28,7 @@
               <div class="col-sm-10">
                 <div class="form-group">
                   <input type="text" class="form-control" name="Ma" value="<?php echo strtoupper(substr(md5(time()), 0, 12))?>" required >
+                  <p class="help is-danger">{{ $errors->first('Ma') }}</p>
                 </div>
               </div>
             </div>
@@ -35,7 +37,8 @@
               <div class="col-sm-10">
                 <div class="form-group">
                   <select class="selectpicker" data-style="select-with-transition" id="LoaiGiam" name="LoaiGiam" required >
-                    <option value="1" selected>Giảm Theo Phần Trăm</option>
+                    <option value="">Chọn</option>
+                    <option value="1">Giảm Theo Phần Trăm</option>
                     <option value="2">Giảm Theo Tiền</option>
                   </select>
                 </div>
@@ -44,8 +47,8 @@
             <div class="row">
               <label class="col-sm-2 col-form-label">Mức giảm</label>
               <div class="col-sm-10">
-                <div class="form-group">
-                  <input type="number" min="1" max="100" class="form-control" name="MucGiam" id="MucGiam" required>
+                <div class="form-group" id="content-price">
+                  
                 </div>
               </div>
             </div>
@@ -54,6 +57,7 @@
               <div class="col-sm-10">
                 <div class="form-group">
                   <input type="text" class="form-control datepicker" id="NgayKetThuc" name="NgayKetThuc" required>
+                  <p class="help is-danger">{{ $errors->first('NgayKetThuc') }}</p>
                 </div>
               </div>
             </div>
@@ -65,6 +69,7 @@
                     <option value="1">Hiện</option>
                     <option value="0">Ẩn</option>
                   </select>
+                  <p class="help is-danger">{{ $errors->first('TrangThai') }}</p>
                 </div>
               </div>
             </div>
@@ -84,6 +89,20 @@
         format:'YYYY-MM-DD'
       });
     });
+
+    $('#LoaiGiam').change(function(event) {
+      var type = $(this).val();
+      if(type==1){
+        $('#content-price').empty();
+        $('#content-price').append('<input type="number" class="form-control" min="1" max="100" name="MucGiam" id="MucGiam" required><p class="help is-danger">{{ $errors->first('MucGiam') }}</p>');
+      }else if(type==2){
+        $('#content-price').empty();
+        $('#content-price').append('<input type="number" class="form-control" min="1000" name="MucGiam" id="MucGiam" required><p class="help is-danger">{{ $errors->first('MucGiam') }}</p>');
+      }
+      
+    });
+
+
   });
 </script>
 @endsection

@@ -22,6 +22,12 @@
   <link href="{{asset('public/backend/assets/demo/demo.css')}}" rel="stylesheet" />
 
   <script src="{{asset('public/backend/assets/js/core/jquery.min.js')}}"></script>
+  <style type="text/css">
+    .is-danger{
+      color: red;
+      font-size: 14px;
+    }
+  </style>
 </head>
 
 <body class="">
@@ -540,7 +546,7 @@
               });
             }else{
               swal("Cảnh Báo", "Không thêm thành công", "error").then(function(){
-              location.reload();
+                location.reload();
               });
             }
           }

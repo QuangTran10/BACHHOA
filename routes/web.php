@@ -152,39 +152,37 @@ Route::get('/logout', 'App\Http\Controllers\AdminController@Logout');
 
 Route::get('/404', 'App\Http\Controllers\AdminController@error_page');
 
-//Đếm số order
-Route::get('/count_order', 'App\Http\Controllers\OrderManagement@count_order');
-
-//Thống kê sản phẩm bán chạy
-Route::post('/product_bestsell', 'App\Http\Controllers\ProductController@best_sell');
-
-//admin interface -> user management
-
-Route::get('/user', 'App\Http\Controllers\UserManagement@user');
-
-Route::get('/password', 'App\Http\Controllers\UserManagement@password');
-
-Route::post('/change_pass', 'App\Http\Controllers\UserManagement@change_pass');
-
-Route::post('/update_user', 'App\Http\Controllers\UserManagement@update_user');
-
-//admin interface -> order management
-
-Route::get('/order_management', 'App\Http\Controllers\OrderManagement@order_management');
-
-Route::get('/view_order/{SoDonDH}', 'App\Http\Controllers\OrderManagement@view_order');
-
-Route::post('/update_status', 'App\Http\Controllers\OrderManagement@update_status');
-
-Route::get('/print_order/{checkout_code}', 'App\Http\Controllers\OrderManagement@print_order');
-
-Route::post('/find-order', 'App\Http\Controllers\OrderManagement@find_order');
-
-Route::post('/choose_shipper', 'App\Http\Controllers\OrderManagement@choose_shipper');
-
 
 //Chỉ Staff và Admin mới truy cập
 Route::group(['middleware' => 'roles'], function(){
+	//Đếm số order
+	Route::get('/count_order', 'App\Http\Controllers\OrderManagement@count_order');
+
+	//Thống kê sản phẩm bán chạy
+	Route::post('/product_bestsell', 'App\Http\Controllers\ProductController@best_sell');
+
+	//admin interface -> user management
+
+	Route::get('/user', 'App\Http\Controllers\UserManagement@user');
+
+	Route::get('/password', 'App\Http\Controllers\UserManagement@password');
+
+	Route::post('/change_pass', 'App\Http\Controllers\UserManagement@change_pass');
+
+	Route::post('/update_user', 'App\Http\Controllers\UserManagement@update_user');
+
+	//admin interface -> order management
+
+	Route::get('/order_management', 'App\Http\Controllers\OrderManagement@order_management');
+
+	Route::get('/view_order/{SoDonDH}', 'App\Http\Controllers\OrderManagement@view_order');
+
+	Route::post('/update_status', 'App\Http\Controllers\OrderManagement@update_status');
+
+	Route::get('/print_order/{checkout_code}', 'App\Http\Controllers\OrderManagement@print_order');
+
+	Route::post('/choose_shipper', 'App\Http\Controllers\OrderManagement@choose_shipper');
+
 
 	//admin interface -> category management
 

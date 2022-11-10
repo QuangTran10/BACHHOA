@@ -41,6 +41,24 @@ class CouponController extends Controller
      */
     public function store(Request $request)
     {
+        $validate = $request->validate([
+            'TieuDe'       => 'required',
+            'Ma'           => 'required',
+            'LoaiGiam'     => 'required',
+            'MucGiam'      => 'required',
+            'TrangThai'    => 'required',
+            'NgayKetThuc'  => 'required',
+        ],
+        [
+            'TieuDe.required' => "Tiêu đề không được để trống",
+            'Ma.required' => "Mã không được để trống",
+            'LoaiGiam.required' => "Loại giảm không được để trống",
+            'MucGiam.required' => "Mức giảm không được để trống",
+            'TrangThai.required' => "Trạng thái không được để trống",
+            'NgayKetThuc.required' => "HSD không được để trống",
+        ]
+        );
+
         $coupon = array();
         $coupon['TieuDe'] = $request->TieuDe;
         $coupon['Ma'] = $request->Ma;

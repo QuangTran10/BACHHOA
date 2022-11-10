@@ -127,6 +127,7 @@ class UserManagement extends Controller
         if ($result) {
             Session::put('user_name',$result->Email);
             Session::put('user_id',$result->MSKH);
+            Session::forget(['coupon_id', 'coupon_type', 'coupon_price', 'coupon_code']);
             return redirect('/home');
         }else{
             return redirect('/login_home')->with('notice','Mật khẩu hoặc tài khoản không đúng');
