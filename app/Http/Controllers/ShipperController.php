@@ -87,7 +87,7 @@ class ShipperController extends Controller
         $shipper_id = Session::get('shipper_id');
 
     	$order = DB::table('dathang')->where('MSGH',$shipper_id)->where('MaTP',$city)
-        ->whereIn('TrangThai',[2,3,7])->get();
+        ->whereIn('TrangThai',[1,2,3,7])->get();
 
         $order_id = array();
         foreach ($order as $key => $value) {

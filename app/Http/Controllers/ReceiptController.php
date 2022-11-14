@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Carbon\Carbon;
 use DB;
 use App\Models\Product;
+use App\Models\Producer;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\File; 
 use Illuminate\Support\Collection;
@@ -35,6 +36,7 @@ class ReceiptController extends Controller
     //Thêm phiếu nhập
     public function show_add(){
         $this->AuthLogin();
+        $producer = Producer::all();
         $all_receipt = DB::table('chitietphieuthu')->select("MSSP")->get()->toArray();
 
         $data = array();
@@ -52,7 +54,7 @@ class ReceiptController extends Controller
             ->select('sanpham.*','danhmuc.TenDanhMuc')->first();
         }
 
-    	return view('admin.Receipt.add_receipt')->with('all_product',$product);
+    	return view('admin.Receipt.add_receipt', compact('product', 'producer'));
     }
 
     //add
@@ -61,46 +63,51 @@ class ReceiptController extends Controller
     	$data= $re->all();
     	$now = Carbon::now('Asia/Ho_Chi_Minh');
 
-    	//Receipt
-    	$receipt=array();
-    	$receipt['MSNV']=Session::get('admin_id');
-    	$receipt['ThanhTien']=0;
-    	$receipt['NgayLap']=$now;
-    	$receipt['NCC']=$re->NCC;
-    	$receipt['GhiChu']=$re->GhiChu;
-    	$receipt['TinhTrang']=1;
-    	$receipt['TG_Tao']=$now;
-    	$receipt['TG_CapNhat']=$now;
+        echo '<pre>';
+        echo print_r($data);
+        echo '</pre>';
+
+    	// //Receipt
+    	// $receipt=array();
+
+    	// $receipt['MSNV']=Session::get('admin_id');
+    	// $receipt['ThanhTien']=0;
+    	// $receipt['NgayLap']=$now;
+    	// $receipt['NCC']=$re->MaNCC;
+    	// $receipt['GhiChu']=$re->GhiChu;
+    	// $receipt['TinhTrang']=1;
+    	// $receipt['TG_Tao']=$now;
+    	// $receipt['TG_CapNhat']=$now;
     	
-    	$MaPhieu=DB::table('phieuthu')->insertGetId($receipt);
+    	// $MaPhieu=DB::table('phieuthu')->insertGetId($receipt);
 
-    	$ds= array();
-    	$ThanhTien=0;
-    	$kq=0;
-    	foreach ($data['sp'] as $key => $value) {
-    		$ds['MSSP']=$key;
-    		$ds['MaPhieu']=$MaPhieu;
-    		$product = DB::table('sanpham')->where('MSSP',$key)->get();
-    		foreach ($product as $k => $val) {
-    			$ThanhTien=$ThanhTien + $val->SoLuong*$val->Gia;
-    			$ds['SoLuong']=$val->SoLuong;
-    			$ds['DonGia']=$val->Gia;
-    			$ds['TG_Tao']=$now;
-    			$ds['TG_CapNhat']=$now;
-    		}
-    		$result=DB::table('chitietphieuthu')->insert($ds);
-    		if ($result) {
-    			$kq=1;
-    		}
-    	}
+    	// $ds= array();
+    	// $ThanhTien=0;
+    	// $kq=0;
+    	// foreach ($data['sp'] as $key => $value) {
+    	// 	$ds['MSSP']=$key;
+    	// 	$ds['MaPhieu']=$MaPhieu;
+    	// 	$product = DB::table('sanpham')->where('MSSP',$key)->get();
+    	// 	foreach ($product as $k => $val) {
+    	// 		$ThanhTien=$ThanhTien + $val->SoLuong*$val->Gia;
+    	// 		$ds['SoLuong']=$val->SoLuong;
+    	// 		$ds['DonGia']=$val->Gia;
+    	// 		$ds['TG_Tao']=$now;
+    	// 		$ds['TG_CapNhat']=$now;
+    	// 	}
+    	// 	$result=DB::table('chitietphieuthu')->insert($ds);
+    	// 	if ($result) {
+    	// 		$kq=1;
+    	// 	}
+    	// }
 
-    	if ($kq==1) {
-    		DB::table('phieuthu')->where('MaPhieu', $MaPhieu)->update(['ThanhTien' => $ThanhTien]);
-    		return Redirect::to('show_receipt');
-    	}else{
-    		Session::put('message','Thêm Thất bại');
-        	return Redirect::to('add_receipt');
-    	}
+    	// if ($kq==1) {
+    	// 	DB::table('phieuthu')->where('MaPhieu', $MaPhieu)->update(['ThanhTien' => $ThanhTien]);
+    	// 	return Redirect::to('show_receipt');
+    	// }else{
+    	// 	Session::put('message','Thêm Thất bại');
+     //    	return Redirect::to('add_receipt');
+    	// }
 
     }
 }

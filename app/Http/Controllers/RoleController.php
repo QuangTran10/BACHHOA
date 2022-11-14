@@ -40,8 +40,8 @@ class RoleController extends Controller
     			$staff->roles()->attach(Roles::where('quyen','staff')->first());
     		}
 
-    		if($data['role_shipper'] == 'true'){
-    			$staff->roles()->attach(Roles::where('quyen','shipper')->first());
+    		if($data['role_stock'] == 'true'){
+    			$staff->roles()->attach(Roles::where('quyen','stock')->first());
     		}
             echo 1;
     	}else{

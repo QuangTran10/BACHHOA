@@ -81,18 +81,46 @@ class CartController extends Controller
         }
 
         $ses_id=0;
-        if($cart==true){
-            $is_available = 0;
-            //Kiểm tra sản phẩm mới thêm có trùng với sp có trong session cart
-            foreach ($cart as $key => $val) {
-                if($val['product_id'] == $data['cart_product_id']){
-                    $is_available++;
-                    $ses_id=$key;
+        //Nếu số lượng lớn hơn 0 
+        if($data['cart_product_qty'] > 0){
+            if($cart==true){
+                $is_available = 0;
+                //Kiểm tra sản phẩm mới thêm có trùng với sp có trong session cart
+                foreach ($cart as $key => $val) {
+                    if($val['product_id'] == $data['cart_product_id']){
+                        $is_available++;
+                        $ses_id=$key;
+                    }
                 }
-            }
-            //Nếu không có trùng trong giỏ hàng thì tạo cart mới thêm vào
-            if($is_available==0){
-                //Nếu sp thêm vào giỏ hàng có sl nhỏ hơn sl tồn
+                //Nếu không có trùng trong giỏ hàng thì tạo cart mới thêm vào
+                if($is_available==0){
+                    //Nếu sp thêm vào giỏ hàng có sl nhỏ hơn sl tồn
+                    if($data['cart_product_qty']<=$qty_ton){
+                        $cart[] = array(
+                            'session_id'   => $session_id,
+                            'product_name' => $data['cart_product_name'],
+                            'product_id'   => $data['cart_product_id'],
+                            'product_image'=> $data['cart_product_image'],
+                            'product_qty'  => $data['cart_product_qty'],
+                            'product_discount'=> $data['cart_product_discount'],
+                            'product_price'=> $data['cart_product_price']
+                        );
+                        Session::put('cart',$cart);
+                    }else{
+                        $notification['error']=1;
+                    }
+                }else{
+                //Nếu có sp trùng thì cộng dồn số lượng
+                    $qty_new=$cart[$ses_id]['product_qty']+ $data['cart_product_qty'];
+                    if ( $qty_new <= $qty_ton ) {
+                        $cart[$ses_id]['product_qty']=$cart[$ses_id]['product_qty']+ $data['cart_product_qty'];
+                        Session::put('cart',$cart);
+                    }else{
+                        $notification['error']=1;
+                    }
+                }
+            }else{
+                //Nếu chưa có cart thì tạo mới
                 if($data['cart_product_qty']<=$qty_ton){
                     $cart[] = array(
                         'session_id'   => $session_id,
@@ -107,36 +135,15 @@ class CartController extends Controller
                 }else{
                     $notification['error']=1;
                 }
-            }else{
-                //Nếu có sp trùng thì cộng dồn số lượng
-                $qty_new=$cart[$ses_id]['product_qty']+ $data['cart_product_qty'];
-                if ( $qty_new <= $qty_ton ) {
-                    $cart[$ses_id]['product_qty']=$cart[$ses_id]['product_qty']+ $data['cart_product_qty'];
-                    Session::put('cart',$cart);
-                }else{
-                    $notification['error']=1;
-                }
             }
+
+            Session::save();
+            echo json_encode($notification);
         }else{
-            //Nếu chưa có cart thì tạo mới
-            if($data['cart_product_qty']<=$qty_ton){
-                $cart[] = array(
-                    'session_id'   => $session_id,
-                    'product_name' => $data['cart_product_name'],
-                    'product_id'   => $data['cart_product_id'],
-                    'product_image'=> $data['cart_product_image'],
-                    'product_qty'  => $data['cart_product_qty'],
-                    'product_discount'=> $data['cart_product_discount'],
-                    'product_price'=> $data['cart_product_price']
-                );
-                Session::put('cart',$cart);
-            }else{
-                $notification['error']=1;
-            }
+            $notification['error']=2;
+            echo json_encode($notification);
         }
         
-        Session::save();
-        echo json_encode($notification);
 
     }
     public function cart_shopping(Request $re){

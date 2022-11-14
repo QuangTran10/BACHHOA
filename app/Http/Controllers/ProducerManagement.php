@@ -76,30 +76,4 @@ class ProducerManagement extends Controller
         DB::table('nhasanxuat')->where('MaNSX',$id)->update(['TinhTrang'=>0]);
         return Redirect::to('producer_management');
     }
-
-    public function show_producer_home($id_pro, Request $re){
-        $all_category = DB::table('loaihanghoa')->where('TinhTrang',1)->get();
-        $all_producer = DB::table('nhasanxuat')->where('TinhTrang',1)->get();
-
-        $producer_by_id =DB::table('hanghoa')->where('hanghoa.MaNSX',$id_pro)
-        ->join('nhasanxuat', 'hanghoa.MaNSX', '=', 'nhasanxuat.MaNSX')
-        ->get();
-
-        $category=DB::table('nhasanxuat')->where('MaNSX',$id_pro)->get();
-
-        foreach ($category as $key => $value) {
-            //Seo
-            $meta_desc=$value->TenNSX;
-            $meta_keywords="Producer - ". $value->MaNSX;
-            $meta_tittle="QPharmacy";
-            $url=$re->url();
-            // end seo
-        }
-        $count_producer_by_id=DB::table('hanghoa')->where('MaNSX',$id_pro)->get()->count();
-        return view('pages.category.show_category')
-        ->with('category',$all_category)->with('producer',$all_producer)
-        ->with('product',$producer_by_id)->with('soluong',$count_producer_by_id)
-        ->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)
-        ->with('meta_tittle',$meta_tittle)->with('url',$url);
-    }
 }

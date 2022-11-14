@@ -2,6 +2,7 @@
 @section('admin_content')
 
 <div class="container-fluid">
+  @hasrole(['admin'])
   <div class="row">
     <div class="col-lg-12 col-md-12">
       <a href="{{URL::to('/add_product')}}" class="btn btn-primary btn-lg" role="button" aria-disabled="true">
@@ -12,6 +13,7 @@
       </a>
     </div>
   </div>
+  @endhasrole
   <div class="row">
     <div class="col-lg-12 col-md-12">
       <div class="card">
@@ -22,13 +24,14 @@
           <table class="table table-hover">
             <thead class="text-warning">
               <th width="30%">Tên Sản Phẩm</th>
-              <th width="10%">Giá</th>
+              <th width="15%">Giá</th>
               <th width="10%">Số Lượng</th>
-              <th width="10%">Loại Hàng</th>
               <th width="10%">Giảm Giá</th>
-              <th width="20%">Hình Ảnh</th>
+              <th width="25%">Hình Ảnh</th>
+              @hasrole(['admin'])
               <th width="5%"></th>
               <th width="5%"></th>
+              @endhasrole
             </thead>
             <tbody>
               @foreach($all_product as $key => $value)
@@ -36,13 +39,13 @@
                 <td>{{$value->TenSP}}</td>
                 <td>{{number_format($value->Gia , 0, ',', ' ').'đ';}}</td>
                 <td>{{$value->SoLuong}}</td>
-                <td>{{$value->TenDanhMuc}}</td>
                 <td>
                   {{($value->GiamGia*100).'%';}}
                 </td>
                 <td>
                   <img src="{{('public/upload/'.$value->Image)}}" width="50%">
                 </td>
+                @hasrole(['admin'])
                 <td>
                   <a href="{{URL::to('/update_product/'.$value->MSSP)}}"><i class="material-icons">edit</i></a>
                 </td>
@@ -51,6 +54,7 @@
                     <i class="material-icons">delete</i>
                   </a>
                 </td>
+                @endhasrole
               </tr>
               @endforeach
             </tbody>

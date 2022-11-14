@@ -30,9 +30,8 @@ class ProductController extends Controller
 
     public function product_management(){
         $this->AuthLogin();
-        $all_product = DB::table('sanpham')
-        ->join('danhmuc', 'sanpham.MaDM', '=', 'danhmuc.MaDM')
-        ->Paginate(5);
+        $all_product = DB::table('sanpham')->Paginate(5);
+        
         Session::put('page',2);
         $manage_product = view('admin.Product.product_management')->with('all_product',$all_product);
         return view('admin_layout')->with('admin.Product.product_management',$manage_product);

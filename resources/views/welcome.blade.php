@@ -388,6 +388,12 @@
                   icon: "success",
                   button: "OK",
                 });
+              }else if(data.error == 2){
+                swal({
+                  title: "Số lượng không được âm",
+                  icon: "warning",
+                  button: "OK",
+                });
               }else{
                 swal({
                   title: "Số lượng tồn không đủ",

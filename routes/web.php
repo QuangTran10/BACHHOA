@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CouponController;
-
+use App\Http\Controllers\ProducerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,7 +15,7 @@ use App\Http\Controllers\CouponController;
 |
 */
 
-//USER INTERFACE
+//*************************************USER***********************************************//
 
 //Home
 Route::get('/', 'App\Http\Controllers\HomeController@index');
@@ -139,7 +139,7 @@ Route::post('/select_update_delivery', 'App\Http\Controllers\DeliveryController@
 Route::post('/get_delivery', 'App\Http\Controllers\DeliveryController@get_delivery');
 
 
-//ADMIN INTERFACE
+//*************************************ADMIN***********************************************//
 
 //Home
 Route::get('/admin', 'App\Http\Controllers\AdminController@index');
@@ -152,24 +152,26 @@ Route::get('/logout', 'App\Http\Controllers\AdminController@Logout');
 
 Route::get('/404', 'App\Http\Controllers\AdminController@error_page');
 
-
-//Chỉ Staff và Admin mới truy cập
-Route::group(['middleware' => 'roles'], function(){
-	//Đếm số order
-	Route::get('/count_order', 'App\Http\Controllers\OrderManagement@count_order');
+//Đếm số order
+Route::get('/count_order', 'App\Http\Controllers\OrderManagement@count_order');
 
 	//Thống kê sản phẩm bán chạy
-	Route::post('/product_bestsell', 'App\Http\Controllers\ProductController@best_sell');
+Route::post('/product_bestsell', 'App\Http\Controllers\ProductController@best_sell');
 
 	//admin interface -> user management
 
-	Route::get('/user', 'App\Http\Controllers\UserManagement@user');
+Route::get('/user', 'App\Http\Controllers\UserManagement@user');
 
-	Route::get('/password', 'App\Http\Controllers\UserManagement@password');
+Route::get('/password', 'App\Http\Controllers\UserManagement@password');
 
-	Route::post('/change_pass', 'App\Http\Controllers\UserManagement@change_pass');
+Route::post('/change_pass', 'App\Http\Controllers\UserManagement@change_pass');
 
-	Route::post('/update_user', 'App\Http\Controllers\UserManagement@update_user');
+Route::post('/update_user', 'App\Http\Controllers\UserManagement@update_user');
+
+
+
+//Chỉ Staff và Admin mới truy cập
+Route::group(['middleware' => 'roles'], function(){
 
 	//admin interface -> order management
 
@@ -183,6 +185,32 @@ Route::group(['middleware' => 'roles'], function(){
 
 	Route::post('/choose_shipper', 'App\Http\Controllers\OrderManagement@choose_shipper');
 
+	//Chỉ được xem các sản phẩm
+	Route::get('/product_management', 'App\Http\Controllers\ProductController@product_management');
+
+});
+
+
+//Quyền của admin
+Route::group(['middleware' => 'admin_role'], function(){
+
+	//admin interface -> Staff
+
+	Route::get('/staff_management', 'App\Http\Controllers\StaffController@show_staff');
+
+	Route::get('/add_staff', 'App\Http\Controllers\StaffController@add_staff');
+
+	Route::post('/save_staff', 'App\Http\Controllers\StaffController@save_staff');
+
+	Route::get('/delete_staff/{id}', 'App\Http\Controllers\StaffController@delete_staff');
+
+	Route::get('/unblock_staff/{id}', 'App\Http\Controllers\StaffController@unblock_staff');
+
+	//admin interface -> role
+
+	Route::get('/role_management', 'App\Http\Controllers\RoleController@role_management');
+
+	Route::post('/assign_role', 'App\Http\Controllers\RoleController@assign_role');
 
 	//admin interface -> category management
 
@@ -212,12 +240,11 @@ Route::group(['middleware' => 'roles'], function(){
 
 	Route::post('/edit_catechild/{id}','App\Http\Controllers\CateChildController@edit_catechild');
 
+	
 
 	//admin interface -> product management
 
 	Route::get('/add_product', 'App\Http\Controllers\ProductController@add');
-
-	Route::get('/product_management', 'App\Http\Controllers\ProductController@product_management');
 
 	Route::get('/update_product/{id}','App\Http\Controllers\ProductController@update_product');
 
@@ -234,18 +261,6 @@ Route::group(['middleware' => 'roles'], function(){
 	Route::get('/delete_images/{id}', 'App\Http\Controllers\ProductController@delete_images');
 
 
-	//admin interface -> receipt
-
-	Route::get('/add_receipt', 'App\Http\Controllers\ReceiptController@show_add');
-
-	Route::post('/save_receipt', 'App\Http\Controllers\ReceiptController@add');
-
-	Route::get('/show_receipt', 'App\Http\Controllers\ReceiptController@show_all');
-
-	//admin interface -> Discount
-
-	Route::get('/discount_management', 'App\Http\Controllers\DiscountController@show_discount');
-
 	//admin interface -> comment
 
 	Route::get('/show_comment', 'App\Http\Controllers\CommentController@show_comment');
@@ -261,34 +276,23 @@ Route::group(['middleware' => 'roles'], function(){
 	//admin interface -> coupon
 	Route::resource('coupon', CouponController::class );
 
-});
-
-
-//Quyền của admin
-Route::group(['middleware' => 'admin_role'], function(){
-
-	//admin interface -> Staff
-
-	Route::get('/staff_management', 'App\Http\Controllers\StaffController@show_staff');
-
-	Route::get('/add_staff', 'App\Http\Controllers\StaffController@add_staff');
-
-	Route::post('/save_staff', 'App\Http\Controllers\StaffController@save_staff');
-
-	Route::get('/delete_staff/{id}', 'App\Http\Controllers\StaffController@delete_staff');
-
-	Route::get('/unblock_staff/{id}', 'App\Http\Controllers\StaffController@unblock_staff');
-
-	//admin interface -> role
-
-	Route::get('/role_management', 'App\Http\Controllers\RoleController@role_management');
-
-	Route::post('/assign_role', 'App\Http\Controllers\RoleController@assign_role');
+	//admin interface -> producer
+	Route::resource('producer', ProducerController::class );
 
 });
 
+//Quyền của Stock và Admin
+Route::group(['middleware' => 'stock_role'], function(){
+	//admin interface -> receipt
 
+	Route::get('/add_receipt', 'App\Http\Controllers\ReceiptController@show_add');
 
+	Route::post('/save_receipt', 'App\Http\Controllers\ReceiptController@add');
+
+	Route::get('/show_receipt', 'App\Http\Controllers\ReceiptController@show_all');
+});
+
+//*************************************SHIPPER***********************************************//
 
 //Shipper -> home
 

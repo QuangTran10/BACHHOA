@@ -95,8 +95,6 @@
               <p>Quản Lý Nhân Viên</p>
             </a>
           </li>
-          @endhasrole
-          @hasrole(['admin', 'staff'])
           <li class="nav-item <?php $page = Session::get('page'); if($page==4){echo "active";} ?>">
             <a class="nav-link" href="{{URL::to('/category_management')}}">
               <i class="material-icons">category</i>
@@ -104,25 +102,31 @@
             </a>
           </li>
           @endhasrole
+          @hasrole(['admin', 'staff'])
           <li class="nav-item <?php $page = Session::get('page'); if($page==5){echo "active";} ?>">
             <a class="nav-link" href="{{URL::to('/order_management')}}">
               <i class="material-icons">store</i>
               <p>Quản Lý Đơn Hàng</p>
             </a>
           </li>
-          @hasrole(['admin', 'staff'])
+          @endhasrole
+          @hasrole(['admin'])
           <li class="nav-item <?php $page = Session::get('page'); if($page==6){echo "active";} ?>">
             <a class="nav-link" href="{{URL::to('/catechild_management')}}">
               <i class="material-icons">inventory_2</i>
               <p>Quản lý Danh Mục Con</p>
             </a>
           </li>
+          @endhasrole
+          @hasrole(['admin', 'stock'])
           <li class="nav-item <?php $page = Session::get('page'); if($page==7){echo "active";} ?>">
             <a class="nav-link" href="{{URL::to('/show_receipt')}}">
               <i class="material-icons">receipt_long</i>
               <p>Quản Lý Nhập Kho</p>
             </a>
           </li>
+          @endhasrole
+          @hasrole(['admin'])
           <li class="nav-item <?php $page = Session::get('page'); if($page==8){echo "active";} ?>">
             <a class="nav-link" href="{{URL::to('/show_comment')}}">
               <i class="material-icons">notifications</i>
@@ -141,8 +145,6 @@
               <p>Khuyến Mãi</p>
             </a>
           </li>
-          @endhasrole
-          @hasrole(['admin'])
           <li class="nav-item <?php $page = Session::get('page'); if($page==11){echo "active";} ?>">
             <a class="nav-link" href="{{URL::to('/role_management')}}">
               <i class="material-icons">group</i>
@@ -503,7 +505,7 @@
         var id = $(this).data('id'); //MSNV
         var role_admin = $('#role_admin_'+id).is(":checked");
         var role_staff = $('#role_staff_'+id).is(":checked");
-        var role_shipper = $('#role_shipper_'+id).is(":checked");
+        var role_stock = $('#role_stock_'+id).is(":checked");
         var _token = $('input[name="_token"]').val();
 
         $.ajax({
@@ -513,7 +515,7 @@
             MSNV: id,
             role_admin: role_admin,
             role_staff: role_staff,
-            role_shipper: role_shipper,
+            role_stock: role_stock,
             _token: _token },
           success:function(data){
             if(data!=0){

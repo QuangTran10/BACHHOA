@@ -7,6 +7,9 @@
       <a href="{{URL::to('/add_receipt')}}" class="btn btn-primary btn-lg" role="button" aria-disabled="true">
          <i class="material-icons">edit</i> Thêm Phiếu Thu
       </a>
+      <a href="{{route('producer.index')}}" class="btn btn-primary btn-lg" role="button" aria-disabled="true">
+         <i class="material-icons">edit</i> Quản Lý NSX
+      </a>
     </div>
   </div>
   <div class="row">

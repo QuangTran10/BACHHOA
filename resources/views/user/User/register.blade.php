@@ -30,9 +30,9 @@
                 <input class="no-round-input" id="SDT" name="SDT" type="text">
                 <label for="Email">Email</label>
                 <input class="no-round-input" id="Email" name="Email" type="email">
-                <label for="MatKhau">Mật Khẩu *</label>
+                <label for="MatKhau">Mật Khẩu</label>
                 <input class="no-round-input" id="MatKhau" name="MatKhau" type="password">
-                <label for="MatKhau1">Nhập Lại Mật Khẩu *</label>
+                <label for="MatKhau1">Nhập Lại Mật Khẩu</label>
                 <input class="no-round-input" id="MatKhau1" name="MatKhau1" type="password">
                 <div class="account-function">
                   <button class="no-round-btn" type="submit" name="DangKi">Đăng Ký</button>
