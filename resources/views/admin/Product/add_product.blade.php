@@ -40,14 +40,6 @@
               </div>
             </div>
             <div class="row">
-              <label class="col-sm-2 col-form-label">Số Lượng</label>
-              <div class="col-sm-10">
-                <div class="form-group">
-                  <input type="number" class="form-control" name="SoLuong" min="1" id="SoLuong">
-                </div>
-              </div>
-            </div>
-            <div class="row">
               <label class="col-sm-2 col-form-label">Danh Mục Hàng</label>
               <div class="col-sm-10">
                 <div class="form-group">
@@ -55,17 +47,6 @@
                     @foreach($category as $key => $value_cate)
                       <option value="{{$value_cate->MaDM}}">{{$value_cate->TenDanhMuc}}</option>
                     @endforeach
-                  </select>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <label class="col-sm-2 col-form-label">Trạng Thái</label>
-              <div class="col-sm-10">
-                <div class="form-group">
-                  <select class="selectpicker" data-style="select-with-transition" name="TrangThai">
-                    <option value="1">Hiện</option>
-                    <option value="0">Ẩn</option>
                   </select>
                 </div>
               </div>

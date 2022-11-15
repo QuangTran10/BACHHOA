@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 05, 2022 at 08:10 AM
+-- Generation Time: Nov 15, 2022 at 09:42 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -66,9 +66,9 @@ CREATE TABLE `cap_quyen` (
 
 INSERT INTO `cap_quyen` (`id`, `MSNV`, `id_quyen`) VALUES
 (1, 1, 1),
-(4, 5, 2),
 (5, 2, 2),
-(6, 3, 2);
+(6, 3, 2),
+(8, 5, 3);
 
 -- --------------------------------------------------------
 
@@ -84,23 +84,6 @@ CREATE TABLE `chitietdathang` (
   `GiamGia` float NOT NULL,
   `ThanhTien` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `chitietdathang`
---
-
-INSERT INTO `chitietdathang` (`MSDH`, `MSSP`, `SoLuong`, `GiaDatHang`, `GiamGia`, `ThanhTien`) VALUES
-(1, 32, 1, 147000, 0, 147000),
-(1, 37, 1, 100000, 0, 100000),
-(2, 36, 1, 235000, 0, 235000),
-(3, 31, 1, 330000, 0, 330000),
-(3, 36, 1, 235000, 0, 235000),
-(4, 34, 2, 130000, 0, 260000),
-(5, 36, 1, 235000, 0, 235000),
-(6, 35, 1, 118000, 0, 118000),
-(6, 37, 1, 100000, 0, 100000),
-(7, 36, 1, 235000, 0, 235000),
-(8, 35, 1, 118000, 0, 118000);
 
 --
 -- Triggers `chitietdathang`
@@ -128,7 +111,7 @@ CREATE TABLE `chitietphieuthu` (
   `MaPhieu` int(11) NOT NULL,
   `MSSP` int(11) NOT NULL,
   `SoLuong` int(11) NOT NULL,
-  `DonGia` double NOT NULL,
+  `DonGia` int(11) NOT NULL,
   `TG_Tao` datetime NOT NULL,
   `TG_CapNhat` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -138,10 +121,45 @@ CREATE TABLE `chitietphieuthu` (
 --
 
 INSERT INTO `chitietphieuthu` (`MaPhieu`, `MSSP`, `SoLuong`, `DonGia`, `TG_Tao`, `TG_CapNhat`) VALUES
-(1, 6, 50, 88000, '2022-09-19 08:05:13', '2022-09-19 08:05:13'),
-(1, 21, 10, 84500, '2022-09-19 08:05:13', '2022-09-19 08:05:13'),
-(1, 34, 10, 130000, '2022-09-19 08:05:13', '2022-09-19 08:05:13'),
-(1, 35, 10, 118000, '2022-09-19 08:05:13', '2022-09-19 08:05:13');
+(1, 38, 10, 89000, '2022-11-15 12:57:42', '2022-11-15 12:57:42'),
+(2, 6, 50, 80000, '2022-11-15 12:54:58', '2022-11-15 12:54:58'),
+(2, 34, 10, 100000, '2022-11-15 12:54:58', '2022-11-15 12:54:58'),
+(2, 35, 10, 110000, '2022-11-15 12:54:58', '2022-11-15 12:54:58'),
+(3, 8, 20, 25000, '2022-11-15 13:50:12', '2022-11-15 13:50:12'),
+(3, 9, 30, 69000, '2022-11-15 13:50:12', '2022-11-15 13:50:12'),
+(3, 23, 10, 13000, '2022-11-15 13:50:12', '2022-11-15 13:50:12'),
+(3, 24, 50, 13000, '2022-11-15 13:50:12', '2022-11-15 13:50:12'),
+(3, 25, 20, 10000, '2022-11-15 13:50:12', '2022-11-15 13:50:12'),
+(3, 26, 20, 42000, '2022-11-15 13:50:12', '2022-11-15 13:50:12'),
+(3, 27, 10, 17000, '2022-11-15 13:50:12', '2022-11-15 13:50:12'),
+(4, 28, 20, 50000, '2022-11-15 13:59:58', '2022-11-15 13:59:58'),
+(4, 29, 20, 60000, '2022-11-15 13:59:58', '2022-11-15 13:59:58'),
+(5, 7, 20, 60000, '2022-11-15 14:02:17', '2022-11-15 14:02:17'),
+(5, 30, 5, 40000, '2022-11-15 14:02:17', '2022-11-15 14:02:17'),
+(5, 36, 20, 228000, '2022-11-15 14:02:17', '2022-11-15 14:02:17'),
+(6, 31, 5, 310000, '2022-11-15 14:03:39', '2022-11-15 14:03:39'),
+(6, 32, 5, 138000, '2022-11-15 14:03:39', '2022-11-15 14:03:39'),
+(6, 33, 5, 300000, '2022-11-15 14:03:39', '2022-11-15 14:03:39'),
+(7, 21, 10, 80000, '2022-11-15 14:05:04', '2022-11-15 14:05:04'),
+(8, 22, 50, 18000, '2022-11-15 15:13:33', '2022-11-15 15:13:33'),
+(9, 10, 40, 5000, '2022-11-15 15:19:56', '2022-11-15 15:19:56'),
+(9, 39, 40, 15000, '2022-11-15 15:19:56', '2022-11-15 15:19:56'),
+(9, 40, 40, 15000, '2022-11-15 15:19:56', '2022-11-15 15:19:56'),
+(9, 41, 40, 16000, '2022-11-15 15:19:56', '2022-11-15 15:19:56');
+
+--
+-- Triggers `chitietphieuthu`
+--
+DELIMITER $$
+CREATE TRIGGER `delete_chitietphieuthu` AFTER DELETE ON `chitietphieuthu` FOR EACH ROW UPDATE sanpham SET SoLuong = SoLuong - old.SoLuong where MSSP=old.MSSP
+$$
+DELIMITER ;
+DELIMITER $$
+CREATE TRIGGER `insert_chitietphieuthu` BEFORE INSERT ON `chitietphieuthu` FOR EACH ROW BEGIN
+	UPDATE sanpham set SoLuong=SoLuong + new.SoLuong where MSSP=new.MSSP;
+END
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -197,20 +215,6 @@ CREATE TABLE `dathang` (
   `TrangThai` int(11) NOT NULL,
   `MaThanhToan` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `dathang`
---
-
-INSERT INTO `dathang` (`MSDH`, `MSKH`, `MSNV`, `MSGH`, `HoTen`, `SDT`, `DiaChi`, `MaTP`, `ThanhTien`, `NgayDat`, `NgayGiao`, `GhiChu`, `TrangThai`, `MaThanhToan`) VALUES
-(1, 3, NULL, NULL, 'Nguyễn Ngọc Bảo Trân', '0859083181', '383/104A Đường 30/4, pphường Xuân Khánh, quận Ninh Kiều', '92', 277000, '2022-10-23 15:46:48', NULL, NULL, 6, 1),
-(2, 3, NULL, NULL, 'Nguyễn Ngọc Bảo Trân', '0859083181', '383/104A Đường 30/4, pphường Xuân Khánh, quận Ninh Kiều', '92', 265000, '2022-10-23 16:15:46', NULL, NULL, 6, 2),
-(3, 3, 1, 2, 'Nguyễn Ngọc Bảo Trân', '0859083181', '383/104A Đường 30/4, pphường Xuân Khánh, quận Ninh Kiều', '92', 595000, '2022-10-24 13:07:55', NULL, 'Đơn hàng bị boom hàng', 7, 3),
-(4, 3, 1, 2, 'Nguyễn Ngọc Bảo Trân', '0859083181', '383/104A Đường 30/4, pphường Xuân Khánh, quận Ninh Kiều', '92', 290000, '2022-10-25 15:51:59', NULL, NULL, 5, 4),
-(5, 3, NULL, NULL, 'Nguyễn Ngọc Bảo Trân', '0859083181', '383/104A Đường 30/4, pphường Xuân Khánh, quận Ninh Kiều', '92', 265000, '2022-11-04 13:24:05', NULL, NULL, 6, 5),
-(6, 3, NULL, NULL, 'Nguyễn Ngọc Bảo Trân', '0859083181', '383/104A Đường 30/4, pphường Xuân Khánh, quận Ninh Kiều', '92', 237100, '2022-11-04 21:33:12', NULL, NULL, 6, 6),
-(7, 3, NULL, NULL, 'Nguyễn Ngọc Bảo Trân', '0859083181', '383/104A Đường 30/4, pphường Xuân Khánh, quận Ninh Kiều', '92', 265000, '2022-11-04 21:40:34', NULL, NULL, 0, 7),
-(8, 3, NULL, NULL, 'Nguyễn Ngọc Bảo Trân', '0859083181', '383/104A Đường 30/4, pphường Xuân Khánh, quận Ninh Kiều', '92', 128000, '2022-11-05 08:10:51', NULL, NULL, 0, 8);
 
 -- --------------------------------------------------------
 
@@ -320,7 +324,10 @@ INSERT INTO `hinhanh` (`ID`, `MSSP`, `HinhAnh`, `created_at`, `updated_at`) VALU
 (37, 33, 'thung-48-hop-sua-tiet-trung-huong-viet-quat-nestle-11652576177.jpg', '2022-05-15 07:56:17', '2022-05-15 07:56:17'),
 (38, 34, 'than-bo-uc-tuoi-hut-chan-khong-khay-250g-21652576325.jpg', '2022-05-15 07:58:45', '2022-05-15 07:58:45'),
 (39, 36, 'thung-24-lon-nuoc-ngot-co-ga-mirinda-vi-soda-kem-viet-quat-lon1652576526.jpg', '2022-05-15 08:02:06', '2022-05-15 08:02:06'),
-(40, 37, 'thung-24-chai-nuoc-tinh-khiet-aquafina-500ml-21652576672.jpg', '2022-05-15 08:04:32', '2022-05-15 08:04:32');
+(40, 37, 'thung-24-chai-nuoc-tinh-khiet-aquafina-500ml-21652576672.jpg', '2022-05-15 08:04:32', '2022-05-15 08:04:32'),
+(41, 39, 'muoi-tom-kieu-tay-ninh-guyumi-chai-21668498790.jpg', '2022-11-15 14:53:10', '2022-11-15 14:53:10'),
+(42, 40, 'muoi-tieu-chanh-guyumi-hu-60g-21668499059.jpg', '2022-11-15 14:57:39', '2022-11-15 14:57:39'),
+(43, 41, 'muoi-ot-kim-quat-guyumi-chai-200g-21668499114.jpg', '2022-11-15 14:58:34', '2022-11-15 14:58:34');
 
 -- --------------------------------------------------------
 
@@ -424,7 +431,10 @@ INSERT INTO `magiamgia` (`MaGG`, `TieuDe`, `Ma`, `LoaiGiam`, `MucGiam`, `NgayKet
 (2, 'Miễn phí vận chuyển ( tối đa 20k)', 'EDA001121677', 2, 20000, '2022-11-26', 1),
 (3, 'Giảm 10k', '5659EA006144', 2, 10000, '2022-11-19', 1),
 (4, 'Siêu sale tháng 11', '4C8941382646', 1, 5, '2022-11-30', 1),
-(5, 'Miễn phí vận chuyển ( tối đa 30k)', '5568EBC1EF66', 2, 30000, '2022-11-19', 0);
+(5, 'Miễn phí vận chuyển ( tối đa 30k)', '5568EBC1EF66', 2, 30000, '2022-11-19', 0),
+(6, 'Miễn phí vận chuyển ( tối đa 50k)', 'ADFF9BC1F9EF', 2, 50000, '2022-11-04', 1),
+(8, 'Mừng ngày Nhà giáo Việt Nam 20/11', 'ACB7DCF07CE1', 1, 10, '2022-11-07', 1),
+(9, 'Miễn phí vận chuyển ( tối đa 10k)', 'FCF5A009FE87', 2, 10000, '2022-11-24', 1);
 
 -- --------------------------------------------------------
 
@@ -458,7 +468,37 @@ INSERT INTO `nhanvien` (`MSNV`, `HoTenNV`, `GioiTinh`, `Ngay`, `Thang`, `Nam`, `
 (1, 'Trần Thanh Quang', 1, 29, 10, 2000, '0859083181', '180 Triệu Nương, thị trấn Mỹ Xuyên, Sóc Trăng', 0, 'qtran8219@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'avatar_macdinh1645085633.jpeg', 1, '2022-02-14 13:00:22', '2022-02-14 13:00:22'),
 (2, 'Trần Tuấn Anh', 1, 1, 1, 2000, '0918151004', '185 Nguyễn Thị Minh Khai', 1, 'anh1234@gmail.com', '07c4eab44493e1258128f06bfeec79e6', 'avatar_macdinh.jpeg', 1, '2022-02-15 14:16:37', '2022-02-15 14:16:37'),
 (3, 'Lê Phạm Tiến Dũng', 1, 13, 6, 2000, '0918151004', '383/104A Đường 30/4, phường 9, thành phố Sóc Trăng, tỉnh Sóc Trăng', 2, 'dung2304@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'avatar_macdinh.jpeg', 1, '2022-10-03 07:40:52', '2022-10-03 07:40:52'),
-(5, 'Nguyễn Văn Entony', 1, 3, 7, 2000, '0859083181', '185 Nguyễn Thị Minh Khai', 1, 'entony1234@gmail.com.vn', 'e10adc3949ba59abbe56e057f20f883e', 'avatar_macdinh.jpeg', 1, '2022-10-03 13:12:17', '2022-10-03 13:12:17');
+(5, 'Nguyễn Văn Entony', 1, 3, 7, 2000, '0859083181', '185 Nguyễn Thị Minh Khai', 1, 'entony1234@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'avatar_macdinh.jpeg', 1, '2022-10-03 13:12:17', '2022-10-03 13:12:17');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `nhasanxuat`
+--
+
+CREATE TABLE `nhasanxuat` (
+  `MaNSX` int(11) NOT NULL,
+  `Ten` varchar(255) NOT NULL,
+  `Email` varchar(255) NOT NULL,
+  `DiaChi` text NOT NULL,
+  `SDT` varchar(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `nhasanxuat`
+--
+
+INSERT INTO `nhasanxuat` (`MaNSX`, `Ten`, `Email`, `DiaChi`, `SDT`) VALUES
+(1, 'Công ty MeatDeli', 'meatdeli@gmail.com', 'Lô CN-02, KCN Đồng Văn IV, xã Đại Cương, huyện Kim Bảng, tỉnh Hà Nam', '1800 6828'),
+(2, 'CÔNG TY CỔ PHẦN CHĂN NUÔI C.P. VIỆT NAM', 'web-info@cp.com.vn', 'Số 2 đường 2A, KCN Biên Hoà II, P. Long Bình Tân, TP. Biên Hòa, Tỉnh Đồng Nai, Việt Nam', '02513836086'),
+(3, 'Công ty Cổ Phần Sữa Việt Nam (Vinamilk)', 'vinamilk@vinamilk.com.vn', 'Số 10, Đường Tân Trào, phường Tân Phú, quận 7, Tp. HCM', '02854161226'),
+(4, 'Công ty TNHH Nước giải khát Suntory Pepsico Việt Nam', 'nguyenthimy.phuong@suntorypepsico.vn', 'Tầng 5, Khách sạn Sheraton, 88 Đồng Khởi, Quận 1, Thành phố Hồ Chí Minh', '02838219437'),
+(5, 'Công ty cổ phần nước khoáng Vĩnh Hảo', 'ltdung@vinhhao.com.vn', 'Số 72 đường 19/4, Tỉnh Bình Thuận, Việt Nam', '02523852069'),
+(6, 'Công ty Cổ Phần TNHH CJ Vina Agri - Chi nhánh Bình Dương', 'info@cjvietnam.vn', '178 Hai Bà Trưng, P.Đakao, Quận 1, Tp.HCM', '0901607602'),
+(7, 'Dalat Natural Food JSC', 'vananhviet0258@yahoo.com', 'Thôn Phú Trung, Xã Phú Hội, H. Đức Trọng, Lâm Đồng, Việt Nam', '02633679379'),
+(8, 'Công Ty Cổ Phần Nha Trang Seafoods', 'nhatrangseafoods@nhatrangseafoods.vn', '58B Đường Hai Tháng Tư, Phường Vĩnh Hải, Tp. Nha Trang, Tỉnh Khánh Hoà', '02583831040'),
+(9, 'Công ty cổ phần mía đường Lam Sơn', 'info@lasuco.vn', 'Thị trấn Lam Sơn, huyện Thọ Xuân, tỉnh Thanh Hoá', '02378996667'),
+(10, 'Công ty TNHH Thương Mại Dịch vụ và Sản xuất Trí Việt Phát', 'marketing@trivietphat.net', '81 Tân hòa 2, Khu phố 6, P. Hiệp Phú, Tp. Thủ Đức, Tp. Hồ Chí Minh', '0987799239');
 
 -- --------------------------------------------------------
 
@@ -471,7 +511,7 @@ CREATE TABLE `phieuthu` (
   `MSNV` int(11) NOT NULL,
   `ThanhTien` double DEFAULT NULL,
   `NgayLap` datetime NOT NULL,
-  `NCC` text NOT NULL,
+  `MaNCC` int(11) NOT NULL,
   `GhiChu` text DEFAULT NULL,
   `TinhTrang` int(11) NOT NULL,
   `TG_Tao` datetime NOT NULL,
@@ -482,8 +522,16 @@ CREATE TABLE `phieuthu` (
 -- Dumping data for table `phieuthu`
 --
 
-INSERT INTO `phieuthu` (`MaPhieu`, `MSNV`, `ThanhTien`, `NgayLap`, `NCC`, `GhiChu`, `TinhTrang`, `TG_Tao`, `TG_CapNhat`) VALUES
-(1, 1, 7725000, '2022-09-19 08:05:13', 'Công ty Meet Master', NULL, 1, '2022-09-19 08:05:13', '2022-09-19 08:05:13');
+INSERT INTO `phieuthu` (`MaPhieu`, `MSNV`, `ThanhTien`, `NgayLap`, `MaNCC`, `GhiChu`, `TinhTrang`, `TG_Tao`, `TG_CapNhat`) VALUES
+(1, 5, 890000, '2022-11-01 08:46:26', 5, NULL, 1, '2022-11-15 08:46:26', '2022-11-15 08:46:26'),
+(2, 5, 6100000, '2022-11-15 09:01:55', 2, NULL, 0, '2022-11-15 09:01:55', '2022-11-15 09:01:55'),
+(3, 1, 4560000, '2022-11-06 13:50:12', 7, NULL, 1, '2022-11-15 13:50:12', '2022-11-15 13:50:12'),
+(4, 1, 2200000, '2022-11-15 13:59:58', 8, NULL, 0, '2022-11-15 13:59:58', '2022-11-15 13:59:58'),
+(5, 1, 5960000, '2022-11-15 14:02:17', 4, NULL, 1, '2022-11-15 14:02:17', '2022-11-15 14:02:17'),
+(6, 1, 3740000, '2022-11-15 14:03:39', 3, NULL, 1, '2022-11-15 14:03:39', '2022-11-15 14:03:39'),
+(7, 1, 800000, '2022-11-14 00:00:00', 6, NULL, 1, '2022-11-15 14:05:04', '2022-11-15 14:05:04'),
+(8, 1, 900000, '2022-11-15 14:35:47', 9, NULL, 1, '2022-11-15 14:35:47', '2022-11-15 14:35:47'),
+(9, 1, 2040000, '2022-11-15 15:17:19', 1, NULL, 1, '2022-11-15 15:17:19', '2022-11-15 15:17:19');
 
 -- --------------------------------------------------------
 
@@ -1226,7 +1274,8 @@ CREATE TABLE `quyen` (
 
 INSERT INTO `quyen` (`id_quyen`, `quyen`) VALUES
 (1, 'admin'),
-(2, 'staff');
+(2, 'staff'),
+(3, 'stock');
 
 -- --------------------------------------------------------
 
@@ -1257,7 +1306,7 @@ INSERT INTO `sanpham` (`MSSP`, `TenSP`, `SoLuong`, `Gia`, `GiamGia`, `MaDM`, `Th
 (7, 'Thùng 24 chai trà xanh C2 hương chanh 230ml', 20, 69000, 0, 6, '<p>Được sản xuất từ những l&aacute; tr&agrave; xanh tự nhi&ecirc;n h&ograve;a quyện c&ugrave;ng hương chanh tươi m&aacute;t cho bạn một thức uống giải kh&aacute;t tuyệt vời. Tr&agrave; xanh chứa h&agrave;m lượng chất chống oxy h&oacute;a cao c&ugrave;ng vitamin C dồi d&agrave;o từ chanh gi&uacute;p bạn lu&ocirc;n giữ trạng th&aacute;i năng động v&agrave; hứng khởi.</p>', 1, 'thung-24-chai-tra-xanh-c2-huong-chanh-230ml-2020121713525886451645084933.jpg', '2022-02-17 15:02:13', '2022-02-17 15:02:13'),
 (8, '3/7 Nấm đùi gà túi 200g (2-4 cái)', 20, 27500, 0, 5, '<p>Nấm đ&ugrave;i g&agrave; được nu&ocirc;i trồng v&agrave; đ&oacute;ng g&oacute;i theo những ti&ecirc;u chuẩn nghi&ecirc;m ngặt, bảo đảm c&aacute;c ti&ecirc;u chuẩn xanh - sach, chất lượng v&agrave; an to&agrave;n với người d&ugrave;ng. Nấm gi&ograve;n dai, ngọt thịt, nhiều dinh dưỡng thường được d&ugrave;ng cho c&aacute;c m&oacute;n x&agrave;o, chi&ecirc;n gi&ograve;n hoặc nướng ăn k&egrave;m với c&aacute;c loại xốt chấm.</p>', 1, 'nam-dui-ga-vi-200g-2020110717084546431645085049.jpg', '2022-02-17 15:04:09', '2022-02-17 15:04:09'),
 (9, 'Nấm mỡ nâu hộp 150g (6-8 cái)', 30, 69000, 0.1, 5, '<p>Nấm mỡ trắng&nbsp;của B&aacute;ch H&oacute;a Xanh được nu&ocirc;i trồng v&agrave; đ&oacute;ng g&oacute;i theo những ti&ecirc;u chuẩn nghi&ecirc;m ngặt, bảo đảm c&aacute;c ti&ecirc;u chuẩn xanh - sach, chất lượng v&agrave; an to&agrave;n với người d&ugrave;ng. Nấm mỡ chứa h&agrave;m lượng chất dinh dưỡng cao, nhiều vitamin v&agrave; protein quan trọng n&ecirc;n thường được chế biến bằng c&aacute;ch x&agrave;o hoặc nướng.</p>', 1, 'nam-mo-nau-hop-150g-2021012922202210561645085441.jpg', '2022-02-17 15:10:41', '2022-02-27 18:46:47'),
-(10, 'Muối tôm kiểu Tây Ninh Guyumi hũ 60g', 20, 7400, 0, 7, '<p><a href=\"https://www.bachhoaxanh.com/muoi-an-guyumi\" target=\"_blank\">Muối Guyumi</a>&nbsp;với nguồn nguy&ecirc;n liệu sạch, tạo n&ecirc;n một loại muối t&ocirc;m thơm ngon đ&uacute;ng kiểu T&acirc;y Ninh.&nbsp;<a href=\"https://www.bachhoaxanh.com/muoi-an/muoi-tom-kieu-tay-ninh-guyumi-chai-60g\" target=\"_blank\">Muối t&ocirc;m kiểu T&acirc;y Ninh Guyumi chai 60g</a>&nbsp;l&agrave; loại&nbsp;<a href=\"https://www.bachhoaxanh.com/muoi-an\" target=\"_blank\">muối</a>&nbsp;chấm được tạo n&ecirc;n bởi hương vị ngọt của t&ocirc;m, kết hợp với vị cay của ớt v&agrave; gia vị, c&oacute; độ mặn vừa phải</p>', 1, 'muoi-tom-kieu-tay-ninh-guyumi-chai-60g1645086063.jpg', '2022-02-17 15:21:03', '2022-02-17 15:21:03'),
+(10, 'Muối tôm kiểu Tây Ninh Guyumi hũ 60g', 40, 7400, 0, 7, '<p><a href=\"https://www.bachhoaxanh.com/muoi-an-guyumi\" target=\"_blank\">Muối Guyumi</a>&nbsp;với nguồn nguy&ecirc;n liệu sạch, tạo n&ecirc;n một loại muối t&ocirc;m thơm ngon đ&uacute;ng kiểu T&acirc;y Ninh.&nbsp;<a href=\"https://www.bachhoaxanh.com/muoi-an/muoi-tom-kieu-tay-ninh-guyumi-chai-60g\" target=\"_blank\">Muối t&ocirc;m kiểu T&acirc;y Ninh Guyumi chai 60g</a>&nbsp;l&agrave; loại&nbsp;<a href=\"https://www.bachhoaxanh.com/muoi-an\" target=\"_blank\">muối</a>&nbsp;chấm được tạo n&ecirc;n bởi hương vị ngọt của t&ocirc;m, kết hợp với vị cay của ớt v&agrave; gia vị, c&oacute; độ mặn vừa phải</p>', 0, 'muoi-tom-kieu-tay-ninh-guyumi-chai-60g1645086063.jpg', '2022-02-17 15:21:03', '2022-02-17 15:21:03'),
 (21, 'Đuôi heo Meat Master khay 400g (6-8 miếng)', 10, 84500, 0.2, 1, NULL, 1, 'duoi-heo-meat-master-khay-400g1645261640.jpg', '2022-02-19 16:07:20', '2022-02-19 16:07:20'),
 (22, 'Đường tinh luyện Lam Sơn gói 1kg', 50, 23000, 0.3, 7, '<p><a href=\"https://www.bachhoaxanh.com/duong\" target=\"_blank\">Đường</a>&nbsp;được ứng dụng c&ocirc;ng nghệ ti&ecirc;n tiến, chiết &eacute;p từ những c&acirc;y m&iacute;a tốt nhất,&nbsp;kh&ocirc;ng sử dụng h&oacute;a chất tẩy trắng đến từ thương hiệu&nbsp;<a href=\"https://www.bachhoaxanh.com/duong-lam-son\" target=\"_blank\">đường Lam Sơn</a>.&nbsp;<a href=\"https://www.bachhoaxanh.com/duong/duong-tinh-luyen-lam-son-goi-1kg\" target=\"_blank\">Đường tinh luyện Lam Sơn g&oacute;i 1kg</a>&nbsp;c&oacute;&nbsp;vị ngọt dịu, thơm ngon, hấp dẫn, c&oacute; m&agrave;u trắng tự nhi&ecirc;n, dễ h&ograve;a tan.</p>', 1, 'duong-tinh-luyen-lam-son-goi-1kg1645962577.jpg', '2022-02-27 18:49:37', '2022-03-01 11:19:09'),
 (23, 'Nấm kim châm Hàn Quốc túi 150g', 10, 16000, 0, 5, '<p>Nấm kim ch&acirc;m H&agrave;n Quốc của B&aacute;ch h&oacute;a Xanh được nu&ocirc;i trồng v&agrave; đ&oacute;ng g&oacute;i theo những ti&ecirc;u chuẩn nghi&ecirc;m ngặt, bảo đảm c&aacute;c ti&ecirc;u chuẩn xanh - sach, chất lượng v&agrave; an to&agrave;n với người d&ugrave;ng. Sợi nấm dai, gi&ograve;n v&agrave; ngọt, khi nấu ch&iacute;n rất thơm n&ecirc;n thường được lăn bột chi&ecirc;n gi&ograve;n, nấu s&uacute;p hoặc để nướng ăn k&egrave;m.</p>', 1, 'nam-kim-cham-goi-150g-11645962766.jpg', '2022-02-27 18:52:46', '2022-02-27 18:52:46'),
@@ -1271,11 +1320,14 @@ INSERT INTO `sanpham` (`MSSP`, `TenSP`, `SoLuong`, `Gia`, `GiamGia`, `MaDM`, `Th
 (31, 'Thùng 48 hộp sữa tươi có đường Vinamilk 180ml', 5, 330000, 0, 10, '<p>Được chế biến từ nguồn&nbsp;sữa tươi&nbsp;100% chứa nhiều dưỡng chất như vitamin A, D3, canxi,... tốt cho xương v&agrave; hệ miễn dịch.&nbsp;Sữa tươi Vinamilk&nbsp;l&agrave; thương hiệu được tin d&ugrave;ng h&agrave;ng đầu với chất lượng tuyệt vời.&nbsp;Th&ugrave;ng 48 hộp sữa tươi c&oacute; đường Vinamilk 100% Sữa Tươi 180ml&nbsp;thơm ngon&nbsp;dễ uống.</p>', 1, 'thung-48-hop-sua-tuoi-co-duong-vinamilk1652575812.jpg', '2022-05-15 07:50:12', '2022-05-15 07:50:12'),
 (32, 'Thùng 36 hộp sữa đậu nành Fami Canxi 200ml', 5, 147000, 0, 11, '<p style=\"text-align:justify\">Được bổ sung th&ecirc;m canxi, vitamin D3 v&agrave; vitamin B12 gi&uacute;p xương chắc khoẻ hơn mỗi ng&agrave;y.&nbsp;Sữa đậu&nbsp;n&agrave;nh&nbsp;Fami&nbsp;thơm ngon, dễ uống, kh&ocirc;ng d&ugrave;ng chất bảo quản. Sản phẩm&nbsp;th&ugrave;ng 36 hộp sữa Fami Canxi 200ml&nbsp;được đ&oacute;ng th&ugrave;ng 36 hộp tiết kiệm, tiện d&ugrave;ng l&acirc;u d&agrave;i.</p>', 1, 'thung-36-hop-sua-dau-nanh-fami-canxi1652576050.jpg', '2022-05-15 07:54:10', '2022-05-15 07:54:10'),
 (33, 'Thùng 48 hộp sữa tiệt trùng hương việt quất Nestlé NutriStrong 180ml', 5, 320000, 0, 10, '<p>Được bổ sung th&ecirc;m 25% canxi, vitamin A &amp; D,&nbsp;sữa tươi Nestle gi&uacute;p xương bạn khoẻ hơn mỗi ng&agrave;y. Sữa tươi Nestle được nhiều người ưa chuộng bởi nguồn dinh dưỡng dồi d&agrave;o m&agrave; n&oacute; lu&ocirc;n cung cấp cho cơ thể. Th&ugrave;ng 48 hộp sữa tiệt tr&ugrave;ng hương việt quất Nestl&eacute; NutriStrong 180ml đ&oacute;ng th&ugrave;ng tiết kiệm, hương việt ...</p>', 1, 'thung-48-hop-sua-tiet-trung-huong-viet-quat-nestle1652576177.jpg', '2022-05-15 07:56:17', '2022-05-15 07:56:17'),
-(34, 'Thăn bò Úc tươi Trung Đồng hút chân không khay 250g', 8, 130000, 0, 2, '<p>Thăn b&ograve; &Uacute;c tươi h&uacute;t ch&acirc;n kh&ocirc;ng khay 250g c&oacute; một lớp mỡ mỏng bao phủ b&ecirc;n ngo&agrave;i phần nạc gi&uacute;p cho phần thịt khi chế biến kh&ocirc;ng bị kh&ocirc;. Bạn c&oacute; thể mua thịt thăn b&ograve; &uacute;c về &aacute;p chảo với bơ, đảm bảo m&oacute;n ăn mềm mọng nước, cả nh&agrave; ai cũng th&iacute;ch.</p>', 1, 'than-bo-uc-tuoi-hut-chan-khong-khay-250g1652576325.jpg', '2022-05-15 07:58:45', '2022-05-15 07:58:45'),
-(35, 'Bít tết đùi bò Úc Pacow vỉ 250g', 9, 118000, 0, 2, '<p style=\"text-align:justify\">Phần thịt nạc nguy&ecirc;n quả nằm ngay ph&iacute;a tr&ecirc;n bắp ch&acirc;n sau của con b&ograve;. Miếng thịt rất nạc v&agrave; hơi kh&ocirc; ph&ugrave; hợp với chi&ecirc;n hoặc nướng theo tảng. Đặc biệt với m&oacute;n beefsteak,một m&oacute;n ăn ưa th&iacute;ch.&nbsp;B&iacute;t tết đ&ugrave;i b&ograve; &Uacute;c Pacow khay 250g được sản xuất ở &Uacute;c bởi Pacow, đ&atilde; được kiểm duyệt chặc chẽ n&ecirc;n đảm bảo an to&agrave;n.</p>', 1, 'bit-tet-dui-bo-uc-pascow-khay-250g1652576390.jpg', '2022-05-15 07:59:50', '2022-05-15 07:59:50'),
-(36, 'Thùng 24 lon nước ngọt có ga Mirinda vị soda kem việt quất 320ml', 19, 235000, 0, 6, '<p style=\"text-align:justify\">Nước ngọt Mirinda&nbsp;soda kem vị việt quất ngọt ng&agrave;o tươi mới, vị soda kem b&ugrave;ng nổ c&ugrave;ng hương việt quất thơm ngon. H&atilde;y mua&nbsp;th&ugrave;ng 24 lon nước ngọt c&oacute; ga Mirinda vị soda kem việt quất 320ml&nbsp;để cảm nhận vị ngon kh&oacute; cưỡng v&agrave; c&ugrave;ng thưởng thức&nbsp;nước ngọt&nbsp;n&agrave;y với bạn b&egrave;, người th&acirc;n nh&eacute;!</p>', 1, 'thung-24-lon-nuoc-ngot-co-ga-mirinda-vi-soda-kem-viet-quat1652576526.jpg', '2022-05-15 08:02:06', '2022-05-15 08:02:06'),
+(34, 'Thăn bò Úc tươi Trung Đồng hút chân không khay 250g', 10, 130000, 0, 2, '<p>Thăn b&ograve; &Uacute;c tươi h&uacute;t ch&acirc;n kh&ocirc;ng khay 250g c&oacute; một lớp mỡ mỏng bao phủ b&ecirc;n ngo&agrave;i phần nạc gi&uacute;p cho phần thịt khi chế biến kh&ocirc;ng bị kh&ocirc;. Bạn c&oacute; thể mua thịt thăn b&ograve; &uacute;c về &aacute;p chảo với bơ, đảm bảo m&oacute;n ăn mềm mọng nước, cả nh&agrave; ai cũng th&iacute;ch.</p>', 1, 'than-bo-uc-tuoi-hut-chan-khong-khay-250g1652576325.jpg', '2022-05-15 07:58:45', '2022-05-15 07:58:45'),
+(35, 'Bít tết đùi bò Úc Pacow vỉ 250g', 10, 118000, 0, 2, '<p style=\"text-align:justify\">Phần thịt nạc nguy&ecirc;n quả nằm ngay ph&iacute;a tr&ecirc;n bắp ch&acirc;n sau của con b&ograve;. Miếng thịt rất nạc v&agrave; hơi kh&ocirc; ph&ugrave; hợp với chi&ecirc;n hoặc nướng theo tảng. Đặc biệt với m&oacute;n beefsteak,một m&oacute;n ăn ưa th&iacute;ch.&nbsp;B&iacute;t tết đ&ugrave;i b&ograve; &Uacute;c Pacow khay 250g được sản xuất ở &Uacute;c bởi Pacow, đ&atilde; được kiểm duyệt chặc chẽ n&ecirc;n đảm bảo an to&agrave;n.</p>', 1, 'bit-tet-dui-bo-uc-pascow-khay-250g1652576390.jpg', '2022-05-15 07:59:50', '2022-05-15 07:59:50'),
+(36, 'Thùng 24 lon nước ngọt có ga Mirinda vị soda kem việt quất 320ml', 20, 235000, 0, 6, '<p style=\"text-align:justify\">Nước ngọt Mirinda&nbsp;soda kem vị việt quất ngọt ng&agrave;o tươi mới, vị soda kem b&ugrave;ng nổ c&ugrave;ng hương việt quất thơm ngon. H&atilde;y mua&nbsp;th&ugrave;ng 24 lon nước ngọt c&oacute; ga Mirinda vị soda kem việt quất 320ml&nbsp;để cảm nhận vị ngon kh&oacute; cưỡng v&agrave; c&ugrave;ng thưởng thức&nbsp;nước ngọt&nbsp;n&agrave;y với bạn b&egrave;, người th&acirc;n nh&eacute;!</p>', 1, 'thung-24-lon-nuoc-ngot-co-ga-mirinda-vi-soda-kem-viet-quat1652576526.jpg', '2022-05-15 08:02:06', '2022-05-15 08:02:06'),
 (37, 'Thùng 24 chai nước tinh khiết Aquafina 500ml', 10, 100000, 0, 12, '<p>Được lấy từ nguồn nước ngầm đảm bảo&nbsp; trải qua quy tr&igrave;nh khử tr&ugrave;ng, lọc sạch c&aacute;c tạp chất. Nước tinh khiết Aquafina 500ml đ&atilde; đạt tới tr&igrave;nh độ nước tinh khiết&nbsp;c&oacute; t&aacute;c dụng dịu cơn kh&aacute;t, khi uống sẽ c&oacute; cảm gi&aacute;c hơi ngọt ở miệng, rất dễ uống. Nhỏ gọn tiện lợi dễ mang b&ecirc;n m&igrave;nh</p>', 1, 'thung-24-chai-nuoc-tinh-khiet-aquafina-500ml1652576672.jpg', '2022-05-15 08:04:32', '2022-05-15 08:04:32'),
-(38, 'Thùng 24 chai nước khoáng Vivant 500ml', 10, 96000, 0, 12, '<p>Sản phẩm&nbsp;nước uống đ&oacute;ng chai&nbsp;từ thương hiệu&nbsp;Vivant.&nbsp;24 chai nước kho&aacute;ng Vivant 500ml&nbsp;từ nguồn kho&aacute;ng nổi tiếng từ Vĩnh Hảo v&agrave; Quang Hanh, dễ uống, chứa nhiều kho&aacute;ng chất h&ograve;a tan tự nhi&ecirc;n trong nước c&oacute; t&aacute;c dụng tốt cho sức khỏe con người. Cam kết ch&iacute;nh h&atilde;ng v&agrave; an to&agrave;n.</p>', 1, 'thung-24-chai-nuoc-khoang-vivant-500ml1652576769.jpg', '2022-05-15 08:06:09', '2022-05-15 08:06:09');
+(38, 'Thùng 24 chai nước khoáng Vivant 500ml', 10, 96000, 0, 12, '<p>Sản phẩm&nbsp;nước uống đ&oacute;ng chai&nbsp;từ thương hiệu&nbsp;Vivant.&nbsp;24 chai nước kho&aacute;ng Vivant 500ml&nbsp;từ nguồn kho&aacute;ng nổi tiếng từ Vĩnh Hảo v&agrave; Quang Hanh, dễ uống, chứa nhiều kho&aacute;ng chất h&ograve;a tan tự nhi&ecirc;n trong nước c&oacute; t&aacute;c dụng tốt cho sức khỏe con người. Cam kết ch&iacute;nh h&atilde;ng v&agrave; an to&agrave;n.</p>', 1, 'thung-24-chai-nuoc-khoang-vivant-500ml1652576769.jpg', '2022-05-15 08:06:09', '2022-05-15 08:06:09'),
+(39, 'Muối tôm kiểu Tây Ninh Guyumi hũ 110g', 40, 17500, 0, 7, '<p>Muối Guyumi&nbsp;với nguồn nguy&ecirc;n liệu sạch, tạo n&ecirc;n một loại muối t&ocirc;m thơm ngon đ&uacute;ng kiểu T&acirc;y Ninh.&nbsp;Muối t&ocirc;m kiểu T&acirc;y Ninh Guyumi chai 110g&nbsp;l&agrave; loại&nbsp;muối&nbsp;chấm được tạo n&ecirc;n bởi hương vị ngọt của t&ocirc;m, kết hợp với vị cay của ớt v&agrave; gia vị, c&oacute; độ mặn vừa phải.</p>', 0, 'muoi-tom-kieu-tay-ninh-guyumi-chai-11668498790.jpg', '2022-11-15 14:53:10', '2022-11-15 14:53:10'),
+(40, 'Muối tiêu chanh Guyumi hũ 110g', 40, 16500, 0, 7, '<p>Sản phẩm kh&ocirc;ng chỉ tiện lợi m&agrave; c&ograve;n đảm bảo an to&agrave;n sức khỏe cho người sử dụng.&nbsp;Muối ti&ecirc;u chanh Guyumi chai 110g&nbsp;l&agrave; sự kết hợp của&nbsp;muối&nbsp;kho&aacute;ng thi&ecirc;n nhi&ecirc;n,&nbsp;với vị chua the của l&aacute; chanh tạo n&ecirc;n hương vị kh&ocirc;ng thế chối từ của&nbsp;muối Guyumi.</p>', 0, 'muoi-tieu-chanh-guyumi-hu-60g-11668499059.jpg', '2022-11-15 14:57:39', '2022-11-15 14:57:39'),
+(41, 'Muối ớt Kim Quất Guyumi chai 200g', 40, 18000, 0, 7, '<p>L&agrave; sản phẩm&nbsp;nước chấm&nbsp;được l&agrave;m từ nguy&ecirc;n liệu tươi, sạch của thương hiệu&nbsp;nước chấm Guyumi.&nbsp;Muối ớt Kim Quất Guyumi chai 200g&nbsp;kết hợp h&agrave;i h&ograve;a giữa vị chua chua, thơm nhẹ của quả kim quất với vị cay của ớt xi&ecirc;m mang đến cho thực kh&aacute;ch hương vị mới lạ độc đ&aacute;o.</p>', 0, 'muoi-ot-kim-quat-guyumi-chai-200g-11668499114.jpg', '2022-11-15 14:58:34', '2022-11-15 14:58:34');
 
 -- --------------------------------------------------------
 
@@ -1289,14 +1341,6 @@ CREATE TABLE `sudungma` (
   `MaGG` int(11) NOT NULL,
   `MSDH` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `sudungma`
---
-
-INSERT INTO `sudungma` (`id`, `MSKH`, `MaGG`, `MSDH`) VALUES
-(2, 3, 4, 6),
-(3, 3, 2, 8);
 
 -- --------------------------------------------------------
 
@@ -1316,20 +1360,6 @@ CREATE TABLE `thanhtoan` (
   `TT_TaoMoi` datetime NOT NULL,
   `TT_CapNhat` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `thanhtoan`
---
-
-INSERT INTO `thanhtoan` (`MaThanhToan`, `TT_Ten`, `TT_DienGiai`, `TT_TrangThai`, `TT_BankCode`, `TT_CodeVnpay`, `TT_ResponseCode`, `TT_Hinh`, `TT_TaoMoi`, `TT_CapNhat`) VALUES
-(1, 'Thanh Toán Khi Nhận Hàng', 'Thanh toan don hang', 0, NULL, NULL, NULL, NULL, '2022-10-23 15:46:48', '2022-10-23 15:46:48'),
-(2, 'Thanh Toán Khi Nhận Hàng', 'Thanh toan don hang', 0, NULL, NULL, NULL, NULL, '2022-10-23 16:15:46', '2022-10-23 16:15:46'),
-(3, 'Thanh Toán Khi Nhận Hàng', 'Khách không nhận hàng', 0, NULL, NULL, NULL, NULL, '2022-10-24 13:07:55', '2022-10-24 13:07:55'),
-(4, 'Thanh Toán Khi Nhận Hàng', 'Thanh toan don hang', 1, NULL, NULL, NULL, 'beeeee1666698297.png', '2022-10-25 15:51:59', '2022-10-25 15:51:59'),
-(5, 'Thanh Toán Khi Nhận Hàng', 'Thanh toan don hang', 0, NULL, NULL, NULL, NULL, '2022-11-04 13:24:05', '2022-11-04 13:24:05'),
-(6, 'Thanh Toán Khi Nhận Hàng', 'Thanh toan don hang', 0, NULL, NULL, NULL, NULL, '2022-11-04 21:33:12', '2022-11-04 21:33:12'),
-(7, 'Thanh Toán Khi Nhận Hàng', 'Thanh toan don hang', 0, NULL, NULL, NULL, NULL, '2022-11-04 21:40:34', '2022-11-04 21:40:34'),
-(8, 'Thanh Toán Bằng VnPay', 'Thanh toan don hang', 1, 'NCB', 'VNP13871820', '00', NULL, '2022-11-05 08:10:51', '2022-11-05 08:10:51');
 
 -- --------------------------------------------------------
 
@@ -12161,11 +12191,18 @@ ALTER TABLE `nhanvien`
   ADD PRIMARY KEY (`MSNV`);
 
 --
+-- Indexes for table `nhasanxuat`
+--
+ALTER TABLE `nhasanxuat`
+  ADD PRIMARY KEY (`MaNSX`);
+
+--
 -- Indexes for table `phieuthu`
 --
 ALTER TABLE `phieuthu`
   ADD PRIMARY KEY (`MaPhieu`),
-  ADD KEY `MSNV` (`MSNV`);
+  ADD KEY `MSNV` (`MSNV`),
+  ADD KEY `MaNCC` (`MaNCC`);
 
 --
 -- Indexes for table `quanhuyen`
@@ -12237,7 +12274,7 @@ ALTER TABLE `binhluan`
 -- AUTO_INCREMENT for table `cap_quyen`
 --
 ALTER TABLE `cap_quyen`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `danhmuc`
@@ -12249,7 +12286,7 @@ ALTER TABLE `danhmuc`
 -- AUTO_INCREMENT for table `dathang`
 --
 ALTER TABLE `dathang`
-  MODIFY `MSDH` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `MSDH` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `diachikh`
@@ -12267,7 +12304,7 @@ ALTER TABLE `giaohang`
 -- AUTO_INCREMENT for table `hinhanh`
 --
 ALTER TABLE `hinhanh`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- AUTO_INCREMENT for table `khachhang`
@@ -12285,7 +12322,7 @@ ALTER TABLE `loaihang`
 -- AUTO_INCREMENT for table `magiamgia`
 --
 ALTER TABLE `magiamgia`
-  MODIFY `MaGG` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `MaGG` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `nhanvien`
@@ -12294,28 +12331,34 @@ ALTER TABLE `nhanvien`
   MODIFY `MSNV` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
+-- AUTO_INCREMENT for table `nhasanxuat`
+--
+ALTER TABLE `nhasanxuat`
+  MODIFY `MaNSX` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
 -- AUTO_INCREMENT for table `phieuthu`
 --
 ALTER TABLE `phieuthu`
-  MODIFY `MaPhieu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `MaPhieu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `sanpham`
 --
 ALTER TABLE `sanpham`
-  MODIFY `MSSP` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `MSSP` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT for table `sudungma`
 --
 ALTER TABLE `sudungma`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `thanhtoan`
 --
 ALTER TABLE `thanhtoan`
-  MODIFY `MaThanhToan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `MaThanhToan` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `yeuthich`
@@ -12386,7 +12429,8 @@ ALTER TABLE `hinhanh`
 -- Constraints for table `phieuthu`
 --
 ALTER TABLE `phieuthu`
-  ADD CONSTRAINT `phieuthu_ibfk_1` FOREIGN KEY (`MSNV`) REFERENCES `nhanvien` (`MSNV`);
+  ADD CONSTRAINT `phieuthu_ibfk_1` FOREIGN KEY (`MSNV`) REFERENCES `nhanvien` (`MSNV`),
+  ADD CONSTRAINT `phieuthu_ibfk_2` FOREIGN KEY (`MaNCC`) REFERENCES `nhasanxuat` (`MaNSX`);
 
 --
 -- Constraints for table `quanhuyen`

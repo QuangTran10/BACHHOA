@@ -287,9 +287,17 @@ Route::group(['middleware' => 'stock_role'], function(){
 
 	Route::get('/add_receipt', 'App\Http\Controllers\ReceiptController@show_add');
 
+	Route::get('/edit_receipt/{id}', 'App\Http\Controllers\ReceiptController@edit');
+
 	Route::post('/save_receipt', 'App\Http\Controllers\ReceiptController@add');
 
+	Route::post('/update_receipt', 'App\Http\Controllers\ReceiptController@update');
+
 	Route::get('/show_receipt', 'App\Http\Controllers\ReceiptController@show_all');
+
+	Route::post('/infor_receipt', 'App\Http\Controllers\ReceiptController@show');
+
+	Route::get('/delete_receipt/{id}', 'App\Http\Controllers\ReceiptController@delete');
 });
 
 //*************************************SHIPPER***********************************************//
@@ -321,6 +329,5 @@ Route::post('/update_status_order', 'App\Http\Controllers\ShipperController@upda
 Route::post('/complete_status_order', 'App\Http\Controllers\ShipperController@complete');
 
 Route::post('/save_shipper_infor', 'App\Http\Controllers\ShipperController@update_shipper');
-
 
 

@@ -7,7 +7,7 @@
       
     </div>
     <div class="col-md-10">
-      <form method="post" action="{{URL::to('/save_receipt')}}" class="form-horizontal">
+      <form method="post" action="{{URL::to('/update_receipt')}}" class="form-horizontal">
         {{csrf_field() }}
         <div class="card ">
           <div class="card-header card-header-rose card-header-text">
@@ -16,7 +16,6 @@
             </div>
           </div>
           <div class="card-body ">
-
             <p>
               <?php
               $message = Session::get('message');
@@ -28,7 +27,7 @@
             </p>
             <div class="form-group">
               <label class="bmd-label-floating">Ghi Chú</label>
-              <textarea class="form-control" name="GhiChu" rows="3" ></textarea>
+              <textarea class="form-control" name="GhiChu" rows="3">{{$receipt->GhiChu}}</textarea>
             </div>
             
             <div class="row">
@@ -38,7 +37,7 @@
                   <div class="form-group">
                     <select class="selectpicker" data-style="select-with-transition" name="MaNCC" required>
                       @foreach($producer as $key => $val)
-                      <option value="{{$val->MaNSX}}">{{$val->Ten}}</option>
+                        <option value="{{$val->MaNSX}}" {{($receipt->MaNCC==$val->MaNSX)? "selected" : "" }}>{{$val->Ten}}</option>
                       @endforeach
                     </select>
                   </div>
@@ -49,8 +48,8 @@
                   <label class="bmd-label-floating">Tình Trạng</label>
                   <div class="form-group">
                     <select class="selectpicker" data-style="select-with-transition" name="TinhTrang" required>
-                      <option value="1">Đã Thanh Toán</option>
-                      <option value="0">Ghi Nợ</option>
+                      <option value="1" {{($receipt->TinhTrang=="1")? "selected" : "" }}>Đã Thanh Toán</option>
+                      <option value="0" {{($receipt->TinhTrang=="0")? "selected" : "" }}>Ghi Nợ</option>
                     </select>
                   </div>
                 </div>
@@ -64,29 +63,34 @@
         <div>
           <div class="card">
             <div class="card-body" id="receipt">
-              <div class="row" id="element1">
-                <div class="form-group col-4">
+              <?php $i =1 ?>
+              @foreach($detail_receipt as $key => $value)
+              <div class="row" id="element{{$i}}">
+                <div class="form-group col-6">
                   <select class="form-select" name="Product[]" required>
                    @foreach($product as $key => $val)
-                    <option value="{{$val->MSSP}}">{{$val->TenSP}}</option>
+                    <option value="{{$val->MSSP}}" {{($value->MSSP==$val->MSSP)? "selected" : "" }}>{{$val->TenSP}}</option>
                    @endforeach
                   </select>
                 </div>
-                <div class="form-group col-3">
-                  <input type="number" class="form-control" name="Quantity[]" placeholder="Số Lượng" required min="0">
+                <div class="form-group col-2">
+                  <input type="number" class="form-control" name="Quantity[]" placeholder="Số Lượng" required min="0" value="{{$value->SoLuong}}">
                 </div>
-                <div class="form-group col-3">
-                  <input type="number" class="form-control" name="Price[]" placeholder="Giá nhập hàng" min="1000" required>
+                <div class="form-group col-2">
+                  <input type="number" class="form-control" name="Price[]" placeholder="Giá nhập hàng" min="1000" required value="{{$value->DonGia}}">
                 </div>
                 <div class="form-group col-1">
-                  <a type="button" rel="tooltip" style="color:white" class="btn btn-info btn-sm remove-el" data-id="1"><i class="material-icons">delete_outline</i></a>
+                  <a type="button" rel="tooltip" style="color:white" class="btn btn-info btn-sm remove-el" data-id="{{$i}}"><i class="material-icons">delete_outline</i></a>
                 </div>
               </div>
+              <?php $i++ ?>
+              @endforeach
             </div>
           </div>
         </div>
-        <input type="hidden" id="i" value="1" name="index">
-        <button type="submit" class="btn btn-primary pull-right" name="add">Thêm</button> 
+        <input type="hidden" id="i" value="{{$i-1}}" name="index">
+        <input type="hidden" name="MaPhieu" value="{{$receipt->MaPhieu}}">
+        <button type="submit" class="btn btn-primary pull-right" name="update">Cập Nhật</button> 
       </form>
       <a href="{{URL::to('/show_receipt')}}" class="btn btn-primary">Trở Về</a>
       <button class="btn btn-success add-component"><span class="btn-label"><i class="material-icons">add</i></span>Thêm Sản Phẩm</button>
@@ -100,7 +104,7 @@
     $('.add-component').click(function(event) {
       var i = $('#i').val();
       var u = Number(i) + 1;
-      $('#receipt').append('<div class="row" id="element'+u+'"><div class="form-group col-4"><select class="form-select" name="Product[]" required>@foreach($product as $key => $val)<option value="{{$val->MSSP}}">{{$val->TenSP}}</option>@endforeach</select></div><div class="form-group col-3"><input type="number" class="form-control" name="Quantity[]" placeholder="Số Lượng" required min="0"></div><div class="form-group col-3"><input type="number" class="form-control" name="Price[]" placeholder="Giá nhập hàng" min="1000" required></div><div class="form-group col-1"><a type="button" rel="tooltip" style="color:white" class="btn btn-info btn-sm remove-el" data-id="'+u+'"><i class="material-icons">delete_outline</i></a></div></div>');
+      $('#receipt').append('<div class="row" id="element'+u+'"><div class="form-group col-6"><select class="form-select" name="Product[]" required>@foreach($product as $key => $val)<option value="{{$val->MSSP}}">{{$val->TenSP}}</option>@endforeach</select></div><div class="form-group col-2"><input type="number" class="form-control" name="Quantity[]" placeholder="Số Lượng" required min="0"></div><div class="form-group col-2"><input type="number" class="form-control" name="Price[]" placeholder="Giá nhập hàng" min="1000" required></div><div class="form-group col-1"><a type="button" rel="tooltip" style="color:white" class="btn btn-info btn-sm remove-el" data-id="'+u+'"><i class="material-icons">delete_outline</i></a></div></div>');
       $('#i').val(u);
     });
 
@@ -110,7 +114,6 @@
       var u = Number(i) - 1;
       $('#i').val(u);
       $('#element'+id).remove();
-
     });
 
 

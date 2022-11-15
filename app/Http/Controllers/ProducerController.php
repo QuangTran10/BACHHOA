@@ -28,7 +28,7 @@ class ProducerController extends Controller
     public function index()
     {
         $this->AuthLogin();
-        $producer = Producer::all();
+        $producer = Producer::Paginate(5);
 
         return view('admin.Producer.show_producer', compact('producer'));
     }

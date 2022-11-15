@@ -39,20 +39,18 @@
                     <i class="material-icons">edit</i>
                   </a>
                 </td>
-                <td class="td-actions ">
-                  {{-- <form action="{{route('coupon.destroy',$value->MaGG)}}" method="post">
-                    {{csrf_field() }}
-                    @method('DELETE')
-                    <button type="submit" rel="tooltip" class="btn btn-danger btn-link" onclick="return confirm('Bạn có chắc chắn muốn xoá')">
-                      <i class="material-icons">delete</i>
-                    </button>
-                  </form> --}}
-                </td>
               </tr>
               @endforeach
             </tbody>
           </table>
-          
+          <div class="row">
+            <div class="col-md-4">
+              <a href="{{URL::to('/show_receipt')}}" class="btn btn-primary">Trở Về</a>
+            </div>
+            <div class="col-md-4">
+              {{$producer->links('partials.admin_paginate')}}
+            </div>
+          </div>
         </div>
       </div>
     </div>

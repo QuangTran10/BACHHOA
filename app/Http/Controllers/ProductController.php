@@ -46,11 +46,11 @@ class ProductController extends Controller
 
     	$data['TenSP'] = $re->TenHangHoa;
     	$data['Gia'] = $re->Gia;
-    	$data['SoLuong'] = $re->SoLuong;
+    	$data['SoLuong'] = 0;
     	$data['MaDM'] = $re->DanhMuc;
     	$data['ThongTin'] = $re->MoTa;
         $data['GiamGia']=0;
-    	$data['TrangThai'] = $re->TrangThai;
+    	$data['TrangThai'] = 0;
     	$data['created_at'] = $now;
     	$data['updated_at'] = $now;
         if($get_image){

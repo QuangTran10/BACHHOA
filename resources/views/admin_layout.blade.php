@@ -17,6 +17,7 @@
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
   <!-- CSS Files -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
   <link href="{{asset('public/backend/assets/css/material-dashboard.css?v=2.1.2')}}" rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="{{asset('public/backend/assets/demo/demo.css')}}" rel="stylesheet" />
@@ -553,7 +554,22 @@
             }
           }
         }); 
+      });
 
+      $('.information').click(function(event) {
+        var id = $(this).data('id'); //MSNV
+        var _token = $('input[name="_token"]').val();
+        $.ajax({
+          url: '{{url('/infor_receipt')}}',
+          method: "POST",
+          data:{
+            MaPhieu: id,
+            _token: _token },
+          success:function(data){
+            $('#modalReceipt').html(data);
+            $('#infor-receipt').modal("show");
+          }
+        }); 
       });
 
       
