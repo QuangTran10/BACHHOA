@@ -2,10 +2,30 @@
 @section('admin_content')
 
 <div class="container-fluid">
+  <?php
+  $message = Session::get('message');
+  if($message){
+  ?>
   <div class="row">
-    <div class="col-md-1">
-      
+    <div class="alert alert-rose alert-with-icon" data-notify="container">
+      <i class="material-icons" data-notify="icon">notifications</i>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <i class="material-icons">close</i>
+      </button>
+      <span data-notify="message">
+        <ul>
+          <?php 
+            echo $message;
+            Session::put('message',null);
+          ?>
+        </ul>
+        
+      </span>
     </div>
+  </div>
+  <?php } ?>
+  <div class="row">
+    <div class="col-md-1"></div>
     <div class="col-md-10">
       <form method="post" action="{{URL::to('/save_receipt')}}" class="form-horizontal">
         {{csrf_field() }}
@@ -18,13 +38,7 @@
           <div class="card-body ">
 
             <p>
-              <?php
-              $message = Session::get('message');
-              if($message){
-                echo $message;
-                Session::put('message',null);
-              }
-              ?>
+              
             </p>
             <div class="form-group">
               <label class="bmd-label-floating">Ghi Chú</label>
@@ -59,38 +73,112 @@
             
           </div>
         </div>
-
-        
         <div>
           <div class="card">
             <div class="card-body" id="receipt">
-              <div class="row" id="element1">
-                <div class="form-group col-4">
-                  <select class="form-select" name="Product[]" required>
-                   @foreach($product as $key => $val)
-                    <option value="{{$val->MSSP}}">{{$val->TenSP}}</option>
-                   @endforeach
-                  </select>
+              @if(session('row'))
+                @php 
+                $product_import = session('row');
+                //Đếm tổng số record
+                $u = count($product_import[0]); //3
+
+                for ($i=1; $i < $u; $i++) { 
+                @endphp
+                <div class="row" id="element{{$i}}">
+                  <div class="form-group col-4">
+                    <select class="form-select" name="Product[]" required>
+                     @foreach($product as $key => $val)
+                      <option value="{{$val->MSSP}}" {{($product_import[0][$i][0]==$val->MSSP)? "selected" : "" }}>{{$val->TenSP}}</option>
+                     @endforeach
+                    </select>
+                  </div>
+                  <div class="form-group col-3">
+                    <input type="number" class="form-control" name="Quantity[]" placeholder="Số Lượng" required min="0" value="{{$product_import[0][$i][2]}}">
+                  </div>
+                  <div class="form-group col-3">
+                    <input type="number" class="form-control" name="Price[]" placeholder="Giá nhập hàng" min="1000" required value="{{$product_import[0][$i][3]}}">
+                  </div>
+                  <div class="form-group col-1">
+                    <a type="button" rel="tooltip" style="color:white" class="btn btn-info btn-sm remove-el" data-id="1"><i class="material-icons">delete_outline</i></a>
+                  </div>
                 </div>
-                <div class="form-group col-3">
-                  <input type="number" class="form-control" name="Quantity[]" placeholder="Số Lượng" required min="0">
+                @php 
+                }
+                @endphp
+              @else
+                <div class="row" id="element1">
+                  <div class="form-group col-4">
+                    <select class="form-select" name="Product[]" required>
+                     @foreach($product as $key => $val)
+                      <option value="{{$val->MSSP}}">{{$val->TenSP}}</option>
+                     @endforeach
+                    </select>
+                  </div>
+                  <div class="form-group col-3">
+                    <input type="number" class="form-control" name="Quantity[]" placeholder="Số Lượng" required min="0">
+                  </div>
+                  <div class="form-group col-3">
+                    <input type="number" class="form-control" name="Price[]" placeholder="Giá nhập hàng" min="1000" required>
+                  </div>
+                  <div class="form-group col-1">
+                    <a type="button" rel="tooltip" style="color:white" class="btn btn-info btn-sm remove-el" data-id="1"><i class="material-icons">delete_outline</i></a>
+                  </div>
                 </div>
-                <div class="form-group col-3">
-                  <input type="number" class="form-control" name="Price[]" placeholder="Giá nhập hàng" min="1000" required>
+              @endif
+            </div>
+          </div>
+        </div>
+        
+        @if(session('row'))
+        <input type="hidden" id="i" value="{{$u-1}}" name="index">
+        @else
+        <input type="hidden" id="i" value="1" name="index">
+        @endif
+        <button type="submit" class="btn btn-primary pull-right" name="add">Thêm</button> 
+      </form>
+      <a href="{{URL::to('/show_receipt')}}" class="btn btn-primary">Trở Về</a>
+      <button class="btn btn-success add-component"><span class="btn-label"><i class="material-icons">add</i></span>Thêm Sản Phẩm</button>
+      <button type="button" rel="tooltip" class="btn btn-warning" data-toggle="modal" data-target="#importModal">
+        <i class="material-icons">file_upload</i>Import
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="importModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-notice">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+          <i class="material-icons">close</i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="instruction">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card card-nav-tabs text-center">
+                <div class="card-header card-header-primary">
+                  Import file excel Danh sách sản phẩm
                 </div>
-                <div class="form-group col-1">
-                  <a type="button" rel="tooltip" style="color:white" class="btn btn-info btn-sm remove-el" data-id="1"><i class="material-icons">delete_outline</i></a>
+                <div class="card-body">
+                  <form action="{{url('/import-csv')}}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <p class="card-text">Lưu ý: Dữ liệu không được để trống</p>
+                    <input type="file" name="file" accept=".xlsx" required="">
+                    <button type="submit" rel="tooltip" class="btn btn-warning">
+                      <i class="material-icons">file_upload</i>Tải dữ liệu
+                    </button>
+                  </form>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <input type="hidden" id="i" value="1" name="index">
-        <button type="submit" class="btn btn-primary pull-right" name="add">Thêm</button> 
-      </form>
-      <a href="{{URL::to('/show_receipt')}}" class="btn btn-primary">Trở Về</a>
-      <button class="btn btn-success add-component"><span class="btn-label"><i class="material-icons">add</i></span>Thêm Sản Phẩm</button>
-     
+      </div>
+      <div class="modal-footer justify-content-center">
+        <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Thoát</button>
+      </div>
     </div>
   </div>
 </div>
@@ -112,8 +200,6 @@
       $('#element'+id).remove();
 
     });
-
-
   });
 </script>
 @endsection

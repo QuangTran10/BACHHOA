@@ -190,7 +190,9 @@ class ProductController extends Controller
         $loaihang = DB::table('loaihang')->get();
 
         $product_detail = DB::table('sanpham')
-        ->join('danhmuc', 'sanpham.MaDM', '=', 'danhmuc.MaDM')->where('sanpham.MSSP',$id)->first();
+        ->join('danhmuc', 'sanpham.MaDM', '=', 'danhmuc.MaDM')
+        ->where('sanpham.MSSP',$id)->first();
+
         $images_product = DB::table('hinhanh')->where('MSSP',$id)->limit(3)->get();
 
         $MaDM=$product_detail->MaDM;
@@ -217,54 +219,18 @@ class ProductController extends Controller
         ->join('danhmuc', 'sanpham.MaDM', '=', 'danhmuc.MaDM')
         ->where('sanpham.MaDM',$MaDM)->whereNotIn('sanpham.MSSP',[$id])->get();
 
+        $comments = DB::table('binhluan')
+        ->join('khachhang', 'khachhang.MSKH', '=', 'binhluan.MSKH')
+        ->where('MSSP', $id)->where('binhluan.TrangThai',1)
+        ->select('binhluan.*','HoTenKH')->get();
 
         return view('User.Product.product_details')
         ->with('category',$all_category)->with('list',$loaihang)
         ->with('product_detail',$product_detail)->with('images_product', $images_product)
         ->with('related_product',$related_product)->with('url',$url)
         ->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)
-        ->with('count_reviews',$count)->with('Total',$total);
-    }
-
-    //quick_view
-    public function quick_view(Request $re){
-        $id_product= $re->id_product;
-        $output= array();
-        $product_detail = DB::table('sanpham')
-        ->join('danhmuc', 'danhmuc.MaDM', '=', 'sanpham.MaDM')
-        ->where('MSSP',$id_product)->select('sanpham.*','danhmuc.TenDanhMuc')->get();
-
-        $images_product = DB::table('hinhanh')->where('MSSP',$id_product)->limit(3)->get();
-
-        foreach ($product_detail as $key => $value) {
-            $output['MSSP']=$value->MSSP;
-            $output['TenSP']='<a class="product-name" href="'.url('/product_details/ '.$value->MSSP.'').'">'.$value->TenSP.'</a>';
-            $output['DanhMuc'] = $value->TenDanhMuc;
-            $output['Gia']=number_format($value->Gia, 0, ',', ' ')."đ";
-            $output['SoLuong']='Còn '.$value->SoLuong.' sản phẩm trong kho';
-            $output['ThongTin']=$value->ThongTin;
-            $url = '/public/upload/'.$value->Image;
-
-            $output['Image']='<div class="shop-detail_img">
-                <button class="round-icon-btn" id="zoom-btn">
-                    <i class="icon_zoom-in_alt"></i>
-                </button>
-                <div class="big-img big-img_qv">
-                    <div class="big-img_block">
-                        <img src=" '.url($url).'" alt="product image">
-                    </div>
-                </div>
-                <div class="slide-img slide-img_qv">
-                    <div class="slide-img_block">
-                        <img src="'.url($url).'" alt="product image">
-                    </div>
-                </div>
-            </div> ';
-        }
-
-        // $output['review']='<span>'.$count.' Đánh Giá</span>';
-        echo json_encode($output);
-    }
+        ->with('count_reviews',$count)->with('Total',$total)->with('comments', $comments);
+    }    
 
     //Yêu thích
     public function favourite_product(Request $request){

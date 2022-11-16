@@ -205,8 +205,8 @@
                               <input type="hidden" value="1" class="cart_product_qty_{{$val_new->MSSP}}" name="SoLuong">
                             </form>
                             <div class="product-select">
-                              <button class="add-to-wishlist round-icon-btn" data-id_product={{$val_new->MSSP}}> <i class="icon_heart_alt"></i></button>
-                              <button class="add-to-cart round-icon-btn" data-id="{{$val_new->MSSP}}" name="add_cart"><i class="icon_bag_alt"></i></button>
+                              <button class="add-to-wishlist round-icon-btn" data-id_product="{{$val_new->MSSP}}"> <i class="icon_heart_alt"></i></button>
+                              <button class="add-to-cart round-icon-btn" data-id="{{$val_new->MSSP}}" name="add_cart" {{($val_new->TrangThai==0)? "disabled" : "" }}><i class="icon_bag_alt"></i></button>
                               <button class="add-to-compare round-icon-btn"> <i class="fas fa-random"></i></button>
                             </div>
                           </div>
@@ -255,7 +255,7 @@
                             </form>
                             <div class="product-select">
                               <button class="add-to-wishlist round-icon-btn" data-id_product={{$val->MSSP}}> <i class="icon_heart_alt"></i></button>
-                              <button class="add-to-cart round-icon-btn" data-id="{{$val->MSSP}}" name="add_cart"><i class="icon_bag_alt"></i></button>
+                              <button class="add-to-cart round-icon-btn" data-id="{{$val->MSSP}}" name="add_cart" {{($val->TrangThai==0)? "disabled" : "" }}><i class="icon_bag_alt"></i></button>
                               <button class="add-to-compare round-icon-btn"> <i class="fas fa-random"></i></button>
                             </div>
                           </div>
@@ -304,7 +304,7 @@
                             </form>
                             <div class="product-select">
                               <button class="add-to-wishlist round-icon-btn" data-id_product={{$val->MSSP}}> <i class="icon_heart_alt"></i></button>
-                              <button class="add-to-cart round-icon-btn" data-id="{{$val->MSSP}}" name="add_cart"><i class="icon_bag_alt"></i></button>
+                              <button class="add-to-cart round-icon-btn" data-id="{{$val->MSSP}}" name="add_cart" {{($val->TrangThai==0)? "disabled" : "" }}><i class="icon_bag_alt"></i></button>
                               <button class="add-to-compare round-icon-btn"> <i class="fas fa-random"></i></button>
                             </div>
                           </div>
@@ -353,7 +353,7 @@
                             </form>
                             <div class="product-select">
                               <button class="add-to-wishlist round-icon-btn" data-id_product={{$val->MSSP}}> <i class="icon_heart_alt"></i></button>
-                              <button class="add-to-cart round-icon-btn" data-id="{{$val->MSSP}}" name="add_cart">  <i class="icon_bag_alt"></i></button>
+                              <button class="add-to-cart round-icon-btn" data-id="{{$val->MSSP}}" name="add_cart" {{($val->TrangThai==0)? "disabled" : "" }}>  <i class="icon_bag_alt"></i></button>
                               <button class="add-to-compare round-icon-btn"> <i class="fas fa-random"></i></button>
                             </div>
                           </div>
@@ -402,7 +402,7 @@
                             </form>
                             <div class="product-select">
                               <button class="add-to-wishlist round-icon-btn" data-id_product={{$val->MSSP}}> <i class="icon_heart_alt"></i></button>
-                              <button class="add-to-cart round-icon-btn" data-id="{{$val->MSSP}}" name="add_cart">  <i class="icon_bag_alt"></i></button>
+                              <button class="add-to-cart round-icon-btn" data-id="{{$val->MSSP}}" name="add_cart" {{($val->TrangThai==0)? "disabled" : "" }}>  <i class="icon_bag_alt"></i></button>
                               <button class="add-to-compare round-icon-btn"> <i class="fas fa-random"></i></button>
                             </div>
                           </div>
@@ -470,7 +470,7 @@
                           </form>
                           <div class="product-select">
                             <button class="add-to-wishlist round-icon-btn" data-id_product={{$val->MSSP}}> <i class="icon_heart_alt"></i></button>
-                            <button class="add-to-cart round-icon-btn" data-id="{{$val->MSSP}}" name="add_cart">  <i class="icon_bag_alt"></i></button>
+                            <button class="add-to-cart round-icon-btn" data-id="{{$val->MSSP}}" name="add_cart" {{($val->TrangThai==0)? "disabled" : "" }}>  <i class="icon_bag_alt"></i></button>
                             <button class="add-to-compare round-icon-btn"> <i class="fas fa-random"></i></button>
                           </div>
                         </div>
@@ -532,7 +532,7 @@
                           </form>
                           <div class="product-select">
                             <button class="add-to-wishlist round-icon-btn" data-id_product={{$val->MSSP}}> <i class="icon_heart_alt"></i></button>
-                            <button class="add-to-cart round-icon-btn" data-id="{{$val->MSSP}}" name="add_cart">  <i class="icon_bag_alt"></i></button>
+                            <button class="add-to-cart round-icon-btn" data-id="{{$val->MSSP}}" name="add_cart" {{($val->TrangThai==0)? "disabled" : "" }}>  <i class="icon_bag_alt"></i></button>
                             <button class="add-to-compare round-icon-btn"> <i class="fas fa-random"></i></button>
                           </div>
                         </div>

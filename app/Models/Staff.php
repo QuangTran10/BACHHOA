@@ -23,6 +23,10 @@ class Staff extends Authenticatable
     	return $this->belongsToMany('App\Models\Roles', 'cap_quyen', 'MSNV', 'id_quyen');
     }
 
+    public function receipt(){
+        return $this->hasMany(Receipt::class, 'MSNV', 'MSNV');
+    }
+
     public function getAuthPassword(){
     	return $this->MatKhau;
     }

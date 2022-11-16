@@ -85,23 +85,27 @@
                     			<div class="product-info_block">
                     				<h5 class="product-type">{{$value->TenDanhMuc}}</h5><a class="product-name" href="">{{$value->TenSP}}</a>
                     				<h3 class="product-price">
+                              @if($value->TrangThai==1)      
                               @if($value->GiamGia==0)
-                      					<?php
-                      					$GiaSP = number_format($value->Gia, 0, ',', ' ');
-                      					echo $GiaSP." đ";
-                      					?>
+                                <?php
+                                $GiaSP = number_format($value->Gia, 0, ',', ' ');
+                                echo $GiaSP." đ";
+                                ?>
                               @else
                                 <?php
                                 $GiaSP = number_format($value->Gia*(1-$value->GiamGia), 0, ',', ' ');
                                 echo $GiaSP." đ";
                                 ?>
-                      					<del>
+                                <del>
                                   <?php
                                   $GiaSP = number_format($value->Gia, 0, ',', ' ');
                                   echo $GiaSP." đ";
                                   ?>     
                                 </del>
                               @endif
+                            @else
+                              Hết Hàng
+                            @endif
                     				</h3>
                     				<h5 class="product-rated"><i class="icon_star"></i><i class="icon_star"></i><i class="icon_star"></i><i class="icon_star"></i><i class="icon_star-half"></i><span>(5)</span></h5>
                     				<h5 class="product-avaiable">Còn <span>{{$value->SoLuong}} trong kho</span></h5>
@@ -118,7 +122,7 @@
                           </form>
                     			<div class="product-select">
                     				<button class="add-to-wishlist round-icon-btn"> <i class="icon_heart_alt"></i></button>
-                    				<button class="add-to-cart round-icon-btn" data-id="{{$value->MSSP}}">  <i class="icon_bag_alt"></i></button>
+                    				<button class="add-to-cart round-icon-btn" data-id="{{$value->MSSP}}" {{($value->TrangThai==0)? "disabled" : "" }}>  <i class="icon_bag_alt"></i></button>
                     				<button class="add-to-compare round-icon-btn"> <i class="fas fa-random"></i></button>
                     			</div>
                     			<div class="product-select_list">

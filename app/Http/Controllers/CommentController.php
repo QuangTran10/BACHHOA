@@ -50,7 +50,7 @@ class CommentController extends Controller
                             <div class="customer-comment"> 
                                 <h5 class="comment-date">'. Carbon::parse($value->ThoiGian)->format('d/m/Y').'</h5>
                                 <h3 class="customer-name">'.$value->Email.'</h3>
-                                <p class="customer-commented" style="wid">'.$value->NoiDung.'</p>
+                                <p class="customer-commented" >'.$value->NoiDung.'</p>
                             </div>
                         </div>
                     </div> 
@@ -66,15 +66,21 @@ class CommentController extends Controller
     	$MSSP=$re->id_product;
     	$now = Carbon::now('Asia/Ho_Chi_Minh');
 
-    	$data=array();
-    	$data['MSSP']=$MSSP;
-    	$data['MSKH']=$MSKH;
-    	$data['NoiDung']=$re->content;
-    	$data['ThoiGian']=$now;
-    	$data['DanhGia']=$re->rating;
-    	$data['TrangThai']=1;
+        if($MSKH != null){
+            $data=array();
+            $data['MSSP']=$MSSP;
+            $data['MSKH']=$MSKH;
+            $data['NoiDung']=$re->content;
+            $data['ThoiGian']=$now;
+            $data['DanhGia']=$re->rating;
+            $data['TrangThai']=0;
 
-    	DB::table('binhluan')->insert($data);
+            DB::table('binhluan')->insert($data);
+            echo 1; //Thành công
+        }else{
+            echo 0; //chưa đăng nhập
+        }
+    	
 
     }
 
@@ -89,6 +95,20 @@ class CommentController extends Controller
         ->get();
         Session::put('page',8);
         return view('admin.Comment.show_comment')->with('comment',$comment_by_id);
+    }
+
+    public function status_comment(Request $request){
+        $this->AuthLogin();
+
+        $MaBinhLuan = $request->id_comment;
+        $TrangThai  = $request->status;
+
+        $result = DB::table('binhluan')->where('MaBinhLuan',$MaBinhLuan)->update(['TrangThai' => $TrangThai]);
+        if($result){
+            echo 1;
+        }else{
+            echo 0;
+        }
     }
 
 }

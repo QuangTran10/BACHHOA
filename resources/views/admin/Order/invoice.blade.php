@@ -71,7 +71,7 @@
       <table>
         <tbody>
           <tr>
-            <td colspan="2"><h3>THÔNG TIN ĐƠN HÀNG</h3></td>
+            <td colspan="2"><h3>THÔNG TIN PHIẾU NHẬP</h3></td>
           </tr>
           <tr>
             <td width="40%">Họ Và Tên</td>

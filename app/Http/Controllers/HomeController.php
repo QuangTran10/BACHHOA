@@ -60,22 +60,28 @@ class HomeController extends Controller
         //Sản phẩm tiêu biểu
         $new_product = DB::table('sanpham')
         ->join('danhmuc', 'danhmuc.MaDM', '=', 'sanpham.MaDM')
-        ->orderBy('MSSP','desc')->limit(8)->select('sanpham.*','danhmuc.TenDanhMuc')->get();
+        ->orderBy('MSSP','desc')->limit(8)->select('sanpham.*','danhmuc.TenDanhMuc')
+        ->where('TrangThai',1)->get();
 
         $meat = DB::table('sanpham')->join('danhmuc', 'danhmuc.MaDM', '=', 'sanpham.MaDM')
-        ->whereIn('sanpham.MaDM', [1, 2])->limit(8)->select('sanpham.*','danhmuc.TenDanhMuc')->get();
+        ->whereIn('sanpham.MaDM', [1, 2])->where('TrangThai',1)->limit(8)
+        ->select('sanpham.*','danhmuc.TenDanhMuc')->get();
 
         $seafood = DB::table('sanpham')->join('danhmuc', 'danhmuc.MaDM', '=', 'sanpham.MaDM')
-        ->where('sanpham.MaDM',3)->limit(8)->select('sanpham.*','danhmuc.TenDanhMuc')->get();
+        ->where('sanpham.MaDM',3)->where('TrangThai',1)->limit(8)
+        ->select('sanpham.*','danhmuc.TenDanhMuc')->get();
 
         $vegetables = DB::table('sanpham')->join('danhmuc', 'danhmuc.MaDM', '=', 'sanpham.MaDM')
-        ->where('sanpham.MaDM',4)->limit(8)->select('sanpham.*','danhmuc.TenDanhMuc')->get();
+        ->where('sanpham.MaDM',4)->where('TrangThai',1)->limit(8)
+        ->select('sanpham.*','danhmuc.TenDanhMuc')->get();
 
         $drinks = DB::table('sanpham')->join('danhmuc', 'danhmuc.MaDM', '=', 'sanpham.MaDM')
-        ->where('sanpham.MaDM',6)->limit(8)->select('sanpham.*','danhmuc.TenDanhMuc')->get();
+        ->where('sanpham.MaDM',6)->where('TrangThai',1)->limit(8)
+        ->select('sanpham.*','danhmuc.TenDanhMuc')->get();
 
         $sale_product = DB::table('sanpham')->join('danhmuc', 'danhmuc.MaDM', '=', 'sanpham.MaDM')
-        ->where('sanpham.GiamGia', '>', 0)->limit(6)->select('sanpham.*','danhmuc.TenDanhMuc')->get();
+        ->where('sanpham.GiamGia', '>', 0)->where('TrangThai',1)->limit(6)
+        ->select('sanpham.*','danhmuc.TenDanhMuc')->get();
 
     	return view('user.home')
         ->with('category',$all_category)->with('list',$loaihang)

@@ -16,4 +16,8 @@ class Producer extends Model
     protected $primaryKey='MaNSX';
 
     protected $table='nhasanxuat';
+
+    public function receipt(){
+        return $this->hasMany(Receipt::class, 'MaNCC', 'MaNSX');
+    }
 }

@@ -138,7 +138,7 @@
                           </form>
                     			<div class="product-select">
                     				<button class="add-to-wishlist round-icon-btn"> <i class="icon_heart_alt"></i></button>
-                    				<button class="add-to-cart round-icon-btn" data-id="{{$value->MSSP}}">  <i class="icon_bag_alt"></i></button>
+                    				<button class="add-to-cart round-icon-btn" data-id="{{$value->MSSP}}" {{($value->TrangThai==0)? "disabled" : "" }}>  <i class="icon_bag_alt" ></i></button>
                     				<button class="add-to-compare round-icon-btn"> <i class="fas fa-random"></i></button>
                     			</div>
                     			<div class="product-select_list">

@@ -300,7 +300,6 @@
     <script type="text/javascript">
 
     $(document).ready(function() {
-
       load_total();
       
 
@@ -311,6 +310,20 @@
           data:{},
           success:function(data){
             $('#total').html(data);
+          }
+        });
+      }
+
+      //Load các comment
+      function load_comment(){
+        var id_product = $('.cmt_pro_id').val();
+        var _token = $('input[name="_token"]').val();
+        $.ajax({
+          url: '{{url('/load_comment')}}',
+          method: "POST",
+          data:{id_product:id_product,_token:_token},
+          success:function(data){
+            $('#review').html(data);
           }
         });
       }
@@ -498,6 +511,18 @@
         var content = $('.cmt_content').val();
         var _token = $('input[name="_token"]').val();
         var rating = $('input[name="star"]:checked').val();
+        if(id_product==""){
+          return;
+        }
+
+        if(content==""){
+          return;
+        }
+
+        if(rating ==""){
+          return;
+        }
+
         $.ajax({
           url: '{{url('/add_comment')}}',
           method: "POST",
@@ -507,14 +532,20 @@
             content:content,
             rating: rating},
             success:function(data){
-              load_comment();
-            },error: function() {
-             swal({
-              title: "Bạn Chưa Đăng Nhập",
-              icon: "warning",
-              button: "OK",
-            });
-           }
+              if(data==1){
+                swal({
+                  title: "Thêm thành công!",
+                  text: "Bình luận của bạn sẽ được duyệt sớm nhất!",
+                  icon: "success",
+                });
+              }else if(data==0){
+                swal({
+                  title: "Bạn Chưa Đăng Nhập",
+                  icon: "warning",
+                  button: "OK",
+                });
+              }
+            }
          });
       });
 

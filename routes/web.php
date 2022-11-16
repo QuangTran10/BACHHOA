@@ -265,6 +265,8 @@ Route::group(['middleware' => 'admin_role'], function(){
 
 	Route::get('/show_comment', 'App\Http\Controllers\CommentController@show_comment');
 
+	Route::post('/status_comment', 'App\Http\Controllers\CommentController@status_comment');
+
 	//admin interface -> statistic
 
 	Route::get('/show_statistic', 'App\Http\Controllers\RevenueController@show_statistical');
@@ -298,6 +300,12 @@ Route::group(['middleware' => 'stock_role'], function(){
 	Route::post('/infor_receipt', 'App\Http\Controllers\ReceiptController@show');
 
 	Route::get('/delete_receipt/{id}', 'App\Http\Controllers\ReceiptController@delete');
+
+	Route::post('/export-csv','App\Http\Controllers\ReceiptController@export');
+
+	Route::post('/import-csv','App\Http\Controllers\ReceiptController@import');
+
+	Route::get('/print_receipt/{code}', 'App\Http\Controllers\ReceiptController@print');
 });
 
 //*************************************SHIPPER***********************************************//

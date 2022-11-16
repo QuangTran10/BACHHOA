@@ -3,14 +3,16 @@
 
 <div class="container-fluid">
   <div class="row">
-    <div class="col-lg-12 col-md-12">
-      <a href="{{URL::to('/add_receipt')}}" class="btn btn-primary btn-lg" role="button" aria-disabled="true">
+    <div class="col-lg-5 col-md-6 col-sm-6">
+      <a href="{{URL::to('/add_receipt')}}" class="btn btn-primary" role="button" aria-disabled="true">
          <i class="material-icons">edit</i> Thêm Phiếu Thu
       </a>
-      <a href="{{route('producer.index')}}" class="btn btn-primary btn-lg" role="button" aria-disabled="true">
+      <a href="{{route('producer.index')}}" class="btn btn-primary" role="button" aria-disabled="true">
          <i class="material-icons">edit</i> Quản Lý NSX
       </a>
+      
     </div>
+
   </div>
   <div class="row">
     <div class="col-lg-12 col-md-12">
