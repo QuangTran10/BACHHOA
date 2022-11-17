@@ -37,7 +37,16 @@
             <img src="{{asset('public/backend/shipper/images/default_avatar.jpeg')}}" alt="">
           </div>
           <img class="circle responsive-img" src="{{asset('public/backend/shipper/images/default_avatar.jpeg')}}" alt="">
-          <span class="white-text name">John Roe</span>
+          <span class="white-text name">
+            <?php
+              $name = Session::get('shipper_name');
+              if($name){
+                echo $name;
+              }else{
+                echo "Unknow";
+              }
+            ?>
+          </span>
         </div>
       </li>
       <li><a href="{{URL::to('/dashboard_shipper')}}"><i class="fa fa-home cyan"></i>Trang Chủ</a></</li>

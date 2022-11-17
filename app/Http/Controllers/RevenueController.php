@@ -74,4 +74,27 @@ class RevenueController extends Controller
 
     	echo $data = json_encode($chart_data);
     }
+
+    public function quantity_statistic(){
+        $this->AuthLogin();
+        Session::put('page',12);
+        $receipts = DB::table('chitietphieuthu')
+        ->join('sanpham', 'chitietphieuthu.MSSP', '=', 'sanpham.MSSP')
+        ->select('chitietphieuthu.MSSP','TenSP',DB::raw('SUM(chitietphieuthu.SoLuong) as soluongnhap'))
+        ->groupBy('chitietphieuthu.MSSP','TenSP')->distinct()
+        ->get();
+
+        $sales = DB::table('chitietdathang')
+        ->select('MSSP',DB::raw('SUM(SoLuong) as soluongban'),'GiaDatHang')->groupBy('MSSP','GiaDatHang')
+        ->get();
+
+        return view('admin.Statistic.quantity_statistic', compact('receipts','sales'));
+    }
+
+    // public function price_statistic(){
+    //     $this->AuthLogin();
+    //     Session::put('page',13);
+
+    //     return view('admin.Statistic.price_statistic');
+    // }
 }

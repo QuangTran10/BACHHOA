@@ -217,7 +217,8 @@ class ProductController extends Controller
         
         $related_product = DB::table('sanpham')
         ->join('danhmuc', 'sanpham.MaDM', '=', 'danhmuc.MaDM')
-        ->where('sanpham.MaDM',$MaDM)->whereNotIn('sanpham.MSSP',[$id])->get();
+        ->where('sanpham.MaDM',$MaDM)->where('TrangThai',1)
+        ->whereNotIn('sanpham.MSSP',[$id])->get();
 
         $comments = DB::table('binhluan')
         ->join('khachhang', 'khachhang.MSKH', '=', 'binhluan.MSKH')

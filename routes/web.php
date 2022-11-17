@@ -271,6 +271,10 @@ Route::group(['middleware' => 'admin_role'], function(){
 
 	Route::get('/show_statistic', 'App\Http\Controllers\RevenueController@show_statistical');
 
+	Route::get('/quantity_statistic', 'App\Http\Controllers\RevenueController@quantity_statistic');
+
+	// Route::get('/price_statistic', 'App\Http\Controllers\RevenueController@price_statistic');
+
 	Route::post('/load_statistic', 'App\Http\Controllers\RevenueController@load_statistic');
 
 	Route::post('/search_statistic', 'App\Http\Controllers\RevenueController@search_statistic');

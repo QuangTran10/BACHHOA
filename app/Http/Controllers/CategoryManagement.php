@@ -92,27 +92,32 @@ class CategoryManagement extends Controller
 
             if($sort_by=='az'){
 
-                $category_by_id =DB::table('sanpham')->where('sanpham.MaDM',$id_cate)
+                $category_by_id =DB::table('sanpham')
+                ->where('sanpham.MaDM',$id_cate)->where('TrangThai',1)
                 ->join('danhmuc', 'sanpham.MaDM', '=', 'danhmuc.MaDM')
                 ->orderBy('TenSP','ASC')->Paginate(9);
 
             }elseif ($sort_by=='za') {
 
-                $category_by_id =DB::table('sanpham')->where('sanpham.MaDM',$id_cate)
+                $category_by_id =DB::table('sanpham')
+                ->where('sanpham.MaDM',$id_cate)->where('TrangThai',1)
                 ->join('danhmuc', 'sanpham.MaDM', '=', 'danhmuc.MaDM')
                 ->orderBy('TenSP','DESC')->Paginate(9);
 
             }elseif ($sort_by=='increase') {
 
-                $category_by_id =DB::table('sanpham')->where('sanpham.MaDM',$id_cate)
+                $category_by_id =DB::table('sanpham')
+                ->where('sanpham.MaDM',$id_cate)->where('TrangThai',1)
                 ->join('danhmuc', 'sanpham.MaDM', '=', 'danhmuc.MaDM')
                 ->orderBy('Gia','DESC')->Paginate(9);
 
             }elseif ($sort_by=='decrease') {
 
-                $category_by_id =DB::table('sanpham')->where('sanpham.MaDM',$id_cate)
+                $category_by_id =DB::table('sanpham')
+                ->where('sanpham.MaDM',$id_cate)->where('TrangThai',1)
                 ->join('danhmuc', 'sanpham.MaDM', '=', 'danhmuc.MaDM')
                 ->orderBy('Gia','ASC')->Paginate(9);
+
             }elseif ($sort_by=='price') {
                 $nho=0;
                 $lon=500000;
@@ -121,19 +126,22 @@ class CategoryManagement extends Controller
                     $lon = $_GET['MAX'];
                 }
 
-                $category_by_id =DB::table('sanpham')->where('sanpham.MaDM',$id_cate)
+                $category_by_id =DB::table('sanpham')
+                ->where('sanpham.MaDM',$id_cate)->where('TrangThai',1)
                 ->join('danhmuc', 'sanpham.MaDM', '=', 'danhmuc.MaDM')
                 ->whereBetween('sanpham.Gia', [$nho, $lon])->Paginate(9);
 
             }
             else{
-                $category_by_id =DB::table('sanpham')->where('sanpham.MaDM',$id_cate)
+                $category_by_id =DB::table('sanpham')
+                ->where('sanpham.MaDM',$id_cate)->where('TrangThai',1)
                 ->join('danhmuc', 'sanpham.MaDM', '=', 'danhmuc.MaDM')
                 ->orderBy('MSSP','ASC')
                 ->Paginate(9);
             }
         }else{
-            $category_by_id =DB::table('sanpham')->where('sanpham.MaDM',$id_cate)
+            $category_by_id =DB::table('sanpham')
+            ->where('sanpham.MaDM',$id_cate)->where('TrangThai',1)
             ->join('danhmuc', 'sanpham.MaDM', '=', 'danhmuc.MaDM')
             ->orderBy('MSSP','ASC')
             ->Paginate(9);

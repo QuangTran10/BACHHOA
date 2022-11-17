@@ -167,16 +167,16 @@
 								<form action="{{URL::to('/complete_status_order')}}" method="post" enctype="multipart/form-data">
 									{{csrf_field()}}
 									<div class="row">
-										<div class="col s5">
+										<div class="col s8">
 											<p>
 												<label>
-													<input value="4" name="status" class="status_order" id="success" type="radio"/>
+													<input value="4" name="status" class="status_order" id="success" type="radio" required/>
 													<span style="color: black">Giao hàng thành công</span>
 												</label>
 											</p>
 											<p>
 												<label>
-													<input value="7" name="status" class="status_order" id="fail" type="radio"/>
+													<input value="7" name="status" class="status_order" id="fail" type="radio" required/>
 													<span style="color: black">Giao hàng không thành công</span>
 												</label>
 											</p>

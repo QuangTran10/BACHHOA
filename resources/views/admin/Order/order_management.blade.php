@@ -104,27 +104,28 @@
 
 
 <script>
-    $(document).ready(function() {
-      $('#datatables').DataTable({
-        "lengthMenu": [
-          [10, 25, 50, -1],
-          [10, 25, 50, "All"]
-        ],
-        responsive: true,
-        language: {
-          search: "_INPUT_",
-          searchPlaceholder: "Tìm kiếm đơn hàng",
-          "paginate": {
-            "previous": "<<",
-            "next": ">>"
-          },
-          "lengthMenu": "Hiển thị _MENU_",
-          "info": "Hiển thị từ _START_ đến _END_ của _TOTAL_ đơn hàng",
-        }
-      });
-
-      var table = $('#datatable').DataTable();
-
+  $(document).ready(function() {
+    $('#datatables').DataTable({
+      "lengthMenu": [
+      [10, 25, 50, -1],
+      [10, 25, 50, "All"]
+      ],
+      responsive: true,
+      order: [[0, 'desc']],
+      language: {
+        search: "_INPUT_",
+        searchPlaceholder: "Tìm kiếm đơn hàng",
+        "paginate": {
+          "previous": "<<",
+          "next": ">>"
+        },
+        "lengthMenu": "Hiển thị _MENU_",
+        "info": "Hiển thị từ _START_ đến _END_ của _TOTAL_ đơn hàng",
+      }
     });
-  </script>
+
+    var table = $('#datatable').DataTable();
+
+  });
+</script>
 @endsection

@@ -167,8 +167,6 @@ class ShipperController extends Controller
             ->join('thanhtoan', 'thanhtoan.MaThanhToan', '=', 'dathang.MaThanhToan')
             ->where('dathang.MSDH', $MSDH)->update(['TrangThai'=> 7,'TT_TrangThai'=>0,'TT_DienGiai'=> $note,'GhiChu'=>'Đơn hàng bị boom hàng']);
 
-            
-
             return redirect('shipper_order');
         }
 

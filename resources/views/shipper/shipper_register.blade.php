@@ -44,11 +44,11 @@
 			</div>
 			<form action="{{URL::to('/add_shipper')}}" method="post">
 				{{csrf_field()}}
-				<input type="text" name="HoTenGH" placeholder="Họ và Tên">
+				<input type="text" name="HoTenGH" placeholder="Họ và Tên" required>
 				<div class="row" style="margin-left: 0px;">
 					<div class="input-field col s7">
-						<select class="City">
-							<option value="" disabled selected>Thành Phố</option>
+						<select class="City" required>
+							<option value="" disabled selected >Thành Phố</option>
 							@foreach($city as $value)
 							<option value="{{$value->matp}}">{{$value->name}}</option>
 							@endforeach
@@ -58,23 +58,23 @@
 						<h5>Giới Tính</h5>
 						<p style="float: left;">
 							<label>
-								<input value="1" name="GioiTinh" type="radio"/>
+								<input value="1" name="GioiTinh" type="radio" required/>
 								<span>Nam</span>
 							</label>
 						</p>
 						<p >
 							<label>
-								<input value="0" name="GioiTinh" type="radio"/>
+								<input value="0" name="GioiTinh" type="radio" required/>
 								<span>Nữ</span>
 							</label>
 						</p>
 					</div>
 				</div>
-				<input type="text" name="SDT" placeholder="Số điện thoại">
-				<input type="text" name="DiaChi" placeholder="Địa chỉ cụ thể">
-				<input type="email" name="Email" placeholder="Email">
-				<input type="password" name="Password" placeholder="Mật Khẩu" id="password">
-				<input type="password" placeholder="Nhập lại mật khẩu" id="repassword">
+				<input type="text" name="SDT" placeholder="Số điện thoại" required>
+				<input type="text" name="DiaChi" placeholder="Địa chỉ cụ thể" required>
+				<input type="email" name="Email" placeholder="Email" required>
+				<input type="password" name="Password" placeholder="Mật Khẩu" id="password" required>
+				<input type="password" placeholder="Nhập lại mật khẩu" id="repassword" required>
 				<input type="hidden" name="ThanhPho" id="ThanhPho">
 
 				<input type="submit" class="button btn-register" value="Đăng Ký">

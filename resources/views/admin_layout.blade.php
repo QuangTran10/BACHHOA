@@ -134,11 +134,35 @@
               <p>Thông Báo</p>
             </a>
           </li>
-          <li class="nav-item <?php $page = Session::get('page'); if($page==9){echo "active";} ?>">
-            <a class="nav-link" href="{{URL::to('/show_statistic')}}">
+          <li class="nav-item <?php $page = Session::get('page'); if($page==9 || $page==12 || $page==13){echo "active";} ?>">
+            <a class="nav-link" data-toggle="collapse" href="#statistics">
               <i class="material-icons">paid</i>
-              <p>Doanh Thu</p>
+              <p> Thống Kê
+                <b class="caret"></b>
+              </p>
             </a>
+            <div class="collapse <?php $page = Session::get('page'); if($page==9 || $page==12 || $page==13){echo "show";} ?>" id="statistics">
+              <ul class="nav">
+                <li class="nav-item <?php $page = Session::get('page'); if($page==9){echo "active";} ?>">
+                  <a class="nav-link" href="{{URL::to('/show_statistic')}}">
+                    <span class="sidebar-mini"><i class="material-icons">insights</i></span>
+                    <span class="sidebar-normal">Theo tháng </span>
+                  </a>
+                </li>
+                <li class="nav-item <?php $page = Session::get('page'); if($page==12){echo "active";} ?>">
+                  <a class="nav-link" href="{{url('/quantity_statistic')}}">
+                    <span class="sidebar-mini"><i class="material-icons">numbers</i></span>
+                    <span class="sidebar-normal">Theo số lượng bán ra</span>
+                  </a>
+                </li>
+                {{-- <li class="nav-item <?php $page = Session::get('page'); if($page==13){echo "active";} ?>">
+                  <a class="nav-link" href="{{URL::to('/price_statistic')}}">
+                    <span class="sidebar-mini"><i class="material-icons">attach_money</i></span>
+                    <span class="sidebar-normal">Doanh Thu </span>
+                  </a>
+                </li> --}}
+              </ul>
+            </div>
           </li>
           <li class="nav-item <?php $page = Session::get('page'); if($page==10){echo "active";} ?>">
             <a class="nav-link" href="{{route('coupon.index')}}">

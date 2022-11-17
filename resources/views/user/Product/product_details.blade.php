@@ -60,7 +60,6 @@
                </div>
                <div class="col-md-5 col-lg-5 col-xxl-4">
                 <div class="shop-detail_info shop-detail_info-full">
-                  <p class="delivery-status">Miễn Phí Giao Hàng</p>
                   <div class="price-rate">
                     <h3 class="product-price"> 
                       @if($product_detail->GiamGia==0)
@@ -87,7 +86,11 @@
                       <i class="icon_star"></i>
                       @endfor
                       <span>({{$count_reviews}})</span></h5>
+                      @if($product_detail->TrangThai==1)
                       <h5 class="product-rated"><span>Còn {{$product_detail->SoLuong}} sản phẩm trong kho</span></h5>
+                      @else
+                      <h5 class="product-rated"><span>HẾT HÀNG</span></h5>
+                      @endif
                     </div>
                     <form>
                       {{csrf_field()}}
@@ -104,7 +107,7 @@
                         @if($product_detail->SoLuong==0)
                         <input type="button" data-id="{{$product_detail->MSSP}}" class="add-to-cart normal-btn outline" name="add_cart" value="Hết Hàng" disabled>
                         @else
-                        <input type="button" data-id="{{$product_detail->MSSP}}" class="add-to-cart normal-btn outline" name="add_cart" value="Thêm vào giỏ hàng" <?php if($product_detail->SoLuong==0) echo 'disabled="disabled"';?>>
+                        <input type="button" data-id="{{$product_detail->MSSP}}" class="add-to-cart normal-btn outline" name="add_cart" value="Thêm vào giỏ hàng" <?php if($product_detail->SoLuong==0 || $product_detail->TrangThai ==0) echo 'disabled';?>>
                         @endif
                       </div>  
                     </form>
@@ -122,7 +125,7 @@
                 <div id="tab-so3">
                   <ul class="mb-0">
                     <li class="active"><a href="#tab-1">Mô Tả</a></li>
-                    <li><a href="#tab-2">Bình Luận</a></li>
+                    <li><a href="#tab-2">Đánh Giá Sản Phẩm</a></li>
                   </ul>
                   <div id="tab-1">
                     <div class="description-block">
@@ -264,9 +267,8 @@
                   </form>
                   <div class="product-select">
                     <button class="add-to-wishlist round-icon-btn" data-id_product={{$val->MSSP}}> <i class="icon_heart_alt"></i></button>
-                    <button class="add-to-cart round-icon-btn" data-id="{{$val->MSSP}}">  <i class="icon_bag_alt"></i></button>
-                    <button class="add-to-compare round-icon-btn"> <i class="fas fa-random"></i></button>
-                    <button class="quickview round-icon-btn" data-id_product={{$val->MSSP}}> <i class="far fa-eye"></i></button>
+                    <button class="add-to-cart round-icon-btn" data-id="{{$val->MSSP}}" {{($val->TrangThai==0)? "disabled" : "" }}>  <i class="icon_bag_alt"></i></button>
+                    <button class="add-to-compare round-icon-btn"><i class="fas fa-random"></i></button>
                   </div>
                 </div>
               </div>
