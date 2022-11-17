@@ -12,7 +12,7 @@
                   <div class="slider-text d-flex flex-column align-items-center align-items-md-start">
                     <h5 data-animation="fadeInUp" data-delay=".2s" style="color: red;">Happy Birthday</h5>
                     <h1 data-animation="fadeInUp" data-delay=".3s" style="color: #660066">MỪNG SINH NHẬT<br> 1 TUỔI</h1>
-                    <a class="normal-btn" href="" data-animation="fadeInUp" data-delay=".4s">Mua Ngay</a>
+                    {{-- <a class="normal-btn" href="" data-animation="fadeInUp" data-delay=".4s">Mua Ngay</a> --}}
                   </div>
                 </div>
                 <div class="col-12 col-md-6">
@@ -35,7 +35,7 @@
                   <div class="slider-text d-flex flex-column align-items-center align-items-md-start">
                     <h5 data-animation="fadeInUp" data-delay=".2s" style="color: white;">Lunar New Year</h5>
                     <h1 data-animation="fadeInUp" data-delay=".3s" style="color: yellow;">CHÚC MỪNG NĂM MỚI</h1>
-                    <a class="normal-btn" href="" data-animation="fadeInUp" data-delay=".4s">Mua Ngay</a>
+                    {{-- <a class="normal-btn" href="" data-animation="fadeInUp" data-delay=".4s">Mua Ngay</a> --}}
                   </div>
                 </div>
                 <div class="col-12 col-md-6">
@@ -55,7 +55,7 @@
                   <div class="slider-text d-flex flex-column align-items-center align-items-md-start">
                     <h5 data-animation="fadeInUp" data-delay=".2s" style="color: white;">Big Sale</h5>
                     <h1 data-animation="fadeInUp" data-delay=".3s" style="color: #ffff66;">Siêu Sale 12-12</h1>
-                    <a class="normal-btn" href="" data-animation="fadeInUp" data-delay=".4s">Mua Ngay</a>
+                    {{-- <a class="normal-btn" href="" data-animation="fadeInUp" data-delay=".4s">Mua Ngay</a> --}}
                   </div>
                 </div>
                 <div class="col-12 col-md-6">
@@ -75,7 +75,7 @@
                   <div class="slider-text d-flex flex-column align-items-center align-items-md-start">
                     <h5 data-animation="fadeInUp" data-delay=".2s" style="color: white;" >Merry Christmas</h5>
                     <h1 data-animation="fadeInUp" data-delay=".3s" style="color: #FFD700;">Mừng Giáng Sinh</h1>
-                    <a class="normal-btn" href="" data-animation="fadeInUp" data-delay=".4s">Mua Ngay</a>
+                    {{-- <a class="normal-btn" href="" data-animation="fadeInUp" data-delay=".4s">Mua Ngay</a> --}}
                   </div>
                 </div>
                 <div class="col-12 col-md-6">
