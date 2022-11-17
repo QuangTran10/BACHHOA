@@ -259,11 +259,12 @@ public function import(Request $request){
   $rows = Excel::toArray(new Import(), $path);
   $message = "";
 
+  $data = array();
+
   for ($i=1; $i < count($rows[0]); $i++) { 
     $result = DB::table('sanpham')->where('MSSP', $rows[0][$i][0])->first();
     if(!$result){
       $message .= "<li>Mã sản phẩm số ". $i ." không tồn tại</li>";
-
     }
 
     if($rows[0][$i][2]==0){
@@ -280,10 +281,18 @@ public function import(Request $request){
     }elseif($rows[0][$i][3]<0){
       $message .= "<li>Giá sản phẩm số ". $rows[0][$i][0] ." là số âm</li>";
     }
+
+    if($message ==""){
+      $data[] = array(
+        'MSSP'    => $rows[0][$i][0],
+        'SoLuong' => $rows[0][$i][2],
+        'DonGia'  => $rows[0][$i][3],
+      );
+    }
   }
 
   if($message == ""){
-    return Redirect::to('add_receipt')->with('row',$rows);
+    return Redirect::to('add_receipt')->with('row',$data);
   }else{
     Session::put('message',$message);
     return Redirect::to('add_receipt');
@@ -291,6 +300,7 @@ public function import(Request $request){
   
 }
 
+//In phiếu nhập hàng
 public function print($code){
   $this->AuthLogin();
   $now = Carbon::now('Asia/Ho_Chi_Minh');

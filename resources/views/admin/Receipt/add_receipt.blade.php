@@ -79,32 +79,31 @@
               @if(session('row'))
                 @php 
                 $product_import = session('row');
-                //Đếm tổng số record
-                $u = count($product_import[0]); //3
-
-                for ($i=1; $i < $u; $i++) { 
+                $i = 1;
                 @endphp
+                @foreach($product_import as $value)
                 <div class="row" id="element{{$i}}">
                   <div class="form-group col-4">
                     <select class="form-select" name="Product[]" required>
                      @foreach($product as $key => $val)
-                      <option value="{{$val->MSSP}}" {{($product_import[0][$i][0]==$val->MSSP)? "selected" : "" }}>{{$val->TenSP}}</option>
+                      <option value="{{$val->MSSP}}" {{($value['MSSP']==$val->MSSP)? "selected" : "" }}>{{$val->TenSP}}</option>
                      @endforeach
                     </select>
                   </div>
                   <div class="form-group col-3">
-                    <input type="number" class="form-control" name="Quantity[]" placeholder="Số Lượng" required min="0" value="{{$product_import[0][$i][2]}}">
+                    <input type="number" class="form-control" name="Quantity[]" placeholder="Số Lượng" required min="0" value="{{$value['SoLuong']}}">
                   </div>
                   <div class="form-group col-3">
-                    <input type="number" class="form-control" name="Price[]" placeholder="Giá nhập hàng" min="1000" required value="{{$product_import[0][$i][3]}}">
+                    <input type="number" class="form-control" name="Price[]" placeholder="Giá nhập hàng" min="1000" required value="{{$value['DonGia']}}">
                   </div>
                   <div class="form-group col-1">
                     <a type="button" rel="tooltip" style="color:white" class="btn btn-info btn-sm remove-el" data-id="1"><i class="material-icons">delete_outline</i></a>
                   </div>
                 </div>
                 @php 
-                }
+                  $i++;
                 @endphp
+                @endforeach
               @else
                 <div class="row" id="element1">
                   <div class="form-group col-4">
@@ -130,7 +129,7 @@
         </div>
         
         @if(session('row'))
-        <input type="hidden" id="i" value="{{$u-1}}" name="index">
+        <input type="hidden" id="i" value="{{$i-1}}" name="index">
         @else
         <input type="hidden" id="i" value="1" name="index">
         @endif
