@@ -21,6 +21,15 @@ class CommentController extends Controller
             return Redirect::to('admin')->send();
         }
     }
+
+    public function LoginCheck(){
+        $MSKH=Session::get('user_id');
+        if($MSKH){
+            
+        }else{
+            return Redirect::to('login_home')->send();
+        }
+    }
     //User interface
     public function load_comment(Request $re){
     	$MSHH = $re->id_product;
@@ -61,29 +70,75 @@ class CommentController extends Controller
     	echo $output;
     }
 
+    public function rating_product(Request $request, $id){
+        $this->LoginCheck();
+        $category = DB::table('danhmuc')->get();
+        $list = DB::table('loaihang')->get();
+
+        $meta_desc="Đánh giá đơn hàng";
+        $meta_keywords="Rating";
+        $meta_tittle="BEE STORE";
+        $url=$request->url();
+
+        //Những order đã đánh giá
+        $rating = DB::table('binhluan')
+        ->join('sanpham', 'binhluan.MSSP', '=', 'sanpham.MSSP')
+        ->where('MSDH',$id)->get();
+
+        $order_id_rating = array();
+
+        foreach ($rating as $key => $value) {
+            $order_id_rating[] = $value->MSSP;
+        }
+
+        //Những order chưa đánh giá
+        $order_unrating = DB::table('chitietdathang')
+        ->join('sanpham', 'chitietdathang.MSSP', '=', 'sanpham.MSSP')
+        ->where('MSDH',$id)->whereNotIn('chitietdathang.MSSP',$order_id_rating)->get();
+
+        $order_rating = DB::table('chitietdathang')
+        ->join('sanpham', 'chitietdathang.MSSP', '=', 'sanpham.MSSP')
+        ->where('MSDH',$id)->whereIn('chitietdathang.MSSP',$order_id_rating)->get();
+
+        // echo '<pre>';
+        // print_r($order_rating);
+        // print_r($order_unrating);
+        // echo '</pre>';
+
+        
+
+        return view('user.Order.rating', compact('category','list','meta_desc','meta_keywords','url','order_unrating','order_rating'));
+    }
+
     public function add_comment(Request $re){
     	$MSKH=Session::get('user_id');
-    	$MSSP=$re->id_product;
+        $da = $re->all();
     	$now = Carbon::now('Asia/Ho_Chi_Minh');
 
         if($MSKH != null){
-            $data=array();
-            $data['MSSP']=$MSSP;
-            $data['MSKH']=$MSKH;
-            $data['NoiDung']=$re->content;
-            $data['ThoiGian']=$now;
-            $data['DanhGia']=$re->rating;
-            $data['TrangThai']=0;
+            //Kiểm tra sản phẩm đã được đánh giá chưa
+            $result = DB::table('binhluan')
+            ->where('MSSP',$da['MSSP'])->where('MSKH',$MSKH)->where('MSDH',$da['MSDH'])->get()->count();
 
-            DB::table('binhluan')->insert($data);
-            echo 1; //Thành công
+            if($result==0){
+                $data=array();
+                $data['MSSP']=$da['MSSP'];
+                $data['MSKH']=$MSKH;
+                $data['NoiDung']=$da['NoiDung'];
+                $data['ThoiGian']=$now;
+                $data['MSDH'] = $da['MSDH'];
+                $data['DanhGia']=$da['DanhGia'];
+                $data['TrangThai']=0;
+
+                DB::table('binhluan')->insert($data);
+                echo 1; //Thành công
+            }else{
+                echo 2; //Đã bình luận rồi
+            }
         }else{
             echo 0; //chưa đăng nhập
         }
-    	
-
     }
-
 
     //admin interface
     public function show_comment(){

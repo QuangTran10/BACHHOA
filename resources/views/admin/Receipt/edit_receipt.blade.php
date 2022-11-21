@@ -74,7 +74,7 @@
                   </select>
                 </div>
                 <div class="form-group col-2">
-                  <input type="number" class="form-control" name="Quantity[]" placeholder="Số Lượng" required min="0" value="{{$value->SoLuong}}">
+                  <input type="number" class="form-control" name="Quantity[]" placeholder="Số Lượng" required min="0" value="{{$value->SoLuongNhap}}">
                 </div>
                 <div class="form-group col-2">
                   <input type="number" class="form-control" name="Price[]" placeholder="Giá nhập hàng" min="1000" required value="{{$value->DonGia}}">

@@ -26,29 +26,15 @@
 								</thead>
 
 								<tbody>
-									@foreach($sales as $val)
 									@foreach($receipts as $key => $value)
 									
 									<tr>
-										<td>{{$value->MSSP}}</td>
-										<td>{{$value->TenSP}}</td>
-										<td>{{$value->soluongnhap}}</td>
-										<td>
-											@if($value->MSSP == $val->MSSP)
-												{{$val->soluongban}}
-											@else
-												0
-											@endif
-										</td> 
-										<td style="text-align: center;">
-											@if($value->MSSP == $val->MSSP)
-												{{$value->soluongnhap - $val->soluongban}}
-											@else
-												{{$value->soluongnhap - 0}}
-											@endif
-										</td>
+										<td>{{$value['MSSP']}}</td>
+										<td>{{$value['TenSP']}}</td>
+										<td>{{$value['SoLuongNhap']}}</td>
+										<td>{{$value['SoLuongNhap']-$value['SoLuongTon']}}</td> 
+										<td style="text-align: center;">{{$value['SoLuongTon']}}</td>
 									</tr>
-									@endforeach
 									@endforeach
 								</tbody>
 							</table>

@@ -78,17 +78,26 @@ class RevenueController extends Controller
     public function quantity_statistic(){
         $this->AuthLogin();
         Session::put('page',12);
-        $receipts = DB::table('chitietphieuthu')
+        $receipt = DB::table('chitietphieuthu')
         ->join('sanpham', 'chitietphieuthu.MSSP', '=', 'sanpham.MSSP')
-        ->select('chitietphieuthu.MSSP','TenSP',DB::raw('SUM(chitietphieuthu.SoLuong) as soluongnhap'))
+        ->select('chitietphieuthu.MSSP','TenSP',DB::raw('SUM(SoLuongNhap) as soluongnhap'))
         ->groupBy('chitietphieuthu.MSSP','TenSP')->distinct()
         ->get();
 
-        $sales = DB::table('chitietdathang')
-        ->select('MSSP',DB::raw('SUM(SoLuong) as soluongban'),'GiaDatHang')->groupBy('MSSP','GiaDatHang')
-        ->get();
+        $receipts = array();
 
-        return view('admin.Statistic.quantity_statistic', compact('receipts','sales'));
+        foreach ($receipt as $key => $value) {
+            $product = DB::table('sanpham')->where('MSSP', $value->MSSP)->first();
+
+            $receipts[] = array(
+                'MSSP'  => $value->MSSP,
+                'TenSP' => $value->TenSP,
+                'SoLuongNhap' => $value->soluongnhap,
+                'SoLuongTon' => $product->SoLuong,
+            );
+        }
+
+        return view('admin.Statistic.quantity_statistic', compact('receipts'));
     }
 
     // public function price_statistic(){

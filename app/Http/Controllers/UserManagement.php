@@ -333,4 +333,13 @@ class UserManagement extends Controller
         ]);
         return Redirect::to('/show_address');
     }
+
+    public function delete_address(Request $request){
+        $this->LoginCheck();
+        $MaDC = $request->MaDC;
+
+        DB::table('diachikh')->where('MaDC',$MaDC)->delete();
+
+        echo 1;
+    }
 }

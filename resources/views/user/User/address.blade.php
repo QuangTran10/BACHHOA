@@ -65,7 +65,7 @@
             <div class="col-4">
               <a class="blog-readmore remove_address" data-id="{{$value['MaDC']}}" href="">Xoá</a>
               <a class="blog-readmore update_address" data-id="{{$value['MaDC']}}" data-toggle="modal" data-target="#update_address" href="" >Cập Nhật</a><br><br>
-              <a class="blog-readmore default_address" data-id="{{$value['MaDC']}}" href="">Thiết lập mặc định</a>
+              {{-- <a class="blog-readmore default_address" data-id="{{$value['MaDC']}}" href="">Thiết lập mặc định</a> --}}
             </div>
             @endforeach
             

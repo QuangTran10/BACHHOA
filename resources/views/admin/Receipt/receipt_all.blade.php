@@ -53,7 +53,6 @@
                   </form>
                   <button type="button" rel="tooltip" class="btn btn-info information" data-id="{{$value->MaPhieu}}" ><i class="material-icons">info</i></button>
                   <a href="{{URL::to('/edit_receipt/'.$value->MaPhieu)}}" type="button" rel="tooltip" class="btn btn-success"><i class="material-icons">edit</i></a>
-                  <a href="{{URL::to('/delete_receipt/'.$value->MaPhieu)}}" type="button" rel="tooltip" class="btn btn-danger" onclick="return confirm('Bạn có chắc chắn muốn xoá')"><i class="material-icons">close</i></a>
                 </td>
               </tr>
               @endforeach

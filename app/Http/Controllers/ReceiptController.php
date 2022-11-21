@@ -77,7 +77,7 @@ class ReceiptController extends Controller
     for ($i=0; $i < $data['index']; $i++) { 
       $ds['MaPhieu']= $MaPhieu;
       $ds['MSSP'] = $data['Product'][$i];
-      $ds['SoLuong'] = $data['Quantity'][$i];
+      $ds['SoLuongNhap'] = $data['Quantity'][$i];
       $ds['DonGia'] = $data['Price'][$i];
       $ds['TG_Tao']=$now;
       $ds['TG_CapNhat']=$now;
@@ -158,9 +158,9 @@ public function show(Request $request){
     <tr>
     <td>'.$i.'</td>
     <td>'.$value->TenSP.'</td>
-    <td>'.$value->SoLuong.'</td>
+    <td>'.$value->SoLuongNhap.'</td>
     <td>'.number_format($value->DonGia , 0, ',', ' ').'đ </td>
-    <td>'.number_format($value->DonGia*$value->SoLuong , 0, ',', ' ').'đ</td>
+    <td>'.number_format($value->DonGia*$value->SoLuongNhap , 0, ',', ' ').'đ</td>
     </tr>';
     $i++;
   }
@@ -197,57 +197,6 @@ public function edit(Request $request, $id){
   $detail_receipt = DB::table('chitietphieuthu')->where('MaPhieu', $id)->get();
 
   return view('admin.Receipt.edit_receipt', compact('product', 'producer', 'receipt', 'detail_receipt'));
-}
-
-public function update(Request $request){
-  $this->AuthLogin();
-  $data= $request->all();
-  $now = Carbon::now('Asia/Ho_Chi_Minh');
-
-  $total =0;
-  for ($i=0; $i < $data['index']; $i++) { 
-    $total += $data['Quantity'][$i]*$data['Price'][$i];
-  }
-
-  $receipt = DB::table('phieuthu')->where('MaPhieu', $data['MaPhieu'])
-  ->update([
-    'ThanhTien' => $total,
-    'GhiChu'    => $data['GhiChu'],
-    'TinhTrang' => $data['TinhTrang'],
-    'MaNCC'     => $data['MaNCC']
-  ]);
-
-
-  //Cập nhật chi tiết phiếu thu
-  //B1: Xoá các record cũ
-  DB::table('chitietphieuthu')->where('MaPhieu', $data['MaPhieu'])->delete();
-        //B2: Cập nhật những record mới
-  $ds= array();
-  for ($i=0; $i < $data['index']; $i++) { 
-    $ds['MaPhieu']= $data['MaPhieu'];
-    $ds['MSSP'] = $data['Product'][$i];
-    $ds['SoLuong'] = $data['Quantity'][$i];
-    $ds['DonGia'] = $data['Price'][$i];
-    $ds['TG_Tao']=$now;
-    $ds['TG_CapNhat']=$now;
-
-    $result=DB::table('chitietphieuthu')->insert($ds);
-    if ($result) {
-     $kq=1;
-   }
- }
- //B3: Cập nhật lại số lượng
-
- if ($kq==1) {
-  return Redirect::to('show_receipt');
-}else{
-  Session::put('message','Thêm Thất bại');
-  return Redirect::to('edit_receipt/'.$data['MaPhieu']);
-}
-}
-
-public function delete(Request $request, $id){
-  echo $id;
 }
 
 public function export(Request $request){

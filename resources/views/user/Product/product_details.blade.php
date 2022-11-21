@@ -173,49 +173,6 @@
                         </div>
                         @endforeach
                       </div>
-                      <div class="add-review">
-                        <div class="add-review_top">
-                          <h2>Thêm Đánh Giá</h2>
-                        </div>
-                        <div class="add-review_bottom">
-                          <form>
-                            {{csrf_field()}}
-                            <input type="hidden" name="MSSP" value="{{$product_detail->MSSP}}" class="cmt_pro_id">
-                            <div class="row">
-                              <div class="col-12">
-                                <div class="rating">
-                                  <div class="row">
-                                    <div class="col-md-2">
-                                      <label class="col-form-label"><span class="text-danger">*</span>
-                                      Đánh Giá</label>
-                                    </div>
-                                    <div class="col-md-5">
-                                      <div class="stars">
-                                        <input class="star star-5" id="star-5" type="radio" name="star" value="5"/>
-                                        <label class="star star-5" for="star-5"></label>
-                                        <input class="star star-4" id="star-4" type="radio" name="star" value="4"/>
-                                        <label class="star star-4" for="star-4"></label>
-                                        <input class="star star-3" id="star-3" type="radio" name="star" value="3" />
-                                        <label class="star star-3" for="star-3"></label>
-                                        <input class="star star-2" id="star-2" type="radio" name="star" value="2" />
-                                        <label class="star star-2" for="star-2"></label>
-                                        <input class="star star-1" id="star-1" type="radio" name="star" value="1" />
-                                        <label class="star star-1" for="star-1"></label>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                              <div class="col-12">
-                                <textarea class="textarea-form cmt_content" id="review" cols="30" rows="5"></textarea>
-                              </div>
-                            </div>
-                          </form>
-                          <div class="col-12">
-                            <button class="normal-btn cmt_add">Thêm Đánh Giá</button>
-                          </div>
-                        </div>
-                      </div>
                     </div>
                   </div>
                 </div>

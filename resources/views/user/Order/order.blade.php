@@ -53,7 +53,7 @@
 												<td class="order-image"> 
 													<div class="img-order"><img src="{{asset('public/upload/'.$val->Image)}}" alt="product image"></div>
 												</td>
-												<td class="order-name">{{$val->TenSP}}</td>
+												<td class="order-name"><a href="{{URL::to('/product_details/'.$val->MSSP)}}">{{$val->TenSP}}</a></td>
 												<td class="order-price">
 													{{number_format($val->GiaDatHang , 0, ',', ' ')}} đ
 												</td>
@@ -105,7 +105,7 @@
 												<td class="order-image"> 
 													<div class="img-order"><img src="{{asset('public/upload/'.$val->Image)}}" alt="product image"></div>
 												</td>
-												<td class="order-name">{{$val->TenSP}}</td>
+												<td class="order-name"><a href="{{URL::to('/product_details/'.$val->MSSP)}}">{{$val->TenSP}}</a></td>
 												<td class="order-price">
 													{{number_format($val->GiaDatHang , 0, ',', ' ')}} đ
 												</td>
@@ -159,7 +159,7 @@
 												<td class="order-image"> 
 													<div class="img-order"><img src="{{asset('public/upload/'.$val->Image)}}" alt="product image"></div>
 												</td>
-												<td class="order-name">{{$val->TenSP}}</td>
+												<td class="order-name"><a href="{{URL::to('/product_details/'.$val->MSSP)}}">{{$val->TenSP}}</a></td>
 												<td class="order-price">
 													{{number_format($val->GiaDatHang , 0, ',', ' ')}} đ
 												</td>
@@ -213,7 +213,7 @@
 												<td class="order-image"> 
 													<div class="img-order"><img src="{{asset('public/upload/'.$val->Image)}}" alt="product image"></div>
 												</td>
-												<td class="order-name">{{$val->TenSP}}</td>
+												<td class="order-name"><a href="{{URL::to('/product_details/'.$val->MSSP)}}">{{$val->TenSP}}</a></td>
 												<td class="order-price">
 													{{number_format($val->GiaDatHang , 0, ',', ' ')}} đ
 												</td>
@@ -228,8 +228,11 @@
 											@endforeach
 										</tbody>
 										<tr>
-											<td class="order-clear" colspan="2">
+											<td class="order-clear">
 												<a class="no-round-btn" href="{{URL::to('/order_detail/'.$value->MSDH)}}">Chi tiết đơn hàng</a>
+											</td>
+											<td class="order-clear">
+												<a class="no-round-btn btn-review" data-id="{{$value->MSDH}}"  href="{{URL::to('/rating/'.$value->MSDH)}}">Đánh Giá</a>
 											</td>
 											<td class="order-header" colspan="3">Tổng số tiền: {{number_format($value->ThanhTien , 0, ',', ' ')}} đ</td>
 										</tr>
@@ -267,7 +270,7 @@
 												<td class="order-image"> 
 													<div class="img-order"><img src="{{asset('public/upload/'.$val->Image)}}" alt="product image"></div>
 												</td>
-												<td class="order-name">{{$val->TenSP}}</td>
+												<td class="order-name"><a href="{{URL::to('/product_details/'.$val->MSSP)}}">{{$val->TenSP}}</a></td>
 												<td class="order-price">
 													{{number_format($val->GiaDatHang , 0, ',', ' ')}} đ
 												</td>
@@ -322,7 +325,7 @@
 												<td class="order-image"> 
 													<div class="img-order"><img src="{{asset('public/upload/'.$val->Image)}}" alt="product image"></div>
 												</td>
-												<td class="order-name">{{$val->TenSP}}</td>
+												<td class="order-name"><a href="{{URL::to('/product_details/'.$val->MSSP)}}">{{$val->TenSP}}</a></td>
 												<td class="order-price">
 													{{number_format($val->GiaDatHang , 0, ',', ' ')}} đ
 												</td>

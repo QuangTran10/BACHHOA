@@ -260,6 +260,7 @@
       </footer>
       <!-- End footer-->
     </div>
+  </div> 
     
     
     <script src="{{asset('public/frontend/assets/js/jquery-ui.min.js')}}"></script>
@@ -348,14 +349,14 @@
             getSelectHamlet();
           }
         });
-        
+
       }
       function getSelectHamlet(){
         var maqh = $('#update_district option:selected').val();
         var _token = $('input[name="_token"]').val();
         var option = 'hamlet';
         var id_need_select = $('#id_hamlet').val();
-        
+
         $.ajax({
           url: '{{url('/get_delivery')}}',
           method: "POST",
@@ -503,54 +504,120 @@
         }
       });
 
-      
+      $('.rating-btn').click(function(){
+        var MSSP = $(this).data('id');
+        var Image = $(this).data('image');
+        var Order_id = $(this).data('order_id');
 
-      //Thêm đánh giá
-      $('.cmt_add').click(function(){
-        var id_product = $('.cmt_pro_id').val();
-        var content = $('.cmt_content').val();
+        $('#rating_MSSP').val(MSSP);
+
+        $('#rating_image').attr('src', Image);
+
+        $('#rating_MSDH').val(Order_id);
+
+        $('#rating').modal('show');
+      });
+
+
+      $('.send-rating').click(function(event) {
+        var rating = $('input[name="rating"]:checked').val();
+        var is_checked = $('input[name="rating"]').is(':checked');
+        var mssp = $('#rating_MSSP').val();
+        var content = $('#rating_content').val();
+        var order_id = $('#rating_MSDH').val();
         var _token = $('input[name="_token"]').val();
-        var rating = $('input[name="star"]:checked').val();
-        if(id_product==""){
-          return;
-        }
 
-        if(content==""){
-          return;
-        }
-
-        if(rating ==""){
-          return;
-        }
-
-        $.ajax({
-          url: '{{url('/add_comment')}}',
-          method: "POST",
-          data:{
-            id_product:id_product,
-            _token:_token,
-            content:content,
-            rating: rating},
-            success:function(data){
-              if(data==1){
-                swal({
-                  title: "Thêm thành công!",
-                  text: "Bình luận của bạn sẽ được duyệt sớm nhất!",
-                  icon: "success",
-                });
-              }else if(data==0){
-                swal({
-                  title: "Bạn Chưa Đăng Nhập",
-                  icon: "warning",
-                  button: "OK",
-                });
-              }
+        if(is_checked == false){
+          swal({
+            title: "Để gửi, hãy thêm đánh giá",
+            icon: "error",
+            button: "OK",
+          });
+        }else{
+          swal({
+            title: "Gửi đánh giá?",
+            text: "Bán sẽ không thể chỉnh sửa hay xoá đánh giá của mình sau khi đã gửi đi",
+            buttons: [
+            'Huỷ',
+            'Gửi'
+            ],
+            dangerMode: true,
+          }).then(function(isConfirm) {
+            if (isConfirm) {
+              $.ajax({
+                url: '{{url('/add_comment')}}',
+                method: "POST",
+                data:{
+                  MSSP: mssp,
+                  NoiDung: content,
+                  DanhGia: rating,
+                  MSDH: order_id,
+                  _token:_token
+                },
+                success:function(data){
+                  if(data==1){
+                    swal({
+                      title: "Đánh Giá Thành Công",
+                      text: "Đánh giá sẽ được duyệt sớm nhất",
+                      icon: "success",
+                      button: "OK",
+                    });
+                    $('#rating').modal('hide');
+                  }else if(data==2){
+                    swal({
+                      title: "Bạn đã đánh giá",
+                      icon: "warning",
+                      button: "OK",
+                    });
+                  }else{
+                    swal({
+                      title: "Bạn chưa đăng nhập",
+                      icon: "warning",
+                      button: "OK",
+                    });
+                  }
+                  $('#rating').modal('hide');
+                  location.reload();
+                }
+              });
             }
-         });
+          });
+
+        }
+      });
+
+      $('.remove_address').click(function(e) {
+        e.preventDefault();
+        var MaDC = $(this).data('id');
+        var _token = $('input[name="_token"]').val();
+        
+        swal({
+            title: "Bạn có chắc muốn xoá địa chỉ này?",
+            buttons: [
+            'Huỷ',
+            'Xoá'
+            ],
+            dangerMode: true,
+          }).then(function(isConfirm) {
+            if (isConfirm) {
+              $.ajax({
+                url: '{{url('/delete_address')}}',
+                method: "POST",
+                data:{
+                  MaDC:MaDC,
+                  _token:_token
+                },
+                success:function(data){
+                  location.reload();
+                }
+              });
+            }
+          });
       });
 
       //Load địa chỉ giao hàng
-      $('.update_address').click(function(){
+      $('.update_address').click(function(e){
+        e.preventDefault();
         var MaDC = $(this).data('id');
         var _token = $('input[name="_token"]').val();
 

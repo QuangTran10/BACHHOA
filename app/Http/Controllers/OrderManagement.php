@@ -203,7 +203,7 @@ class OrderManagement extends Controller
 
         $meta_desc="Chi Tiết Đơn Hàng";
         $meta_keywords="Show Order Details - ".$id_order;
-        $meta_tittle="QPharmacy";
+        $meta_tittle="BACHHOA.COM";
         $url=$re->url();
 
         return view('User.Order.order_detail')

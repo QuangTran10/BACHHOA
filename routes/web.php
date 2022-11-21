@@ -92,6 +92,8 @@ Route::post('/address_detail', 'App\Http\Controllers\UserManagement@address_deta
 
 Route::post('/update_address', 'App\Http\Controllers\UserManagement@update_address');
 
+Route::post('/delete_address', 'App\Http\Controllers\UserManagement@delete_address');
+
 //user interface -> category page
 
 Route::get('/category_home/{id_cate}', 'App\Http\Controllers\CategoryManagement@show_category_home');
@@ -103,8 +105,6 @@ Route::get('/show_catechild/{id}', 'App\Http\Controllers\CateChildController@sho
 //user interface -> product details page
 
 Route::get('/product_details/{id}', 'App\Http\Controllers\ProductController@product_detail');
-
-Route::post('/quickview', 'App\Http\Controllers\ProductController@quick_view');
 
 Route::get('/product_discount', 'App\Http\Controllers\ProductController@product_discount');
 
@@ -129,6 +129,9 @@ Route::post('/update_order', 'App\Http\Controllers\OrderManagement@update_order'
 Route::post('/load_comment', 'App\Http\Controllers\CommentController@load_comment');
 
 Route::post('/add_comment', 'App\Http\Controllers\CommentController@add_comment');
+
+Route::get('/rating/{id}', 'App\Http\Controllers\CommentController@rating_product');
+
 
 //user interface -> delivery
 
@@ -155,10 +158,10 @@ Route::get('/404', 'App\Http\Controllers\AdminController@error_page');
 //Đếm số order
 Route::get('/count_order', 'App\Http\Controllers\OrderManagement@count_order');
 
-	//Thống kê sản phẩm bán chạy
+//Thống kê sản phẩm bán chạy
 Route::post('/product_bestsell', 'App\Http\Controllers\ProductController@best_sell');
 
-	//admin interface -> user management
+//admin interface -> user management
 
 Route::get('/user', 'App\Http\Controllers\UserManagement@user');
 
@@ -302,8 +305,6 @@ Route::group(['middleware' => 'stock_role'], function(){
 	Route::get('/show_receipt', 'App\Http\Controllers\ReceiptController@show_all');
 
 	Route::post('/infor_receipt', 'App\Http\Controllers\ReceiptController@show');
-
-	Route::get('/delete_receipt/{id}', 'App\Http\Controllers\ReceiptController@delete');
 
 	Route::post('/export-csv','App\Http\Controllers\ReceiptController@export');
 
