@@ -187,7 +187,7 @@ class ProductController extends Controller
 
     public function product_detail($id,  Request $re){
         $all_category = DB::table('danhmuc')->get();
-        $loaihang = DB::table('loaihang')->get();
+        $loaihang = DB::table('loaihang')->where('TrangThai',1)->get();
 
         $product_detail = DB::table('sanpham')
         ->join('danhmuc', 'sanpham.MaDM', '=', 'danhmuc.MaDM')
@@ -272,7 +272,7 @@ class ProductController extends Controller
     //Chuyển trang sp yêu thích
     public function wish_list(Request $re){
         $all_category = DB::table('danhmuc')->get();
-        $loaihang = DB::table('loaihang')->get();
+        $loaihang = DB::table('loaihang')->where('TrangThai',1)->get();
         //Seo
         $meta_desc="";
         $meta_keywords="Trang yêu thích";
@@ -299,7 +299,7 @@ class ProductController extends Controller
 
     public function product_discount(Request $re){
         $all_category = DB::table('danhmuc')->get();
-        $loaihang = DB::table('loaihang')->get();
+        $loaihang = DB::table('loaihang')->where('TrangThai',1)->get();
 
         if (isset($_GET['sort_by'])) {
 

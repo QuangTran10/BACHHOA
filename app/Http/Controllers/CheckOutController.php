@@ -60,7 +60,7 @@ class CheckOutController extends Controller
     	$MSKH=Session::get('user_id');
     	$all_address_by_id=DB::table('diachikh')->where('MSKH',$MSKH)->get();
     	$all_category = DB::table('danhmuc')->get();
-        $loaihang = DB::table('loaihang')->get();
+        $loaihang = DB::table('loaihang')->where('TrangThai',1)->get();
 
         //Seo
         $meta_desc="Thanh Toán Đơn Hàng";
@@ -182,7 +182,7 @@ class CheckOutController extends Controller
 
     public function complete_check_out(Request $re){
         $all_category = DB::table('danhmuc')->get();
-        $loaihang = DB::table('loaihang')->get();
+        $loaihang = DB::table('loaihang')->where('TrangThai',1)->get();
 
         //Seo
         $meta_desc="Thanh Toán Đơn Hàng";
@@ -199,7 +199,7 @@ class CheckOutController extends Controller
     public function vnpay_check_out(Request $re){
         $this->LoginCheck();
         $all_category = DB::table('danhmuc')->get();
-        $loaihang = DB::table('loaihang')->get();
+        $loaihang = DB::table('loaihang')->where('TrangThai',1)->get();
         $MSKH=Session::get('user_id');
         $all_address_by_id=DB::table('diachikh')->where('MSKH',$MSKH)->get();
 

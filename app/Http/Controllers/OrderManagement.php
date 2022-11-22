@@ -164,7 +164,7 @@ class OrderManagement extends Controller
         $this->LoginCheck();
         $MSKH=Session::get('user_id');
         $category = DB::table('danhmuc')->get();
-        $list = DB::table('loaihang')->get();
+        $list = DB::table('loaihang')->where('TrangThai',1)->get();
 
         $orders = DB::table('dathang')->where('MSKH',$MSKH)->orderBy('MSDH','desc')->get();
 
@@ -187,7 +187,7 @@ class OrderManagement extends Controller
     public function order_detail($id_order, Request $re){
         $this->LoginCheck();
         $all_category = DB::table('danhmuc')->get();
-        $loaihang = DB::table('loaihang')->get();
+        $loaihang = DB::table('loaihang')->where('TrangThai',1)->get();
 
         $order_de = DB::table('chitietdathang')
         ->join('sanpham', 'sanpham.MSSP', '=', 'chitietdathang.MSSP')

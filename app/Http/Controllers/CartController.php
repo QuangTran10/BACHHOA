@@ -154,7 +154,8 @@ class CartController extends Controller
         // end seo
 
         $all_category = DB::table('danhmuc')->get();
-        $loaihang = DB::table('loaihang')->get();
+        $loaihang = DB::table('loaihang')->where('TrangThai',1)->get();
+        
         return view('User.Cart.cart_shopping')
         ->with('category',$all_category)->with('list',$loaihang)
         ->with('meta_desc',$meta_desc)->with('meta_keywords',$meta_keywords)->with('url',$url);

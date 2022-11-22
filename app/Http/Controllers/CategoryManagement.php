@@ -82,7 +82,7 @@ class CategoryManagement extends Controller
     //USER INTERFACE
     public function show_category_home($id_cate, Request $re){
         $all_category = DB::table('danhmuc')->get();
-        $loaihang = DB::table('loaihang')->get();
+        $loaihang = DB::table('loaihang'->where('TrangThai',1)->get();
 
         $category=DB::table('danhmuc')->where('MaDM',$id_cate)->get();
 

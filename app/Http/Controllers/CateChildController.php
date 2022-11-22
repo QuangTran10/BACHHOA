@@ -77,7 +77,7 @@ class CateChildController extends Controller
     //USER
     public function show_catechild(Request $re, $id){
         $all_category = DB::table('danhmuc')->get();
-        $loaihang = DB::table('loaihang')->get();
+        $loaihang = DB::table('loaihang')->where('TrangThai',1)->get();
 
         $category=DB::table('loaihang')->where('MaLoai',$id)->first();
 

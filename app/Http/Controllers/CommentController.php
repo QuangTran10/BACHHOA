@@ -73,7 +73,7 @@ class CommentController extends Controller
     public function rating_product(Request $request, $id){
         $this->LoginCheck();
         $category = DB::table('danhmuc')->get();
-        $list = DB::table('loaihang')->get();
+        $list = DB::table('loaihang')->where('TrangThai',1)->get();
 
         $meta_desc="Đánh giá đơn hàng";
         $meta_keywords="Rating";

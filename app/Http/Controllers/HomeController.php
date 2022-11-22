@@ -26,7 +26,7 @@ class HomeController extends Controller
 
     	$all_category = DB::table('danhmuc')->get();
 
-        $loaihang = DB::table('loaihang')->get();
+        $loaihang = DB::table('loaihang')->where('TrangThai',1)->get();
 
         //Mã khuyến mãi
         $coupon = DB::table('magiamgia')->where('TrangThai',1)->inRandomOrder()->limit(4)->get();
@@ -110,7 +110,7 @@ class HomeController extends Controller
         ->Paginate(9);
 
     	$all_category = DB::table('danhmuc')->get();
-        $loaihang = DB::table('loaihang')->get();
+        $loaihang = DB::table('loaihang')->where('TrangThai',1)->get();
 
     	return view('user.Product.search_product')
         ->with('category',$all_category)->with('list',$loaihang)
@@ -127,7 +127,7 @@ class HomeController extends Controller
 
         $all_category = DB::table('danhmuc')->get();
 
-        $loaihang = DB::table('loaihang')->get();
+        $loaihang = DB::table('loaihang')->where('TrangThai',1)->get();
 
         return view('user.Contact.contact')
         ->with('category',$all_category)->with('list',$loaihang)
@@ -141,7 +141,7 @@ class HomeController extends Controller
         $url=url()->current();
 
         $all_category = DB::table('danhmuc')->get();
-        $loaihang = DB::table('loaihang')->get();
+        $loaihang = DB::table('loaihang')->where('TrangThai',1)->get();
 
         $subscribers = DB::table('khachhang')->get()->count();
 
@@ -159,7 +159,7 @@ class HomeController extends Controller
         $url=url()->current();
 
         $all_category = DB::table('danhmuc')->get();
-        $loaihang = DB::table('loaihang')->get();
+        $loaihang = DB::table('loaihang')->where('TrangThai',1)->get();
 
         $message = "THANH TOÁN KHÔNG THÀNH CÔNG";
         $contend = "Vui lòng kiểm tra tài khoản thanh toán hoặc số tiền còn trong tài khoản";

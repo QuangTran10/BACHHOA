@@ -15,6 +15,10 @@
           <div class="row">
             <div class="col-12">
               <div class="product-table">
+                <?php
+                $name_user= Session::get('user_name');
+                ?>  
+                @if($name_user)
                 <table class="table table-responsive"> 
                   <colgroup>
                     <col span="1" style="width: 15%">
@@ -37,10 +41,6 @@
                     </tr>
                   </thead>
                   <tbody>
-                  <?php
-                  	$name_user= Session::get('user_name');
-                  ?>	
-                  @if($name_user)
                       @foreach($wish_list as $value)
                       <tr>
                         <td class="product-iamge"> 
@@ -52,29 +52,29 @@
                          $GiaSP = number_format($value->Gia, 0, ',', ' ');
                          echo $GiaSP." đ";
                          ?>
-                       </td>
-                       <td class="product-quantity">{{$value->GiamGia*100}}%</td>
-                       <td class="product-total">
+                        </td>
+                        <td class="product-quantity">{{$value->GiamGia*100}}%</td>
+                        <td class="product-total">
                          <?php
                          $GiaSP = number_format($value->Gia*(1-$value->GiamGia), 0, ',', ' ');
                          echo $GiaSP." đ";
                          ?>
-                       </td>
-                       <td class="product-clear"> 
-                         <form>
-                          {{csrf_field()}}
-                          <button class="no-round-btn del_wishlist" data-id_product={{$value->Ma}}><i class="icon_close"></i></button>
-                        </form>
-                      </td>
-                    </tr>
-                    @endforeach
-                  @else
-                  	<tr>
-                  		<td rowspan="6">Bạn chưa đăng nhập</td>
-                  	</tr>
-                  @endif
+                        </td>
+                        <td class="product-clear"> 
+                          <form>
+                            {{csrf_field()}}
+                            <button class="no-round-btn del_wishlist" data-id_product={{$value->Ma}}><i class="icon_close"></i></button>
+                          </form>
+                        </td>
+                      </tr>
+                      @endforeach
                   </tbody>
                 </table>
+                @else
+                <div class="col-12 justify-content-center align-items-center text-center">
+                  <h3>Bạn chưa đăng nhập</h3>
+                </div>
+                @endif
               </div>
             </div>
             <div class="col-12 text-left">

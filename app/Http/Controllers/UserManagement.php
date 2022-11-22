@@ -97,7 +97,7 @@ class UserManagement extends Controller
         // end seo
         $all_category = DB::table('danhmuc')->get();
 
-        $loaihang = DB::table('loaihang')->get();
+        $loaihang = DB::table('loaihang')->where('TrangThai',1)->get();
 
         return view('user.User.register')
         ->with('category',$all_category)->with('list',$loaihang)
@@ -113,7 +113,7 @@ class UserManagement extends Controller
 
         $all_category = DB::table('danhmuc')->get();
 
-        $loaihang = DB::table('loaihang')->get();
+        $loaihang = DB::table('loaihang')->where('TrangThai',1)->get();
 
         return view('user.User.login_home')
         ->with('category',$all_category)->with('list',$loaihang)
@@ -171,7 +171,7 @@ class UserManagement extends Controller
         $url=$re->url();
         // end seo
         $all_category = DB::table('danhmuc')->get();
-        $loaihang = DB::table('loaihang')->get();
+        $loaihang = DB::table('loaihang')->where('TrangThai',1)->get();
 
         //Thông tin cá nhân
         $user_infor= DB::table('khachhang')->where('MSKH', $MSKH)->first();
