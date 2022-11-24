@@ -115,9 +115,9 @@
         @foreach($receipt_details as $value)
         <tr>
           <td style="text-align: left;">{{$value->TenSP}}</td>
-          <td align="center">{{$value->SoLuong}}</td>
+          <td align="center">{{$value->SoLuongNhap}}</td>
           <td align="center">{{number_format($value->DonGia, 0, ',', ' ').'đ';}}</td>
-          <td align="right">{{number_format($value->SoLuong*$value->DonGia , 0, ',', ' ').'đ';}}</td>
+          <td align="right">{{number_format($value->SoLuongNhap*$value->DonGia , 0, ',', ' ').'đ';}}</td>
         </tr>
         @endforeach
         <tr>
