@@ -97,8 +97,6 @@ class PaymentController extends Controller
             "vnp_Inv_Type"=>$vnp_Inv_Type
         );
 
-        
-
 
         if (isset($vnp_BankCode) && $vnp_BankCode != "") {
             $inputData['vnp_BankCode'] = $vnp_BankCode;

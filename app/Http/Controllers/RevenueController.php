@@ -78,10 +78,10 @@ class RevenueController extends Controller
     public function quantity_statistic(){
         $this->AuthLogin();
         Session::put('page',12);
-        $receipt = DB::table('chitietphieuthu')
-        ->join('sanpham', 'chitietphieuthu.MSSP', '=', 'sanpham.MSSP')
-        ->select('chitietphieuthu.MSSP','TenSP',DB::raw('SUM(SoLuongNhap) as soluongnhap'))
-        ->groupBy('chitietphieuthu.MSSP','TenSP')->distinct()
+        $receipt = DB::table('chitietphieunhap')
+        ->join('sanpham', 'chitietphieunhap.MSSP', '=', 'sanpham.MSSP')
+        ->select('chitietphieunhap.MSSP','TenSP',DB::raw('SUM(SoLuongNhap) as soluongnhap'))
+        ->groupBy('chitietphieunhap.MSSP','TenSP')->distinct()
         ->get();
 
         $receipts = array();

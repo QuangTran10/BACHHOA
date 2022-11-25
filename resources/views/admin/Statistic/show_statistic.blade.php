@@ -43,9 +43,10 @@
           <h4 class="card-title">Doanh Thu</h4>
         </div>
         <div class="card-body table-responsive">
-          <form>
+          <form id="form-chart">
             @csrf
-            <div class="ct-chart ct-perfect-fourth" id="chart1"></div>
+            {{-- <div class="ct-chart ct-perfect-fourth" id="chart1"></div> --}}
+            <canvas id="myChart" width="400" height="400"></canvas>
           </form>
         </div> {{-- end card body --}}
       </div>
@@ -64,13 +65,40 @@
         dataType: 'JSON',
         data:{_token:_token},
         success:function(data){
-          new Chartist.Line('#chart1', {
-            labels: data.labels,
-            series: [data.series]
-          },{
-            lineSmooth: Chartist.Interpolation.cardinal({
-              fillHoles: true,
-            })
+          const ctx = $('#myChart');
+          const myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+              labels: data.labels,
+              datasets: [{
+                label: 'Số đơn hàng',
+                data: data.series,
+                backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+              }]
+            },
+            options: {
+              scales: {
+                y: {
+                  beginAtZero: true
+                }
+              }
+            }
           });
         }
       });
@@ -80,26 +108,65 @@
       var start_date =  $('#Start_date').val();
       var end_date = $('#End_date').val();
       var _token = $('input[name="_token"]').val();
-      $.ajax({
-        url: '{{url('/search_statistic')}}',
-        method: "POST",
-        dataType: 'JSON',
-        data:{
-          start_date: start_date,
-          end_date:end_date,
-          _token:_token
-        },
-        success:function(data){
-          new Chartist.Line('#chart1', {
-            labels: data.labels,
-            series: [data.series]
-          },{
-            lineSmooth: Chartist.Interpolation.cardinal({
-              fillHoles: true,
-            })
-          });
-        }
-      });
+      if(end_date < start_date){
+        Swal.fire(
+          'Cảnh Báo!',
+          'Vui lòng chọn ngày kết thúc lớn hơn ngày bắt đầu',
+          'error'
+          )
+      }else{
+        $.ajax({
+          url: '{{url('/search_statistic')}}',
+          method: "POST",
+          dataType: 'JSON',
+          data:{
+            start_date: start_date,
+            end_date:end_date,
+            _token:_token
+          },
+          success:function(data){
+            $('#myChart').remove();
+            $('#form-chart').append('<canvas id="myChart" width="400" height="400"></canvas>');
+            const ctx = $('#myChart');
+            const myChart = new Chart(ctx, {
+              type: 'line',
+              data: {
+                labels: data.labels,
+                datasets: [{
+                  label: 'Số đơn hàng',
+                  data: data.series,
+                  backgroundColor: [
+                  'rgba(255, 99, 132, 0.2)',
+                  'rgba(54, 162, 235, 0.2)',
+                  'rgba(255, 206, 86, 0.2)',
+                  'rgba(75, 192, 192, 0.2)',
+                  'rgba(153, 102, 255, 0.2)',
+                  'rgba(255, 159, 64, 0.2)'
+                  ],
+                  borderColor: [
+                  'rgba(255, 99, 132, 1)',
+                  'rgba(54, 162, 235, 1)',
+                  'rgba(255, 206, 86, 1)',
+                  'rgba(75, 192, 192, 1)',
+                  'rgba(153, 102, 255, 1)',
+                  'rgba(255, 159, 64, 1)'
+                  ],
+                  borderWidth: 1
+                }]
+              },
+              options: {
+                scales: {
+                  y: {
+                    beginAtZero: true
+                  }
+                }
+              }
+            });
+          }
+        });
+      }
+      
+
     });
 
     $(function () {

@@ -30,9 +30,9 @@ class ReceiptController extends Controller
 	//Danh sách
   public function show_all(){
     $this->AuthLogin();
-    $all= DB::table('phieuthu')
-    ->join('nhanvien', 'nhanvien.MSNV', '=', 'phieuthu.MSNV')
-    ->join('nhasanxuat', 'nhasanxuat.MaNSX', '=', 'phieuthu.MaNCC')
+    $all= DB::table('phieunhap')
+    ->join('nhanvien', 'nhanvien.MSNV', '=', 'phieunhap.MSNV')
+    ->join('nhasanxuat', 'nhasanxuat.MaNSX', '=', 'phieunhap.MaNCC')
     ->orderBy('MaPhieu','ASC')->get();
     Session::put('page',7);
     return view('admin.Receipt.receipt_all')->with('all_receipt', $all);
@@ -71,7 +71,7 @@ class ReceiptController extends Controller
     $receipt['TG_Tao']=$now;
     $receipt['TG_CapNhat']=$now;
 
-    $MaPhieu=DB::table('phieuthu')->insertGetId($receipt);
+    $MaPhieu=DB::table('phieunhap')->insertGetId($receipt);
 
     $ds= array();
     for ($i=0; $i < $data['index']; $i++) { 
@@ -82,7 +82,7 @@ class ReceiptController extends Controller
       $ds['TG_Tao']=$now;
       $ds['TG_CapNhat']=$now;
 
-      $result=DB::table('chitietphieuthu')->insert($ds);
+      $result=DB::table('chitietphieunhap')->insert($ds);
       if ($result) {
        $kq=1;
      }
@@ -99,14 +99,14 @@ class ReceiptController extends Controller
 
 public function show(Request $request){
 
-  $receipt = DB::table('phieuthu')
-  ->join('nhanvien', 'nhanvien.MSNV', '=', 'phieuthu.MSNV')
-  ->join('nhasanxuat', 'nhasanxuat.MaNSX', '=', 'phieuthu.MaNCC')
-  ->where('MaPhieu', $request->MaPhieu)->select('phieuthu.*', 'nhasanxuat.Ten', 'nhanvien.HoTenNV')->first();
+  $receipt = DB::table('phieunhap')
+  ->join('nhanvien', 'nhanvien.MSNV', '=', 'phieunhap.MSNV')
+  ->join('nhasanxuat', 'nhasanxuat.MaNSX', '=', 'phieunhap.MaNCC')
+  ->where('MaPhieu', $request->MaPhieu)->select('phieunhap.*', 'nhasanxuat.Ten', 'nhanvien.HoTenNV')->first();
 
-  $detail_receipt = DB::table('chitietphieuthu')
-  ->join('sanpham', 'sanpham.MSSP', '=', 'chitietphieuthu.MSSP')
-  ->select('chitietphieuthu.*', 'sanpham.TenSP')
+  $detail_receipt = DB::table('chitietphieunhap')
+  ->join('sanpham', 'sanpham.MSSP', '=', 'chitietphieunhap.MSSP')
+  ->select('chitietphieunhap.*', 'sanpham.TenSP')
   ->where('MaPhieu', $request->MaPhieu)->get();
 
   $url = '/print_receipt/'.$request->MaPhieu;
@@ -192,9 +192,9 @@ public function edit(Request $request, $id){
 
   $product=DB::table('sanpham')->get();
 
-  $receipt = DB::table('phieuthu')->where('MaPhieu', $id)->first();
+  $receipt = DB::table('phieunhap')->where('MaPhieu', $id)->first();
 
-  $detail_receipt = DB::table('chitietphieuthu')->where('MaPhieu', $id)->get();
+  $detail_receipt = DB::table('chitietphieunhap')->where('MaPhieu', $id)->get();
 
   return view('admin.Receipt.edit_receipt', compact('product', 'producer', 'receipt', 'detail_receipt'));
 }
@@ -257,14 +257,14 @@ public function print($code){
 
   $contact = DB::table('lienhe')->get();
 
-  $receipt = DB::table('phieuthu')
-  ->join('nhanvien', 'nhanvien.MSNV', '=', 'phieuthu.MSNV')
-  ->join('nhasanxuat', 'nhasanxuat.MaNSX', '=', 'phieuthu.MaNCC')
-  ->where('MaPhieu', $code)->select('phieuthu.*', 'nhasanxuat.Ten', 'nhanvien.HoTenNV')->first();
+  $receipt = DB::table('phieunhap')
+  ->join('nhanvien', 'nhanvien.MSNV', '=', 'phieunhap.MSNV')
+  ->join('nhasanxuat', 'nhasanxuat.MaNSX', '=', 'phieunhap.MaNCC')
+  ->where('MaPhieu', $code)->select('phieunhap.*', 'nhasanxuat.Ten', 'nhanvien.HoTenNV')->first();
 
-  $detail_receipt = DB::table('chitietphieuthu')
-  ->join('sanpham', 'sanpham.MSSP', '=', 'chitietphieuthu.MSSP')
-  ->select('chitietphieuthu.*', 'sanpham.TenSP')
+  $detail_receipt = DB::table('chitietphieunhap')
+  ->join('sanpham', 'sanpham.MSSP', '=', 'chitietphieunhap.MSSP')
+  ->select('chitietphieunhap.*', 'sanpham.TenSP')
   ->where('MaPhieu', $code)->get();
 
   $data['contact']=$contact;
