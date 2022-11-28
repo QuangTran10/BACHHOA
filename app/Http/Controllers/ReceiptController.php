@@ -32,8 +32,9 @@ class ReceiptController extends Controller
     $this->AuthLogin();
     $all= DB::table('phieunhap')
     ->join('nhanvien', 'nhanvien.MSNV', '=', 'phieunhap.MSNV')
-    ->join('nhasanxuat', 'nhasanxuat.MaNSX', '=', 'phieunhap.MaNCC')
-    ->orderBy('MaPhieu','ASC')->get();
+    ->join('nhacungcap', 'nhacungcap.MaNCC', '=', 'phieunhap.MaNCC')
+    ->orderBy('NgayLap','DESC')->Paginate(5);
+
     Session::put('page',7);
     return view('admin.Receipt.receipt_all')->with('all_receipt', $all);
   }
@@ -101,8 +102,8 @@ public function show(Request $request){
 
   $receipt = DB::table('phieunhap')
   ->join('nhanvien', 'nhanvien.MSNV', '=', 'phieunhap.MSNV')
-  ->join('nhasanxuat', 'nhasanxuat.MaNSX', '=', 'phieunhap.MaNCC')
-  ->where('MaPhieu', $request->MaPhieu)->select('phieunhap.*', 'nhasanxuat.Ten', 'nhanvien.HoTenNV')->first();
+  ->join('nhacungcap', 'nhacungcap.MaNCC', '=', 'phieunhap.MaNCC')
+  ->where('MaPhieu', $request->MaPhieu)->select('phieunhap.*', 'nhacungcap.Ten', 'nhanvien.HoTenNV')->first();
 
   $detail_receipt = DB::table('chitietphieunhap')
   ->join('sanpham', 'sanpham.MSSP', '=', 'chitietphieunhap.MSSP')
@@ -259,8 +260,8 @@ public function print($code){
 
   $receipt = DB::table('phieunhap')
   ->join('nhanvien', 'nhanvien.MSNV', '=', 'phieunhap.MSNV')
-  ->join('nhasanxuat', 'nhasanxuat.MaNSX', '=', 'phieunhap.MaNCC')
-  ->where('MaPhieu', $code)->select('phieunhap.*', 'nhasanxuat.Ten', 'nhanvien.HoTenNV')->first();
+  ->join('nhacungcap', 'nhacungcap.MaNCC', '=', 'phieunhap.MaNCC')
+  ->where('MaPhieu', $code)->select('phieunhap.*', 'nhacungcap.Ten', 'nhanvien.HoTenNV')->first();
 
   $detail_receipt = DB::table('chitietphieunhap')
   ->join('sanpham', 'sanpham.MSSP', '=', 'chitietphieunhap.MSSP')

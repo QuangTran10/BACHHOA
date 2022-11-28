@@ -94,18 +94,13 @@ class CommentController extends Controller
         //Những order chưa đánh giá
         $order_unrating = DB::table('chitietdathang')
         ->join('sanpham', 'chitietdathang.MSSP', '=', 'sanpham.MSSP')
-        ->where('MSDH',$id)->whereNotIn('chitietdathang.MSSP',$order_id_rating)->get();
+        ->where('MSDH',$id)->whereNotIn('chitietdathang.MSSP',$order_id_rating)
+        ->select('chitietdathang.*','Image','TenSP')->get();
 
         $order_rating = DB::table('chitietdathang')
         ->join('sanpham', 'chitietdathang.MSSP', '=', 'sanpham.MSSP')
-        ->where('MSDH',$id)->whereIn('chitietdathang.MSSP',$order_id_rating)->get();
-
-        // echo '<pre>';
-        // print_r($order_rating);
-        // print_r($order_unrating);
-        // echo '</pre>';
-
-        
+        ->where('MSDH',$id)->whereIn('chitietdathang.MSSP',$order_id_rating)
+        ->select('chitietdathang.*','Image','TenSP')->get();
 
         return view('user.Order.rating', compact('category','list','meta_desc','meta_keywords','url','order_unrating','order_rating'));
     }

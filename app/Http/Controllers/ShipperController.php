@@ -126,6 +126,7 @@ class ShipperController extends Controller
 
     public function complete(Request $request){
         $data = $request->all();
+        $now = Carbon::now('Asia/Ho_Chi_Minh');
         $MSDH = $data['MSDH'];
         $status = $data['status'];
         $result;
@@ -141,10 +142,10 @@ class ShipperController extends Controller
                 
                 $image->move('public/upload/order',$new_image);
 
-                //NVGH đã giao thành công và yêu cầu khách hàng nhấn nút đã nhận
+                //NVGH đã giao thành công 
                 $result = DB::table('dathang')
                 ->join('thanhtoan', 'thanhtoan.MaThanhToan', '=', 'dathang.MaThanhToan')
-                ->where('dathang.MSDH', $MSDH)->update(['TrangThai'=> 4,'TT_TrangThai'=>1,'TT_Hinh' => $new_image]);
+                ->where('dathang.MSDH', $MSDH)->update(['TrangThai'=> 4,'TT_TrangThai'=>1,'TT_Hinh' => $new_image, 'NgayGiao' => $now]);
             }
 
             return redirect('shipper_order');

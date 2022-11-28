@@ -29,13 +29,13 @@
             <tbody>
               @foreach($producer as $key => $value)
               <tr>
-                <td><b>{{$value->MaNSX}}</b></td>
+                <td><b>{{$value->MaNCC}}</b></td>
                 <td>{{$value->Ten}}</td>
                 <td>{{$value->Email}}</td>
                 <td>{{$value->DiaChi}}</td>
                 <td>{{$value->SDT}}</td>
                 <td class="td-actions">
-                  <a href="{{route('producer.edit',$value->MaNSX)}}" rel="tooltip" class="btn btn-info btn-link">
+                  <a href="{{route('producer.edit',$value->MaNCC)}}" rel="tooltip" class="btn btn-info btn-link">
                     <i class="material-icons">edit</i>
                   </a>
                 </td>
@@ -61,7 +61,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title">Thêm Nhà Sản Xuất</h4>
+        <h4 class="modal-title">Thêm Nhà Cung Cấp</h4>
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
           <i class="material-icons">clear</i>
         </button>

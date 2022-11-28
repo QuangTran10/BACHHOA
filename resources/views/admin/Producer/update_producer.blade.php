@@ -12,7 +12,7 @@
           </div>
         </div>
         <div class="card-body ">
-          <form method="post" action="{{(route('producer.update',$producer->MaNSX))}}" class="form-horizontal">
+          <form method="post" action="{{(route('producer.update',$producer->MaNCC))}}" class="form-horizontal">
             {{csrf_field() }}
             @method('PUT')
             <div class="row">

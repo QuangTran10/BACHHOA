@@ -31,13 +31,34 @@ class UserManagement extends Controller
         }
     }
 
+    public function show_user(){
+        $this->AuthLogin();
+        Session::put('page',13);
+
+        $customers = DB::table('khachhang')->get();
+
+        return view('admin.Customer.show_user', compact('customers'));
+    }
+
+    public function status_user(Request $request){
+        $status = $request->status;
+        $id_customer = $request->id_customer;
+
+        $result = DB::table('khachhang')->where('MSKH',$id_customer)->update(['TrangThai'=>$status]);
+
+        if($result){
+            echo 1;
+        }else{
+            echo 0;
+        }
+    }
+
     public function user(){
         $this->AuthLogin();
     	$id = Session::get('admin_id');
     	$infor = DB::table('nhanvien')->where('MSNV',$id)->get();
     	$manage_infor = view('admin.User.user')->with('staff_infor',$infor);
     	return view('admin_layout')->with('admin.User.user',$manage_infor);
-    	// return view('admin.update_user');
     }
 
     public function update_user(Request $re){
@@ -125,10 +146,15 @@ class UserManagement extends Controller
         $MatKhau=md5($request->MatKhau);
         $result = DB::table('khachhang')->where('Email',$Email)->where('MatKhau',$MatKhau)->first();
         if ($result) {
-            Session::put('user_name',$result->Email);
-            Session::put('user_id',$result->MSKH);
-            Session::forget(['coupon_id', 'coupon_type', 'coupon_price', 'coupon_code']);
-            return redirect('/home');
+            if($result->TrangThai==1){
+                Session::put('user_name',$result->Email);
+                Session::put('user_id',$result->MSKH);
+                Session::forget(['coupon_id', 'coupon_type', 'coupon_price', 'coupon_code']);
+                return redirect('/home');
+            }elseif($result->TrangThai==0){
+                return redirect('/login_home')->with('notice','Tài khoản đã bị khoá. Vui lòng liên hệ quản trị viên.');
+            }
+            
         }else{
             return redirect('/login_home')->with('notice','Mật khẩu hoặc tài khoản không đúng');
         }

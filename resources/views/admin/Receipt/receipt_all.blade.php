@@ -59,9 +59,8 @@
             </tbody>
           </table>
           <div style="text-align: center;">
-
+              {{$all_receipt->links('partials.admin_paginate')}}
           </div>
-          
         </div>
       </div>
     </div>

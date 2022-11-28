@@ -102,6 +102,12 @@
               <p>Quản Lý Danh Mục</p>
             </a>
           </li>
+          <li class="nav-item <?php $page = Session::get('page'); if($page==13){echo "active";} ?>">
+            <a class="nav-link" href="{{URL::to('/show_user')}}">
+              <i class="material-icons">people</i>
+              <p>Quản Lý Khách Hàng</p>
+            </a>
+          </li>
           @endhasrole
           @hasrole(['admin', 'staff'])
           <li class="nav-item <?php $page = Session::get('page'); if($page==5){echo "active";} ?>">

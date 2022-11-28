@@ -288,6 +288,14 @@ Route::group(['middleware' => 'admin_role'], function(){
 	//admin interface -> producer
 	Route::resource('producer', ProducerController::class );
 
+	//admin interface -> customer
+
+	Route::get('/show_user', 'App\Http\Controllers\UserManagement@show_user');
+
+	Route::post('/status_user', 'App\Http\Controllers\UserManagement@status_user');
+
+	// Route::get('/unblock_user/{id}', 'App\Http\Controllers\UserManagement@unblock_staff');
+
 });
 
 //Quyền của Stock và Admin

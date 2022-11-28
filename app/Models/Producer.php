@@ -13,11 +13,11 @@ class Producer extends Model
 
     protected $fillable = ['Ten', 'Email', 'DiaChi', 'SDT'];
 
-    protected $primaryKey='MaNSX';
+    protected $primaryKey='MaNCC';
 
-    protected $table='nhasanxuat';
+    protected $table='nhacungcap';
 
     public function receipt(){
-        return $this->hasMany(Receipt::class, 'MaNCC', 'MaNSX');
+        return $this->hasMany(Receipt::class, 'MaNCC', 'MaNCC');
     }
 }
