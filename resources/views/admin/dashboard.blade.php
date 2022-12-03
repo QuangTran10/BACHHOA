@@ -64,7 +64,7 @@
             @csrf
             <br>
             {{-- <div class="ct-chart" id="chart2" style="height: 400px"></div> --}}
-            <canvas id="myChart" width="400" height="400"></canvas>
+            <canvas id="myChart" width="400" height="200"></canvas>
           </form>
         </div> {{-- end card body --}}
       </div>

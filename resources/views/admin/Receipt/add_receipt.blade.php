@@ -32,7 +32,7 @@
         <div class="card ">
           <div class="card-header card-header-rose card-header-text">
             <div class="card-text">
-              <h4 class="card-title">PHIẾU THU</h4>
+              <h4 class="card-title">PHIẾU NHẬP</h4>
             </div>
           </div>
           <div class="card-body ">

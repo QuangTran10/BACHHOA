@@ -5,10 +5,10 @@
   <div class="row">
     <div class="col-lg-5 col-md-6 col-sm-6">
       <a href="{{URL::to('/add_receipt')}}" class="btn btn-primary" role="button" aria-disabled="true">
-         <i class="material-icons">edit</i> Thêm Phiếu Thu
+         <i class="material-icons">edit</i> Thêm Phiếu Nhập
       </a>
       <a href="{{route('producer.index')}}" class="btn btn-primary" role="button" aria-disabled="true">
-         <i class="material-icons">edit</i> Quản Lý NSX
+         <i class="material-icons">edit</i> Quản Lý Cung Cấp
       </a>
       
     </div>

@@ -46,7 +46,7 @@
           <form id="form-chart">
             @csrf
             {{-- <div class="ct-chart ct-perfect-fourth" id="chart1"></div> --}}
-            <canvas id="myChart" width="400" height="400"></canvas>
+            <canvas id="myChart" width="400" height="200"></canvas>
           </form>
         </div> {{-- end card body --}}
       </div>
@@ -67,35 +67,49 @@
         success:function(data){
           const ctx = $('#myChart');
           const myChart = new Chart(ctx, {
-            type: 'line',
+            type: 'bar',
             data: {
               labels: data.labels,
-              datasets: [{
+              datasets: [
+              {
                 label: 'Số đơn hàng',
-                data: data.series,
-                backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-                ],
-                borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-                ],
-                borderWidth: 1
-              }]
+                data: data.series1,
+                backgroundColor: '#e1fa02',
+                borderColor:'#e1fa02',
+                borderWidth: 1,
+                type: 'line',
+                order: 0,
+              },
+              {
+                label: 'Nhập hàng',
+                data: data.series3,
+                backgroundColor: '#FF6384',
+                borderColor:'#9BD0F5',
+                borderWidth: 1,
+                order: 1,
+              },
+              {
+                label: 'Doanh thu',
+                data: data.series2,
+                backgroundColor: '#36A2EB',
+                borderColor: '#FFB1C1',
+                borderWidth: 1,
+                order: 2,
+              }
+              ]
             },
             options: {
-              scales: {
-                y: {
-                  beginAtZero: true
+              interaction: {
+                mode: 'index',
+              },
+              responsive: true,
+              plugins: {
+                legend: {
+                  position: 'top',
+                },
+                title: {
+                  display: true,
+                  text: 'Doanh Thu'
                 }
               }
             }
@@ -126,41 +140,47 @@
           },
           success:function(data){
             $('#myChart').remove();
-            $('#form-chart').append('<canvas id="myChart" width="400" height="400"></canvas>');
+            $('#form-chart').append('<canvas id="myChart" width="400" height="200"></canvas>');
             const ctx = $('#myChart');
             const myChart = new Chart(ctx, {
-              type: 'line',
+              type: 'bar',
               data: {
                 labels: data.labels,
-                datasets: [{
+                datasets: [
+                {
                   label: 'Số đơn hàng',
-                  data: data.series,
-                  backgroundColor: [
-                  'rgba(255, 99, 132, 0.2)',
-                  'rgba(54, 162, 235, 0.2)',
-                  'rgba(255, 206, 86, 0.2)',
-                  'rgba(75, 192, 192, 0.2)',
-                  'rgba(153, 102, 255, 0.2)',
-                  'rgba(255, 159, 64, 0.2)'
-                  ],
-                  borderColor: [
-                  'rgba(255, 99, 132, 1)',
-                  'rgba(54, 162, 235, 1)',
-                  'rgba(255, 206, 86, 1)',
-                  'rgba(75, 192, 192, 1)',
-                  'rgba(153, 102, 255, 1)',
-                  'rgba(255, 159, 64, 1)'
-                  ],
-                  borderWidth: 1
-                }]
+                  data: data.series1,
+                  backgroundColor: '#FF6384',
+                  borderColor:'#9BD0F5',
+                  borderWidth: 1,
+                  type: 'line',
+                  order: 0,
+                },
+                {
+                  label: 'Doanh thu',
+                  data: data.series2,
+                  backgroundColor: '#36A2EB',
+                  borderColor: '#FFB1C1',
+                  borderWidth: 1,
+                  order: 2,
+                }
+                ]
               },
               options: {
-                scales: {
-                  y: {
-                    beginAtZero: true
+                interaction: {
+                  mode: 'index',
+                },
+                responsive: true,
+                plugins: {
+                  legend: {
+                    position: 'top',
+                  },
+                  title: {
+                    display: true,
+                    text: 'Doanh Thu'
                   }
                 }
-              }
+            }
             });
           }
         });

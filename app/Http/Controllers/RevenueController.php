@@ -34,19 +34,37 @@ class RevenueController extends Controller
 
     	$revenue = DB::table('dathang')
     	->whereBetween('NgayDat', [ $first_day, $now])
-    	->select(DB::raw('COUNT(MSDH) as soluong, MONTH(NgayDat) as Thang'))->groupBy('Thang')
-    	->get();
+    	->select(DB::raw('COUNT(MSDH) as soluong, SUM(ThanhTien) as doanhthu, MONTH(NgayDat) as Thang'))
+        ->groupBy('Thang')->get();
+
+        $receipt = DB::table('phieunhap')
+        ->whereBetween('NgayLap', [ $first_day, $now])
+        ->select(DB::raw('SUM(ThanhTien) as tongnhap, MONTH(NgayLap) as Thang'))
+        ->groupBy('Thang')->get();
 
     	$labels=array();
-    	$series=array();
+    	$series1=array();
+        $series2=array();
+        $series3=array();
+
     	foreach ($revenue as $key => $value) {
     		$labels[]='Tháng '.$value->Thang;
-    		$series[]=$value->soluong;
+    		$series1[]=$value->soluong;
+            $series2[]=$value->doanhthu;
     	}
+
+        foreach ($receipt as $key => $value) {
+            $series3[]=$value->tongnhap;
+        }
+
     	$chart_data = array(
-    		'labels' => $labels,
-    		'series' => $series
+    		'labels'  => $labels,
+    		'series1' => $series1,
+            'series2' => $series2,
+            'series3' => $series3,
     	);
+
+        // print_r($revenue);
 
     	echo $data = json_encode($chart_data);
     }
@@ -57,19 +75,24 @@ class RevenueController extends Controller
 
     	$revenue = DB::table('dathang')
     	->whereBetween('NgayDat', [ $start_date, $end_date])
-    	->select(DB::raw('COUNT(MSDH) as soluong, DAY(NgayDat) as Ngay, DATE(NgayDat) as Date'))->groupBy('Ngay','Date')
-        ->orderBy('Date','asc')->get();
+    	->select(DB::raw('COUNT(MSDH) as soluong, SUM(ThanhTien) as doanhthu, DAY(NgayDat) as Ngay, DATE(NgayDat) as Date'))
+        ->groupBy('Ngay','Date')->orderBy('Date','asc')->get();
 
     	$labels=array();
-    	$series=array();
+    	$series1=array();
+        $series2=array();
+
     	foreach ($revenue as $key => $value) {
     		$date = date('d-m-Y', strtotime($value->Date));
     		$labels[]=$date;
-    		$series[]=$value->soluong;
+    		$series1[]=$value->soluong;
+            $series2[]=$value->doanhthu;
     	}
+
     	$chart_data = array(
     		'labels' => $labels,
-    		'series' => $series
+    		'series1' => $series1,
+            'series2' => $series2,
     	);
 
     	echo $data = json_encode($chart_data);
