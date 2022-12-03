@@ -584,7 +584,7 @@ window.onload = function () {
 		  			searchFormInput.value = transcript;
 		  		}
 		  	}
-		    // searchFormInput.value = transcript;
+		    searchFormInput.value = transcript;
 		    // searchFormInput.focus();
 		    // setTimeout(() => {
 		    //   searchForm.submit();
