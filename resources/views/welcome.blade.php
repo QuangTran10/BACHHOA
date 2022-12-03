@@ -728,7 +728,17 @@
               _token: _token,
             },
             success:function(data){
-              location.reload();
+              if(data==1){
+                location.reload();
+              }else if(data==2){
+                swal({
+                  title: "Số lượng tồn không đủ",
+                  icon: "warning",
+                  button: "OK",
+                }).then(function() {
+                  location.reload();
+                });
+              }
             }
           });
         }

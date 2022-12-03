@@ -57,6 +57,11 @@ class CheckOutController extends Controller
 
     public function check_out(Request $re){
         $this->LoginCheck();
+        $content = Session::get('cart');
+        if($content==null){
+            return Redirect::to('/cart_shopping');
+        }
+
     	$MSKH=Session::get('user_id');
     	$all_address_by_id=DB::table('diachikh')->where('MSKH',$MSKH)->get();
     	$all_category = DB::table('danhmuc')->get();
@@ -198,6 +203,10 @@ class CheckOutController extends Controller
 
     public function vnpay_check_out(Request $re){
         $this->LoginCheck();
+        $content = Session::get('cart');
+        if($content==null){
+            return Redirect::to('/cart_shopping');
+        }
         $all_category = DB::table('danhmuc')->get();
         $loaihang = DB::table('loaihang')->where('TrangThai',1)->get();
         $MSKH=Session::get('user_id');
