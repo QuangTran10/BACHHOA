@@ -64,7 +64,6 @@ class RevenueController extends Controller
             'series3' => $series3,
     	);
 
-        // print_r($revenue);
 
     	echo $data = json_encode($chart_data);
     }
@@ -123,10 +122,65 @@ class RevenueController extends Controller
         return view('admin.Statistic.quantity_statistic', compact('receipts'));
     }
 
-    // public function price_statistic(){
-    //     $this->AuthLogin();
-    //     Session::put('page',13);
 
-    //     return view('admin.Statistic.price_statistic');
-    // }
+    public function precious_statistic(Request $request){
+        $now = Carbon::now('Asia/Ho_Chi_Minh');
+        $start;
+        $end;
+
+        $type = $request->type;
+        if($type!=5){
+            if($type==1){
+                $start = new Carbon('first day of January');
+                $end  = new Carbon('last day of March');
+            }elseif($type==2){
+                $start = new Carbon('first day of April');
+                $end  = new Carbon('last day of June');
+            }elseif($type==3){
+                $start = new Carbon('first day of July');
+                $end  = new Carbon('last day of March');
+            }elseif($type==4){
+                $start = new Carbon('first day of September');
+                $end  = new Carbon('last day of December');
+            }
+        }else{
+            $start = new Carbon('first day of January');
+            $end  = new Carbon('last day of December');
+        }
+
+        $revenue = DB::table('dathang')
+        ->whereBetween('NgayDat', [ $start, $end])->where('TrangThai',4)
+        ->select(DB::raw('COUNT(MSDH) as soluong, SUM(ThanhTien) as doanhthu, MONTH(NgayDat) as Thang'))
+        ->groupBy('Thang')->get();
+
+        $receipt = DB::table('phieunhap')
+        ->whereBetween('NgayLap', [ $start, $end])
+        ->select(DB::raw('SUM(ThanhTien) as tongnhap, MONTH(NgayLap) as Thang'))
+        ->groupBy('Thang')->get();
+
+        $labels=array();
+        $series1=array();
+        $series2=array();
+        $series3=array();
+
+        foreach ($revenue as $key => $value) {
+            $labels[]='Tháng '.$value->Thang;
+            $series1[]=$value->soluong;
+            $series2[]=$value->doanhthu;
+        }
+
+        foreach ($receipt as $key => $value) {
+            $series3[]=$value->tongnhap;
+        }
+
+        $chart_data = array(
+            'labels'  => $labels,
+            'series1' => $series1,
+            'series2' => $series2,
+            'series3' => $series3,
+        );
+
+
+        echo $data = json_encode($chart_data);
+    }
 }

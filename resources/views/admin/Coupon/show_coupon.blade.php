@@ -27,8 +27,11 @@
               <th width="5%"></th>
             </thead>
             <tbody>
+              @php
+                $now = Carbon\Carbon::now();
+              @endphp
               @foreach($coupon as $key => $value)
-              <tr>
+              <tr <?php if($value->NgayKetThuc < $now){echo 'class="table-danger"' ;} ?>>
                 <td><b>{{$value->Ma}}</b></td>
                 <td>{{$value->TieuDe}}</td>
                 <td>

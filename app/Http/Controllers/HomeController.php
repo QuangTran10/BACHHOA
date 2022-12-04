@@ -18,6 +18,7 @@ use Session;
 class HomeController extends Controller
 {
     public function index(Request $re){
+        $now = Carbon::now('Asia/Ho_Chi_Minh');
         //Seo
         $meta_desc="BEE";
         $meta_keywords="Trang Chủ";
@@ -29,7 +30,9 @@ class HomeController extends Controller
         $loaihang = DB::table('loaihang')->where('TrangThai',1)->get();
 
         //Mã khuyến mãi
-        $coupon = DB::table('magiamgia')->where('TrangThai',1)->inRandomOrder()->limit(4)->get();
+        $coupon = DB::table('magiamgia')
+        ->where('NgayKetThuc','>=',$now)
+        ->where('TrangThai',1)->inRandomOrder()->limit(4)->get();
 
 
         //Sản phẩm bán chạy

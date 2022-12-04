@@ -282,6 +282,8 @@ Route::group(['middleware' => 'admin_role'], function(){
 
 	Route::post('/search_statistic', 'App\Http\Controllers\RevenueController@search_statistic');
 
+	Route::post('/precious_statistic', 'App\Http\Controllers\RevenueController@precious_statistic');
+
 	//admin interface -> coupon
 	Route::resource('coupon', CouponController::class );
 
