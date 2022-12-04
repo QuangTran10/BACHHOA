@@ -67,68 +67,63 @@
 </div>
 <script type="text/javascript">
   $(document).ready(function() {
-    setStatistic();
 
-    function setStatistic(){
-      var _token = $('input[name="_token"]').val();
-      $.ajax({
-        url: '{{url('/load_statistic')}}',
-        method: "POST",
-        dataType: 'JSON',
-        data:{_token:_token},
-        success:function(data){
-          const ctx = $('#myChart');
-          const myChart = new Chart(ctx, {
-            type: 'bar',
-            data: {
-              labels: data.labels,
-              datasets: [
-              {
-                label: 'Số đơn hàng',
-                data: data.series1,
-                backgroundColor: '#e1fa02',
-                borderColor:'#e1fa02',
-                borderWidth: 1,
-                type: 'line',
-                order: 0,
-              },
-              {
-                label: 'Nhập hàng',
-                data: data.series3,
-                backgroundColor: '#FF6384',
-                borderColor:'#9BD0F5',
-                borderWidth: 1,
-                order: 1,
-              },
-              {
-                label: 'Doanh thu',
-                data: data.series2,
-                backgroundColor: '#36A2EB',
-                borderColor: '#FFB1C1',
-                borderWidth: 1,
-                order: 2,
-              }
-              ]
-            },
-            options: {
-              interaction: {
-                mode: 'index',
-              },
-              responsive: true,
-              plugins: {
-                legend: {
-                  position: 'top',
-                },
-                title: {
-                  display: true,
-                  text: 'Doanh Thu'
-                }
-              }
-            }
-          });
+    var labels = {{ Js::from($labels) }};
+    var series1 =  {{ Js::from($series1) }};
+    var series2 =  {{ Js::from($series2) }};
+    var series3 =  {{ Js::from($series3) }};
+
+    const ctx = $('#myChart');
+    const data = {
+      labels: labels,
+      datasets: [
+      {
+        label: 'Số đơn hàng',
+        data: series1,
+        backgroundColor: '#e1fa02',
+        borderColor:'#e1fa02',
+        borderWidth: 1,
+        type: 'line',
+        order: 0,
+      },
+      {
+        label: 'Nhập hàng',
+        data: series3,
+        backgroundColor: '#FF6384',
+        borderColor:'#9BD0F5',
+        borderWidth: 1,
+        order: 1,
+      },
+      {
+        label: 'Doanh thu',
+        data: series2,
+        backgroundColor: '#36A2EB',
+        borderColor: '#FFB1C1',
+        borderWidth: 1,
+        order: 2,
+      }]
+    };
+    const config = {
+      type: 'bar',
+      data: data,
+      options: {
+        interaction: {
+          mode: 'index',
+        },
+        responsive: true,
+        plugins: {
+          legend: {
+            position: 'top',
+          },
+          title: {
+            display: true,
+            text: 'Doanh Thu'
+          }
         }
-      });
-    }
+      }
+    };
+    const myChart = new Chart(ctx, config);
+    
 
     $('.search_btn').click(function() {
       var start_date =  $('#Start_date').val();

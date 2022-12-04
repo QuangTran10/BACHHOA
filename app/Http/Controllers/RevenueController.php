@@ -25,7 +25,36 @@ class RevenueController extends Controller
     public function show_statistical(){
         $this->AuthLogin();
     	Session::put('page',9);
-    	return view('admin.Statistic.show_statistic');
+
+        $now = Carbon::now('Asia/Ho_Chi_Minh');
+        $first_day=Carbon::create(Carbon::now()->year, 1, 1);
+
+        $revenue = DB::table('dathang')
+        ->whereBetween('NgayDat', [ $first_day, $now])->where('TrangThai',4)
+        ->select(DB::raw('COUNT(MSDH) as soluong, SUM(ThanhTien) as doanhthu, MONTH(NgayDat) as Thang'))
+        ->groupBy('Thang')->get();
+
+        $receipt = DB::table('phieunhap')
+        ->whereBetween('NgayLap', [ $first_day, $now])
+        ->select(DB::raw('SUM(ThanhTien) as tongnhap, MONTH(NgayLap) as Thang'))
+        ->groupBy('Thang')->get();
+
+        $labels=array();
+        $series1=array();
+        $series2=array();
+        $series3=array();
+
+        foreach ($revenue as $key => $value) {
+            $labels[]='Tháng '.$value->Thang;
+            $series1[]=$value->soluong;
+            $series2[]=$value->doanhthu;
+        }
+
+        foreach ($receipt as $key => $value) {
+            $series3[]=$value->tongnhap;
+        }
+
+    	return view('admin.Statistic.show_statistic', compact('labels','series1','series2','series3'));
     }
 
     public function load_statistic(){
@@ -73,13 +102,15 @@ class RevenueController extends Controller
     	$end_date= $re->end_date;
 
     	$revenue = DB::table('dathang')
-    	->whereBetween('NgayDat', [ $start_date, $end_date])
+    	->whereBetween('NgayDat', [$start_date, $end_date])
     	->select(DB::raw('COUNT(MSDH) as soluong, SUM(ThanhTien) as doanhthu, DAY(NgayDat) as Ngay, DATE(NgayDat) as Date'))
         ->groupBy('Ngay','Date')->orderBy('Date','asc')->get();
+
 
     	$labels=array();
     	$series1=array();
         $series2=array();
+        $series3=array();
 
     	foreach ($revenue as $key => $value) {
     		$date = date('d-m-Y', strtotime($value->Date));
@@ -88,11 +119,11 @@ class RevenueController extends Controller
             $series2[]=$value->doanhthu;
     	}
 
-    	$chart_data = array(
-    		'labels' => $labels,
-    		'series1' => $series1,
+        $chart_data = array(
+            'labels'  => $labels,
+            'series1' => $series1,
             'series2' => $series2,
-    	);
+        );
 
     	echo $data = json_encode($chart_data);
     }
