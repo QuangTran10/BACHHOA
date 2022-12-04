@@ -52,7 +52,7 @@
                   <div class="form-group">
                     <select class="selectpicker" data-style="select-with-transition" name="MaNCC" required>
                       @foreach($producer as $key => $val)
-                      <option value="{{$val->MaNSX}}">{{$val->Ten}}</option>
+                      <option value="{{$val->MaNCC}}">{{$val->Ten}}</option>
                       @endforeach
                     </select>
                   </div>

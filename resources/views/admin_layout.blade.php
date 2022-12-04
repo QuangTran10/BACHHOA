@@ -152,7 +152,7 @@
                 <li class="nav-item <?php $page = Session::get('page'); if($page==9){echo "active";} ?>">
                   <a class="nav-link" href="{{URL::to('/show_statistic')}}">
                     <span class="sidebar-mini"><i class="material-icons">insights</i></span>
-                    <span class="sidebar-normal">Theo tháng </span>
+                    <span class="sidebar-normal">Doanh thu </span>
                   </a>
                 </li>
                 <li class="nav-item <?php $page = Session::get('page'); if($page==12){echo "active";} ?>">

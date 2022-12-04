@@ -115,6 +115,9 @@
               scales: {
                 y: {
                   beginAtZero: true
+                },
+                x: {
+                  display: false
                 }
               }
             }

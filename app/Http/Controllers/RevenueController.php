@@ -33,7 +33,7 @@ class RevenueController extends Controller
     	$first_day=Carbon::create(Carbon::now()->year, 1, 1);
 
     	$revenue = DB::table('dathang')
-    	->whereBetween('NgayDat', [ $first_day, $now])
+    	->whereBetween('NgayDat', [ $first_day, $now])->where('TrangThai',4)
     	->select(DB::raw('COUNT(MSDH) as soluong, SUM(ThanhTien) as doanhthu, MONTH(NgayDat) as Thang'))
         ->groupBy('Thang')->get();
 
