@@ -57,6 +57,32 @@ class RevenueController extends Controller
     	return view('admin.Statistic.show_statistic', compact('labels','series1','series2','series3'));
     }
 
+    public function customer_statistic(Request $request){
+        $this->AuthLogin();
+        Session::put('page',13);
+
+        $now = Carbon::now('Asia/Ho_Chi_Minh');
+        $first_day=Carbon::create(Carbon::now()->year, 1, 1);
+
+        $revenue = DB::table('dathang')
+        ->join('khachhang', 'dathang.MSKH', '=', 'khachhang.MSKH')
+        ->whereBetween('NgayDat', [ $first_day, $now])->where('dathang.TrangThai',4)
+        ->select(DB::raw('COUNT(dathang.MSKH) as soluong, SUM(ThanhTien) as doanhthu, dathang.MSKH, HoTenKH'))
+        ->groupBy('dathang.MSKH', 'HoTenKH')->orderBy('soluong','DESC')->get();
+
+        $labels=array();
+        $series1=array();
+        $series2=array();
+
+        foreach ($revenue as $key => $value) {
+            $labels[]=$value->HoTenKH;
+            $series1[]=$value->soluong;
+            $series2[]=$value->doanhthu;
+        }
+
+        return view('admin.Statistic.customer_statistic', compact('labels', 'series1', 'series2'));
+    }
+
     public function load_statistic(){
     	$now = Carbon::now('Asia/Ho_Chi_Minh');
     	$first_day=Carbon::create(Carbon::now()->year, 1, 1);

@@ -276,7 +276,7 @@ Route::group(['middleware' => 'admin_role'], function(){
 
 	Route::get('/quantity_statistic', 'App\Http\Controllers\RevenueController@quantity_statistic');
 
-	// Route::get('/price_statistic', 'App\Http\Controllers\RevenueController@price_statistic');
+	Route::get('/customer_statistic', 'App\Http\Controllers\RevenueController@customer_statistic');
 
 	Route::post('/load_statistic', 'App\Http\Controllers\RevenueController@load_statistic');
 
@@ -296,7 +296,6 @@ Route::group(['middleware' => 'admin_role'], function(){
 
 	Route::post('/status_user', 'App\Http\Controllers\UserManagement@status_user');
 
-	// Route::get('/unblock_user/{id}', 'App\Http\Controllers\UserManagement@unblock_staff');
 
 });
 

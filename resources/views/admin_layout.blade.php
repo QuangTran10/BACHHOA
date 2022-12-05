@@ -161,12 +161,12 @@
                     <span class="sidebar-normal">Theo số lượng bán ra</span>
                   </a>
                 </li>
-                {{-- <li class="nav-item <?php $page = Session::get('page'); if($page==13){echo "active";} ?>">
-                  <a class="nav-link" href="{{URL::to('/price_statistic')}}">
+                <li class="nav-item <?php $page = Session::get('page'); if($page==13){echo "active";} ?>">
+                  <a class="nav-link" href="{{URL::to('/customer_statistic')}}">
                     <span class="sidebar-mini"><i class="material-icons">attach_money</i></span>
-                    <span class="sidebar-normal">Doanh Thu </span>
+                    <span class="sidebar-normal">Khách hàng mua nhiều </span>
                   </a>
-                </li> --}}
+                </li>
               </ul>
             </div>
           </li>
