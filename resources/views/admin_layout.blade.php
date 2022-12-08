@@ -147,7 +147,7 @@
                 <b class="caret"></b>
               </p>
             </a>
-            <div class="collapse <?php $page = Session::get('page'); if($page==9 || $page==12 || $page==13){echo "show";} ?>" id="statistics">
+            <div class="collapse <?php $page = Session::get('page'); if($page==9 || $page==12 || $page==14){echo "show";} ?>" id="statistics">
               <ul class="nav">
                 <li class="nav-item <?php $page = Session::get('page'); if($page==9){echo "active";} ?>">
                   <a class="nav-link" href="{{URL::to('/show_statistic')}}">
@@ -161,7 +161,7 @@
                     <span class="sidebar-normal">Theo số lượng bán ra</span>
                   </a>
                 </li>
-                <li class="nav-item <?php $page = Session::get('page'); if($page==13){echo "active";} ?>">
+                <li class="nav-item <?php $page = Session::get('page'); if($page==14){echo "active";} ?>">
                   <a class="nav-link" href="{{URL::to('/customer_statistic')}}">
                     <span class="sidebar-mini"><i class="material-icons">attach_money</i></span>
                     <span class="sidebar-normal">Khách hàng mua nhiều </span>

@@ -146,6 +146,7 @@ class ShipperController extends Controller
                 $result = DB::table('dathang')
                 ->join('thanhtoan', 'thanhtoan.MaThanhToan', '=', 'dathang.MaThanhToan')
                 ->where('dathang.MSDH', $MSDH)->update(['TrangThai'=> 4,'TT_TrangThai'=>1,'TT_Hinh' => $new_image, 'NgayGiao' => $now]);
+                $this->sendEmail($MSDH);
             }
 
             return redirect('shipper_order');

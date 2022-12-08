@@ -59,7 +59,7 @@ class RevenueController extends Controller
 
     public function customer_statistic(Request $request){
         $this->AuthLogin();
-        Session::put('page',13);
+        Session::put('page',14);
 
         $now = Carbon::now('Asia/Ho_Chi_Minh');
         $first_day=Carbon::create(Carbon::now()->year, 1, 1);
