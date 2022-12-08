@@ -14,8 +14,18 @@ session_start();
 
 class CouponController extends Controller
 {
+    public function AuthLogin(){
+        $admin_id = Session::get('admin_id');
+        if($admin_id){
+          return Redirect::to('dashboard');
+      }else{
+          return Redirect::to('admin')->send();
+      }
+    }
+
     public function index()
     {
+        $this->AuthLogin();
         Session::put('page',10);
 
         $coupon = DB::table('magiamgia')->get();
@@ -30,6 +40,7 @@ class CouponController extends Controller
      */
     public function create()
     {
+        $this->AuthLogin();
         return view('admin.Coupon.create_coupon');
     }
 
@@ -41,6 +52,7 @@ class CouponController extends Controller
      */
     public function store(Request $request)
     {
+        $this->AuthLogin();
         $validate = $request->validate([
             'TieuDe'       => 'required',
             'Ma'           => 'required',
@@ -91,6 +103,7 @@ class CouponController extends Controller
      */
     public function edit($id)
     {
+        $this->AuthLogin();
         $coupon = DB::table('magiamgia')->where('MaGG',$id)->first();
 
         return view('admin.Coupon.update_coupon', compact('coupon'));
@@ -105,6 +118,7 @@ class CouponController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->AuthLogin();
         $coupon = array();
         $coupon['TieuDe'] = $request->TieuDe;
         $coupon['Ma'] = $request->Ma;
@@ -126,6 +140,7 @@ class CouponController extends Controller
      */
     public function destroy($id)
     {
+        $this->AuthLogin();
         DB::table('magiamgia')->where('MaGG', $id)->update(['TrangThai' => 0]);
 
         return redirect()->route('coupon.index');

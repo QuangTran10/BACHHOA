@@ -19,8 +19,10 @@ class StockPermission
      */
     public function handle(Request $request, Closure $next)
     {
-        if(Auth::user()->hasAnyRoles(['admin', 'stock'])){
-            return $next($request);
+        if(Auth::check()){
+            if(Auth::user()->hasAnyRoles(['admin', 'stock'])){
+                return $next($request);
+            }
         }
 
         return Redirect::to('dashboard');   

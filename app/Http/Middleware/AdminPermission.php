@@ -19,8 +19,10 @@ class AdminPermission
      */
     public function handle(Request $request, Closure $next)
     {
-        if(Auth::user()->hasRole('admin')){
-            return $next($request);
+        if(Auth::check()){
+            if(Auth::user()->hasRole('admin')){
+                return $next($request);
+            }
         }
 
         return Redirect::to('dashboard');  

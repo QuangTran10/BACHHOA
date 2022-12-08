@@ -64,7 +64,7 @@
 					},
 					title: {
 						display: true,
-						text: 'Doanh Thu'
+						text: 'Khách hàng mua nhiều nhất'
 					}
 				}
 			}

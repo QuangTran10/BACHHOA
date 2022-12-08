@@ -1,12 +1,12 @@
 @extends('admin_layout')
-@section('admin_content')}
+@section('admin_content')
 
 <div class="container-fluid">
   <div class="row">
     <div class="col-lg-12 col-md-12">
       <div class="card">
         <div class="card-header card-header-primary">
-          <h4 class="card-title">Danh sách đơn hàng</h4>
+          <h4 class="card-title">Phân quyền nhân viên</h4>
         </div>
         <div class="card-body table-responsive" id="table-order">
           <table class="table table-hover">

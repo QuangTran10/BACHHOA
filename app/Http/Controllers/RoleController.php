@@ -32,6 +32,7 @@ class RoleController extends Controller
     }
 
     public function assign_role(Request $request){
+        $this->AuthLogin();
     	$data = $request->all();
     	$admin_id = Session::get('admin_id');
 
