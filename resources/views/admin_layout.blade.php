@@ -137,7 +137,7 @@
           <li class="nav-item <?php $page = Session::get('page'); if($page==8){echo "active";} ?>">
             <a class="nav-link" href="{{URL::to('/show_comment')}}">
               <i class="material-icons">notifications</i>
-              <p>Thông Báo</p>
+              <p>Quản lý đánh giá</p>
             </a>
           </li>
           <li class="nav-item <?php $page = Session::get('page'); if($page==9 || $page==12 || $page==14){echo "active";} ?>">

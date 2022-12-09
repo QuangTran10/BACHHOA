@@ -128,7 +128,15 @@
           </a>
         </div>
         <div class="card-body">
-          <h6 class="card-category">{{ $value->ChucVu}}</h6>
+          <h6 class="card-category">
+            @if($value->ChucVu==0)
+              Quản Trị Viên
+            @elseif($value->ChucVu==1)
+              Nhân Viên
+            @elseif($value->ChucVu==2)
+              Nhân Viên Kho
+            @endif
+          </h6>
           <h4 class="card-title">{{ $value->HoTenNV}}</h4>
           <p class="card-text">{{ $value->Ngay}}/{{ $value->Thang}}/{{ $value->Nam}}</p>
           <div class="fileinput fileinput-new text-center" data-provides="fileinput">

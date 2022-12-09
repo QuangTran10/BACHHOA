@@ -43,7 +43,7 @@
               </div>
             </div>
           </div>
-          <div class="leave-message">
+          {{-- <div class="leave-message">
             <h1 class="title">Tư Vấn</h1>
             <p>Nhân viên của chúng tôi sẽ gọi lại và trả lời những câu hỏi của bạn.</p>
             <form action="" method="post">
@@ -59,7 +59,7 @@
                 </div>
               </div>
             </form>
-          </div>
+          </div> --}}
         </div>
     </div>
 
