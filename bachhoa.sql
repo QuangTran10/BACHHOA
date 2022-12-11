@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 05, 2022 at 03:15 AM
+-- Generation Time: Dec 11, 2022 at 09:22 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -44,7 +44,10 @@ CREATE TABLE `binhluan` (
 
 INSERT INTO `binhluan` (`MaBinhLuan`, `ThoiGian`, `NoiDung`, `DanhGia`, `MSKH`, `MSSP`, `MSDH`, `TrangThai`) VALUES
 (1, '2022-11-20 15:09:33', 'sản phẩm rất tốt', 5, 3, 33, 2, 1),
-(3, '2022-11-20 17:56:19', 'sản phẩm rất tốt', 5, 3, 32, 2, 0);
+(3, '2022-11-20 17:56:19', 'sản phẩm rất tốt', 5, 3, 32, 2, 0),
+(4, '2022-12-06 09:21:16', 'sản phẩm tốt', 5, 3, 36, 12, 1),
+(5, '2022-12-08 14:10:54', 'Quá trời tốt', 5, 3, 32, 14, 1),
+(6, '2022-12-10 19:44:38', 'đã nhận được hàng', 4, 3, 37, 18, 1);
 
 -- --------------------------------------------------------
 
@@ -64,10 +67,9 @@ CREATE TABLE `cap_quyen` (
 
 INSERT INTO `cap_quyen` (`id`, `MSNV`, `id_quyen`) VALUES
 (1, 1, 1),
-(5, 2, 2),
-(6, 3, 2),
-(9, 5, 2),
-(10, 5, 3);
+(12, 2, 2),
+(13, 5, 2),
+(14, 3, 3);
 
 -- --------------------------------------------------------
 
@@ -109,7 +111,28 @@ INSERT INTO `chitietdathang` (`MSDH`, `MSSP`, `SoLuong`, `GiaDatHang`, `GiamGia`
 (10, 21, 1, 84500, 0.2, 67600),
 (10, 35, 1, 118000, 0, 118000),
 (10, 37, 1, 100000, 0, 100000),
-(10, 38, 1, 96000, 0, 96000);
+(10, 38, 1, 96000, 0, 96000),
+(11, 36, 1, 235000, 0, 235000),
+(12, 36, 2, 235000, 0, 470000),
+(13, 31, 2, 330000, 0, 660000),
+(13, 33, 1, 320000, 0, 320000),
+(14, 32, 1, 147000, 0, 147000),
+(14, 36, 1, 235000, 0, 235000),
+(15, 21, 1, 84500, 0.2, 67600),
+(15, 25, 1, 12500, 0, 12500),
+(15, 26, 1, 45000, 0, 45000),
+(15, 28, 1, 58000, 0, 58000),
+(15, 34, 2, 130000, 0, 260000),
+(15, 35, 1, 118000, 0, 118000),
+(16, 36, 1, 235000, 0, 235000),
+(17, 35, 1, 118000, 0, 118000),
+(17, 37, 2, 100000, 0, 200000),
+(18, 37, 1, 100000, 0, 100000),
+(18, 38, 1, 96000, 0, 96000),
+(19, 25, 1, 12500, 0, 12500),
+(19, 26, 1, 45000, 0, 45000),
+(19, 35, 1, 118000, 0, 118000),
+(20, 35, 1, 118000, 0, 118000);
 
 --
 -- Triggers `chitietdathang`
@@ -261,7 +284,17 @@ INSERT INTO `dathang` (`MSDH`, `MSKH`, `MSNV`, `MSGH`, `HoTen`, `SDT`, `DiaChi`,
 (7, 1, 1, 1, 'Trần Thanh Quang', '0859083181', '180 Triệu Nương, Mỹ Xuyên, Sóc Trăng', '94', 322500, '2022-12-03 14:11:18', '2022-12-04 15:16:27', NULL, 4, 7),
 (8, 3, 1, 2, 'Nguyễn Ngọc Bảo Trân', '0859083181', '383/104A Đường 30/4, pphường Xuân Khánh, quận Ninh Kiều', '92', 130000, '2022-12-03 18:41:06', '2022-12-04 08:59:20', NULL, 4, 8),
 (9, 1, 1, 1, 'Trần Tuấn Anh', '0918151004', '185 Nguyễn Thị Minh Khai', '94', 488060, '2022-12-04 15:12:55', '2022-12-04 15:16:35', NULL, 4, 9),
-(10, 3, 1, 1, 'Trần Tuấn Anh', '0918151004', '383/104A Đường 30/4, phường 1, thành phố Sóc Trăng, tỉnh Sóc Trăng', '94', 411600, '2022-12-05 08:41:53', '2022-12-05 08:43:54', NULL, 4, 10);
+(10, 3, 1, 1, 'Trần Tuấn Anh', '0918151004', '383/104A Đường 30/4, phường 1, thành phố Sóc Trăng, tỉnh Sóc Trăng', '94', 411600, '2022-12-05 08:41:53', '2022-12-05 08:43:54', NULL, 4, 10),
+(11, 3, 1, 1, 'Trần Tuấn Anh', '0918151004', '383/104A Đường 30/4, phường 1, thành phố Sóc Trăng, tỉnh Sóc Trăng', '94', 265000, '2022-12-06 09:07:50', '2022-12-06 09:09:11', NULL, 4, 11),
+(12, 3, 1, 1, 'Trần Tuấn Anh', '0918151004', '383/104A Đường 30/4, phường 1, thành phố Sóc Trăng, tỉnh Sóc Trăng', '94', 500000, '2022-12-06 09:17:45', '2022-12-06 09:20:31', NULL, 4, 12),
+(13, 3, 3, 2, 'Nguyễn Ngọc Bảo Trân', '0123445670', 'Ký túc xá A Đại học cần thơ', '92', 1010000, '2022-12-08 07:31:08', NULL, 'Đơn hàng bị boom hàng', 7, 13),
+(14, 3, 1, 1, 'Trần Tuấn Anh', '0918151004', '383/104A Đường 30/4, phường 1, thành phố Sóc Trăng, tỉnh Sóc Trăng', '94', 412000, '2022-12-08 14:05:43', '2022-12-08 14:10:12', NULL, 4, 14),
+(15, 3, 1, 1, 'Trần Tuấn Anh', '0918151004', '383/104A Đường 30/4, phường 1, thành phố Sóc Trăng, tỉnh Sóc Trăng', '94', 561100, '2022-12-10 16:06:55', '2022-12-10 16:12:25', NULL, 4, 15),
+(16, 3, 1, 2, 'Nguyễn Ngọc Bảo Trân', '0123445670', 'Ký túc xá A Đại học cần thơ', '92', 265000, '2022-12-10 16:10:54', '2022-12-10 16:13:34', NULL, 4, 16),
+(17, 3, 1, 1, 'Trần Tuấn Anh', '0918151004', '383/104A Đường 30/4, phường 1, thành phố Sóc Trăng, tỉnh Sóc Trăng', '94', 338000, '2022-12-10 19:10:07', '2022-12-11 15:21:38', NULL, 4, 17),
+(18, 3, 1, 1, 'Trần Tuấn Anh', '0918151004', '383/104A Đường 30/4, phường 1, thành phố Sóc Trăng, tỉnh Sóc Trăng', '94', 226000, '2022-12-10 19:37:47', '2022-12-10 19:43:29', NULL, 4, 18),
+(19, 1, 1, 1, 'Nguyễn Ngọc Bảo Trân', '0123445670', '383/104A Đường 30/4, phường 9, thành phố Sóc Trăng, tỉnh Sóc Trăng', '94', 205500, '2022-12-11 15:05:54', '2022-12-11 15:08:07', NULL, 4, 19),
+(20, 1, 1, 1, 'Trần Thanh Quang', '0859083181', '180 Triệu Nương, Mỹ Xuyên, Sóc Trăng', '94', 148000, '2022-12-11 15:11:04', NULL, 'Đơn hàng bị boom hàng', 7, 21);
 
 -- --------------------------------------------------------
 
@@ -292,7 +325,8 @@ INSERT INTO `diachikh` (`MaDC`, `MSKH`, `HoTen`, `SDT`, `DiaChi`, `matp`, `maqh`
 (4, 2, 'Trần Phú Vinh', '0918151004', '20 Đường 30/4, Thành Phố Sóc Trăng', '94', '941', '31513', '2022-05-13 15:18:50', '2022-05-13 15:18:50'),
 (5, 1, 'Nguyễn Ngọc Bảo Trân', '0123445670', '383/104A Đường 30/4, phường 9, thành phố Sóc Trăng, tỉnh Sóc Trăng', '94', '941', '31522', '2022-09-13 07:43:47', '2022-09-13 07:43:47'),
 (8, 1, 'Nguyễn Ngọc Bảo Trân', '0859083181', '185 Nguyễn Thị Minh Khai', '25', '231', '08113', '2022-09-17 16:12:02', '2022-09-17 16:12:02'),
-(11, 3, 'Trần Tuấn Anh', '0918151004', '383/104A Đường 30/4, phường 1, thành phố Sóc Trăng, tỉnh Sóc Trăng', '94', '941', '31513', '2022-12-05 08:41:50', '2022-12-05 08:41:50');
+(11, 3, 'Trần Tuấn Anh', '0918151004', '383/104A Đường 30/4, phường 1, thành phố Sóc Trăng, tỉnh Sóc Trăng', '94', '941', '31513', '2022-12-05 08:41:50', '2022-12-05 08:41:50'),
+(12, 3, 'Nguyễn Ngọc Bảo Trân', '0123445670', 'Ký túc xá A Đại học cần thơ', '92', '916', '31144', '2022-12-08 07:31:03', '2022-12-08 07:31:03');
 
 -- --------------------------------------------------------
 
@@ -474,7 +508,7 @@ CREATE TABLE `magiamgia` (
 INSERT INTO `magiamgia` (`MaGG`, `TieuDe`, `Ma`, `LoaiGiam`, `MucGiam`, `NgayKetThuc`, `TrangThai`) VALUES
 (1, 'Giảm 4%', 'DDACE209D2ED', 1, 4, '2022-12-18', 1),
 (2, 'Miễn phí vận chuyển ( tối đa 20k)', 'EDA001121677', 2, 20000, '2022-12-31', 1),
-(3, 'Giảm 10k', '5659EA006144', 2, 10000, '2022-11-19', 1),
+(3, 'Giảm 10k', '5659EA006144', 2, 10000, '2022-12-22', 1),
 (4, 'Siêu sale tháng 11', '4C8941382646', 1, 5, '2022-11-30', 0),
 (5, 'Miễn phí vận chuyển ( tối đa 30k)', '5568EBC1EF66', 2, 30000, '2022-11-19', 0),
 (6, 'Miễn phí vận chuyển ( tối đa 50k)', 'ADFF9BC1F9EF', 2, 50000, '2022-11-04', 1),
@@ -1354,24 +1388,24 @@ INSERT INTO `sanpham` (`MSSP`, `TenSP`, `SoLuong`, `Gia`, `GiamGia`, `MaDM`, `Th
 (8, '3/7 Nấm đùi gà túi 200g (2-4 cái)', 20, 27500, 0, 5, '<p>Nấm đ&ugrave;i g&agrave; được nu&ocirc;i trồng v&agrave; đ&oacute;ng g&oacute;i theo những ti&ecirc;u chuẩn nghi&ecirc;m ngặt, bảo đảm c&aacute;c ti&ecirc;u chuẩn xanh - sach, chất lượng v&agrave; an to&agrave;n với người d&ugrave;ng. Nấm gi&ograve;n dai, ngọt thịt, nhiều dinh dưỡng thường được d&ugrave;ng cho c&aacute;c m&oacute;n x&agrave;o, chi&ecirc;n gi&ograve;n hoặc nướng ăn k&egrave;m với c&aacute;c loại xốt chấm.</p>', 1, 'nam-dui-ga-vi-200g-2020110717084546431645085049.jpg', '2022-02-17 15:04:09', '2022-02-17 15:04:09'),
 (9, 'Nấm mỡ nâu hộp 150g (6-8 cái)', 30, 69000, 0.1, 5, '<p>Nấm mỡ trắng&nbsp;của B&aacute;ch H&oacute;a Xanh được nu&ocirc;i trồng v&agrave; đ&oacute;ng g&oacute;i theo những ti&ecirc;u chuẩn nghi&ecirc;m ngặt, bảo đảm c&aacute;c ti&ecirc;u chuẩn xanh - sach, chất lượng v&agrave; an to&agrave;n với người d&ugrave;ng. Nấm mỡ chứa h&agrave;m lượng chất dinh dưỡng cao, nhiều vitamin v&agrave; protein quan trọng n&ecirc;n thường được chế biến bằng c&aacute;ch x&agrave;o hoặc nướng.</p>', 1, 'nam-mo-nau-hop-150g-2021012922202210561645085441.jpg', '2022-02-17 15:10:41', '2022-02-27 18:46:47'),
 (10, 'Muối tôm kiểu Tây Ninh Guyumi hũ 60g', 40, 7400, 0, 7, '<p><a href=\"https://www.bachhoaxanh.com/muoi-an-guyumi\" target=\"_blank\">Muối Guyumi</a>&nbsp;với nguồn nguy&ecirc;n liệu sạch, tạo n&ecirc;n một loại muối t&ocirc;m thơm ngon đ&uacute;ng kiểu T&acirc;y Ninh.&nbsp;<a href=\"https://www.bachhoaxanh.com/muoi-an/muoi-tom-kieu-tay-ninh-guyumi-chai-60g\" target=\"_blank\">Muối t&ocirc;m kiểu T&acirc;y Ninh Guyumi chai 60g</a>&nbsp;l&agrave; loại&nbsp;<a href=\"https://www.bachhoaxanh.com/muoi-an\" target=\"_blank\">muối</a>&nbsp;chấm được tạo n&ecirc;n bởi hương vị ngọt của t&ocirc;m, kết hợp với vị cay của ớt v&agrave; gia vị, c&oacute; độ mặn vừa phải</p>', 0, 'muoi-tom-kieu-tay-ninh-guyumi-chai-60g1645086063.jpg', '2022-02-17 15:21:03', '2022-02-17 15:21:03'),
-(21, 'Đuôi heo Meat Master khay 400g (6-8 miếng)', 59, 84500, 0.2, 1, NULL, 1, 'duoi-heo-meat-master-khay-400g1645261640.jpg', '2022-02-19 16:07:20', '2022-02-19 16:07:20'),
+(21, 'Đuôi heo Meat Master khay 400g (6-8 miếng)', 58, 84500, 0.2, 1, NULL, 1, 'duoi-heo-meat-master-khay-400g1645261640.jpg', '2022-02-19 16:07:20', '2022-02-19 16:07:20'),
 (22, 'Đường tinh luyện Lam Sơn gói 1kg', 50, 23000, 0.3, 7, '<p><a href=\"https://www.bachhoaxanh.com/duong\" target=\"_blank\">Đường</a>&nbsp;được ứng dụng c&ocirc;ng nghệ ti&ecirc;n tiến, chiết &eacute;p từ những c&acirc;y m&iacute;a tốt nhất,&nbsp;kh&ocirc;ng sử dụng h&oacute;a chất tẩy trắng đến từ thương hiệu&nbsp;<a href=\"https://www.bachhoaxanh.com/duong-lam-son\" target=\"_blank\">đường Lam Sơn</a>.&nbsp;<a href=\"https://www.bachhoaxanh.com/duong/duong-tinh-luyen-lam-son-goi-1kg\" target=\"_blank\">Đường tinh luyện Lam Sơn g&oacute;i 1kg</a>&nbsp;c&oacute;&nbsp;vị ngọt dịu, thơm ngon, hấp dẫn, c&oacute; m&agrave;u trắng tự nhi&ecirc;n, dễ h&ograve;a tan.</p>', 1, 'duong-tinh-luyen-lam-son-goi-1kg1645962577.jpg', '2022-02-27 18:49:37', '2022-03-01 11:19:09'),
 (23, 'Nấm kim châm Hàn Quốc túi 150g', 10, 16000, 0, 5, '<p>Nấm kim ch&acirc;m H&agrave;n Quốc của B&aacute;ch h&oacute;a Xanh được nu&ocirc;i trồng v&agrave; đ&oacute;ng g&oacute;i theo những ti&ecirc;u chuẩn nghi&ecirc;m ngặt, bảo đảm c&aacute;c ti&ecirc;u chuẩn xanh - sach, chất lượng v&agrave; an to&agrave;n với người d&ugrave;ng. Sợi nấm dai, gi&ograve;n v&agrave; ngọt, khi nấu ch&iacute;n rất thơm n&ecirc;n thường được lăn bột chi&ecirc;n gi&ograve;n, nấu s&uacute;p hoặc để nướng ăn k&egrave;m.</p>', 1, 'nam-kim-cham-goi-150g-11645962766.jpg', '2022-02-27 18:52:46', '2022-02-27 18:52:46'),
 (24, 'Bắp mỹ gói 2 trái', 50, 17000, 0, 4, '<p>Bắp Mỹ l&agrave; một loại thực phẩm được trồng rất nhiều ở khắp nơi tr&ecirc;n thế giới. Đ&acirc;y l&agrave; một loại quả vừa ngon, lại c&oacute; rất nhiều chất kho&aacute;ng chất v&agrave; vitamin. Bắp c&oacute; thể chế biến th&agrave;nh nhiều m&oacute;n ăn ngon như: cơm bắp, ch&egrave; bắp, sữa bắp,... bất kỳ m&oacute;n g&igrave; cũng tạo n&ecirc;n hương vị tuyệt hảo.</p>', 1, 'bap-my-2-trai-11645962860.jpg', '2022-02-27 18:54:20', '2022-02-27 18:54:20'),
-(25, 'Cà rốt Đà Lạt túi 500g', 18, 12500, 0, 4, '<p>C&agrave; rốt Đ&agrave; Lạt l&agrave; một loại củ rất quen thuộc trong c&aacute;c m&oacute;n ăn của người Việt.&nbsp;Loại củ n&agrave;y c&oacute; h&agrave;m lượng chất dinh dưỡng v&agrave; vitamin A cao, được xem l&agrave; nguy&ecirc;n liệu cần thiết cho c&aacute;c m&oacute;n ăn dặm của trẻ nhỏ, gi&uacute;p trẻ s&aacute;ng mắt v&agrave; cung cấp nguồn chất xơ dồi d&agrave;o.</p>', 1, 'ca-rot-da-lat-tui-500g-2-4-cu-11645962958.jpg', '2022-02-27 18:55:58', '2022-02-27 18:55:58'),
-(26, 'Khoai mỡ túi 1kg', 18, 45000, 0, 4, '<p>L&agrave; nguy&ecirc;n liệu kh&aacute; quen thuộc của c&aacute;c chị em khi nấu ăn cho cả gia đ&igrave;nh. Với h&agrave;m lượng kho&aacute;ng chất v&agrave; vitamin c&oacute; trong khoai mỡ sẽ gi&uacute;p cải thiện hệ ti&ecirc;u ho&aacute;, gi&uacute;p nhuận tr&agrave;ng, chữa t&aacute;o b&oacute;n rất tốt. Khoai mỡ c&oacute; thể sử dụng để chế biến th&agrave;nh c&aacute;c m&oacute;n như: canh, b&aacute;nh khoai mỡ, khoai mỡ chi&ecirc;n gi&ograve;n,...</p>', 1, 'khoai-mo-tui-1kg-11645963037.jpg', '2022-02-27 18:57:17', '2022-02-27 18:57:17'),
+(25, 'Cà rốt Đà Lạt túi 500g', 16, 12500, 0, 4, '<p>C&agrave; rốt Đ&agrave; Lạt l&agrave; một loại củ rất quen thuộc trong c&aacute;c m&oacute;n ăn của người Việt.&nbsp;Loại củ n&agrave;y c&oacute; h&agrave;m lượng chất dinh dưỡng v&agrave; vitamin A cao, được xem l&agrave; nguy&ecirc;n liệu cần thiết cho c&aacute;c m&oacute;n ăn dặm của trẻ nhỏ, gi&uacute;p trẻ s&aacute;ng mắt v&agrave; cung cấp nguồn chất xơ dồi d&agrave;o.</p>', 1, 'ca-rot-da-lat-tui-500g-2-4-cu-11645962958.jpg', '2022-02-27 18:55:58', '2022-02-27 18:55:58'),
+(26, 'Khoai mỡ túi 1kg', 16, 45000, 0, 4, '<p>L&agrave; nguy&ecirc;n liệu kh&aacute; quen thuộc của c&aacute;c chị em khi nấu ăn cho cả gia đ&igrave;nh. Với h&agrave;m lượng kho&aacute;ng chất v&agrave; vitamin c&oacute; trong khoai mỡ sẽ gi&uacute;p cải thiện hệ ti&ecirc;u ho&aacute;, gi&uacute;p nhuận tr&agrave;ng, chữa t&aacute;o b&oacute;n rất tốt. Khoai mỡ c&oacute; thể sử dụng để chế biến th&agrave;nh c&aacute;c m&oacute;n như: canh, b&aacute;nh khoai mỡ, khoai mỡ chi&ecirc;n gi&ograve;n,...</p>', 1, 'khoai-mo-tui-1kg-11645963037.jpg', '2022-02-27 18:57:17', '2022-02-27 18:57:17'),
 (27, 'Bắp cải tím gói 500g', 10, 20000, 0.1, 4, '<p>L&agrave; một loại thực phẩm v&ocirc; c&ugrave;ng quen thuộc, c&oacute; m&agrave;u sắc v&ocirc; c&ugrave;ng bắt mắt, rất dễ mua v&agrave; chế biến th&agrave;nh nhiều m&oacute;n ăn đa dạng kh&aacute;c nhau trong bữa cơm hằng ng&agrave;y.&nbsp; Bắp cải t&iacute;m đặc biệt mang đến lợi &iacute;ch trong việc hỗ trợ ph&ograve;ng chống ung thư, gi&uacute;p cơ thể khỏe mạnh to&agrave;n diện.</p>', 1, 'bap-cai-tim-tui-1kg-11645963117.jpg', '2022-02-27 18:58:37', '2022-02-27 19:04:26'),
-(28, 'Tôm thẻ khay 300g (7-9 con)', 19, 58000, 0, 3, NULL, 1, 'tom-the-nguyen-con-khay-300g-11645964123.jpeg', '2022-02-27 19:15:23', '2022-02-27 19:15:23'),
+(28, 'Tôm thẻ khay 300g (7-9 con)', 18, 58000, 0, 3, NULL, 1, 'tom-the-nguyen-con-khay-300g-11645964123.jpeg', '2022-02-27 19:15:23', '2022-02-27 19:15:23'),
 (29, 'Mực ghim nhập khẩu đông lạnh túi 300g', 19, 65700, 0.2, 3, '<p>Mực ghim l&agrave; loại mực th&acirc;n d&agrave;i, cuộn tr&ograve;n như c&acirc;y ghim, vừa gi&agrave;u chất dinh dưỡng v&agrave; thơm ngon đậm vị. Mực ghim nhập khẩu đ&ocirc;ng lạnh vẫn giữ được độ săn chắc, gi&uacute;p bảo quản l&acirc;u hơn, mang đến vị đậm đ&agrave; cho m&oacute;n ăn</p>', 1, 'muc-ghim-nhap-khau-dong-lanh-tui-300g-11645964230.jpg', '2022-02-27 19:17:10', '2022-02-27 19:20:17'),
 (30, '6 nước ngọt Coca Cola 390ml', 55, 44000, 0, 6, '<p>Từ thương hiệu nước giải kh&aacute;t h&agrave;ng đầu thế giới, nước ngọt Coca Cola chai 390ml xua tan nhanh mọi cảm gi&aacute;c mệt mỏi, căng thẳng, đặc biệt th&iacute;ch hợp sử dụng với c&aacute;c hoạt động ngo&agrave;i trời. B&ecirc;n cạnh đ&oacute; thiết kế dạng chai nhỏ gọn, tiện lợi dễ d&agrave;ng bảo quản khi kh&ocirc;ng sử dụng hết</p>', 1, '6-chai-nuoc-ngot-coca-cola-390ml1652428332.jpg', '2022-05-13 14:52:12', '2022-05-13 15:20:14'),
 (31, 'Thùng 48 hộp sữa tươi có đường Vinamilk 180ml', 5, 330000, 0, 10, '<p>Được chế biến từ nguồn&nbsp;sữa tươi&nbsp;100% chứa nhiều dưỡng chất như vitamin A, D3, canxi,... tốt cho xương v&agrave; hệ miễn dịch.&nbsp;Sữa tươi Vinamilk&nbsp;l&agrave; thương hiệu được tin d&ugrave;ng h&agrave;ng đầu với chất lượng tuyệt vời.&nbsp;Th&ugrave;ng 48 hộp sữa tươi c&oacute; đường Vinamilk 100% Sữa Tươi 180ml&nbsp;thơm ngon&nbsp;dễ uống.</p>', 1, 'thung-48-hop-sua-tuoi-co-duong-vinamilk1652575812.jpg', '2022-05-15 07:50:12', '2022-05-15 07:50:12'),
-(32, 'Thùng 36 hộp sữa đậu nành Fami Canxi 200ml', 2, 147000, 0, 11, '<p style=\"text-align:justify\">Được bổ sung th&ecirc;m canxi, vitamin D3 v&agrave; vitamin B12 gi&uacute;p xương chắc khoẻ hơn mỗi ng&agrave;y.&nbsp;Sữa đậu&nbsp;n&agrave;nh&nbsp;Fami&nbsp;thơm ngon, dễ uống, kh&ocirc;ng d&ugrave;ng chất bảo quản. Sản phẩm&nbsp;th&ugrave;ng 36 hộp sữa Fami Canxi 200ml&nbsp;được đ&oacute;ng th&ugrave;ng 36 hộp tiết kiệm, tiện d&ugrave;ng l&acirc;u d&agrave;i.</p>', 1, 'thung-36-hop-sua-dau-nanh-fami-canxi1652576050.jpg', '2022-05-15 07:54:10', '2022-05-15 07:54:10'),
-(33, 'Thùng 48 hộp sữa tiệt trùng hương việt quất Nestlé NutriStrong 180ml', 1, 320000, 0, 10, '<p>Được bổ sung th&ecirc;m 25% canxi, vitamin A &amp; D,&nbsp;sữa tươi Nestle gi&uacute;p xương bạn khoẻ hơn mỗi ng&agrave;y. Sữa tươi Nestle được nhiều người ưa chuộng bởi nguồn dinh dưỡng dồi d&agrave;o m&agrave; n&oacute; lu&ocirc;n cung cấp cho cơ thể. Th&ugrave;ng 48 hộp sữa tiệt tr&ugrave;ng hương việt quất Nestl&eacute; NutriStrong 180ml đ&oacute;ng th&ugrave;ng tiết kiệm, hương việt ...</p>', 1, 'thung-48-hop-sua-tiet-trung-huong-viet-quat-nestle1652576177.jpg', '2022-05-15 07:56:17', '2022-05-15 07:56:17'),
-(34, 'Thăn bò Úc tươi Trung Đồng hút chân không khay 250g', 60, 130000, 0, 2, '<p>Thăn b&ograve; &Uacute;c tươi h&uacute;t ch&acirc;n kh&ocirc;ng khay 250g c&oacute; một lớp mỡ mỏng bao phủ b&ecirc;n ngo&agrave;i phần nạc gi&uacute;p cho phần thịt khi chế biến kh&ocirc;ng bị kh&ocirc;. Bạn c&oacute; thể mua thịt thăn b&ograve; &uacute;c về &aacute;p chảo với bơ, đảm bảo m&oacute;n ăn mềm mọng nước, cả nh&agrave; ai cũng th&iacute;ch.</p>', 1, 'than-bo-uc-tuoi-hut-chan-khong-khay-250g1652576325.jpg', '2022-05-15 07:58:45', '2022-05-15 07:58:45'),
-(35, 'Bít tết đùi bò Úc Pacow vỉ 250g', 9, 118000, 0, 2, '<p style=\"text-align:justify\">Phần thịt nạc nguy&ecirc;n quả nằm ngay ph&iacute;a tr&ecirc;n bắp ch&acirc;n sau của con b&ograve;. Miếng thịt rất nạc v&agrave; hơi kh&ocirc; ph&ugrave; hợp với chi&ecirc;n hoặc nướng theo tảng. Đặc biệt với m&oacute;n beefsteak,một m&oacute;n ăn ưa th&iacute;ch.&nbsp;B&iacute;t tết đ&ugrave;i b&ograve; &Uacute;c Pacow khay 250g được sản xuất ở &Uacute;c bởi Pacow, đ&atilde; được kiểm duyệt chặc chẽ n&ecirc;n đảm bảo an to&agrave;n.</p>', 1, 'bit-tet-dui-bo-uc-pascow-khay-250g1652576390.jpg', '2022-05-15 07:59:50', '2022-05-15 07:59:50'),
-(36, 'Thùng 24 lon nước ngọt có ga Mirinda vị soda kem việt quất 320ml', 36, 235000, 0, 6, '<p style=\"text-align:justify\">Nước ngọt Mirinda&nbsp;soda kem vị việt quất ngọt ng&agrave;o tươi mới, vị soda kem b&ugrave;ng nổ c&ugrave;ng hương việt quất thơm ngon. H&atilde;y mua&nbsp;th&ugrave;ng 24 lon nước ngọt c&oacute; ga Mirinda vị soda kem việt quất 320ml&nbsp;để cảm nhận vị ngon kh&oacute; cưỡng v&agrave; c&ugrave;ng thưởng thức&nbsp;nước ngọt&nbsp;n&agrave;y với bạn b&egrave;, người th&acirc;n nh&eacute;!</p>', 1, 'thung-24-lon-nuoc-ngot-co-ga-mirinda-vi-soda-kem-viet-quat1652576526.jpg', '2022-05-15 08:02:06', '2022-05-15 08:02:06'),
-(37, 'Thùng 24 chai nước tinh khiết Aquafina 500ml', 7, 100000, 0, 12, '<p>Được lấy từ nguồn nước ngầm đảm bảo&nbsp; trải qua quy tr&igrave;nh khử tr&ugrave;ng, lọc sạch c&aacute;c tạp chất. Nước tinh khiết Aquafina 500ml đ&atilde; đạt tới tr&igrave;nh độ nước tinh khiết&nbsp;c&oacute; t&aacute;c dụng dịu cơn kh&aacute;t, khi uống sẽ c&oacute; cảm gi&aacute;c hơi ngọt ở miệng, rất dễ uống. Nhỏ gọn tiện lợi dễ mang b&ecirc;n m&igrave;nh</p>', 1, 'thung-24-chai-nuoc-tinh-khiet-aquafina-500ml1652576672.jpg', '2022-05-15 08:04:32', '2022-05-15 08:04:32'),
-(38, 'Thùng 24 chai nước khoáng Vivant 500ml', 9, 96000, 0, 12, '<p>Sản phẩm&nbsp;nước uống đ&oacute;ng chai&nbsp;từ thương hiệu&nbsp;Vivant.&nbsp;24 chai nước kho&aacute;ng Vivant 500ml&nbsp;từ nguồn kho&aacute;ng nổi tiếng từ Vĩnh Hảo v&agrave; Quang Hanh, dễ uống, chứa nhiều kho&aacute;ng chất h&ograve;a tan tự nhi&ecirc;n trong nước c&oacute; t&aacute;c dụng tốt cho sức khỏe con người. Cam kết ch&iacute;nh h&atilde;ng v&agrave; an to&agrave;n.</p>', 1, 'thung-24-chai-nuoc-khoang-vivant-500ml1652576769.jpg', '2022-05-15 08:06:09', '2022-05-15 08:06:09'),
+(32, 'Thùng 36 hộp sữa đậu nành Fami Canxi 200ml', 1, 147000, 0, 11, '<p style=\"text-align:justify\">Được bổ sung th&ecirc;m canxi, vitamin D3 v&agrave; vitamin B12 gi&uacute;p xương chắc khoẻ hơn mỗi ng&agrave;y.&nbsp;Sữa đậu&nbsp;n&agrave;nh&nbsp;Fami&nbsp;thơm ngon, dễ uống, kh&ocirc;ng d&ugrave;ng chất bảo quản. Sản phẩm&nbsp;th&ugrave;ng 36 hộp sữa Fami Canxi 200ml&nbsp;được đ&oacute;ng th&ugrave;ng 36 hộp tiết kiệm, tiện d&ugrave;ng l&acirc;u d&agrave;i.</p>', 1, 'thung-36-hop-sua-dau-nanh-fami-canxi1652576050.jpg', '2022-05-15 07:54:10', '2022-05-15 07:54:10'),
+(33, 'Thùng 48 hộp sữa tiệt trùng hương việt quất Nestlé NutriStrong 180ml', 1, 320000, 0, 10, '<p>Được bổ sung th&ecirc;m 25% canxi, vitamin A &amp; D,&nbsp;sữa tươi Nestle gi&uacute;p xương bạn khoẻ hơn mỗi ng&agrave;y. Sữa tươi Nestle được nhiều người ưa chuộng bởi nguồn dinh dưỡng dồi d&agrave;o m&agrave; n&oacute; lu&ocirc;n cung cấp cho cơ thể. Th&ugrave;ng 48 hộp sữa tiệt tr&ugrave;ng hương việt quất Nestl&eacute; NutriStrong 180ml đ&oacute;ng th&ugrave;ng tiết kiệm, hương việt ...</p>', 1, 'thung-48-hop-sua-tiet-trung-huong-viet-quat-nestle1652576177.jpg', '2022-05-15 07:56:17', '2022-12-08 17:56:17'),
+(34, 'Thăn bò Úc tươi Trung Đồng hút chân không khay 250g', 58, 130000, 0, 2, '<p>Thăn b&ograve; &Uacute;c tươi h&uacute;t ch&acirc;n kh&ocirc;ng khay 250g c&oacute; một lớp mỡ mỏng bao phủ b&ecirc;n ngo&agrave;i phần nạc gi&uacute;p cho phần thịt khi chế biến kh&ocirc;ng bị kh&ocirc;. Bạn c&oacute; thể mua thịt thăn b&ograve; &uacute;c về &aacute;p chảo với bơ, đảm bảo m&oacute;n ăn mềm mọng nước, cả nh&agrave; ai cũng th&iacute;ch.</p>', 1, 'than-bo-uc-tuoi-hut-chan-khong-khay-250g1652576325.jpg', '2022-05-15 07:58:45', '2022-05-15 07:58:45'),
+(35, 'Bít tết đùi bò Úc Pacow vỉ 250g', 6, 118000, 0, 2, '<p style=\"text-align:justify\">Phần thịt nạc nguy&ecirc;n quả nằm ngay ph&iacute;a tr&ecirc;n bắp ch&acirc;n sau của con b&ograve;. Miếng thịt rất nạc v&agrave; hơi kh&ocirc; ph&ugrave; hợp với chi&ecirc;n hoặc nướng theo tảng. Đặc biệt với m&oacute;n beefsteak,một m&oacute;n ăn ưa th&iacute;ch.&nbsp;B&iacute;t tết đ&ugrave;i b&ograve; &Uacute;c Pacow khay 250g được sản xuất ở &Uacute;c bởi Pacow, đ&atilde; được kiểm duyệt chặc chẽ n&ecirc;n đảm bảo an to&agrave;n.</p>', 1, 'bit-tet-dui-bo-uc-pascow-khay-250g1652576390.jpg', '2022-05-15 07:59:50', '2022-05-15 07:59:50'),
+(36, 'Thùng 24 lon nước ngọt có ga Mirinda vị soda kem việt quất 320ml', 31, 235000, 0, 6, '<p style=\"text-align:justify\">Nước ngọt Mirinda&nbsp;soda kem vị việt quất ngọt ng&agrave;o tươi mới, vị soda kem b&ugrave;ng nổ c&ugrave;ng hương việt quất thơm ngon. H&atilde;y mua&nbsp;th&ugrave;ng 24 lon nước ngọt c&oacute; ga Mirinda vị soda kem việt quất 320ml&nbsp;để cảm nhận vị ngon kh&oacute; cưỡng v&agrave; c&ugrave;ng thưởng thức&nbsp;nước ngọt&nbsp;n&agrave;y với bạn b&egrave;, người th&acirc;n nh&eacute;!</p>', 1, 'thung-24-lon-nuoc-ngot-co-ga-mirinda-vi-soda-kem-viet-quat1652576526.jpg', '2022-05-15 08:02:06', '2022-05-15 08:02:06'),
+(37, 'Thùng 24 chai nước tinh khiết Aquafina 500ml', 4, 100000, 0, 12, '<p>Được lấy từ nguồn nước ngầm đảm bảo&nbsp; trải qua quy tr&igrave;nh khử tr&ugrave;ng, lọc sạch c&aacute;c tạp chất. Nước tinh khiết Aquafina 500ml đ&atilde; đạt tới tr&igrave;nh độ nước tinh khiết&nbsp;c&oacute; t&aacute;c dụng dịu cơn kh&aacute;t, khi uống sẽ c&oacute; cảm gi&aacute;c hơi ngọt ở miệng, rất dễ uống. Nhỏ gọn tiện lợi dễ mang b&ecirc;n m&igrave;nh</p>', 1, 'thung-24-chai-nuoc-tinh-khiet-aquafina-500ml1652576672.jpg', '2022-05-15 08:04:32', '2022-05-15 08:04:32'),
+(38, 'Thùng 24 chai nước khoáng Vivant 500ml', 8, 96000, 0, 12, '<p>Sản phẩm&nbsp;nước uống đ&oacute;ng chai&nbsp;từ thương hiệu&nbsp;Vivant.&nbsp;24 chai nước kho&aacute;ng Vivant 500ml&nbsp;từ nguồn kho&aacute;ng nổi tiếng từ Vĩnh Hảo v&agrave; Quang Hanh, dễ uống, chứa nhiều kho&aacute;ng chất h&ograve;a tan tự nhi&ecirc;n trong nước c&oacute; t&aacute;c dụng tốt cho sức khỏe con người. Cam kết ch&iacute;nh h&atilde;ng v&agrave; an to&agrave;n.</p>', 1, 'thung-24-chai-nuoc-khoang-vivant-500ml1652576769.jpg', '2022-05-15 08:06:09', '2022-05-15 08:06:09'),
 (39, 'Muối tôm kiểu Tây Ninh Guyumi hũ 110g', 40, 17500, 0, 7, '<p>Muối Guyumi&nbsp;với nguồn nguy&ecirc;n liệu sạch, tạo n&ecirc;n một loại muối t&ocirc;m thơm ngon đ&uacute;ng kiểu T&acirc;y Ninh.&nbsp;Muối t&ocirc;m kiểu T&acirc;y Ninh Guyumi chai 110g&nbsp;l&agrave; loại&nbsp;muối&nbsp;chấm được tạo n&ecirc;n bởi hương vị ngọt của t&ocirc;m, kết hợp với vị cay của ớt v&agrave; gia vị, c&oacute; độ mặn vừa phải.</p>', 0, 'muoi-tom-kieu-tay-ninh-guyumi-chai-11668498790.jpg', '2022-11-15 14:53:10', '2022-11-15 14:53:10'),
 (40, 'Muối tiêu chanh Guyumi hũ 110g', 40, 16500, 0, 7, '<p>Sản phẩm kh&ocirc;ng chỉ tiện lợi m&agrave; c&ograve;n đảm bảo an to&agrave;n sức khỏe cho người sử dụng.&nbsp;Muối ti&ecirc;u chanh Guyumi chai 110g&nbsp;l&agrave; sự kết hợp của&nbsp;muối&nbsp;kho&aacute;ng thi&ecirc;n nhi&ecirc;n,&nbsp;với vị chua the của l&aacute; chanh tạo n&ecirc;n hương vị kh&ocirc;ng thế chối từ của&nbsp;muối Guyumi.</p>', 0, 'muoi-tieu-chanh-guyumi-hu-60g-11668499059.jpg', '2022-11-15 14:57:39', '2022-11-15 14:57:39'),
 (41, 'Muối ớt Kim Quất Guyumi chai 200g', 40, 18000, 0, 7, '<p>L&agrave; sản phẩm&nbsp;nước chấm&nbsp;được l&agrave;m từ nguy&ecirc;n liệu tươi, sạch của thương hiệu&nbsp;nước chấm Guyumi.&nbsp;Muối ớt Kim Quất Guyumi chai 200g&nbsp;kết hợp h&agrave;i h&ograve;a giữa vị chua chua, thơm nhẹ của quả kim quất với vị cay của ớt xi&ecirc;m mang đến cho thực kh&aacute;ch hương vị mới lạ độc đ&aacute;o.</p>', 0, 'muoi-ot-kim-quat-guyumi-chai-200g-11668499114.jpg', '2022-11-15 14:58:34', '2022-11-15 14:58:34');
@@ -1396,7 +1430,9 @@ CREATE TABLE `sudungma` (
 INSERT INTO `sudungma` (`id`, `MSKH`, `MaGG`, `MSDH`) VALUES
 (1, 3, 2, 1),
 (2, 3, 1, 2),
-(3, 1, 10, 9);
+(3, 1, 10, 9),
+(4, 3, 10, 15),
+(5, 3, 9, 17);
 
 -- --------------------------------------------------------
 
@@ -1431,7 +1467,18 @@ INSERT INTO `thanhtoan` (`MaThanhToan`, `TT_Ten`, `TT_DienGiai`, `TT_TrangThai`,
 (7, 'Thanh Toán Khi Nhận Hàng', 'Thanh toan don hang', 1, NULL, NULL, NULL, 'tim-mau-bao-bi1670141787.jpeg', '2022-12-03 14:11:18', '2022-12-03 14:11:18'),
 (8, 'Thanh Toán Khi Nhận Hàng', 'Thanh toan don hang', 1, NULL, NULL, NULL, 'tim-mau-bao-bi1670119160.jpeg', '2022-12-03 18:41:06', '2022-12-03 18:41:06'),
 (9, 'Thanh Toán Khi Nhận Hàng', 'Thanh toan don hang', 1, NULL, NULL, NULL, 'tim-mau-bao-bi1670141795.jpeg', '2022-12-04 15:12:55', '2022-12-04 15:12:55'),
-(10, 'Thanh Toán Khi Nhận Hàng', 'Thanh toan don hang', 1, NULL, NULL, NULL, 'tim-mau-bao-bi1670204634.jpeg', '2022-12-05 08:41:53', '2022-12-05 08:41:53');
+(10, 'Thanh Toán Khi Nhận Hàng', 'Thanh toan don hang', 1, NULL, NULL, NULL, 'tim-mau-bao-bi1670204634.jpeg', '2022-12-05 08:41:53', '2022-12-05 08:41:53'),
+(11, 'Thanh Toán Khi Nhận Hàng', 'Thanh toan don hang', 1, NULL, NULL, NULL, 'tim-mau-bao-bi1670292551.jpeg', '2022-12-06 09:07:50', '2022-12-06 09:07:50'),
+(12, 'Thanh Toán Khi Nhận Hàng', 'Thanh toan don hang', 1, NULL, NULL, NULL, 'tim-mau-bao-bi1670293231.jpeg', '2022-12-06 09:17:45', '2022-12-06 09:17:45'),
+(13, 'Thanh Toán Khi Nhận Hàng', 'Khách hàng boom hàng', 0, NULL, NULL, NULL, NULL, '2022-12-08 07:31:08', '2022-12-08 07:31:08'),
+(14, 'Thanh Toán Khi Nhận Hàng', 'Thanh toan don hang', 1, NULL, NULL, NULL, 'tim-mau-bao-bi1670483412.jpeg', '2022-12-08 14:05:43', '2022-12-08 14:05:43'),
+(15, 'Thanh Toán Khi Nhận Hàng', 'Thanh toan don hang', 1, NULL, NULL, NULL, 'tim-mau-bao-bi1670663545.jpeg', '2022-12-10 16:06:55', '2022-12-10 16:06:55'),
+(16, 'Thanh Toán Khi Nhận Hàng', 'Thanh toan don hang', 1, NULL, NULL, NULL, 'tim-mau-bao-bi1670663614.jpeg', '2022-12-10 16:10:54', '2022-12-10 16:10:54'),
+(17, 'Thanh Toán Khi Nhận Hàng', 'Thanh toan don hang', 1, NULL, NULL, NULL, 'tim-mau-bao-bi1670746898.jpeg', '2022-12-10 19:10:07', '2022-12-10 19:10:07'),
+(18, 'Thanh Toán Khi Nhận Hàng', 'Thanh toan don hang', 1, NULL, NULL, NULL, 'tim-mau-bao-bi1670676209.jpeg', '2022-12-10 19:37:47', '2022-12-10 19:37:47'),
+(19, 'Thanh Toán Bằng VnPay', 'Thanh toan don hang', 1, 'NCB', 'VNP13900770', '00', 'tim-mau-bao-bi1670746087.jpeg', '2022-12-11 15:05:54', '2022-12-11 15:05:54'),
+(20, 'Thanh Toán Bằng VnPay', 'Thanh toan don hang', 1, 'NCB', 'VNP13900770', '00', NULL, '2022-12-11 15:06:14', '2022-12-11 15:06:14'),
+(21, 'Thanh Toán Bằng VnPay', 'Khách không nhận hàng', 0, 'NCB', 'VNP13900776', '00', NULL, '2022-12-11 15:11:04', '2022-12-11 15:11:04');
 
 -- --------------------------------------------------------
 
@@ -12335,13 +12382,13 @@ ALTER TABLE `yeuthich`
 -- AUTO_INCREMENT for table `binhluan`
 --
 ALTER TABLE `binhluan`
-  MODIFY `MaBinhLuan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `MaBinhLuan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `cap_quyen`
 --
 ALTER TABLE `cap_quyen`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `danhmuc`
@@ -12353,13 +12400,13 @@ ALTER TABLE `danhmuc`
 -- AUTO_INCREMENT for table `dathang`
 --
 ALTER TABLE `dathang`
-  MODIFY `MSDH` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `MSDH` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `diachikh`
 --
 ALTER TABLE `diachikh`
-  MODIFY `MaDC` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `MaDC` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `giaohang`
@@ -12419,13 +12466,13 @@ ALTER TABLE `sanpham`
 -- AUTO_INCREMENT for table `sudungma`
 --
 ALTER TABLE `sudungma`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `thanhtoan`
 --
 ALTER TABLE `thanhtoan`
-  MODIFY `MaThanhToan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `MaThanhToan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `yeuthich`

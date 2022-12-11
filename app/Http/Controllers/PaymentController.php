@@ -8,10 +8,51 @@ use DB;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\File; 
 use Session;
+use App\Jobs\SendEmail;
 session_start();
 
 class PaymentController extends Controller
 {
+    public function LoginCheck(){
+        $MSKH=Session::get('user_id');
+        if($MSKH){
+            
+        }else{
+            return Redirect::to('login_home')->send();
+        }
+    }
+    public function sendEmail($MSDH, $MaDC, $MSKH){
+        $order=DB::table('dathang')->where('MSDH',$MSDH)->get();
+
+        $order_details=DB::table('chitietdathang')
+        ->join('sanpham', 'chitietdathang.MSSP', '=', 'sanpham.MSSP')
+        ->where('MSDH',$MSDH)->select('chitietdathang.*', 'TenSP','Image')->get();
+
+        $address_info=DB::table('diachikh')->where('MaDC',$MaDC)->get();
+        foreach ($address_info as $key => $value) {
+            $HoTen = $value->HoTen;
+            $SDT   = $value->SDT;;
+            $DiaChi= $value->DiaChi;
+        }
+
+        $customer = DB::table('khachhang')->where('MSKH',$MSKH)->first();
+
+        $users = $customer->Email;
+        $greeting = 'Xin chào '.$customer->HoTenKH.',';
+
+        $title = 'Bee Store đã nhận được yêu cầu đặt hàng của bạn và đang xử lý nhé. Bạn sẽ nhận được thông báo tiếp theo khi đơn hàng đã sẵn sàng được giao.';
+
+        $message = [
+           'greeting'=> $greeting,
+           'title'   => $title,
+           'order' => $order,
+           'order_details' => $order_details,
+           'name' => $HoTen,
+           'address'=> $DiaChi,
+           'phone' => $SDT,
+        ];
+        SendEmail::dispatch($message, $users)->delay(5);
+    }
     public function vnpay_payment(Request $re){
         date_default_timezone_set('Asia/Ho_Chi_Minh');
     	$data = $re->all();
@@ -219,6 +260,7 @@ class PaymentController extends Controller
                 Session::put('cart',null);
                 Session::put('Addr', null);
                 Session::put('Note',null);
+                $this->sendEmail($SoDonDH, $MaDC, $MSKH);
                 return Redirect::to('/complete_check_out');
             }else{
                 return redirect('/vnpay_check_out')->with('notice','Thanh Toán Thất Bại');
